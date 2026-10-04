@@ -493,7 +493,165 @@
   }
   .video-skip:hover{ color:var(--brass); border-color:var(--brass); }
 
+  /* ---------- LESSON QUIZZES ---------- */
+  .quiz-score-badge{
+    display:none; font-family:var(--mono); font-size:11px; color:var(--brass);
+    border:1px solid var(--brass-dim); padding:2px 8px; border-radius:10px; margin-inline-start:8px; flex-shrink:0;
+  }
+  .btn-quiz{ border-color:var(--rust); color:var(--rust-bright); margin-top:6px; }
+  .btn-quiz:hover{ background:rgba(56,189,248,0.1); border-color:var(--rust-bright); }
+  .quiz-host{ margin-top:16px; }
+  .quiz-panel{ background:var(--ink); border:1px solid var(--line); padding:24px 22px; margin-top:4px; }
+  .quiz-progress{ font-family:var(--mono); font-size:11.5px; color:var(--muted); margin-bottom:12px; }
+  .quiz-question{ font-family:var(--head); font-size:16px; color:var(--paper); margin-bottom:16px; line-height:1.6; }
+  .quiz-options{ display:grid; gap:10px; margin-bottom:4px; }
+  .quiz-option{
+    text-align:right; background:var(--panel-2); border:1px solid var(--line); color:var(--text);
+    padding:12px 16px; font-size:14.5px; font-family:'Tajawal',sans-serif; cursor:pointer; transition:.2s; border-radius:3px;
+  }
+  .quiz-option:hover:not(:disabled){ border-color:var(--rust); }
+  .quiz-option:disabled{ cursor:default; }
+  .quiz-option.correct{ border-color:var(--brass); background:rgba(16,185,129,0.12); color:var(--brass-bright); }
+  .quiz-option.wrong{ border-color:#ef4444; background:rgba(239,68,68,0.12); color:#ff8fa3; }
+  .quiz-explain{ margin-top:16px; padding:14px 16px; background:var(--panel-2); border-inline-start:3px solid var(--rust); font-size:14px; color:var(--muted); line-height:1.7; }
+  .quiz-nav{ margin-top:18px; text-align:center; }
+  .quiz-result{ text-align:center; }
+  .quiz-score{ font-family:var(--mono); font-size:40px; color:var(--brass-bright); margin-bottom:10px; }
+  .quiz-result p{ color:var(--muted); font-size:15px; margin-bottom:20px; }
 
+  /* ---------- PASSWORD STRENGTH TOOL ---------- */
+  .tool-card{ max-width:620px; margin:0 auto; background:var(--panel-2); border:1px solid var(--line); padding:34px 30px; }
+  .pw-input-group{ position:relative; margin-bottom:18px; }
+  .pw-test-input{
+    width:100%; height:48px; background:var(--ink); border:1px solid var(--line); border-radius:4px;
+    padding-inline-start:16px; padding-inline-end:48px; color:var(--paper); font-family:var(--mono); font-size:15px;
+    outline:none; transition:.25s;
+  }
+  .pw-test-input:focus{ border-color:var(--brass); }
+  .pw-eye{
+    position:absolute; inset-inline-end:12px; top:50%; transform:translateY(-50%);
+    background:none; border:none; cursor:pointer; font-size:16px; opacity:.6; line-height:1;
+  }
+  .pw-eye:hover{ opacity:1; }
+  .pw-meter{ height:6px; background:var(--line); border-radius:3px; overflow:hidden; margin-bottom:10px; }
+  .pw-meter-fill{ height:100%; width:0%; background:var(--line); transition:width .3s ease, background .3s ease; display:block; }
+  .pw-label{ font-family:var(--mono); font-size:14px; color:var(--muted); margin-bottom:22px; min-height:18px; transition:color .3s; }
+  .pw-criteria{ list-style:none; display:grid; gap:10px; margin-bottom:22px; padding:0; }
+  .pw-criteria li{ font-size:14px; color:var(--muted); display:flex; align-items:center; gap:10px; transition:color .25s; }
+  .pw-criteria li.ok{ color:var(--text); }
+  .pw-c-icon{
+    width:20px; height:20px; border:1px solid var(--line); border-radius:50%; display:inline-flex;
+    align-items:center; justify-content:center; font-size:11px; flex-shrink:0; transition:.25s; color:var(--muted);
+  }
+  .pw-criteria li.ok .pw-c-icon{ border-color:var(--brass); color:var(--brass); background:rgba(16,185,129,0.1); }
+  .pw-note{ font-size:12.5px; color:var(--muted); border-top:1px solid var(--line); padding-top:18px; line-height:1.7; }
+
+  /* ---------- LINK-SPOTTING GAME ---------- */
+  .lg-options{ display:grid; gap:12px; margin-bottom:4px; }
+  .lg-option{
+    width:100%; text-align:left; direction:ltr;
+    background:var(--panel-2); border:1px solid var(--line); color:var(--text);
+    padding:14px 18px; font-size:13.5px; font-family:var(--mono); cursor:pointer; transition:.2s; border-radius:3px;
+    word-break:break-all;
+  }
+  .lg-option:hover:not(:disabled){ border-color:var(--rust); }
+  .lg-option:disabled{ cursor:default; }
+  .lg-option.correct{ border-color:var(--brass); background:rgba(16,185,129,0.12); color:var(--brass-bright); }
+  .lg-option.wrong{ border-color:#ef4444; background:rgba(239,68,68,0.12); color:#ff8fa3; }
+
+  /* ---------- INCIDENT RESPONSE WIZARD ---------- */
+  .incident-selector{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:26px; }
+  @media (max-width:700px){ .incident-selector{ grid-template-columns:repeat(2,1fr); } }
+  .incident-btn{
+    background:var(--ink); border:1px solid var(--line); color:var(--text);
+    padding:16px 10px; font-size:14px; font-family:'Tajawal',sans-serif; cursor:pointer;
+    transition:.2s; border-radius:3px; text-align:center;
+  }
+  .incident-btn:hover{ border-color:var(--rust); color:var(--rust-bright); }
+  .incident-btn.active{ border-color:var(--brass); background:rgba(16,185,129,0.1); color:var(--brass-bright); }
+  .incident-steps{ counter-reset:incstep; list-style:none; padding:0; }
+  .incident-steps li{
+    counter-increment:incstep; position:relative; padding:14px 0; padding-inline-start:46px;
+    border-bottom:1px solid var(--line); color:var(--text); font-size:14.5px; line-height:1.7;
+  }
+  .incident-steps li:last-child{ border-bottom:none; }
+  .incident-steps li::before{
+    content:counter(incstep); position:absolute; inset-inline-start:0; top:12px;
+    width:30px; height:30px; border-radius:50%; background:var(--brass-dim); color:var(--ink);
+    display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-weight:700; font-size:13px; flex-shrink:0;
+  }
+  .incident-note{ margin-top:18px; padding:14px 16px; background:var(--ink); border-inline-start:3px solid var(--rust); font-size:13.5px; color:var(--muted); line-height:1.7; }
+
+  /* ---------- VISUAL RED-FLAGS GALLERY ---------- */
+  .rf-mockup{
+    max-width:640px; margin:0 auto 28px; background:var(--panel-2); border:1px solid var(--line); border-radius:4px; overflow:hidden;
+  }
+  .rf-mail-header{ padding:20px 22px; border-bottom:1px solid var(--line); background:var(--ink); }
+  .rf-mail-row{ font-size:13.5px; color:var(--text); margin-bottom:8px; line-height:1.9; }
+  .rf-mail-row:last-child{ margin-bottom:0; }
+  .rf-mail-label{ color:var(--muted); font-family:var(--mono); font-size:11.5px; margin-inline-end:8px; }
+  .rf-mail-value{ direction:rtl; }
+  .rf-mail-body{ padding:24px 22px; }
+  .rf-mail-body p{ color:var(--text); font-size:14.5px; line-height:1.9; margin-bottom:16px; }
+  .rf-btn-row{ display:flex; align-items:center; gap:12px; margin-top:6px; }
+  .rf-fake-btn{
+    display:inline-block; background:var(--brass-dim); color:#fff; padding:10px 22px; border-radius:4px;
+    font-size:14px; font-weight:700; text-decoration:none; cursor:default;
+  }
+  .rf-flag{
+    display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%;
+    background:#ef4444; color:#fff; font-family:var(--mono); font-size:12px; font-weight:700; cursor:pointer;
+    flex-shrink:0; transition:.2s; vertical-align:middle;
+  }
+  .rf-flag:hover{ transform:scale(1.15); }
+  .rf-flag.active{ background:var(--brass-bright); color:var(--ink); }
+  .rf-explanations{ max-width:640px; margin:0 auto; display:flex; flex-direction:column; gap:10px; }
+  .rf-exp{
+    background:var(--panel); border:1px solid var(--line); border-inline-start:3px solid var(--line);
+    padding:14px 16px; font-size:14px; color:var(--muted); line-height:1.7; border-radius:3px; transition:.25s;
+  }
+  .rf-exp strong{ color:var(--text); display:block; margin-bottom:4px; }
+  .rf-exp.active{ border-inline-start-color:var(--brass); background:rgba(16,185,129,0.06); color:var(--text); }
+
+  /* ---------- WHAT-IF HACKED CALCULATOR ---------- */
+  .wi-field{ margin-bottom:20px; }
+  .wi-field label{ display:block; font-size:13.5px; color:var(--muted); margin-bottom:8px; }
+  .wi-input{
+    width:100%; height:46px; background:var(--ink); border:1px solid var(--line); border-radius:4px;
+    padding:0 16px; color:var(--paper); font-family:var(--mono); font-size:15px; outline:none; transition:.25s;
+  }
+  .wi-input:focus{ border-color:var(--brass); }
+  .wi-toggles{ display:grid; gap:12px; margin-bottom:24px; }
+  .wi-toggle{ display:flex; align-items:center; gap:10px; font-size:14px; color:var(--text); cursor:pointer; }
+  .wi-toggle input{ width:17px; height:17px; accent-color:var(--brass); cursor:pointer; flex-shrink:0; }
+  .wi-result{ border-top:1px solid var(--line); padding-top:22px; }
+  .wi-gauge{ height:10px; background:var(--line); border-radius:5px; overflow:hidden; margin-bottom:14px; }
+  .wi-gauge-fill{ height:100%; width:0%; background:var(--line); transition:width .4s ease, background .4s ease; }
+  .wi-verdict{ font-family:var(--head); font-size:17px; color:var(--paper); margin-bottom:8px; font-weight:700; }
+  .wi-range{ font-family:var(--mono); font-size:13.5px; color:var(--muted); }
+
+  /* ---------- HACKER-VIEW SIMULATION ---------- */
+  .hv-panel{ max-width:820px; margin:0 auto; border:1px solid #4a1a1a; background:#140808; border-radius:4px; overflow:hidden; }
+  .hv-topbar{
+    background:#2a0d0d; color:#ff8080; font-family:var(--mono); font-size:12.5px; padding:12px 18px;
+    border-bottom:1px solid #4a1a1a; display:flex; align-items:center; gap:10px;
+  }
+  .hv-dot{ width:8px; height:8px; border-radius:50%; background:#ff4d4d; display:inline-block; animation:hvBlink 1.4s ease-in-out infinite; flex-shrink:0; }
+  @keyframes hvBlink{ 0%,100%{ opacity:1; } 50%{ opacity:.25; } }
+  .hv-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:#2a0d0d; }
+  @media (max-width:760px){ .hv-grid{ grid-template-columns:repeat(2,1fr); } }
+  .hv-card{ background:#180a0a; padding:24px 18px; cursor:pointer; transition:.2s; text-align:center; }
+  .hv-card:hover{ background:#230c0c; }
+  .hv-card.active{ background:#2d0e0e; box-shadow:inset 0 0 0 1px #ff4d4d; }
+  .hv-icon{ font-size:28px; margin-bottom:10px; }
+  .hv-card h4{ font-family:var(--head); font-size:14.5px; color:#ffb3b3; margin-bottom:6px; }
+  .hv-card p{ font-size:12px; color:#a86b6b; line-height:1.6; }
+  .hv-explanations{ padding:20px 18px; display:flex; flex-direction:column; gap:10px; }
+  .hv-exp{
+    display:none; background:#1c0a0a; border-inline-start:3px solid #ff4d4d; padding:14px 16px;
+    font-size:14px; color:#d9a3a3; line-height:1.7; border-radius:3px;
+  }
+  .hv-exp.active{ display:block; }
 
 </style>
 
@@ -788,6 +946,7 @@
           <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li1" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="9" y="3" width="14" height="26" rx="2.5" stroke="url(#li1)" stroke-width="1.8"/><line x1="9" y1="8" x2="23" y2="8" stroke="url(#li1)" stroke-width="1.4"/><line x1="9" y1="24" x2="23" y2="24" stroke="url(#li1)" stroke-width="1.4"/><line x1="16" y1="14" x2="16" y2="20" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="23" r="1.1" fill="#38bdf8"/></svg></span>
           <span class="lesson-num">01</span>
           <span class="lesson-title">كيف تُخترق الهواتف؟ نظرة عامة على الطرق الشائعة</span>
+          <span class="quiz-score-badge" id="qbadge-lesson-01"></span>
           <span class="lesson-toggle">+</span>
         </summary>
         <div class="lesson-body">
@@ -805,6 +964,8 @@
             <strong>لاحظ القاسم المشترك:</strong> كل هذي المواقف استغلت لحظة عادية — استعجال، حماس، أو ثقة. ما فيه ذكاء خارق من المهاجم بقدر ما فيه استغلال لحظة غفلة منك. وهذا بالضبط سبب أهمية الدروس القادمة.
           </div>
 
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('lesson-01', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-lesson-01"></div>
           <button class="btn btn-ghost lesson-next" onclick="goToLesson('lesson-02')">التالي</button>
         </div>
       </details>
@@ -814,6 +975,7 @@
           <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li2" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="4" y="4" width="24" height="24" rx="5" stroke="url(#li2)" stroke-width="1.8"/><ellipse cx="16" cy="17" rx="6" ry="7" stroke="#38bdf8" stroke-width="1.6"/><path d="M16 10 V7 M12 9 L10 6.5 M20 9 L22 6.5" stroke="#38bdf8" stroke-width="1.4" stroke-linecap="round"/><path d="M10 17 H6 M10 21 H7 M22 17 H26 M22 21 H25" stroke="#38bdf8" stroke-width="1.4" stroke-linecap="round"/></svg></span>
           <span class="lesson-num">02</span>
           <span class="lesson-title">خطوات عملية لحماية هاتفك من الاختراق</span>
+          <span class="quiz-score-badge" id="qbadge-lesson-02"></span>
           <span class="lesson-toggle">+</span>
         </summary>
         <div class="lesson-body">
@@ -827,6 +989,8 @@
             <li>استخدم بيانات الهاتف بدل واي فاي عام عند الدخول لحسابات حساسة.</li>
             <li>فعّل التوثيق الثنائي عبر تطبيق مصادقة (لا رسائل SMS) على بريدك وحساباتك المهمة.</li>
           </ul>
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('lesson-02', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-lesson-02"></div>
           <button class="btn btn-ghost lesson-next" onclick="goToLesson('lesson-03')">التالي</button>
         </div>
       </details>
@@ -836,6 +1000,7 @@
           <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li3" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><path d="M6 14 a15 15 0 0 1 20 0" stroke="url(#li3)" stroke-width="1.8" stroke-linecap="round"/><path d="M10 19 a9 9 0 0 1 12 0" stroke="url(#li3)" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="24" r="1.6" fill="#38bdf8"/><rect x="21" y="4" width="8" height="11" rx="1.5" stroke="#38bdf8" stroke-width="1.4"/><line x1="23" y1="7" x2="27" y2="7" stroke="#38bdf8" stroke-width="1.1"/></svg></span>
           <span class="lesson-num">03</span>
           <span class="lesson-title">التطبيقات الخبيثة وصلاحيات مشبوهة</span>
+          <span class="quiz-score-badge" id="qbadge-lesson-03"></span>
           <span class="lesson-toggle">+</span>
         </summary>
         <div class="lesson-body">
@@ -847,6 +1012,8 @@
             <li>يعد بميزات مدفوعة مجانًا لتطبيقات أو ألعاب معروفة، وهذا أشهر فخ على الإطلاق.</li>
             <li>راجع صلاحيات تطبيقاتك مرة كل شهر، واسحب أي صلاحية غير ضرورية لا تخدم وظيفة التطبيق الفعلية.</li>
           </ul>
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('lesson-03', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-lesson-03"></div>
           <button class="btn btn-ghost lesson-next" onclick="goToLesson('lesson-04')">التالي</button>
         </div>
       </details>
@@ -856,6 +1023,7 @@
           <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li4" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><circle cx="11" cy="11" r="6" stroke="url(#li4)" stroke-width="1.8"/><path d="M15.5 15.5 L27 27 M22 22 L26 18 M25 25 L29 21" stroke="url(#li4)" stroke-width="1.8" stroke-linecap="round"/></svg></span>
           <span class="lesson-num">04</span>
           <span class="lesson-title">أساسيات كلمات المرور القوية</span>
+          <span class="quiz-score-badge" id="qbadge-lesson-04"></span>
           <span class="lesson-toggle">+</span>
         </summary>
         <div class="lesson-body">
@@ -866,6 +1034,8 @@
             <li>مدير كلمات المرور ينشئ ويحفظ كلمة فريدة لكل موقع، وكل ما تحتاج تذكّره كلمة رئيسية واحدة.</li>
             <li>التوثيق الثنائي عبر تطبيق مصادقة أقوى من الرسائل النصية، لأنه غير مرتبط برقم هاتفك وبالتالي غير معرّض لهجوم تبديل الشريحة.</li>
           </ul>
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('lesson-04', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-lesson-04"></div>
           <button class="btn btn-ghost lesson-next" onclick="goToLesson('lesson-05')">التالي</button>
         </div>
       </details>
@@ -875,6 +1045,7 @@
           <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li5" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><path d="M16 3 L28 8 V16 C28 23 23 28 16 30 C9 28 4 23 4 16 V8 Z" stroke="url(#li5)" stroke-width="1.8"/><circle cx="16" cy="15" r="2.4" fill="#38bdf8"/></svg></span>
           <span class="lesson-num">05</span>
           <span class="lesson-title">ما هو الأمن السيبراني ولماذا يهمك؟</span>
+          <span class="quiz-score-badge" id="qbadge-lesson-05"></span>
           <span class="lesson-toggle">+</span>
         </summary>
         <div class="lesson-body">
@@ -886,6 +1057,8 @@
             <li>الحماية الحقيقية مبنية على طبقات متتالية (الوعي، الحسابات، الجهاز، الشبكة، البيانات) لا أداة واحدة سحرية — وهذا بالضبط ما تغطيه الصفحة الرئيسية لهذا الموقع.</li>
             <li>التعلم المستمر هو الطبقة الأهم؛ التهديدات تتطور باستمرار، والوعي بها هو أول خط دفاع يتجدد معها.</li>
           </ul>
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('lesson-05', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-lesson-05"></div>
           <button class="btn btn-ghost lesson-next" onclick="goToLesson('lesson-06')">التالي</button>
         </div>
       </details>
@@ -895,6 +1068,7 @@
           <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li6" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="4" y="8" width="24" height="17" rx="1.5" stroke="url(#li6)" stroke-width="1.8"/><path d="M4 9 L16 19 L28 9" stroke="url(#li6)" stroke-width="1.8" fill="none"/><path d="M20 20 C24 20 26 23 25 26 C24.5 28 21.5 28 21.5 26" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg></span>
           <span class="lesson-num">06</span>
           <span class="lesson-title">كيف تكتشف رسائل التصيد الاحتيالي</span>
+          <span class="quiz-score-badge" id="qbadge-lesson-06"></span>
           <span class="lesson-toggle">+</span>
         </summary>
         <div class="lesson-body">
@@ -910,6 +1084,8 @@
             <strong>عند الشك:</strong> لا تضغط الرابط مهما بدا عاجلًا. تواصل مع الجهة عبر قناتها الرسمية المعروفة مسبقًا (لا عبر أي رقم أو رابط مذكور بالرسالة نفسها)، وأبلغ عنها كاحتيال.
           </div>
 
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('lesson-06', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-lesson-06"></div>
           <button class="btn btn-ghost lesson-next" onclick="goToLesson('lesson-07')">التالي</button>
         </div>
       </details>
@@ -919,6 +1095,7 @@
           <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li7" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="4" y="13" width="24" height="14" rx="2" stroke="url(#li7)" stroke-width="1.8"/><path d="M11 13 V9 a3 3 0 0 1 3-3 h4 a3 3 0 0 1 3 3 v4" stroke="url(#li7)" stroke-width="1.8" fill="none"/><line x1="4" y1="19" x2="28" y2="19" stroke="#38bdf8" stroke-width="1.4"/><line x1="16" y1="17" x2="16" y2="21.5" stroke="#38bdf8" stroke-width="1.4"/></svg></span>
           <span class="lesson-num">07</span>
           <span class="lesson-title">أشهر أدوات الاختراق: نظرة تعريفية</span>
+          <span class="quiz-score-badge" id="qbadge-lesson-07"></span>
           <span class="lesson-toggle">+</span>
         </summary>
         <div class="lesson-body">
@@ -933,6 +1110,8 @@
           <div class="callout">
             <strong>الفكرة الأساسية:</strong> كل أداة بالقائمة لها إجراء دفاعي مقابل تعلمته بدرس سابق. الأدوات تتطور، لكن مبادئ الحماية الأساسية تبقى فعّالة ضدها.
           </div>
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('lesson-07', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-lesson-07"></div>
           <button class="btn btn-ghost lesson-next" onclick="goToLesson('lesson-08')">التالي</button>
         </div>
       </details>
@@ -942,6 +1121,7 @@
           <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li8" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><path d="M16 3 L28 8 V16 C28 23 23 28 16 30 C9 28 4 23 4 16 V8 Z" stroke="url(#li8)" stroke-width="1.8"/><path d="M11 16 L14.5 19.5 L21 12.5" stroke="#38bdf8" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="lesson-num">08</span>
           <span class="lesson-title">أدوات الحماية المقابلة: كيف يدافع المحترفون</span>
+          <span class="quiz-score-badge" id="qbadge-lesson-08"></span>
           <span class="lesson-toggle">+</span>
         </summary>
         <div class="lesson-body">
@@ -956,6 +1136,8 @@
           <div class="callout">
             <strong>خلاصة الدروس الثمانية:</strong> لاحظ إن كل أداة حماية هنا تقابل مباشرة أحد أدوات الاختراق بالدرس السابق. الأمان الحقيقي مو معرفة كل شيء، بل تطبيق الأساسيات باستمرار.
           </div>
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('lesson-08', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-lesson-08"></div>
           <a href="#checklist" class="btn btn-ghost lesson-next">قائمة الفحص</a>
         </div>
       </details>
@@ -1070,7 +1252,7 @@
     <div class="section-head">
       <span class="eyebrow">محتوى مرئي</span>
       <h2>هكذا تسير الهجمة خطوة بخطوة</h2>
-      <p>مخططان توضيحيان بدل الشرح النصي — تابع أي خطوة تضيء تلقائيًا بالتسلسل.</p>
+      <p>ثلاثة مخططات توضيحية بدل الشرح النصي — تابع أي خطوة تضيء تلقائيًا بالتسلسل.</p>
     </div>
 
     <p style="font-family:var(--mono); font-size:12.5px; color:var(--muted); margin-bottom:14px;">مخطط 1 — هجمة تصيّد احتيالي نموذجية</p>
@@ -1097,6 +1279,102 @@
       <div class="flow-step" style="animation-delay:1.8s"><span class="flow-dot">4</span><p>رسالة طلب فدية</p></div>
       <span class="flow-arrow">›</span>
       <div class="flow-step" style="animation-delay:2.4s"><span class="flow-dot">5</span><p>نسخة احتياطية = نجاة بدون دفع</p></div>
+    </div>
+
+    <p style="font-family:var(--mono); font-size:12.5px; color:var(--muted); margin:36px 0 14px;">مخطط 3 — رحلة بياناتك بعد سرقتها</p>
+    <div class="flow-diagram">
+      <div class="flow-step" style="animation-delay:0s"><span class="flow-dot">1</span><p>سرقة بيانات الدخول</p></div>
+      <span class="flow-arrow">›</span>
+      <div class="flow-step" style="animation-delay:.6s"><span class="flow-dot">2</span><p>بيعها في سوق على الشبكة المظلمة</p></div>
+      <span class="flow-arrow">›</span>
+      <div class="flow-step" style="animation-delay:1.2s"><span class="flow-dot">3</span><p>شراؤها ضمن حزمة مع آلاف غيرها</p></div>
+      <span class="flow-arrow">›</span>
+      <div class="flow-step" style="animation-delay:1.8s"><span class="flow-dot">4</span><p>تجربتها آليًا على مواقع أخرى</p></div>
+      <span class="flow-arrow">›</span>
+      <div class="flow-step" style="animation-delay:2.4s"><span class="flow-dot">5</span><p>اختراق كل حساب يكرّر نفس الكلمة</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="hackerview" style="background:#0d0606; border-top:1px solid #3a1414; border-bottom:1px solid #3a1414;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow" style="color:#ff4d4d; border-color:#5c1a1a;">منظور آخر</span>
+      <h2>ماذا يرى المخترق فعليًا بعد الدخول؟</h2>
+      <p style="color:#a86b6b;">هذه ليست مبالغة — هذه فئات البيانات الحقيقية التي تصبح مكشوفة بالكامل في ثوانٍ بعد اختراق هاتف أو حساب واحد غير محمي. اضغط كل بطاقة لمعرفة التفصيل.</p>
+    </div>
+    <div class="hv-panel">
+      <div class="hv-topbar"><span class="hv-dot"></span> جهاز مُخترَق — وصول كامل نشط</div>
+      <div class="hv-grid">
+        <div class="hv-card" onclick="toggleHackerView(1,this)"><div class="hv-icon">📇</div><h4>جهات الاتصال</h4><p>347 جهة، بما فيهم عائلتك وزملاؤك</p></div>
+        <div class="hv-card" onclick="toggleHackerView(2,this)"><div class="hv-icon">💬</div><h4>الرسائل والمحادثات</h4><p>كل محادثاتك الخاصة على واتساب وماسنجر</p></div>
+        <div class="hv-card" onclick="toggleHackerView(3,this)"><div class="hv-icon">🖼️</div><h4>الصور والفيديوهات</h4><p>الألبوم الكامل، متزامن من آخر 3 سنوات</p></div>
+        <div class="hv-card" onclick="toggleHackerView(4,this)"><div class="hv-icon">🏦</div><h4>تطبيق البنك</h4><p>الرصيد ظاهر، وتحويل فوري ممكن</p></div>
+        <div class="hv-card" onclick="toggleHackerView(5,this)"><div class="hv-icon">🔑</div><h4>كلمات المرور المحفوظة</h4><p>12 كلمة مرور جاهزة للتصدير بنقرة</p></div>
+        <div class="hv-card" onclick="toggleHackerView(6,this)"><div class="hv-icon">📍</div><h4>الموقع الجغرافي</h4><p>آخر موقع معروف: قبل 4 دقائق فقط</p></div>
+      </div>
+      <div class="hv-explanations">
+        <div class="hv-exp" id="hv-exp-1">يمكن للمخترق انتحال شخصيتك والتواصل مع كل من تعرفهم لطلب المال أو نشر روابط خبيثة باسمك — هذا بالضبط كيف تنتشر معظم عمليات الاحتيال عبر واتساب.</div>
+        <div class="hv-exp" id="hv-exp-2">المحادثات الخاصة قد تحتوي معلومات حساسة (أرقام حسابات، صور، أسرار شخصية) يمكن استخدامها للابتزاز أو بيعها لأطراف أخرى.</div>
+        <div class="hv-exp" id="hv-exp-3">الصور الشخصية والعائلية قد تُستخدم للابتزاز الإلكتروني، أو لانتحال هويتك بصريًا في عمليات نصب أخرى تستهدف من تعرفهم.</div>
+        <div class="hv-exp" id="hv-exp-4">لو لم يكن التوثيق الثنائي مفعلاً، فالوصول لهاتفك قد يعني وصولاً شبه مباشر لحسابك البنكي خلال دقائق معدودة.</div>
+        <div class="hv-exp" id="hv-exp-5">متصفحات الهواتف والحواسيب تحفظ كلمات المرور بشكل قابل للعرض أو التصدير الكامل خلال ثوانٍ — وإن كنت تكرر نفس الكلمة بعدة مواقع، فكل حساباتك الأخرى مكشوفة أيضًا دفعة واحدة.</div>
+        <div class="hv-exp" id="hv-exp-6">معرفة موقعك اللحظي قد تُستخدم لأغراض تتجاوز السرقة الرقمية، خصوصًا إن كانت مشاركة الموقع مفعّلة لتطبيقات لا تحتاجها فعليًا.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="link-game" style="border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">تحدٍّ تفاعلي</span>
+      <h2>ميّز الرابط الحقيقي من المزيف</h2>
+      <p>في كل جولة، رابطان يشبهان بعضهما كثيرًا — واحد حقيقي وآخر مصمَّم للتصيّد. اختر الرابط الذي تثق بالضغط عليه فعليًا.</p>
+    </div>
+    <div class="tool-card">
+      <div id="link-game-host">
+        <div style="text-align:center;">
+          <button type="button" class="btn btn-primary" onclick="startLinkGame()">ابدأ التحدي (6 جولات)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="redflags">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">تمرين بصري</span>
+      <h2>اكتشف علامات الخطر في هذه الرسالة</h2>
+      <p>رسالة بريد إلكتروني وهمية (مصمَّمة للتوضيح فقط، لا تخص أي جهة حقيقية) تحتوي 5 علامات تحذيرية كلاسيكية. اضغط كل رقم أحمر لمعرفة سبب كونه مشبوهًا.</p>
+    </div>
+    <div class="rf-mockup">
+      <div class="rf-mail-header">
+        <div class="rf-mail-row">
+          <span class="rf-mail-label">من:</span>
+          <span class="rf-mail-value">دعم البنك الوطني <span class="rf-flag" onclick="toggleFlag(1,this)">1</span> &lt;support@bnk-natlonal-secure.com&gt; <span class="rf-flag" onclick="toggleFlag(2,this)">2</span></span>
+        </div>
+        <div class="rf-mail-row">
+          <span class="rf-mail-label">الموضوع:</span>
+          <span class="rf-mail-value">عاجل جدًا!! سيتم إيقاف حسابك خلال 24 ساعة <span class="rf-flag" onclick="toggleFlag(3,this)">3</span></span>
+        </div>
+      </div>
+      <div class="rf-mail-body">
+        <p>عميلنا العزيز،</p>
+        <p>لاحظنا نشاطًا غير معتاد على حسابكـ. يرجى تأكيد بياناتكم فورا لتجنب توقيف الحساب بشكل نهائي ودائم. <span class="rf-flag" onclick="toggleFlag(4,this)">4</span></p>
+        <div class="rf-btn-row">
+          <a href="javascript:void(0)" class="rf-fake-btn" onclick="return false;">تأكيد الحساب الآن</a>
+          <span class="rf-flag" onclick="toggleFlag(5,this)">5</span>
+        </div>
+      </div>
+    </div>
+    <div class="rf-explanations">
+      <div class="rf-exp" id="rf-exp-1"><strong>١ — اسم عرض مألوف، لكن...</strong>اسم المرسل الظاهر يمكن أن يكون أي شيء يختاره المحتال بحرية تامة؛ الاسم وحده لا يثبت شيئًا.</div>
+      <div class="rf-exp" id="rf-exp-2"><strong>٢ — نطاق مزيف بحرف مشابه</strong>"bnk-natlonal-secure.com" ليس نطاق أي بنك حقيقي؛ لاحظ استبدال حرف i بـ l لخداع العين عند القراءة السريعة.</div>
+      <div class="rf-exp" id="rf-exp-3"><strong>٣ — إلحاح وتهديد مبالغ فيه</strong>عبارات مثل "عاجل جدًا" و"خلال 24 ساعة" مصممة خصيصًا لدفعك للتصرف دون تفكير أو تدقيق.</div>
+      <div class="rf-exp" id="rf-exp-4"><strong>٤ — أخطاء إملائية وصياغة غير طبيعية</strong>"حسابكـ" و"فورا" بدون همزة، و"تأكيد بياناتكم" صياغة ركيكة لا تصدر عادة عن جهة رسمية محترفة.</div>
+      <div class="rf-exp" id="rf-exp-5"><strong>٥ — زر يقود لصفحة تصيّد</strong>أزرار "تأكيد الحساب الآن" في رسائل غير متوقعة تقود غالبًا لصفحة دخول مزيفة مصممة لسرقة بياناتك فور كتابتها.</div>
     </div>
   </div>
 </section>
@@ -1227,6 +1505,79 @@
   </div>
 </section>
 
+<section id="tools" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">أداة تفاعلية</span>
+      <h2>فاحص قوة كلمة المرور</h2>
+      <p>جرّب كلمة مرور وهمية (وليست كلمة مرور حقيقية تستخدمها) لترى كيف تُقيَّم قوتها فعليًا، بناءً على ما تعلمته في درس كلمات المرور.</p>
+    </div>
+    <div class="tool-card">
+      <div class="pw-input-group">
+        <input type="password" id="pw-test-input" class="pw-test-input" placeholder="اكتب كلمة مرور تجريبية هنا..." autocomplete="off" oninput="checkPasswordStrength()">
+        <button type="button" class="pw-eye" onclick="togglePwVisibility()" id="pw-eye-icon" aria-label="إظهار/إخفاء">👁</button>
+      </div>
+      <div class="pw-meter"><div class="pw-meter-fill" id="pw-meter-fill"></div></div>
+      <div class="pw-label" id="pw-label">اكتب كلمة مرور لتبدأ</div>
+      <ul class="pw-criteria">
+        <li id="pw-c-len"><span class="pw-c-icon">○</span> 12 حرفًا على الأقل</li>
+        <li id="pw-c-case"><span class="pw-c-icon">○</span> تحتوي على أحرف كبيرة وصغيرة</li>
+        <li id="pw-c-num"><span class="pw-c-icon">○</span> تحتوي على أرقام</li>
+        <li id="pw-c-sym"><span class="pw-c-icon">○</span> تحتوي على رموز (!@#$...)</li>
+        <li id="pw-c-common"><span class="pw-c-icon">○</span> ليست من كلمات المرور الأكثر شيوعًا</li>
+      </ul>
+      <div class="pw-note">🔒 خصوصية تامة: ما تكتبه هنا يبقى داخل متصفحك فقط، ولا يُرسل أو يُحفظ في أي خادم أو مكان آخر.</div>
+    </div>
+  </div>
+</section>
+
+<section id="incident" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">معالج طوارئ</span>
+      <h2>اختُرق حسابي... ماذا أفعل الآن؟</h2>
+      <p>اختر نوع الحساب الذي تشك أنه تعرّض للاختراق، لتظهر لك خطوات فورية مرتبة حسب الأولوية.</p>
+    </div>
+    <div class="tool-card">
+      <div class="incident-selector">
+        <button type="button" class="incident-btn" onclick="showIncident('email', this)">📧 بريد إلكتروني</button>
+        <button type="button" class="incident-btn" onclick="showIncident('whatsapp', this)">💬 واتساب</button>
+        <button type="button" class="incident-btn" onclick="showIncident('bank', this)">🏦 حساب بنكي</button>
+        <button type="button" class="incident-btn" onclick="showIncident('social', this)">📱 تواصل اجتماعي</button>
+      </div>
+      <div id="incident-host"></div>
+    </div>
+  </div>
+</section>
+
+<section id="whatif" style="border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">حاسبة توعوية</span>
+      <h2>ماذا لو اخترقت؟</h2>
+      <p>تقدير توضيحي بسيط (وليس تنبؤًا دقيقًا أو نصيحة مالية) لحجم الخسارة المحتملة بناءً على عاداتك الحالية، لتكوين فكرة واقعية عن حجم المخاطرة.</p>
+    </div>
+    <div class="tool-card">
+      <div class="wi-field">
+        <label for="wi-balance">رصيدك التقريبي في حسابك البنكي أو محفظتك الرقمية</label>
+        <input type="number" id="wi-balance" class="wi-input" placeholder="مثلاً: 50000" min="0" oninput="calcWhatIf()">
+      </div>
+      <div class="wi-toggles">
+        <label class="wi-toggle"><input type="checkbox" id="wi-reuse" onchange="calcWhatIf()"> أستخدم نفس كلمة المرور في أكثر من حساب</label>
+        <label class="wi-toggle"><input type="checkbox" id="wi-no2fa" onchange="calcWhatIf()"> التوثيق الثنائي غير مفعّل على حساباتي المهمة</label>
+        <label class="wi-toggle"><input type="checkbox" id="wi-click" onchange="calcWhatIf()"> أضغط الروابط أحيانًا دون التحقق من مصدرها</label>
+        <label class="wi-toggle"><input type="checkbox" id="wi-public" onchange="calcWhatIf()"> أستخدم واي فاي عام للدخول لحسابات حساسة</label>
+      </div>
+      <div class="wi-result">
+        <div class="wi-gauge"><div class="wi-gauge-fill" id="wi-gauge-fill"></div></div>
+        <div class="wi-verdict" id="wi-verdict">أدخل رصيدك التقريبي لتبدأ</div>
+        <div class="wi-range" id="wi-range"></div>
+      </div>
+      <div class="pw-note">📊 هذا تقدير توضيحي مبسّط للتوعية فقط، وليس حسابًا دقيقًا أو نصيحة مالية احترافية — الهدف تكوين صورة واقعية عن أثر العادات الرقمية الضعيفة.</div>
+    </div>
+  </div>
+</section>
+
 <section style="padding:36px 0 0;">
   <div class="wrap">
     <a href="#glossary" class="glossary-access">
@@ -1338,6 +1689,473 @@
 
   const SITE_PASSWORD = "Zolo99";
 
+  /* ================= LESSON QUIZZES ================= */
+  const LESSON_QUIZZES = {
+    'lesson-01': [
+      { q:'ما أشهر سبب يقع الناس ضحية الاختراق حسب الدرس؟', options:['معرفة تقنية عالية من المهاجم','خطوة واحدة خاطئة في لحظة استعجال أو ثقة','نقص أجهزة الحماية فقط','عمر الهاتف القديم'], correct:1, explain:'الدرس أوضح أن أغلب الاختراقات تستغل لحظة غفلة عادية، لا ذكاءً خارقًا من المهاجم.' },
+      { q:'في قصة رسالة "شركة الشحن"، ما نوع الهجوم الذي حدث؟', options:['فيروس تقليدي','تصيّد احتيالي عبر الرسائل','اختراق شبكة واي فاي','هجوم تبديل الشريحة'], correct:1, explain:'رسالة مزيفة تطلب ضغط رابط ودفع رسوم مثال كلاسيكي على التصيّد عبر الرسائل.' },
+      { q:'ما الخطر الرئيسي في تثبيت تطبيق "نسخة مجانية" من خارج المتجر الرسمي؟', options:['استهلاك بطارية أكبر فقط','قد يطلب صلاحيات يستغلها للتحكم بجهازك بصمت','يستهلك بيانات الإنترنت فقط','لا يوجد خطر حقيقي'], correct:1, explain:'التطبيقات من مصادر غير رسمية قد تطلب صلاحيات مفرطة وتعمل بالخلفية دون علمك.' },
+      { q:'ما خطر الاتصال بشبكة واي فاي عامة تحمل اسمًا شبيهًا بمقهى واستخدام حساب بنكي عليها؟', options:['لا خطر إذا كانت مجانية','قد تكون شبكة مزيفة يراقب من خلالها شخص كل ما تكتبه','تبطئ سرعة الإنترنت فقط','تستهلك بيانات الهاتف فقط'], correct:1, explain:'الشبكات المزيفة تتيح لمن ينشئها رؤية البيانات المتنقلة عبرها، بما فيها كلمات المرور.' },
+      { q:'شخص يتصل ويطلب "تأكيد الهوية" ببياناتك قبل انقطاع خطك فجأة — أي هجوم يصف هذا؟', options:['هجوم تبديل الشريحة (SIM swap) عبر انتحال هوية موظف','فيروس حاسوبي','هجوم حجب الخدمة','تخمين كلمة مرور'], correct:0, explain:'جمع بيانات شخصية عبر مكالمة مزيفة خطوة تمهيدية معروفة لنقل رقمك لشريحة بحوزة المهاجم.' }
+    ],
+    'lesson-02': [
+      { q:'ما الحد الأدنى الموصى به لعدد أرقام قفل الشاشة؟', options:['4 أرقام','6 أرقام على الأقل','لا يهم العدد','رقم واحد مع البصمة فقط'], correct:1, explain:'6 أرقام على الأقل مع بصمة أو وجه كطبقة إضافية.' },
+      { q:'ما فائدة تفعيل "تحديد الموقع عند الفقدان"؟', options:['تسريع الهاتف','تحديد مكان الهاتف أو قفله/مسحه عن بُعد إذا ضاع أو سُرق','تحسين جودة الكاميرا','توفير البطارية'], correct:1, explain:'ميزات مثل Find My iPhone أو Find My Device تساعدك على تتبع جهازك أو حمايته عن بُعد.' },
+      { q:'لماذا يُنصح بتثبيت تحديثات النظام فورًا؟', options:['لتغيير شكل الواجهة فقط','لأنها تغلق ثغرات أمنية جديدة قبل استغلالها','لزيادة سرعة الإنترنت','لتحسين الصوت'], correct:1, explain:'التحديثات غالبًا ما تسد ثغرات مكتشفة حديثًا قبل أن يستغلها المهاجمون.' },
+      { q:'ما الأفضل عند الحاجة للدخول لحساب حساس وأنت خارج المنزل؟', options:['استخدام أي واي فاي عام متاح','استخدام بيانات الهاتف بدل واي فاي عام','مشاركة الشبكة مع أي شخص قريب','كتابة كلمة المرور بصوت مرتفع للتأكد'], correct:1, explain:'بيانات الهاتف أكثر أمانًا من شبكة عامة مجهولة المصدر عند الدخول لحسابات حساسة.' },
+      { q:'أيهما أقوى لحماية بريدك: تطبيق مصادقة أم رسائل SMS؟', options:['الرسائل النصية أقوى دائمًا','تطبيق المصادقة أقوى لأنه غير مرتبط برقم الهاتف','كلاهما متساويان تمامًا','لا فرق لأن كلاهما يعتمد على الإنترنت'], correct:1, explain:'تطبيق المصادقة غير معرّض لهجوم تبديل الشريحة الذي يستهدف رقم هاتفك.' }
+    ],
+    'lesson-03': [
+      { q:'ما العلامة المشبوهة في تطبيق "فلاش لايت" يطلب الوصول لجهات الاتصال والمايكروفون؟', options:['هذا طبيعي لكل التطبيقات','صلاحيات لا علاقة لها بوظيفة التطبيق الأساسية','يحتاجها لتحسين الإضاءة','يطلبها لتسريع الأداء'], correct:1, explain:'طلب صلاحيات غير مرتبطة بوظيفة التطبيق علامة تحذيرية واضحة.' },
+      { q:'ما الذي يجب أن يثير شكك في تقييمات تطبيق ما؟', options:['تقييمات سلبية طبيعية','تحميلات منخفضة جدًا مقابل تقييمات إيجابية كثيرة بشكل غير طبيعي','تطبيق قديم','حجم تطبيق صغير'], correct:1, explain:'هذا التناقض غالبًا علامة على تقييمات مزيفة أو شراء تقييمات.' },
+      { q:'ماذا يعني طلب تطبيق تعطيل ميزة حماية بالنظام "لكي يعمل بشكل صحيح"؟', options:['طلب طبيعي يجب الموافقة عليه فورًا','علامة تحذيرية خطيرة يجب رفضها','يعني أن التطبيق محدّث','يعني أن التطبيق مجاني'], correct:1, explain:'أي طلب لتعطيل حماية النظام من أجل تشغيل تطبيق عادي مؤشر خطر قوي.' },
+      { q:'ما أشهر فخ تستخدمه التطبيقات الخبيثة لجذب المستخدمين؟', options:['تصميم واجهة جذاب فقط','وعد بميزات مدفوعة مجانًا لتطبيقات أو ألعاب معروفة','سرعة التحميل','دعم لغات متعددة'], correct:1, explain:'هذا هو الفخ الأشهر على الإطلاق بحسب الدرس.' },
+      { q:'كل كم فترة يُنصح بمراجعة صلاحيات التطبيقات المثبتة؟', options:['مرة كل سنتين','مرة كل شهر','لا حاجة للمراجعة أبدًا','فقط عند شراء هاتف جديد'], correct:1, explain:'مراجعة شهرية تتيح لك سحب أي صلاحية غير ضرورية بسرعة.' }
+    ],
+    'lesson-04': [
+      { q:'ما الأهم في قوة كلمة المرور: الطول أم التعقيد؟', options:['التعقيد فقط','الطول أهم من التعقيد','كلاهما غير مهم','عمر الحساب'], correct:1, explain:'عبارة مرور طويلة من كلمات عشوائية أسهل للتذكر وأصعب للتخمين.' },
+      { q:'ما خطر إعادة استخدام نفس كلمة المرور بعدة مواقع؟', options:['لا خطر إن كانت قوية','تسرّب موقع واحد يكشف كل حساباتك الأخرى','تنسى كلمة المرور أسرع','تبطئ تسجيل الدخول'], correct:1, explain:'تسرّب موقع واحد فقط كافٍ لتعريض كل حساباتك الأخرى للخطر.' },
+      { q:'ما وظيفة مدير كلمات المرور؟', options:['حذف كلمات المرور القديمة','إنشاء وحفظ كلمة فريدة لكل موقع، مع تذكّر كلمة رئيسية واحدة فقط','مشاركة كلمة المرور مع الأصدقاء','تسريع الإنترنت'], correct:1, explain:'هذا بالضبط ما يوفره مدير كلمات المرور.' },
+      { q:'لماذا التوثيق الثنائي عبر تطبيق مصادقة أقوى من الرسائل النصية؟', options:['لأنه مجاني فقط','لأنه غير مرتبط برقم هاتفك وغير معرّض لتبديل الشريحة','لأنه أسرع في الإدخال','لا فرق حقيقي'], correct:1, explain:'الاستقلالية عن رقم الهاتف هي ما يجعله أقوى.' },
+      { q:'أي مثال أقرب لعبارة مرور قوية وسهلة التذكر؟', options:['123456','فيل-قهوة-نجمة-77!','password','qwerty'], correct:1, explain:'عبارة طويلة وعشوائية مع رموز وأرقام أقوى بكثير من كلمات شائعة قصيرة.' }
+    ],
+    'lesson-05': [
+      { q:'الأمن السيبراني مخصص لـ:', options:['الشركات الكبرى والمبرمجين فقط','أي شخص يملك بريدًا إلكترونيًا أو حسابًا بنكيًا','فقط الحكومات','فقط من يملك موقع ويب'], correct:1, explain:'أي شخص لديه حساب رقمي هو هدف محتمل.' },
+      { q:'أغلب الاختراقات تُشن:', options:['بشكل يدوي ومستهدف لشخص بعينه دائمًا','بشكل آلي وواسع على آلاف الأشخاص دفعة واحدة','فقط على كبار الشخصيات','نادرة الحدوث جدًا'], correct:1, explain:'الهجمات الآلية الواسعة تنجح مع أول شخص يخطئ من بين آلاف.' },
+      { q:'الحماية الحقيقية مبنية على:', options:['أداة واحدة سحرية قوية','طبقات متتالية من الوعي والحسابات والجهاز والشبكة والبيانات','كلمة مرور قوية فقط','شراء هاتف جديد باستمرار'], correct:1, explain:'لا توجد أداة واحدة كافية؛ الحماية الحقيقية متعددة الطبقات.' },
+      { q:'ما "الطبقة" الأهم بحسب الدرس لأن التهديدات تتطور باستمرار؟', options:['شراء مضاد فيروسات مكلف','التعلم المستمر والوعي','تغيير الهاتف كل سنة','حذف كل التطبيقات'], correct:1, explain:'الوعي المتجدد هو خط الدفاع الذي يواكب تطور التهديدات.' },
+      { q:'الصفحة الرئيسية للموقع تغطي بشكل خاص:', options:['فقط قصة الشركة','طبقات الحماية الخمسة','تاريخ الإنترنت','أخبار رياضية'], correct:1, explain:'طبقات الحماية الخمس هي محور الصفحة الرئيسية لهذا الموقع.' }
+    ],
+    'lesson-06': [
+      { q:'ما أسلوب التصيّد الأساسي لدفعك لاتخاذ قرار متسرع؟', options:['تقديم معلومات مفيدة بهدوء','خلق إحساس بالإلحاح كتهديد إغلاق حساب أو جائزة','إرسال رسائل نادرة جدًا','طلب مكالمة هاتفية رسمية فقط'], correct:1, explain:'الإلحاح الاصطناعي يمنعك من التفكير بهدوء قبل التصرف.' },
+      { q:'في قصة "رسالة البنك المزيفة"، ما العلامة التي كان يمكن ملاحظتها في الرابط؟', options:['لون الرابط','نطاق غريب فيه حرف زائد مثل bank-secure.com بدل bankname.com','طول الرسالة','وقت الإرسال فقط'], correct:1, explain:'الروابط المزيفة غالبًا تحتوي على نطاق مشابه لكنه مختلف قليلًا عن النطاق الحقيقي.' },
+      { q:'ماذا يجب أن تفعل عند الشك برسالة تطلب بيانات حساسة؟', options:['تضغط الرابط للتأكد بسرعة','لا تضغط الرابط وتتواصل مع الجهة عبر قناتها الرسمية المعروفة مسبقًا','ترسل بياناتك فورًا لتتأكد','تتجاهل الرسالة دون إبلاغ أحد'], correct:1, explain:'التواصل المباشر عبر قناة رسمية معروفة مسبقًا هو السلوك الآمن.' },
+      { q:'أي من هذه ليست من العلامات المعتادة لرسائل التصيّد؟', options:['رابط أو نطاق غريب','أخطاء إملائية أو صياغة غير طبيعية','رسالة من جهة معروفة دون أي رابط أو طلب عاجل أو بيانات حساسة','عرض أو تهديد مبالغ فيه'], correct:2, explain:'رسالة عادية بلا روابط أو طلبات عاجلة أو بيانات حساسة لا تحمل علامات تصيّد.' },
+      { q:'التصيّد الاحتيالي يُعتبر غالبًا:', options:['نادر الحدوث جدًا','نقطة البداية لأغلب الاختراقات','مقتصرًا على البريد الإلكتروني فقط','غير فعال مع أغلب الناس'], correct:1, explain:'أغلب الاختراقات الكبرى تبدأ برسالة تصيّد بسيطة.' }
+    ],
+    'lesson-07': [
+      { q:'ما وظيفة "أدوات فحص الشبكات" للمهاجمين؟', options:['تسريع الإنترنت','كشف الأجهزة والمنافذ المفتوحة على شبكة معينة','إرسال رسائل بريدية','تشفير الملفات'], correct:1, explain:'هذه الأدوات تحدد نقاط الدخول المحتملة على شبكة ما.' },
+      { q:'"أدوات التقاط حزم البيانات" خطيرة بشكل خاص على:', options:['الشبكات المشفّرة فقط','شبكات الواي فاي العامة غير المشفّرة','الهاتف المغلق','أجهزة الراوتر الجديدة فقط'], correct:1, explain:'بدون تشفير، يمكن مراقبة البيانات المتنقلة عبر الشبكة بسهولة.' },
+      { q:'لماذا يصنع طول وتفرّد كلمة المرور فرقًا ضد "أدوات كسر كلمات المرور"؟', options:['لأنها تبطئ محاولات تجريب آلاف أو ملايين الاحتمالات بسرعة','لأنها تمنع فقدان الهاتف','لأنها تحسّن سرعة الاتصال','لا علاقة لها بالأمر'], correct:0, explain:'كلمة مرور طويلة وفريدة تجعل التخمين الآلي أبطأ وأصعب بكثير.' },
+      { q:'"أطر استغلال الثغرات" تستهدف بشكل خاص:', options:['الأنظمة المحدّثة دائمًا','الأنظمة غير المحدَّثة التي فيها ثغرات معروفة','الأجهزة الجديدة فقط','الشبكات المشفّرة فقط'], correct:1, explain:'الأنظمة غير المحدّثة تبقى بابًا مفتوحًا لثغرات معروفة ومستغَلّة آليًا.' },
+      { q:'"قوالب صفحات التصيّد" تُستخدم لـ:', options:['تحسين تصميم المواقع الرسمية','إنشاء نسخ جاهزة لصفحات دخول مزيفة يخصّصها المهاجم بسرعة','تسريع المتصفح','حماية الحسابات'], correct:1, explain:'هذه القوالب تسهّل على المهاجم إنشاء صفحة تصيّد مطابقة شكليًا للأصلية.' }
+    ],
+    'lesson-08': [
+      { q:'ما وظيفة مدير كلمات المرور كأداة حماية؟', options:['حذف الحسابات القديمة','إنشاء وحفظ كلمة فريدة ومعقّدة لكل حساب تلقائيًا','تسريع تسجيل الدخول فقط','مشاركة كلمة المرور بأمان مع الآخرين'], correct:1, explain:'هذا هو الدور الأساسي لمدير كلمات المرور.' },
+      { q:'ماذا تولّد تطبيقات التوثيق الثنائي؟', options:['كلمة مرور دائمة','رمز دخول مؤقت غير مرتبط برقم هاتفك','نسخة احتياطية من الملفات','شبكة واي فاي خاصة'], correct:1, explain:'الرمز المؤقت يوقف أغلب محاولات الدخول حتى لو سُرقت كلمة المرور.' },
+      { q:'ما الذي يراقبه برنامج مكافحة الفيروسات وجدار الحماية؟', options:['استهلاك البطارية فقط','النشاط المشبوه، ويمنعان الاتصالات غير الموثوقة','سرعة التصفح','عدد التطبيقات المثبتة'], correct:1, explain:'هذه الأدوات تراقب وتحجب النشاط والاتصالات المشبوهة تلقائيًا.' },
+      { q:'متى يكون استخدام VPN موثوق مفيدًا بشكل خاص؟', options:['عند استخدام واي فاي عام','عند إيقاف تشغيل الهاتف','عند حذف التطبيقات','لا فائدة له أبدًا'], correct:0, explain:'VPN يشفّر اتصالك، وهذا مهم خصوصًا على شبكات عامة غير موثوقة.' },
+      { q:'ما فائدة أدوات النسخ الاحتياطي التلقائي؟', options:['تسريع الهاتف','حفظ نسخة من بياناتك بمكان منفصل لتبقى بمأمن من الفدية أو التلف','تقليل حجم الملفات','تحسين الكاميرا'], correct:1, explain:'نسخة منفصلة تحميك من فقدان بياناتك عند هجوم فدية أو عطل بالجهاز.' }
+    ]
+  };
+
+  const quizState = {};
+
+  function openLessonQuiz(lessonId, btn){
+    if(!LESSON_QUIZZES[lessonId]) return;
+    quizState[lessonId] = { index:0, score:0, answered:false };
+    if(btn) btn.style.display = 'none';
+    renderQuizQuestion(lessonId);
+  }
+
+  function renderQuizQuestion(lessonId){
+    const questions = LESSON_QUIZZES[lessonId];
+    const state = quizState[lessonId];
+    const host = document.getElementById('quiz-host-' + lessonId);
+    if(!host) return;
+    if(state.index >= questions.length){ renderQuizResult(lessonId); return; }
+    const q = questions[state.index];
+    state.answered = false;
+    const optsHtml = q.options.map(function(opt, i){
+      return '<button type="button" class="quiz-option" onclick="answerLessonQuiz(\'' + lessonId + '\', ' + i + ')">' + opt + '</button>';
+    }).join('');
+    host.innerHTML =
+      '<div class="quiz-panel">' +
+        '<div class="quiz-progress">سؤال ' + (state.index + 1) + ' من ' + questions.length + '</div>' +
+        '<div class="quiz-question">' + q.q + '</div>' +
+        '<div class="quiz-options">' + optsHtml + '</div>' +
+        '<div class="quiz-explain" id="quiz-explain-' + lessonId + '" style="display:none;"></div>' +
+        '<div class="quiz-nav" id="quiz-nav-' + lessonId + '" style="display:none;"><button type="button" class="btn btn-ghost" onclick="nextLessonQuiz(\'' + lessonId + '\')">السؤال التالي ←</button></div>' +
+      '</div>';
+  }
+
+  function answerLessonQuiz(lessonId, choice){
+    const state = quizState[lessonId];
+    if(!state || state.answered) return;
+    state.answered = true;
+    const q = LESSON_QUIZZES[lessonId][state.index];
+    const host = document.getElementById('quiz-host-' + lessonId);
+    const buttons = host.querySelectorAll('.quiz-option');
+    buttons.forEach(function(b, i){
+      b.disabled = true;
+      if(i === q.correct) b.classList.add('correct');
+      else if(i === choice) b.classList.add('wrong');
+    });
+    if(choice === q.correct) state.score++;
+    const explainEl = document.getElementById('quiz-explain-' + lessonId);
+    explainEl.style.display = 'block';
+    explainEl.innerHTML = (choice === q.correct ? '✅ إجابة صحيحة. ' : '❌ إجابة غير دقيقة. ') + q.explain;
+    const navWrap = document.getElementById('quiz-nav-' + lessonId);
+    navWrap.style.display = 'block';
+    const navBtn = navWrap.querySelector('button');
+    if(state.index + 1 >= LESSON_QUIZZES[lessonId].length){ navBtn.textContent = 'عرض النتيجة ←'; }
+  }
+
+  function nextLessonQuiz(lessonId){
+    quizState[lessonId].index++;
+    renderQuizQuestion(lessonId);
+  }
+
+  function renderQuizResult(lessonId){
+    const questions = LESSON_QUIZZES[lessonId];
+    const state = quizState[lessonId];
+    const host = document.getElementById('quiz-host-' + lessonId);
+    const total = questions.length;
+    const score = state.score;
+    let msg;
+    if(score === total){ msg = 'ممتاز! إجابات كاملة 🎯'; }
+    else if(score >= Math.ceil(total * 0.6)){ msg = 'جيد! يُستحسن مراجعة الأسئلة التي أخطأت فيها.'; }
+    else { msg = 'يُستحسن مراجعة الدرس مرة أخرى قبل المتابعة.'; }
+    host.innerHTML =
+      '<div class="quiz-panel quiz-result">' +
+        '<div class="quiz-score">' + score + ' / ' + total + '</div>' +
+        '<p>' + msg + '</p>' +
+        '<button type="button" class="btn btn-ghost" onclick="retryLessonQuiz(\'' + lessonId + '\')">إعادة المحاولة</button>' +
+      '</div>';
+    saveQuizScore(lessonId, score, total);
+  }
+
+  function retryLessonQuiz(lessonId){
+    quizState[lessonId] = { index:0, score:0, answered:false };
+    renderQuizQuestion(lessonId);
+  }
+
+  function saveQuizScore(lessonId, score, total){
+    try{
+      const prevRaw = localStorage.getItem('vn_quiz_' + lessonId);
+      const prev = prevRaw !== null ? parseInt(prevRaw, 10) : -1;
+      if(score > prev){ localStorage.setItem('vn_quiz_' + lessonId, String(score)); }
+      localStorage.setItem('vn_quiz_total_' + lessonId, String(total));
+    }catch(e){}
+    updateQuizBadge(lessonId);
+  }
+
+  function updateQuizBadge(lessonId){
+    try{
+      const badge = document.getElementById('qbadge-' + lessonId);
+      if(!badge) return;
+      const score = localStorage.getItem('vn_quiz_' + lessonId);
+      const total = localStorage.getItem('vn_quiz_total_' + lessonId);
+      if(score !== null && total !== null){
+        badge.textContent = '✓ ' + score + '/' + total;
+        badge.style.display = 'inline-block';
+      }
+    }catch(e){}
+  }
+
+  function initQuizBadges(){
+    Object.keys(LESSON_QUIZZES).forEach(updateQuizBadge);
+  }
+
+  /* ================= PASSWORD STRENGTH CHECKER ================= */
+  const COMMON_PASSWORDS = ['123456','123456789','password','12345678','qwerty','111111','123123','abc123','password1','admin','letmein','welcome','iloveyou','000000','1234567','12345','monkey','dragon','football','azerty','000000000','1q2w3e4r','zxcvbnm','test123'];
+
+  function togglePwVisibility(){
+    const inp = document.getElementById('pw-test-input');
+    const icon = document.getElementById('pw-eye-icon');
+    if(!inp) return;
+    if(inp.type === 'password'){ inp.type = 'text'; icon.textContent = '🙈'; }
+    else { inp.type = 'password'; icon.textContent = '👁'; }
+  }
+
+  function setPwCriterion(id, ok){
+    const el = document.getElementById(id);
+    if(!el) return;
+    const icon = el.querySelector('.pw-c-icon');
+    if(ok){ el.classList.add('ok'); icon.textContent = '✓'; }
+    else { el.classList.remove('ok'); icon.textContent = '○'; }
+  }
+
+  function checkPasswordStrength(){
+    const inp = document.getElementById('pw-test-input');
+    if(!inp) return;
+    const val = inp.value;
+    const fill = document.getElementById('pw-meter-fill');
+    const label = document.getElementById('pw-label');
+
+    const hasLen = val.length >= 12;
+    const hasUpper = /[A-Z]/.test(val);
+    const hasLower = /[a-z]/.test(val);
+    const hasCase = hasUpper && hasLower;
+    const hasNum = /[0-9]/.test(val);
+    const hasSym = /[^A-Za-z0-9]/.test(val);
+    const isCommon = COMMON_PASSWORDS.indexOf(val.toLowerCase()) !== -1;
+
+    setPwCriterion('pw-c-len', hasLen);
+    setPwCriterion('pw-c-case', hasCase);
+    setPwCriterion('pw-c-num', hasNum);
+    setPwCriterion('pw-c-sym', hasSym);
+    setPwCriterion('pw-c-common', val.length > 0 && !isCommon);
+
+    if(val.length === 0){
+      fill.style.width = '0%';
+      fill.style.background = 'var(--line)';
+      label.textContent = 'اكتب كلمة مرور لتبدأ';
+      label.style.color = 'var(--muted)';
+      return;
+    }
+
+    let score = 0;
+    if(hasLen) score++;
+    if(val.length >= 16) score++;
+    if(hasCase) score++;
+    if(hasNum) score++;
+    if(hasSym) score++;
+
+    let pct, color, text;
+    if(isCommon){ pct = 8; color = '#ef4444'; text = 'ضعيفة جدًا — من أكثر كلمات المرور شيوعًا وتسريبًا'; }
+    else if(score <= 1){ pct = 20; color = '#ef4444'; text = 'ضعيفة جدًا'; }
+    else if(score === 2){ pct = 40; color = '#f97316'; text = 'ضعيفة'; }
+    else if(score === 3){ pct = 60; color = '#eab308'; text = 'متوسطة'; }
+    else if(score === 4){ pct = 80; color = '#38bdf8'; text = 'قوية'; }
+    else { pct = 100; color = '#00ff87'; text = 'قوية جدًا'; }
+
+    fill.style.width = pct + '%';
+    fill.style.background = color;
+    label.textContent = text;
+    label.style.color = color;
+  }
+
+  /* ================= LINK-SPOTTING GAME ================= */
+  const LINK_GAME_ROUNDS = [
+    { context:'رسالة تطلب تسجيل الدخول لحساب جوجل لتأكيد نشاط دخول حديث:', options:[
+        { url:'https://accounts-google-secure-verify.com/signin', real:false },
+        { url:'https://accounts.google.com/signin', real:true }
+      ], explain:'نطاق جوجل الرسمي ينتهي دائمًا بـ google.com مباشرة. أي كلمات إضافية قبله مثل accounts-google-secure-verify تعني نطاقًا مختلفًا تمامًا لا علاقة له بجوجل.' },
+    { context:'رسالة تدّعي أنها من مركز مساعدة إنستغرام وتطلب تأكيد حسابك خلال 24 ساعة:', options:[
+        { url:'https://help.instagram.com/confirm', real:true },
+        { url:'http://instagram-helpcenter-support.net/confirm', real:false }
+      ], explain:'لاحظ غياب HTTPS (القفل) وامتداد .net غير الرسمي، بينما النطاق الحقيقي لمساعدة إنستغرام هو instagram.com دائمًا.' },
+    { context:'بريد إلكتروني من "البنك الموحّد" (بنك افتراضي) يطلب تحديث بيانات حسابك فورًا:', options:[
+        { url:'https://albank-almowahhad-update.com/login', real:false },
+        { url:'https://www.albank-almowahhad.com/login', real:true }
+      ], explain:'كلمة إضافية مثل "update" ملصقة بالنطاق نفسه علامة شائعة على تصيّد. قارن دائمًا بالنطاق المكتوب على بطاقتك أو موقع بنكك الرسمي المعروف مسبقًا.' },
+    { context:'رسالة واتساب من رقم مجهول فيها رابط لتتبع "طرد بريدي" ينتظرك:', options:[
+        { url:'https://fastship-delivery.com/track', real:true },
+        { url:'https://fastship-tracking-payment.info/track', real:false }
+      ], explain:'امتداد .info غير المعتاد وإضافة كلمة "payment" في رابط تتبع عادي مؤشر تصيّد واضح — شركات الشحن الحقيقية لا تطلب دفعًا عبر رابط تتبع.' },
+    { context:'نافذة منبثقة أثناء تصفحك تطلب تسجيل الدخول لحل "مشكلة" في حساب PayPal الخاص بك:', options:[
+        { url:'https://paypal-account-limited-support.com/login', real:false },
+        { url:'https://www.paypal.com/signin', real:true }
+      ], explain:'أي نطاق يضيف كلمات حول paypal بدل أن يكون paypal.com مباشرة على الأغلب محاولة تصيّد، خصوصًا مع نوافذ منبثقة مفاجئة.' },
+    { context:'بريد يطلب منك تجديد كلمة مرور حساب Outlook/Microsoft خلال ساعات معدودة:', options:[
+        { url:'https://outlook-password-reset-secure.com/reset', real:false },
+        { url:'https://login.microsoftonline.com/reset', real:true }
+      ], explain:'نطاق مايكروسوفت الرسمي لتسجيل الدخول هو microsoftonline.com أو microsoft.com، لا أي نطاق منفصل يذكر Outlook مع كلمات تهويلية مثل "secure".' }
+  ];
+
+  let lgState = { index:0, score:0, answered:false };
+
+  function startLinkGame(){
+    lgState = { index:0, score:0, answered:false };
+    renderLinkGameRound();
+  }
+
+  function renderLinkGameRound(){
+    const host = document.getElementById('link-game-host');
+    if(!host) return;
+    if(lgState.index >= LINK_GAME_ROUNDS.length){ renderLinkGameResult(); return; }
+    const round = LINK_GAME_ROUNDS[lgState.index];
+    lgState.answered = false;
+    const optsHtml = round.options.map(function(opt, i){
+      return '<button type="button" class="lg-option" onclick="answerLinkGame(' + i + ')">' + opt.url + '</button>';
+    }).join('');
+    host.innerHTML =
+      '<div class="quiz-panel">' +
+        '<div class="quiz-progress">جولة ' + (lgState.index + 1) + ' من ' + LINK_GAME_ROUNDS.length + '</div>' +
+        '<div class="quiz-question">' + round.context + '</div>' +
+        '<div class="lg-options">' + optsHtml + '</div>' +
+        '<div class="quiz-explain" id="lg-explain" style="display:none;"></div>' +
+        '<div class="quiz-nav" id="lg-nav" style="display:none;"><button type="button" class="btn btn-ghost" onclick="nextLinkGameRound()">الجولة التالية ←</button></div>' +
+      '</div>';
+  }
+
+  function answerLinkGame(choice){
+    if(lgState.answered) return;
+    lgState.answered = true;
+    const round = LINK_GAME_ROUNDS[lgState.index];
+    const host = document.getElementById('link-game-host');
+    const buttons = host.querySelectorAll('.lg-option');
+    const correctIndex = round.options.findIndex(function(o){ return o.real; });
+    buttons.forEach(function(b, i){
+      b.disabled = true;
+      if(i === correctIndex) b.classList.add('correct');
+      else if(i === choice) b.classList.add('wrong');
+    });
+    if(choice === correctIndex) lgState.score++;
+    const explainEl = document.getElementById('lg-explain');
+    explainEl.style.display = 'block';
+    explainEl.innerHTML = (choice === correctIndex ? '✅ صحيح، هذا هو الرابط الحقيقي. ' : '❌ هذا كان الرابط المزيف. ') + round.explain;
+    const navWrap = document.getElementById('lg-nav');
+    navWrap.style.display = 'block';
+    if(lgState.index + 1 >= LINK_GAME_ROUNDS.length){ navWrap.querySelector('button').textContent = 'عرض النتيجة ←'; }
+  }
+
+  function nextLinkGameRound(){
+    lgState.index++;
+    renderLinkGameRound();
+  }
+
+  function renderLinkGameResult(){
+    const host = document.getElementById('link-game-host');
+    const total = LINK_GAME_ROUNDS.length;
+    const score = lgState.score;
+    let msg;
+    if(score === total){ msg = 'نتيجة مثالية! عينك مدرّبة فعليًا على كشف روابط التصيّد 🎯'; }
+    else if(score >= Math.ceil(total * 0.6)){ msg = 'جيد جدًا، راجع الجولات التي أخطأت فيها لتثبيت العلامات في ذهنك.'; }
+    else { msg = 'يُستحسن مراجعة درس "كيف تكتشف رسائل التصيد الاحتيالي" ثم إعادة المحاولة.'; }
+    host.innerHTML =
+      '<div class="quiz-panel quiz-result">' +
+        '<div class="quiz-score">' + score + ' / ' + total + '</div>' +
+        '<p>' + msg + '</p>' +
+        '<button type="button" class="btn btn-ghost" onclick="startLinkGame()">إعادة اللعب</button>' +
+      '</div>';
+  }
+
+  /* ================= INCIDENT RESPONSE WIZARD ================= */
+  const INCIDENT_STEPS = {
+    email: {
+      title: 'بريدك الإلكتروني تعرّض للاختراق',
+      steps: [
+        'غيّر كلمة المرور فورًا من جهاز آخر تثق به، لا من الجهاز المشتبه بأنه مصدر الاختراق.',
+        'فعّل التوثيق الثنائي إن لم يكن مفعلاً مسبقًا — هذا يمنع الدخول حتى لو عرف المخترق كلمة المرور الجديدة.',
+        'راجع إعدادات "إعادة التوجيه" (Forwarding) والفلاتر: المخترقون غالبًا يضيفون قاعدة تُرسل نسخة من رسائلك لهم أو تُخفي ردود حساباتك المهمة.',
+        'افتح قائمة "الأجهزة المسجّلة الدخول" أو "النشاط الأخير" وأنهِ كل الجلسات التي لا تعرفها.',
+        'بريدك غالبًا بوابة استرجاع لحساباتك الأخرى — راجع أي حساب (بنكي، تواصل اجتماعي) يستخدم هذا البريد للاسترجاع وغيّر كلمات مروره أيضًا.',
+        'أبلغ جهات اتصالك المقربة أن بريدك تعرّض لاختراق مؤقت، تحسبًا لأي رسالة احتيال تُرسل باسمك.'
+      ]
+    },
+    whatsapp: {
+      title: 'حساب واتساب تعرّض للاختراق',
+      steps: [
+        'ثبّت واتساب وسجّل الدخول برقمك فورًا — هذا يُخرج تلقائيًا أي جهاز آخر كان مسجلاً بنفس الرقم.',
+        'لا تشارك أبدًا رمز التحقق (OTP) الذي يصلك عبر SMS مع أي شخص، مهما ادّعى أنه "دعم فني" أو صديق.',
+        'فعّل "التحقق بخطوتين" من الإعدادات ← الحساب، لإضافة رمز PIN إضافي يمنع إعادة الاختراق بنفس الطريقة.',
+        'راجع "الأجهزة المرتبطة" (Linked Devices) واحذف فورًا أي جهاز حاسوب أو متصفح لا تتعرف عليه.',
+        'حذّر جهات اتصالك فورًا — خصوصًا إذا طلب "المخترق" منهم تحويل أموال أو رموز تحقق باسمك خلال فترة الاختراق.'
+      ]
+    },
+    bank: {
+      title: 'حسابك البنكي تعرّض للاختراق أو الاشتباه',
+      steps: [
+        'اتصل ببنكك فورًا عبر الرقم الرسمي المطبوع على بطاقتك أو الموقع الرسمي المعروف مسبقًا — لا أي رقم وصلك برسالة أو مكالمة مشبوهة.',
+        'اطلب تجميد الحساب أو إيقاف البطاقة مؤقتًا ريثما يتم التحقق من العمليات.',
+        'غيّر كلمة مرور التطبيق البنكي والرمز السري من جهاز آخر موثوق.',
+        'راجع كشف الحساب لآخر فترة وأبلغ فورًا عن أي عملية لم تقم بها أنت شخصيًا.',
+        'فعّل تنبيهات العمليات الفورية عبر SMS أو التطبيق إن لم تكن مفعّلة.',
+        'لا تُعد استخدام كلمة المرور نفسها على أي حساب آخر بعد الحادثة، حتى لو بدت قوية.'
+      ]
+    },
+    social: {
+      title: 'حساب إنستغرام أو تواصل اجتماعي تعرّض للاختراق',
+      steps: [
+        'حاول تسجيل الدخول فورًا وتغيير كلمة المرور؛ إن منعك المخترق، استخدم خيار "نسيت كلمة المرور" داخل التطبيق.',
+        'إن تعذّر الدخول، استخدم نموذج "الإبلاغ عن حساب مخترق" الرسمي الموجود داخل مركز مساعدة المنصة نفسها لاستعادة الوصول.',
+        'فور استعادة الحساب، فعّل التوثيق الثنائي فورًا لمنع تكرار الاختراق.',
+        'راجع المنشورات والرسائل المرسلة خلال فترة الاختراق، واحذف أي محتوى مسيء أو روابط احتيالية نُشرت باسمك.',
+        'حذّر متابعيك إن أرسل المخترق لهم رسائل أو روابط أو طلبات أموال باسمك خلال تلك الفترة.'
+      ]
+    }
+  };
+
+  function showIncident(type, btn){
+    const data = INCIDENT_STEPS[type];
+    if(!data) return;
+    const allBtns = document.querySelectorAll('.incident-btn');
+    allBtns.forEach(function(b){ b.classList.remove('active'); });
+    if(btn) btn.classList.add('active');
+    const host = document.getElementById('incident-host');
+    const stepsHtml = data.steps.map(function(s){ return '<li>' + s + '</li>'; }).join('');
+    host.innerHTML =
+      '<h3 style="font-family:var(--head); font-size:17px; color:var(--paper); margin:22px 0 16px;">' + data.title + '</h3>' +
+      '<ul class="incident-steps">' + stepsHtml + '</ul>' +
+      '<div class="incident-note">💡 خطوة أخيرة دائمًا: راجع إعدادات الاسترجاع (البريد الاحتياطي، رقم الهاتف) في هذا الحساب — أغلب حالات إعادة الاختراق تحدث لأن بيانات الاسترجاع نفسها بقيت مخترقة.</div>';
+  }
+
+  /* ================= HACKER-VIEW SIMULATION ================= */
+  function toggleHackerView(n, el){
+    const card = el ? el.closest('.hv-card') : null;
+    const wasActive = card && card.classList.contains('active');
+    document.querySelectorAll('.hv-card').forEach(function(c){ c.classList.remove('active'); });
+    document.querySelectorAll('.hv-exp').forEach(function(e){ e.classList.remove('active'); });
+    if(card && !wasActive){
+      card.classList.add('active');
+      const exp = document.getElementById('hv-exp-' + n);
+      if(exp){
+        exp.classList.add('active');
+        exp.scrollIntoView({ behavior:'smooth', block:'nearest' });
+      }
+    }
+  }
+
+  /* ================= VISUAL RED-FLAGS GALLERY ================= */
+  function toggleFlag(n, el){
+    document.querySelectorAll('.rf-flag').forEach(function(f){ f.classList.remove('active'); });
+    document.querySelectorAll('.rf-exp').forEach(function(e){ e.classList.remove('active'); });
+    if(el) el.classList.add('active');
+    const exp = document.getElementById('rf-exp-' + n);
+    if(exp){
+      exp.classList.add('active');
+      exp.scrollIntoView({ behavior:'smooth', block:'center' });
+    }
+  }
+
+  /* ================= WHAT-IF HACKED CALCULATOR ================= */
+  function calcWhatIf(){
+    const balanceEl = document.getElementById('wi-balance');
+    const gaugeFill = document.getElementById('wi-gauge-fill');
+    const verdictEl = document.getElementById('wi-verdict');
+    const rangeEl = document.getElementById('wi-range');
+    if(!balanceEl || !gaugeFill || !verdictEl || !rangeEl) return;
+
+    const balance = parseFloat(balanceEl.value);
+    if(!balance || balance <= 0){
+      gaugeFill.style.width = '0%';
+      gaugeFill.style.background = 'var(--line)';
+      verdictEl.textContent = 'أدخل رصيدك التقريبي لتبدأ';
+      verdictEl.style.color = 'var(--paper)';
+      rangeEl.textContent = '';
+      return;
+    }
+
+    const reuse = document.getElementById('wi-reuse').checked;
+    const no2fa = document.getElementById('wi-no2fa').checked;
+    const click = document.getElementById('wi-click').checked;
+    const pub = document.getElementById('wi-public').checked;
+
+    let riskFactors = 0;
+    if(reuse) riskFactors++;
+    if(no2fa) riskFactors++;
+    if(click) riskFactors++;
+    if(pub) riskFactors++;
+
+    let minPct, maxPct, pct, color, verdict;
+    if(riskFactors === 0){ minPct = 0.03; maxPct = 0.10; pct = 22; color = '#00ff87'; verdict = 'تعرّض منخفض — عاداتك الحالية تقلّل فرص الاختراق بشكل كبير'; }
+    else if(riskFactors === 1){ minPct = 0.10; maxPct = 0.30; pct = 42; color = '#38bdf8'; verdict = 'تعرّض متوسط — هناك ثغرة واحدة تستحق المعالجة'; }
+    else if(riskFactors === 2){ minPct = 0.30; maxPct = 0.60; pct = 62; color = '#eab308'; verdict = 'تعرّض مرتفع — عدة عادات تجتمع لتزيد الخطر فعليًا'; }
+    else if(riskFactors === 3){ minPct = 0.60; maxPct = 0.90; pct = 82; color = '#f97316'; verdict = 'تعرّض مرتفع جدًا — أغلب أبواب الحماية مفتوحة'; }
+    else { minPct = 0.80; maxPct = 1.0; pct = 96; color = '#ef4444'; verdict = 'تعرّض حرج — خسارة شبه كاملة للرصيد واردة بسهولة'; }
+
+    const minLoss = Math.round(balance * minPct).toLocaleString('en-US');
+    const maxLoss = Math.round(balance * maxPct).toLocaleString('en-US');
+
+    gaugeFill.style.width = pct + '%';
+    gaugeFill.style.background = color;
+    verdictEl.textContent = verdict;
+    verdictEl.style.color = color;
+    rangeEl.textContent = 'نطاق الخسارة التقديري: من ' + minLoss + ' إلى ' + maxLoss + ' (بنفس وحدة الرصيد التي أدخلتها)';
+  }
+
   function unlockSite(){
     const tpl = document.getElementById('site-template');
     const container = document.getElementById('site-content');
@@ -1348,6 +2166,7 @@
     startTerminal();
     initShareLinks();
     startMusic();
+    initQuizBadges();
   }
 
   function startMusic(){
