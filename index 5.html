@@ -330,6 +330,61 @@
     border-radius:2px; transition:background .2s;
   }
   .share-item:hover{ background:var(--panel-2); color:var(--brass); }
+
+  /* ---------- iOS 26 LIQUID GLASS DOCK ---------- */
+  .ios-dock{
+    position:fixed; top:50%; inset-inline-start:14px; transform:translateY(-50%);
+    z-index:125; display:flex; flex-direction:column; align-items:center; gap:6px;
+    padding:9px 7px; border-radius:30px;
+    background:linear-gradient(165deg, rgba(255,255,255,0.16), rgba(255,255,255,0.02) 55%, rgba(255,255,255,0.09));
+    backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%);
+    border:1px solid rgba(255,255,255,0.22);
+    box-shadow:0 12px 34px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.35), inset 0 -1px 2px rgba(0,0,0,0.3);
+  }
+  .ios-dock::before{
+    content:''; position:absolute; inset:3px 3px auto 3px; height:42%;
+    border-radius:24px 24px 60% 60%/24px 24px 30px 30px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.38), rgba(255,255,255,0));
+    pointer-events:none; opacity:.5;
+  }
+  .dock-slot{
+    position:relative; width:46px; height:46px; border-radius:50%; border:none; cursor:pointer;
+    background:rgba(255,255,255,0.05); color:var(--brass-bright);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    transition:transform .2s, background .2s;
+  }
+  .dock-slot:hover{ transform:scale(1.08); background:rgba(255,255,255,0.13); }
+  .dock-slot.active{ background:linear-gradient(135deg, var(--brass), var(--rust)); color:var(--ink); }
+  .dock-divider{ width:24px; height:1px; background:rgba(255,255,255,0.16); margin:1px 0; }
+  .dock-pop{
+    position:fixed; top:50%; inset-inline-start:76px; transform:translateY(-50%) translateX(-10px);
+    z-index:124; width:240px; max-width:min(74vw, 240px);
+    background:linear-gradient(165deg, rgba(22,24,30,0.86), rgba(12,13,18,0.93));
+    backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%);
+    border:1px solid rgba(255,255,255,0.16); border-radius:18px;
+    padding:16px; box-shadow:0 18px 40px rgba(0,0,0,0.55);
+    opacity:0; pointer-events:none; transition:opacity .2s, transform .2s;
+  }
+  .dock-pop.open{ opacity:1; pointer-events:auto; transform:translateY(-50%) translateX(0); }
+  .dock-pop h5{ font-family:var(--head); font-size:13.5px; color:var(--paper); margin-bottom:10px; }
+  .dock-contact-link{ display:flex; align-items:center; gap:10px; padding:9px 8px; border-radius:10px; color:var(--text); text-decoration:none; font-size:13.5px; transition:background .2s, color .2s; word-break:break-all; }
+  .dock-contact-link:hover{ background:rgba(255,255,255,0.09); color:var(--brass-bright); }
+  .dock-search-input{
+    width:100%; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.2);
+    border-radius:12px; padding:9px 12px; color:var(--paper); font-family:var(--body); font-size:14px;
+    outline:none; margin-bottom:10px; box-sizing:border-box;
+  }
+  .dock-search-input::placeholder{ color:var(--muted); }
+  .dock-search-results{ max-height:240px; overflow-y:auto; display:flex; flex-direction:column; gap:2px; }
+  .dock-search-item{ display:block; width:100%; text-align:start; background:none; border:none; padding:8px 8px; border-radius:8px; color:var(--text); font-size:13px; cursor:pointer; transition:background .2s, color .2s; font-family:var(--body); }
+  .dock-search-item:hover{ background:rgba(255,255,255,0.09); color:var(--brass-bright); }
+  .dock-search-empty{ color:var(--muted); font-size:12.5px; padding:6px 8px; }
+  .dock-search-tag{ display:inline-block; font-family:var(--mono); font-size:10px; color:var(--brass); margin-inline-end:6px; }
+  .search-highlight{ outline:2px solid var(--brass-bright); outline-offset:6px; border-radius:4px; }
+  @media (max-width:640px){
+    .ios-dock{ inset-inline-start:8px; }
+    .dock-pop{ inset-inline-start:66px; }
+  }
   footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;}
 
   ::selection{background:var(--brass); color:var(--ink);}
@@ -937,7 +992,7 @@
   <div class="wrap">
     <div class="section-head">
       <h2>تعمّق أكثر: الهاتف تحديدًا</h2>
-      <p>الهاتف هو الجهاز الأكثر عرضة للاختراق اليوم لأنه يحمل كل شيء عنك. ثمانية دروس مركّزة تغطي الصورة الكاملة، من الأساسيات إلى التفاصيل العملية.</p>
+      <p>الأمن السيبراني لا يقتصر على الهاتف فقط. عشرة دروس مركّزة تغطي الصورة الكاملة، من اختراق الأجهزة إلى الاحتيال المالي وأمان الشبكة المنزلية.</p>
     </div>
 
     <div class="lessons-list">
@@ -1138,6 +1193,68 @@
           </div>
           <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('lesson-08', this)">📝 اختبر فهمك في هذا الدرس</button>
           <div class="quiz-host" id="quiz-host-lesson-08"></div>
+          <button class="btn btn-ghost lesson-next" onclick="goToLesson('lesson-09')">التالي</button>
+        </div>
+      </details>
+
+      <details class="lesson-block" id="lesson-09">
+        <summary>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li9" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><circle cx="16" cy="14" r="10" stroke="url(#li9)" stroke-width="1.8"/><path d="M16 9 v10 M13 11.3 c0-1.5 1.5-2.3 3-2.3s3 .9 3 2.3-1.5 1.9-3 2.4-3 .9-3 2.4 1.5 2.3 3 2.3 3-.8 3-2.3" stroke="#38bdf8" stroke-width="1.3" stroke-linecap="round" fill="none"/><path d="M6 27 l5-4 4 2 6-6 5 3" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg></span>
+          <span class="lesson-num">09</span>
+          <span class="lesson-title">الاحتيال المالي: العملات المشفرة والاستثمار الوهمي</span>
+          <span class="quiz-score-badge" id="qbadge-lesson-09"></span>
+          <span class="lesson-toggle">+</span>
+        </summary>
+        <div class="lesson-body">
+          <p>الاحتيال المالي الرقمي يتطور بسرعة، وأحدث أشكاله يستغل كلمات مثل "عملات مشفرة" و"استثمار بالذكاء الاصطناعي" لإعطاء انطباع بالحداثة والموثوقية. إليك كيف يحدث فعليًا:</p>
+
+          <p><strong>تخيل هذا المشهد:</strong> ترى منشورًا على فيسبوك أو إنستغرام لشخص يبدو "خبيرًا ماليًا" يعرض لقطات شاشة لأرباح ضخمة من تداول العملات المشفرة، ويدعوك لمجموعة واتساب مغلقة "للمتابعين الجادين فقط". تدخل المجموعة، فتجد عشرات الرسائل من أشخاص آخرين (حسابات مزيفة غالبًا) يشكرون "الخبير" على الأرباح. يطلب منك إيداع مبلغ صغير في البداية على منصة تداول "رسمية المظهر". بعد أيام، يظهر رصيدك وكأنه تضاعف.</p>
+
+          <p>يتحمّسون منك ويقترحون إيداع مبالغ أكبر لتحقيق أرباح أكبر. بعد أن تودّع مبلغًا أكبر، تحاول السحب — فتُفاجأ بطلب "رسوم تفعيل" أو "ضريبة سحب" غير مذكورة من قبل. تدفعها، ثم يُطلب رسم آخر. وفي النهاية يُغلق الحساب أو يتوقف "الخبير" عن الرد تمامًا.</p>
+
+          <div class="callout warn">
+            <strong>علامات تحذيرية دائمة في أي عرض استثماري:</strong>
+            <ul style="margin-top:10px;">
+              <li>وعد بعائد ثابت أو مرتفع بشكل غير واقعي (أكثر من 10-20% شهريًا مثلاً).</li>
+              <li>ضغط عاطفي عبر "مجموعات نجاح" مليئة بشهادات لا يمكن التحقق منها.</li>
+              <li>طلب الإيداع عبر محفظة عملات مشفرة مباشرة أو تطبيق تحويل غير معروف، لا منصة مرخّصة رسميًا.</li>
+              <li>أي "رسوم" أو "ضرائب" إضافية تظهر فقط عند محاولة السحب.</li>
+              <li>الإصرار على السرية وعدم استشارة أي شخص آخر قبل الإيداع.</li>
+            </ul>
+          </div>
+
+          <p><strong>القاعدة الذهبية:</strong> أي جهة تتحمس لإيداعك المال أكثر مما تتحمس أنت لربحه، هي علامة كافية للتوقف فورًا.</p>
+
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('lesson-09', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-lesson-09"></div>
+          <button class="btn btn-ghost lesson-next" onclick="goToLesson('lesson-10')">التالي</button>
+        </div>
+      </details>
+
+      <details class="lesson-block" id="lesson-10">
+        <summary>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li10" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="5" y="20" width="22" height="7" rx="1.5" stroke="url(#li10)" stroke-width="1.8"/><circle cx="10" cy="23.5" r="1" fill="#38bdf8"/><circle cx="14" cy="23.5" r="1" fill="#38bdf8"/><path d="M12 16 a6 6 0 0 1 8 0" stroke="#38bdf8" stroke-width="1.4" stroke-linecap="round" fill="none"/><path d="M9 12.5 a12 12 0 0 1 14 0" stroke="#38bdf8" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg></span>
+          <span class="lesson-num">10</span>
+          <span class="lesson-title">أمان الشبكة المنزلية والراوتر</span>
+          <span class="quiz-score-badge" id="qbadge-lesson-10"></span>
+          <span class="lesson-toggle">+</span>
+        </summary>
+        <div class="lesson-body">
+          <p>الراوتر هو الباب الذي يمر عبره كل جهاز في منزلك للإنترنت — وإذا بقي بإعداداته الافتراضية، فهو أسهل نقطة اختراق للمنزل بالكامل. خطوات عملية لتأمينه:</p>
+          <ul>
+            <li>غيّر كلمة مرور الراوتر الافتراضية (مثل admin/admin) فور تركيبه — هذي أول شيء يجرّبه أي مخترق قريب من شبكتك.</li>
+            <li>غيّر اسم الشبكة (SSID) الافتراضي الذي يكشف غالبًا طراز الراوتر أو مزود الخدمة، مما يسهّل استغلال ثغراته المعروفة.</li>
+            <li>فعّل تشفير WPA3 إن كان متاحًا، أو WPA2 كحد أدنى — وتجنّب تمامًا بروتوكول WEP القديم غير الآمن.</li>
+            <li>أنشئ شبكة ضيوف (Guest Network) منفصلة لأي زائر أو جهاز غير موثوق، بدل منحه دخولًا كاملًا لشبكتك الرئيسية.</li>
+            <li>حدّث برنامج الراوتر (Firmware) بشكل دوري من إعدادات الراوتر نفسه — تحديثات الأمان تُغلق ثغرات مكتشفة حديثًا.</li>
+            <li>أوقف ميزة "الوصول عن بُعد" (Remote Management) إن لم تكن تستخدمها فعليًا.</li>
+            <li>راجع قائمة الأجهزة المتصلة بشبكتك من تطبيق الراوتر مرة شهريًا، وإذا وجدت جهازًا لا تعرفه، غيّر كلمة مرور الشبكة فورًا.</li>
+          </ul>
+          <div class="callout">
+            <strong>لماذا هذا مهم؟</strong> لو اخترق شخص راوترك، يمكنه مراقبة كل بيانات غير مشفّرة تعبر شبكتك من كل أجهزتك دفعة واحدة — لا جهاز واحد فقط.
+          </div>
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('lesson-10', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-lesson-10"></div>
           <a href="#checklist" class="btn btn-ghost lesson-next">قائمة الفحص</a>
         </div>
       </details>
@@ -1683,6 +1800,42 @@
   </div>
 </div>
 
+<div class="ios-dock" id="ios-dock">
+  <button type="button" class="dock-slot" id="dock-translate-btn" onclick="openTranslate()" aria-label="ترجمة الصفحة إلى الإنجليزية" title="ترجمة AR→EN">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.8 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.8-3.8-9s1.3-6.4 3.8-9z"/></svg>
+  </button>
+  <div class="dock-divider"></div>
+  <button type="button" class="dock-slot" id="dock-contact-btn" onclick="toggleContactPop()" aria-label="حسابات التواصل معي" title="تواصل معي">
+    <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v12H7l-3 3V4z"/><circle cx="8.5" cy="9.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="9.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="9.5" r="1" fill="currentColor" stroke="none"/></svg>
+  </button>
+  <div class="dock-divider"></div>
+  <button type="button" class="dock-slot" id="dock-search-btn" onclick="toggleSearchPop()" aria-label="بحث عن كلمات مفتاحية داخل الموقع" title="بحث">
+    <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.8-4.8"/></svg>
+  </button>
+</div>
+
+<div class="dock-pop" id="contact-pop">
+  <h5>تواصل معي</h5>
+  <a class="dock-contact-link" href="https://instagram.com/wass1m_xiv" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+    <span>wass1m_xiv</span>
+  </a>
+  <a class="dock-contact-link" href="https://instagram.com/draculla_xiv" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+    <span>draculla_xiv</span>
+  </a>
+  <a class="dock-contact-link" href="mailto:Plumablanca026@gmail.com">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+    <span>Plumablanca026@gmail.com</span>
+  </a>
+</div>
+
+<div class="dock-pop" id="search-pop">
+  <h5>بحث داخل الموقع</h5>
+  <input type="text" class="dock-search-input" id="dock-search-input" placeholder="اكتب كلمة مفتاحية..." oninput="runDockSearch(this.value)" autocomplete="off">
+  <div class="dock-search-results" id="dock-search-results"></div>
+</div>
+
 </template>
 
 <script>
@@ -1746,6 +1899,20 @@
       { q:'ما الذي يراقبه برنامج مكافحة الفيروسات وجدار الحماية؟', options:['استهلاك البطارية فقط','النشاط المشبوه، ويمنعان الاتصالات غير الموثوقة','سرعة التصفح','عدد التطبيقات المثبتة'], correct:1, explain:'هذه الأدوات تراقب وتحجب النشاط والاتصالات المشبوهة تلقائيًا.' },
       { q:'متى يكون استخدام VPN موثوق مفيدًا بشكل خاص؟', options:['عند استخدام واي فاي عام','عند إيقاف تشغيل الهاتف','عند حذف التطبيقات','لا فائدة له أبدًا'], correct:0, explain:'VPN يشفّر اتصالك، وهذا مهم خصوصًا على شبكات عامة غير موثوقة.' },
       { q:'ما فائدة أدوات النسخ الاحتياطي التلقائي؟', options:['تسريع الهاتف','حفظ نسخة من بياناتك بمكان منفصل لتبقى بمأمن من الفدية أو التلف','تقليل حجم الملفات','تحسين الكاميرا'], correct:1, explain:'نسخة منفصلة تحميك من فقدان بياناتك عند هجوم فدية أو عطل بالجهاز.' }
+    ],
+    'lesson-09': [
+      { q:'ما أهم علامة تحذيرية في أي عرض استثماري "مضمون"؟', options:['وجود شعار جذاب','وعد بعائد مرتفع وثابت بشكل غير واقعي','توفر تطبيق موبايل','كتابة المحتوى بالعربية'], correct:1, explain:'أي عائد ثابت ومرتفع بشكل غير واقعي (أكثر من 10-20% شهريًا) هو العلامة الأولى والأهم على الاحتيال.' },
+      { q:'في قصة "مجموعة واتساب للمتابعين الجادين"، لماذا بدت الأرباح الأولى حقيقية؟', options:['لأن المنصة كانت مرخصة رسميًا','لأن المحتال يعرض أرباحًا وهمية مبكرًا لبناء الثقة قبل طلب مبالغ أكبر','لأن السوق كان صاعدًا فعليًا','لأن البنك ضمن المبلغ'], correct:1, explain:'إظهار "ربح" مبكر وهمي أسلوب مقصود لبناء الثقة قبل استدراج مبالغ أكبر.' },
+      { q:'ما الذي يجب أن يثير شكك إذا طلبت السحب وظهرت "رسوم تفعيل" أو "ضريبة سحب" غير مذكورة من قبل؟', options:['هذا إجراء مصرفي طبيعي','علامة احتيال كلاسيكية لإخراج المزيد من المال منك بدل صرف أرباحك','رسوم ضريبية حكومية مؤكدة','خطأ تقني بسيط سيُحل لاحقًا'], correct:1, explain:'رسوم مفاجئة تظهر فقط عند السحب هي أسلوب معروف لانتزاع المزيد من المال بدل دفع أي أرباح حقيقية.' },
+      { q:'ما "القاعدة الذهبية" المذكورة في الدرس؟', options:['استثمر دائمًا بسرعة قبل فوات الفرصة','أي جهة تتحمس لإيداعك المال أكثر مما تتحمس أنت لربحه، علامة كافية للتوقف','اختر فقط العملات المشفرة المشهورة','استثمر فقط بالدولار'], correct:1, explain:'حماس الطرف الآخر لإيداعك المال، أكثر من حماسك أنت لتحقيق الربح، مؤشر قوي على نية استغلالك.' },
+      { q:'ما الخطر في "مجموعات النجاح" المليئة بشهادات أرباح؟', options:['لا خطر، فهي تشجع المستخدمين الجدد','غالبًا حسابات مزيفة لخلق ضغط اجتماعي وإحساس بالفوات','تتطلب اشتراكًا شهريًا','مخصصة فقط للمستثمرين المحترفين'], correct:1, explain:'هذه المجموعات غالبًا مليئة بحسابات مزيفة هدفها الوحيد الضغط الاجتماعي لدفعك للإيداع دون تفكير.' }
+    ],
+    'lesson-10': [
+      { q:'ما أول خطوة يجب فعلها فور تركيب راوتر جديد؟', options:['توصيل أكبر عدد أجهزة فورًا','تغيير كلمة المرور الافتراضية (مثل admin/admin)','وضعه في أعلى نقطة بالمنزل','الاتصال بمزود الخدمة فقط'], correct:1, explain:'كلمة المرور الافتراضية معروفة للجميع تقريبًا وأول شيء يجرّبه أي مخترق قريب من شبكتك.' },
+      { q:'لماذا يُفضّل تغيير اسم الشبكة (SSID) الافتراضي؟', options:['لتحسين سرعة الإنترنت','لأن الاسم الافتراضي يكشف غالبًا طراز الراوتر ويسهّل استغلال ثغراته المعروفة','لتقليل استهلاك الكهرباء','لتفعيل البلوتوث'], correct:1, explain:'اسم الشبكة الافتراضي غالبًا يفضح طراز الراوتر، مما يسهّل على المهاجم معرفة ثغراته المعروفة واستغلالها.' },
+      { q:'ما أقوى بروتوكول تشفير يُنصح باستخدامه للواي فاي؟', options:['WEP','WPA3 (أو WPA2 كحد أدنى)، لا WEP القديم','بدون تشفير لسرعة أعلى','أي بروتوكول متاح سواء'], correct:1, explain:'WEP قديم وغير آمن تمامًا؛ WPA3 هو الأقوى حاليًا، وWPA2 حد أدنى مقبول.' },
+      { q:'ما فائدة إنشاء "شبكة ضيوف" (Guest Network)؟', options:['تحسين جودة الصورة على التلفاز','منح الزوار أو الأجهزة غير الموثوقة دخولًا محدودًا دون الوصول لشبكتك الرئيسية','تسريع الطباعة اللاسلكية','لا فائدة حقيقية'], correct:1, explain:'شبكة الضيوف تفصل الأجهزة غير الموثوقة عن شبكتك الرئيسية وأجهزتك الحساسة.' },
+      { q:'ما خطر ترك ميزة "الوصول عن بُعد" (Remote Management) مفعّلة بكلمة المرور الافتراضية؟', options:['تستهلك بيانات إضافية فقط','تتيح لأي شخص خارج منزلك التحكم بالراوتر عن بُعد إذا عرف أو خمّن كلمة المرور','تبطئ الاتصال','تمنع تحديث الراوتر'], correct:1, explain:'هذه الميزة تفتح الراوتر للتحكم من خارج المنزل، وهي نقطة استغلال شائعة إن تُركت بكلمة المرور الافتراضية.' }
     ]
   };
 
@@ -2167,6 +2334,7 @@
     initShareLinks();
     startMusic();
     initQuizBadges();
+    buildSearchIndex();
   }
 
   function startMusic(){
@@ -2222,6 +2390,127 @@
     const menu = document.getElementById('share-menu');
     if(fab && menu && menu.classList.contains('open') && !fab.contains(e.target)){
       menu.classList.remove('open');
+    }
+  });
+
+  /* ---------- iOS LIQUID GLASS DOCK ---------- */
+  function openTranslate(){
+    const url = window.location.href;
+    window.open('https://translate.google.com/translate?sl=ar&tl=en&u=' + encodeURIComponent(url), '_blank', 'noopener');
+  }
+
+  function toggleContactPop(){
+    const pop = document.getElementById('contact-pop');
+    const search = document.getElementById('search-pop');
+    const searchBtn = document.getElementById('dock-search-btn');
+    const contactBtn = document.getElementById('dock-contact-btn');
+    if(search) search.classList.remove('open');
+    if(searchBtn) searchBtn.classList.remove('active');
+    if(pop) pop.classList.toggle('open');
+    if(contactBtn) contactBtn.classList.toggle('active', pop && pop.classList.contains('open'));
+  }
+
+  function toggleSearchPop(){
+    const pop = document.getElementById('search-pop');
+    const contact = document.getElementById('contact-pop');
+    const contactBtn = document.getElementById('dock-contact-btn');
+    const searchBtn = document.getElementById('dock-search-btn');
+    if(contact) contact.classList.remove('open');
+    if(contactBtn) contactBtn.classList.remove('active');
+    if(pop){
+      pop.classList.toggle('open');
+      const isOpen = pop.classList.contains('open');
+      if(searchBtn) searchBtn.classList.toggle('active', isOpen);
+      if(isOpen){
+        const input = document.getElementById('dock-search-input');
+        if(input){ input.value = ''; setTimeout(function(){ input.focus(); }, 50); }
+        renderDockSearchResults('');
+      }
+    }
+  }
+
+  let SEARCH_INDEX = [];
+
+  function buildSearchIndex(){
+    SEARCH_INDEX = [];
+    document.querySelectorAll('.lesson-block').forEach(function(block){
+      const titleEl = block.querySelector('.lesson-title');
+      if(!titleEl || !block.id) return;
+      SEARCH_INDEX.push({ label: titleEl.textContent.trim(), tag: 'درس', targetId: block.id, type: 'lesson' });
+    });
+    document.querySelectorAll('section[id]').forEach(function(sec){
+      if(sec.id === 'lessons') return;
+      const h2 = sec.querySelector('h2');
+      if(!h2) return;
+      SEARCH_INDEX.push({ label: h2.textContent.trim(), tag: 'قسم', targetId: sec.id, type: 'section' });
+    });
+    document.querySelectorAll('.glossary-item').forEach(function(item, i){
+      const h4 = item.querySelector('h4');
+      if(!h4) return;
+      if(!item.id) item.id = 'gloss-item-' + i;
+      SEARCH_INDEX.push({ label: h4.textContent.trim(), tag: 'مصطلح', targetId: item.id, type: 'glossary' });
+    });
+  }
+
+  function runDockSearch(query){
+    renderDockSearchResults(query);
+  }
+
+  function escapeHtml(str){
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+
+  function renderDockSearchResults(query){
+    const host = document.getElementById('dock-search-results');
+    if(!host) return;
+    const q = query.trim().toLowerCase();
+    let matches;
+    if(!q){
+      matches = SEARCH_INDEX.slice(0, 8);
+    } else {
+      matches = SEARCH_INDEX.filter(function(item){
+        return item.label.toLowerCase().includes(q);
+      }).slice(0, 14);
+    }
+    if(matches.length === 0){
+      host.innerHTML = '<div class="dock-search-empty">لا نتائج مطابقة</div>';
+      return;
+    }
+    host.innerHTML = matches.map(function(item){
+      return '<button type="button" class="dock-search-item" onclick="goToSearchResult(\'' + item.targetId + '\',\'' + item.type + '\')"><span class="dock-search-tag">' + item.tag + '</span>' + escapeHtml(item.label) + '</button>';
+    }).join('');
+  }
+
+  function goToSearchResult(id, type){
+    const target = document.getElementById(id);
+    if(!target) return;
+    if(type === 'lesson') target.setAttribute('open', '');
+    target.scrollIntoView({ behavior:'smooth', block:'center' });
+    target.classList.add('search-highlight');
+    setTimeout(function(){ target.classList.remove('search-highlight'); }, 1700);
+    const pop = document.getElementById('search-pop');
+    const searchBtn = document.getElementById('dock-search-btn');
+    if(pop) pop.classList.remove('open');
+    if(searchBtn) searchBtn.classList.remove('active');
+  }
+
+  document.addEventListener('click', function(e){
+    const dock = document.getElementById('ios-dock');
+    const contactPop = document.getElementById('contact-pop');
+    const searchPop = document.getElementById('search-pop');
+    if(!dock) return;
+    const insideDock = dock.contains(e.target);
+    const insideContact = contactPop && contactPop.contains(e.target);
+    const insideSearch = searchPop && searchPop.contains(e.target);
+    if(!insideDock && !insideContact){
+      if(contactPop) contactPop.classList.remove('open');
+      const contactBtn = document.getElementById('dock-contact-btn');
+      if(contactBtn) contactBtn.classList.remove('active');
+    }
+    if(!insideDock && !insideSearch){
+      if(searchPop) searchPop.classList.remove('open');
+      const searchBtn = document.getElementById('dock-search-btn');
+      if(searchBtn) searchBtn.classList.remove('active');
     }
   });
 
