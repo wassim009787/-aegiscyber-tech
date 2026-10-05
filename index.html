@@ -469,6 +469,15 @@
     transform:scale(0.95);
   }
 
+  /* ---------- CODE SNIPPET BLOCK ---------- */
+  .code-block{
+    background:var(--ink); border:1px solid var(--line); border-radius:4px;
+    padding:14px 18px; margin:14px 0; font-family:var(--mono); font-size:13px;
+    color:#8bd4ff; white-space:pre-wrap; direction:ltr; text-align:left; overflow-x:auto; line-height:1.6;
+  }
+  .code-block .cm{ color:#6a9955; }
+  .code-block .ck{ color:#00ff87; }
+
   footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;}
 
   ::selection{background:var(--brass); color:var(--ink-fixed);}
@@ -922,6 +931,7 @@
       <a href="#stats">الأرقام</a>
       <a href="#layers">طبقات الحماية</a>
       <a href="#lessons">دروس</a>
+      <a href="#coding">برمجة</a>
       <a href="#threats">التهديدات</a>
       <a href="#checklist">قائمة الفحص</a>
     </div>
@@ -1375,6 +1385,152 @@
           <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('lesson-10', this)">📝 اختبر فهمك في هذا الدرس</button>
           <div class="quiz-host" id="quiz-host-lesson-10"></div>
           <a href="#checklist" class="btn btn-ghost lesson-next">قائمة الفحص</a>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="coding" style="padding:80px 0; border-top:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">ركن المطوّرين</span>
+      <h2>أساسيات البرمجة لمن يريد البدء</h2>
+      <p>قسم منفصل عن دروس الأمان أعلاه، لمن يريد فهم كيف تُبنى المواقع والتطبيقات من الصفر. خمسة دروس مركّزة: الفكرة العامة، ثم HTML وCSS وJavaScript، ثم أشهر الأدوات المستخدمة فعليًا في بناء المواقع والتطبيقات.</p>
+    </div>
+    <div class="lessons-list">
+      <details class="lesson-block" id="code-01">
+        <summary>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="liC1" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><path d="M16 4 a8 8 0 0 1 5 14.3 c-1 .8-1.5 1.7-1.5 2.9v1.3h-7v-1.3c0-1.2-.5-2.1-1.5-2.9A8 8 0 0 1 16 4z" stroke="url(#liC1)" stroke-width="1.8"/><line x1="13" y1="26" x2="19" y2="26" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round"/><line x1="14" y1="29" x2="18" y2="29" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="lesson-num">01</span>
+          <span class="lesson-title">ما الذي يحدث فعليًا عند زيارة موقع؟</span>
+          <span class="quiz-score-badge" id="qbadge-code-01"></span>
+          <span class="lesson-toggle">+</span>
+        </summary>
+        <div class="lesson-body">
+          <p>أي موقع إلكتروني تراه، مهما بدا معقّدًا، مبني من ثلاث طبقات فقط تعمل معًا. فكّر فيه كمنزل: الهيكل أولًا، ثم الديكور، ثم الكهرباء والحركة.</p>
+          <ul>
+            <li><strong>HTML يبني الهيكل:</strong> العناوين، الفقرات، الصور، الروابط — المحتوى الخام بلا أي شكل.</li>
+            <li><strong>CSS يُلبس هذا الهيكل شكلاً:</strong> الألوان، الخطوط، المسافات، وترتيب العناصر على الشاشة.</li>
+            <li><strong>JavaScript يُضيف الحياة:</strong> ضغطة زر تفتح قائمة، نموذج يتحقق من بياناتك، صفحة تتحدّث دون إعادة تحميل.</li>
+            <li>متصفحك (كروم أو سفاري) يقرأ هذه الملفات الثلاثة في أجزاء من الثانية ويدمجها في الصفحة التي تراها.</li>
+          </ul>
+          <div class="callout">
+            <strong>من أين أبدأ؟</strong> لا تحتاج لتعلّم الثلاثة دفعة واحدة. ابدأ بـHTML — فهو الأساس الذي يقوم عليه كل شيء آخر في هذا القسم.
+          </div>
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('code-01', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-code-01"></div>
+          <button class="btn btn-ghost lesson-next" onclick="goToLesson('code-02')">التالي</button>
+        </div>
+      </details>
+
+      <details class="lesson-block" id="code-02">
+        <summary>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="liC2" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><path d="M11 9 L4 16 L11 23" stroke="url(#liC2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M21 9 L28 16 L21 23" stroke="url(#liC2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="18" y1="6" x2="14" y2="26" stroke="#38bdf8" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+          <span class="lesson-num">02</span>
+          <span class="lesson-title">HTML — لغة هيكلة الصفحات</span>
+          <span class="quiz-score-badge" id="qbadge-code-02"></span>
+          <span class="lesson-toggle">+</span>
+        </summary>
+        <div class="lesson-body">
+          <p>HTML (HyperText Markup Language) ليست "لغة برمجة" بالمعنى الدقيق، بل لغة وَسْم (Markup) تصف محتوى الصفحة عنصرًا بعنصر، باستخدام وسوم (Tags) بين قوسين مثل هذه:</p>
+          <div class="code-block">&lt;h1&gt;مرحبًا بالعالم&lt;/h1&gt;
+&lt;p&gt;هذه فقرة نصية بسيطة.&lt;/p&gt;
+&lt;a href="https://example.com"&gt;رابط&lt;/a&gt;</div>
+          <ul>
+            <li>كل عنصر يُكتب غالبًا بوسم فتح ووسم إغلاق: <span dir="ltr" style="font-family:var(--mono); font-size:12.5px;">&lt;p&gt; ... &lt;/p&gt;</span>.</li>
+            <li>العناوين من <span dir="ltr" style="font-family:var(--mono); font-size:12.5px;">h1</span> إلى <span dir="ltr" style="font-family:var(--mono); font-size:12.5px;">h6</span>، والفقرات <span dir="ltr" style="font-family:var(--mono); font-size:12.5px;">p</span>، والصور <span dir="ltr" style="font-family:var(--mono); font-size:12.5px;">img</span>، والروابط <span dir="ltr" style="font-family:var(--mono); font-size:12.5px;">a</span>.</li>
+            <li>الصفحة كلها توضع داخل وسم <span dir="ltr" style="font-family:var(--mono); font-size:12.5px;">html</span>، وتنقسم إلى <span dir="ltr" style="font-family:var(--mono); font-size:12.5px;">head</span> (معلومات غير مرئية مثل العنوان) و<span dir="ltr" style="font-family:var(--mono); font-size:12.5px;">body</span> (كل ما يراه الزائر).</li>
+          </ul>
+          <div class="callout">
+            <strong>ملاحظة:</strong> HTML وحدها لا "تُبرمج" شيئًا — إنها تصف المحتوى فقط. القوة الحقيقية تظهر حين تضيف لها CSS وJavaScript، كما في الدرسين القادمين.
+          </div>
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('code-02', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-code-02"></div>
+          <button class="btn btn-ghost lesson-next" onclick="goToLesson('code-03')">التالي</button>
+        </div>
+      </details>
+
+      <details class="lesson-block" id="code-03">
+        <summary>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="liC3" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><path d="M16 5 a11 9 0 1 0 0 18 c2 0 2-2 .5-3 c-1-1-.3-2.5 1-2.5 h2.5 a7 6 0 0 0 7-6 c0-3.5-4.7-6.5-11-6.5z" stroke="url(#liC3)" stroke-width="1.6"/><circle cx="11" cy="14" r="1.3" fill="#38bdf8"/><circle cx="16" cy="11" r="1.3" fill="#00ff87"/><circle cx="21" cy="14" r="1.3" fill="#38bdf8"/><circle cx="12" cy="19" r="1.3" fill="#00ff87"/></svg></span>
+          <span class="lesson-num">03</span>
+          <span class="lesson-title">CSS — لغة التنسيق والتصميم</span>
+          <span class="quiz-score-badge" id="qbadge-code-03"></span>
+          <span class="lesson-toggle">+</span>
+        </summary>
+        <div class="lesson-body">
+          <p>إذا كانت HTML تضع المحتوى على الصفحة، فـCSS (Cascading Style Sheets) تقرر كيف يبدو هذا المحتوى. مثال بسيط:</p>
+          <div class="code-block">h1 {
+  color: #10b981;
+  text-align: center;
+}</div>
+          <ul>
+            <li>"المحدد" (Selector، هنا <span dir="ltr" style="font-family:var(--mono); font-size:12.5px;">h1</span>) يختار أي عنصر سيُنسَّق، والخصائص داخل الأقواس تحدّد شكله.</li>
+            <li>يمكن التحكم بالألوان، الخطوط، الأحجام، المسافات، وحتى الحركة (Animations) بالكامل عبر CSS.</li>
+            <li><strong>Flexbox</strong> و<strong>Grid</strong> هما أشهر أداتين لترتيب عناصر الصفحة بشكل منظّم ومتجاوب.</li>
+            <li>"التصميم المتجاوب" (Responsive Design) يعني أن الموقع يبدو جيدًا على الهاتف والحاسوب معًا — وهو معيار أساسي اليوم.</li>
+          </ul>
+          <div class="callout">
+            <strong>مثال حي:</strong> المظهر الزجاجي (Liquid Glass) والألوان المتدرّجة التي تراها في هذا الموقع نفسه مبنية بالكامل بـCSS.
+          </div>
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('code-03', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-code-03"></div>
+          <button class="btn btn-ghost lesson-next" onclick="goToLesson('code-04')">التالي</button>
+        </div>
+      </details>
+
+      <details class="lesson-block" id="code-04">
+        <summary>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="liC4" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><path d="M18 4 L8 18 h6 l-2 10 12-16 h-6 z" stroke="url(#liC4)" stroke-width="1.6" stroke-linejoin="round" fill="none"/></svg></span>
+          <span class="lesson-num">04</span>
+          <span class="lesson-title">JavaScript — لغة البرمجة التفاعلية</span>
+          <span class="quiz-score-badge" id="qbadge-code-04"></span>
+          <span class="lesson-toggle">+</span>
+        </summary>
+        <div class="lesson-body">
+          <p>JavaScript هي اللغة التي تجعل الصفحة "تُفكّر" بدل أن تبقى ثابتة. مثال بسيط لدالة تظهر رسالة عند الضغط على زر:</p>
+          <div class="code-block">function sayHello() {
+  alert("مرحبًا!");
+}</div>
+          <ul>
+            <li>تسمح باتخاذ قرارات (إن كان كذا، افعل كذا)، وتكرار إجراءات، والتفاعل الفوري مع ضغطات المستخدم.</li>
+            <li>تعمل مباشرة داخل متصفحك دون الحاجة لتثبيت أي برنامج إضافي.</li>
+            <li>كل أداة تفاعلية في هذا الموقع — فاحص كلمة المرور، لعبة الروابط، شريط البحث الزجاجي — مبنية بـJavaScript.</li>
+            <li>أطر عمل مثل <strong>React</strong> و<strong>Vue</strong> مبنية فوق JavaScript لتسهيل بناء مواقع كبيرة ومعقّدة بسرعة.</li>
+          </ul>
+          <div class="callout">
+            <strong>زاوية أمنية:</strong> JavaScript من أكثر اللغات استهدافًا بثغرات مثل XSS (حقن أكواد خبيثة في صفحة). فهمها يفتح لك بابين معًا: كيف تَبني، وكيف تَحمي ما بنيته.
+          </div>
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('code-04', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-code-04"></div>
+          <button class="btn btn-ghost lesson-next" onclick="goToLesson('code-05')">التالي</button>
+        </div>
+      </details>
+
+      <details class="lesson-block" id="code-05">
+        <summary>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="liC5" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="5" y="14" width="22" height="13" rx="2" stroke="url(#liC5)" stroke-width="1.6"/><path d="M11 14 v-3 a2 2 0 0 1 2-2 h6 a2 2 0 0 1 2 2 v3" stroke="#38bdf8" stroke-width="1.6" fill="none"/><line x1="5" y1="20" x2="27" y2="20" stroke="#38bdf8" stroke-width="1.4"/><rect x="14" y="18" width="4" height="4" rx="0.5" fill="#00ff87"/></svg></span>
+          <span class="lesson-num">05</span>
+          <span class="lesson-title">أشهر أدوات ولغات البرمجة</span>
+          <span class="quiz-score-badge" id="qbadge-code-05"></span>
+          <span class="lesson-toggle">+</span>
+        </summary>
+        <div class="lesson-body">
+          <p>بعد HTML وCSS وJavaScript، هذه أشهر الأدوات التي يستخدمها المطوّرون فعليًا في بناء المواقع والتطبيقات:</p>
+          <ul>
+            <li><strong>محرر الأكواد:</strong> البرنامج الذي تكتب به الكود — الأشهر عالميًا هو Visual Studio Code، وهو مجاني.</li>
+            <li><strong>Git وGitHub:</strong> نظام يتتبّع كل تعديل تجريه على الكود، ومنصة لحفظ مشاريعك ومشاركتها — بالضبط كما تفعل الآن مع موقعك.</li>
+            <li><strong>لغات الواجهة الخلفية (Backend):</strong> مثل Python وNode.js وPHP — تُشغّل منطق الموقع وقواعد البيانات خلف الكواليس.</li>
+            <li><strong>قواعد البيانات:</strong> مثل MySQL وMongoDB وFirebase — تُخزّن بيانات المستخدمين والمحتوى بشكل دائم.</li>
+            <li><strong>أطر عمل الواجهة الأمامية:</strong> مثل React وVue وTailwind CSS — تسرّع بناء واجهات حديثة.</li>
+          </ul>
+          <div class="callout">
+            <strong>لا تنتظر إتقان كل شيء:</strong> HTML وCSS وJavaScript وحدها كافية لبناء موقع كامل تراه الآن. بقية الأدوات تُضاف تدريجيًا حين تحتاجها فعليًا في مشروع حقيقي.
+          </div>
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('code-05', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-code-05"></div>
+          <a href="#lessons" class="btn btn-ghost lesson-next">العودة لدروس الأمان</a>
         </div>
       </details>
     </div>
@@ -2049,6 +2205,36 @@
       { q:'ما أقوى بروتوكول تشفير يُنصح باستخدامه للواي فاي؟', options:['WEP','WPA3 (أو WPA2 كحد أدنى)، لا WEP القديم','بدون تشفير لسرعة أعلى','أي بروتوكول متاح سواء'], correct:1, explain:'WEP قديم وغير آمن تمامًا؛ WPA3 هو الأقوى حاليًا، وWPA2 حد أدنى مقبول.' },
       { q:'ما فائدة إنشاء "شبكة ضيوف" (Guest Network)؟', options:['تحسين جودة الصورة على التلفاز','منح الزوار أو الأجهزة غير الموثوقة دخولًا محدودًا دون الوصول لشبكتك الرئيسية','تسريع الطباعة اللاسلكية','لا فائدة حقيقية'], correct:1, explain:'شبكة الضيوف تفصل الأجهزة غير الموثوقة عن شبكتك الرئيسية وأجهزتك الحساسة.' },
       { q:'ما خطر ترك ميزة "الوصول عن بُعد" (Remote Management) مفعّلة بكلمة المرور الافتراضية؟', options:['تستهلك بيانات إضافية فقط','تتيح لأي شخص خارج منزلك التحكم بالراوتر عن بُعد إذا عرف أو خمّن كلمة المرور','تبطئ الاتصال','تمنع تحديث الراوتر'], correct:1, explain:'هذه الميزة تفتح الراوتر للتحكم من خارج المنزل، وهي نقطة استغلال شائعة إن تُركت بكلمة المرور الافتراضية.' }
+    ],
+    'code-01': [
+      { q:'ما الوظيفة الأساسية لـHTML في صفحة الويب؟', options:['تحديد الألوان والخطوط','بناء الهيكل والمحتوى','إضافة التفاعل والحركة','تخزين بيانات المستخدم'], correct:1, explain:'HTML مسؤولة عن هيكل المحتوى (عناوين، فقرات، صور) — التنسيق مهمة CSS، والتفاعل مهمة JavaScript.' },
+      { q:'ماذا يحدث لو أُزيل كل CSS من موقع؟', options:['الموقع يتوقف عن العمل كليًا','يبقى المحتوى ظاهرًا لكن بدون أي تنسيق أو ألوان','تختفي كل النصوص','يتحول الموقع لتطبيق هاتف'], correct:1, explain:'بدون CSS يبقى الهيكل (المحتوى) ظاهرًا، لكن بشكل افتراضي بسيط بلا أي تصميم.' },
+      { q:'أي من الثلاث تجعل الصفحة "تتفاعل" مع ضغطات المستخدم؟', options:['HTML','CSS','JavaScript','لا واحدة منها'], correct:2, explain:'JavaScript هي التي تضيف المنطق والتفاعل الحقيقي للصفحة.' },
+      { q:'ما أفضل لغة يُنصح بالبدء بها عند تعلّم بناء المواقع؟', options:['JavaScript مباشرة','HTML لأنها الأساس الذي يُبنى عليه الباقي','قاعدة بيانات','لغة خلفية مثل Python'], correct:1, explain:'HTML هي حجر الأساس؛ تُبنى فوقها CSS ثم JavaScript.' }
+    ],
+    'code-02': [
+      { q:'كيف يُكتب عنصر HTML عادةً؟', options:['بين قوسين معقوفين فقط دون إغلاق','بوسم فتح ووسم إغلاق مثل <p> و</p>','بسطر واحد بدون أي رموز','داخل ملف CSS'], correct:1, explain:'أغلب عناصر HTML تحتاج وسم فتح ووسم إغلاق يحيطان بالمحتوى.' },
+      { q:'ما وظيفة وسم <img>؟', options:['إضافة صورة','إنشاء رابط','كتابة عنوان رئيسي','تشغيل كود JavaScript'], correct:0, explain:'وسم img مخصص لعرض صورة داخل الصفحة.' },
+      { q:'أين يوضع المحتوى المرئي الذي يراه الزائر؟', options:['داخل head','داخل body','داخل style فقط','خارج وسم html تمامًا'], correct:1, explain:'كل ما يظهر فعليًا للزائر يوضع داخل وسم body، بينما head يحمل معلومات غير مرئية.' },
+      { q:'ماذا يحدث غالبًا لو نسي المطوّر إغلاق وسم في HTML؟', options:['الموقع يُحذف تلقائيًا','المتصفح يتوقف عن العمل كليًا ولا يعرض شيئًا','المتصفح يحاول عرض الصفحة رغم ذلك، لكن قد يظهر تنسيق غير متوقع','تصل رسالة تنبيه لصاحب الموقع فورًا'], correct:2, explain:'المتصفحات متسامحة مع أخطاء HTML الصغيرة وتحاول عرض الصفحة قدر الإمكان.' }
+    ],
+    'code-03': [
+      { q:'ما الذي يحدّده "المحدد" (Selector) في CSS؟', options:['أي عنصر في الصفحة سيُنسَّق','لون خلفية المتصفح فقط','سرعة تحميل الصفحة','نوع المتصفح المستخدم'], correct:0, explain:'المحدد يختار العنصر الذي ستُطبَّق عليه قواعد التنسيق التالية له.' },
+      { q:'ما أشهر أداتين لترتيب عناصر الصفحة بشكل متجاوب؟', options:['HTML وJavaScript','Flexbox وGrid','Python وSQL','Git وGitHub'], correct:1, explain:'Flexbox وGrid هما نظاما التخطيط الأساسيان في CSS الحديث.' },
+      { q:'ما معنى "التصميم المتجاوب" (Responsive Design)؟', options:['موقع يستجيب لرسائل البريد تلقائيًا','موقع يبدو جيدًا على كل أحجام الشاشات (هاتف وحاسوب)','موقع سريع التحميل فقط بغض النظر عن الشكل','موقع بدون أي صور'], correct:1, explain:'التصميم المتجاوب يعني أن الموقع يتكيّف بصريًا مع حجم شاشة الزائر.' },
+      { q:'أين تُكتب قواعد CSS عادةً بالنسبة لهيكل HTML؟', options:['داخل وسم الروابط فقط','في ملف أو وسم منفصل يرتبط بالهيكل ويصف شكله','داخل قاعدة البيانات','لا تُكتب؛ تُولَّد تلقائيًا من المتصفح'], correct:1, explain:'CSS تُكتب غالبًا في ملف منفصل (أو وسم style) ويُربط بصفحة HTML لتنسيقها.' }
+    ],
+    'code-04': [
+      { q:'ما الذي يميّز JavaScript عن HTML وCSS؟', options:['أنها تُعرّف الألوان فقط','أنها تضيف منطقًا وتفاعلًا حقيقيًا للصفحة','أنها تعمل فقط على الهاتف','أنها تستبدل HTML بالكامل'], correct:1, explain:'JavaScript هي لغة برمجة فعلية تتيح اتخاذ القرارات والتفاعل، بخلاف HTML وCSS الوصفيتين.' },
+      { q:'أين يعمل كود JavaScript الأساسي في المواقع؟', options:['على خوادم بعيدة فقط دون علاقة بجهازك','مباشرة داخل متصفح الزائر','لا يعمل إلا بعد تثبيت برنامج خاص','داخل قاعدة البيانات مباشرة'], correct:1, explain:'جزء كبير من JavaScript يُنفَّذ محليًا داخل متصفح الزائر نفسه.' },
+      { q:'أي من هذه مبني فوق JavaScript لتسهيل بناء واجهات معقّدة؟', options:['React وVue','MySQL','Photoshop','WPA3'], correct:0, explain:'React وVue أطر عمل JavaScript تسهّل بناء واجهات تفاعلية كبيرة.' },
+      { q:'لماذا يُعتبر فهم JavaScript مفيدًا من ناحية الأمان أيضًا؟', options:['لأنه يمنع كل الاختراقات تلقائيًا','لأنه من أكثر اللغات استهدافًا بثغرات مثل XSS، وفهمه يساعد على حماية ما تبنيه','لأنه غير مرتبط بالأمان إطلاقًا','لأنه يُشفّر البيانات تلقائيًا بمجرد كتابته'], correct:1, explain:'ثغرات مثل XSS تستغل JavaScript تحديدًا؛ فهمها خطوة أساسية لكتابة كود أكثر أمانًا.' }
+    ],
+    'code-05': [
+      { q:'ما هو Visual Studio Code؟', options:['لغة برمجة جديدة','محرر أكواد مجاني ومنتشر عالميًا','قاعدة بيانات','متصفح إنترنت'], correct:1, explain:'VS Code هو أحد أشهر محررات الأكواد المجانية المستخدمة من ملايين المطوّرين.' },
+      { q:'ما وظيفة Git وGitHub معًا؟', options:['تصميم الألوان والخطوط','تتبّع تعديلات الكود، وحفظ المشاريع ومشاركتها','تشغيل الإعلانات على الموقع','فحص الفيروسات في الملفات'], correct:1, explain:'Git يتتبّع تاريخ التعديلات، وGitHub منصة لاستضافة هذه المشاريع ومشاركتها — تمامًا كما تفعل مع موقعك الآن.' },
+      { q:'أي مما يلي يُصنَّف ضمن "لغات الواجهة الخلفية" (Backend)؟', options:['CSS','Python وNode.js وPHP','HTML فقط','Flexbox'], correct:1, explain:'هذه اللغات تُشغّل منطق الخادم وقواعد البيانات خلف الكواليس، بخلاف HTML/CSS الخاصتين بالواجهة.' },
+      { q:'هل يجب إتقان كل الأدوات (قواعد بيانات، أطر عمل...) قبل بناء أول موقع؟', options:['نعم، كلها إلزامية من البداية','لا، HTML وCSS وJavaScript كافية للبدء، والباقي يُضاف عند الحاجة الفعلية','لا تحتاج لأي منها أبدًا حتى لو كبر المشروع','فقط قواعد البيانات ضرورية من اليوم الأول'], correct:1, explain:'يمكن بناء موقع كامل بالأساسيات الثلاث فقط، وإضافة الأدوات الأخرى تدريجيًا حين تحتاجها فعليًا.' }
     ]
   };
 
