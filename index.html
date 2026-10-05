@@ -798,9 +798,29 @@
     backdrop-filter:blur(16px) saturate(160%);
     -webkit-backdrop-filter:blur(16px) saturate(160%);
     border:1px solid var(--glass-border) !important;
-    box-shadow:var(--glass-shadow);
+    box-shadow:var(--glass-shadow), 0 0 16px rgba(16,185,129,0.10), 0 0 30px rgba(56,189,248,0.08);
+    transition:box-shadow .3s ease, transform .3s ease, border-color .3s ease;
   }
   .tool-card{ background:var(--glass-bg-2) !important; }
+  .lesson-block:hover, .tool-card:hover, .glossary-item:hover, .threat:hover{
+    border-color:rgba(16,185,129,0.35) !important;
+    box-shadow:var(--glass-shadow), 0 0 22px rgba(16,185,129,0.22), 0 0 44px rgba(56,189,248,0.16);
+  }
+  .ios-dock{
+    box-shadow:0 12px 34px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.25),
+               0 0 18px rgba(16,185,129,0.15), 0 0 34px rgba(56,189,248,0.12);
+  }
+  /* ---------- NEON AMBIENT ORBS (hero backdrop) ---------- */
+  .hero{ position:relative; overflow:hidden; }
+  .hero::before, .hero::after{
+    content:''; position:absolute; border-radius:50%; filter:blur(70px); opacity:.35;
+    pointer-events:none; z-index:0; animation:neonFloat 9s ease-in-out infinite alternate;
+  }
+  .hero::before{ width:280px; height:280px; background:var(--brass); top:-60px; inset-inline-start:-60px; }
+  .hero::after{ width:320px; height:320px; background:var(--rust); bottom:-80px; inset-inline-end:-60px; animation-delay:-4.5s; }
+  .hero .wrap{ position:relative; z-index:1; }
+  @keyframes neonFloat{ 0%{ transform:translateY(0) scale(1); } 100%{ transform:translateY(-26px) scale(1.12); } }
+  :root[data-theme="light"] .hero::before, :root[data-theme="light"] .hero::after{ opacity:.18; }
 
 </style>
 
