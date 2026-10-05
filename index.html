@@ -385,21 +385,6 @@
     .ios-dock{ inset-inline-start:8px; }
     .dock-pop{ inset-inline-start:66px; }
   }
-  /* ---------- FEEDBACK / RATING ---------- */
-  .fb-stars{ display:flex; gap:8px; margin-bottom:16px; }
-  .fb-star{
-    background:none; border:none; cursor:pointer; padding:0;
-    font-size:28px; line-height:1; color:var(--line); transition:color .15s, transform .15s;
-  }
-  .fb-star:hover, .fb-star.active{ color:var(--brass-bright); transform:scale(1.12); }
-  .fb-textarea{
-    width:100%; min-height:110px; background:var(--panel); border:1px solid var(--line);
-    color:var(--text); font-family:var(--body); font-size:14.5px; padding:12px 14px;
-    border-radius:4px; resize:vertical; outline:none; box-sizing:border-box; transition:border-color .2s;
-  }
-  .fb-textarea:focus{ border-color:var(--brass); }
-  .fb-status{ font-size:13px; margin-top:10px; min-height:18px; }
-
   footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;}
 
   ::selection{background:var(--brass); color:var(--ink);}
@@ -1783,23 +1768,6 @@
   </div>
 </section>
 
-<section id="feedback" style="padding:60px 0 70px; border-top:1px solid var(--line);">
-  <div class="wrap" style="max-width:640px;">
-    <h2>رأيك يهمّنا</h2>
-    <p style="color:var(--muted); font-size:14px; margin-bottom:22px;">شاركنا رأيك في الموقع أو أي اقتراح لتحسينه — رسالتك تصلني مباشرة.</p>
-    <div class="fb-stars" id="fb-stars" role="group" aria-label="تقييم من 5 نجوم">
-      <button type="button" class="fb-star" data-val="1" onclick="setFbRating(1)" aria-label="نجمة واحدة">★</button>
-      <button type="button" class="fb-star" data-val="2" onclick="setFbRating(2)" aria-label="نجمتان">★</button>
-      <button type="button" class="fb-star" data-val="3" onclick="setFbRating(3)" aria-label="3 نجوم">★</button>
-      <button type="button" class="fb-star" data-val="4" onclick="setFbRating(4)" aria-label="4 نجوم">★</button>
-      <button type="button" class="fb-star" data-val="5" onclick="setFbRating(5)" aria-label="5 نجوم">★</button>
-    </div>
-    <textarea class="fb-textarea" id="feedback-text" placeholder="اكتب رأيك هنا..."></textarea>
-    <button type="button" class="btn btn-primary" id="feedback-submit-btn" onclick="submitFeedback()" style="margin-top:14px;">إرسال رأيي</button>
-    <div class="fb-status" id="feedback-status"></div>
-  </div>
-</section>
-
 <footer>
   <div class="wrap">
     <span>VigilantNode — دليل توعوي في الأمن السيبراني</span>
@@ -2580,72 +2548,17 @@
     endVideoIntro();
   }
 
-  const FORMSPREE_ENDPOINT = "https://formspree.io/f/mwlveder";
-
-  function sendFormspree(data){
-    if(!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT.indexOf('YOUR_FORM_ID') !== -1) return Promise.resolve(false);
-    return fetch(FORMSPREE_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(data)
-    }).then(function(r){ return r.ok; }).catch(function(){ return false; });
-  }
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID"; // استبدل YOUR_FORM_ID برابط Formspree الخاص بك
 
   function logVisitor(username, email){
+    if(!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT.indexOf('YOUR_FORM_ID') !== -1) return;
     try{
-      sessionStorage.setItem('vn_visitor_name', username || '');
-      sessionStorage.setItem('vn_visitor_email', email || '');
+      fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ username: username, email: email, time: new Date().toLocaleString('ar-EG') })
+      }).catch(function(){});
     }catch(e){}
-    sendFormspree({ type: 'زيارة جديدة', username: username, email: email, time: new Date().toLocaleString('ar-EG') });
-  }
-
-  let fbRating = 0;
-  function setFbRating(val){
-    fbRating = val;
-    document.querySelectorAll('.fb-star').forEach(function(star){
-      const v = parseInt(star.getAttribute('data-val'), 10);
-      star.classList.toggle('active', v <= val);
-    });
-  }
-
-  function submitFeedback(){
-    const textEl = document.getElementById('feedback-text');
-    const statusEl = document.getElementById('feedback-status');
-    const btn = document.getElementById('feedback-submit-btn');
-    if(!textEl || !statusEl || !btn) return;
-    const msg = textEl.value.trim();
-    if(!msg){
-      statusEl.textContent = 'يرجى كتابة رأيك أولًا';
-      statusEl.style.color = 'var(--rust-bright)';
-      return;
-    }
-    let visitorName = '', visitorEmail = '';
-    try{
-      visitorName = sessionStorage.getItem('vn_visitor_name') || '';
-      visitorEmail = sessionStorage.getItem('vn_visitor_email') || '';
-    }catch(e){}
-    btn.disabled = true;
-    statusEl.textContent = 'جارِ الإرسال...';
-    statusEl.style.color = 'var(--muted)';
-    sendFormspree({
-      type: 'رأي زائر',
-      rating: fbRating ? (fbRating + ' / 5') : 'غير محدد',
-      message: msg,
-      name: visitorName,
-      email: visitorEmail,
-      time: new Date().toLocaleString('ar-EG')
-    }).then(function(ok){
-      btn.disabled = false;
-      if(ok){
-        statusEl.textContent = 'تم إرسال رأيك، شكرًا لك! 🙏';
-        statusEl.style.color = 'var(--brass-bright)';
-        textEl.value = '';
-        setFbRating(0);
-      } else {
-        statusEl.textContent = 'تعذّر الإرسال حاليًا — جرّب لاحقًا';
-        statusEl.style.color = 'var(--rust-bright)';
-      }
-    });
   }
 
   function toggleLockPassword(){
