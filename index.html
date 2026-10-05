@@ -407,6 +407,30 @@
   .fb-textarea:focus{ border-color:var(--brass); }
   .fb-status{ font-size:13px; margin-top:10px; min-height:18px; }
 
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1); }
+  .reveal.revealed{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+  /* ---------- MICRO-INTERACTIONS ---------- */
+  .mm-ripple-host{ position:relative; overflow:hidden; }
+  .mm-ripple{
+    position:absolute; border-radius:50%; background:rgba(255,255,255,0.4);
+    transform:scale(0); opacity:0.55; pointer-events:none;
+    animation:mmRippleAnim .55s ease-out forwards;
+  }
+  @keyframes mmRippleAnim{ to{ transform:scale(1); opacity:0; } }
+  .btn, .gl-btn, .dock-slot, .lesson-toggle, .incident-btn, .share-fab-btn, .music-fab,
+  .quiz-option, .lg-option, .hv-card, .dock-search-item, .glossary-access, .dock-contact-link{
+    transition:transform .15s ease;
+  }
+  .btn:active, .gl-btn:active, .dock-slot:active, .lesson-toggle:active, .incident-btn:active, .share-fab-btn:active, .music-fab:active,
+  .quiz-option:active, .lg-option:active, .hv-card:active, .dock-search-item:active, .glossary-access:active, .dock-contact-link:active{
+    transform:scale(0.95);
+  }
+
   footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;}
 
   ::selection{background:var(--brass); color:var(--ink);}
