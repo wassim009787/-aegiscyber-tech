@@ -524,6 +524,56 @@
   .globe-legend span{display:flex; align-items:center; gap:8px; font-size:13.5px; color:var(--muted);}
   .globe-legend i{width:8px; height:8px; display:inline-block; border-radius:50%;}
 
+  /* ---------- LIVE THREAT MAP ---------- */
+  .threatmap-frame-wrap{
+    max-width:900px; margin:0 auto; border:1px solid var(--line); border-radius:4px;
+    overflow:hidden; background:#000; box-shadow:var(--glass-shadow);
+  }
+  .threatmap-frame-wrap iframe{ display:block; width:100%; min-height:300px; }
+  .threatmap-credit{ text-align:center; margin-top:14px; font-size:12px; color:var(--muted); }
+  .threatmap-credit a{ color:var(--rust); }
+
+  /* ---------- PHISHING SIMULATOR ---------- */
+  .phish-progress{ font-family:var(--mono); font-size:11px; color:var(--muted); margin-bottom:14px; text-align:center; }
+  .phish-email{
+    background:#f4f5f7; color:#1a1a1a; border-radius:6px; overflow:hidden;
+    border:1px solid rgba(0,0,0,0.08); margin-bottom:20px; max-width:480px; margin-inline:auto;
+    box-shadow:0 10px 26px rgba(0,0,0,0.25);
+  }
+  .phish-email-head{ display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1px solid #e4e6eb; }
+  .phish-avatar{
+    width:36px; height:36px; border-radius:50%; background:#dbe2ea;
+    display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px;
+    flex-shrink:0; color:#505866;
+  }
+  .phish-from-name{ font-weight:700; font-size:13.5px; color:#15181d; }
+  .phish-from-addr{ font-size:11.5px; color:#8a909c; direction:ltr; text-align:right; }
+  .phish-subject{ padding:12px 16px 0; font-weight:700; font-size:14px; color:#15181d; }
+  .phish-body{ padding:10px 16px 16px; font-size:13px; line-height:1.8; color:#33373e; }
+  .phish-cta-wrap{ padding:0 16px 20px; }
+  .phish-cta-btn{
+    display:inline-block; background:#2563eb; color:#fff; padding:10px 22px;
+    border-radius:5px; font-size:13px; font-weight:600;
+  }
+  .phish-link-line{ padding:0 16px 18px; font-size:11px; color:#8a909c; direction:ltr; text-align:left; word-break:break-all; }
+
+  .phish-chips{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:18px; justify-content:center; }
+  .phish-chip{
+    font-family:var(--mono); font-size:12.5px; padding:8px 14px; border-radius:20px;
+    border:1px solid var(--line); background:transparent; color:var(--text); cursor:pointer;
+    transition:all .2s;
+  }
+  .phish-chip:hover:not(:disabled){ border-color:var(--rust); }
+  .phish-chip.selected{ border-color:var(--rust); background:rgba(56,189,248,0.14); color:var(--rust-bright); }
+  .phish-chip.result-correct{ border-color:var(--brass); background:rgba(16,185,129,0.16); color:var(--brass-bright); }
+  .phish-chip.result-missed{ border-color:#ef4444; background:rgba(239,68,68,0.16); color:#ff8fa3; }
+  .phish-chip.result-wrong{ border-color:#ef4444; background:rgba(239,68,68,0.08); color:#ff8fa3; opacity:.7; }
+  .phish-chip:disabled{ cursor:default; }
+  .phish-feedback-item{ font-size:12.5px; color:var(--muted); padding:9px 2px; border-bottom:1px dashed var(--line); text-align:start; }
+  .phish-feedback-item strong{ color:var(--text); }
+  .phish-score-box{ text-align:center; padding:20px 10px 10px; }
+  .phish-score-box .big{ font-size:38px; font-weight:900; color:var(--brass-bright); font-family:var(--mono); }
+
   /* ---------- TERMINAL ---------- */
   .terminal{border:1px solid var(--line); background:#080808; max-width:640px; margin:0 auto;}
   .terminal-bar{display:flex; align-items:center; gap:8px; padding:10px 14px; border-bottom:1px solid var(--line); background:var(--panel-2);}
@@ -536,6 +586,29 @@
   }
   .terminal-body .caret{display:inline-block; width:7px; height:14px; background:#00ff87; vertical-align:middle; animation:blink 1s step-start infinite;}
   @keyframes blink{ 50%{ opacity:0; } }
+
+  /* ---------- INTERACTIVE SHELL ---------- */
+  .shell-output{ max-height:320px; overflow-y:auto; min-height:140px; }
+  .shell-output .shell-cmd-echo{ color:#38bdf8; }
+  .shell-output .shell-err{ color:#ff5f56; }
+  .shell-output .shell-ok{ color:#00ff87; }
+  .shell-output .shell-muted{ color:#6a7280; }
+  .shell-input-row{
+    display:flex; align-items:center; gap:8px;
+    padding:10px 18px 16px; border-top:1px solid #1c1c1c;
+    font-family:var(--mono); font-size:13px;
+  }
+  .shell-prompt{ color:#00ff87; flex-shrink:0; }
+  .shell-input{
+    flex:1; background:transparent; border:none; outline:none;
+    color:#eafff4; font-family:var(--mono); font-size:13px; caret-color:#00ff87;
+    min-width:0;
+  }
+  .shell-input::placeholder{ color:#4a524c; }
+  #shell .section-head p code{
+    background:rgba(16,185,129,0.12); color:var(--brass-bright);
+    padding:2px 6px; border-radius:4px; font-family:var(--mono); font-size:0.92em;
+  }
 
   /* ---------- LOCK SCREEN (glass circle card) ---------- */
   #lock-screen{
@@ -1151,6 +1224,20 @@
   </div>
 </section>
 
+<section id="threatmap" style="background:#050505; border-bottom:1px solid var(--line); padding:70px 0;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">بيانات حقيقية ومباشرة</span>
+      <h2>خريطة الهجمات السيبرانية الحية الآن</h2>
+      <p>هذه خريطة حقيقية وليست تمثيلية، من شركة Kaspersky العالمية للأمن السيبراني، تعرض محاولات اختراق تُرصد فعليًا حول العالم في هذه اللحظة بالضبط.</p>
+    </div>
+    <div class="threatmap-frame-wrap">
+      <iframe src="https://cybermap.kaspersky.com/en/widget/dynamic/dark" width="100%" height="460" loading="lazy" title="خريطة الهجمات السيبرانية الحية - Kaspersky Cybermap" referrerpolicy="no-referrer-when-downgrade" style="border:0;"></iframe>
+    </div>
+    <p class="threatmap-credit">المصدر: <a href="https://cybermap.kaspersky.com" target="_blank" rel="noopener">Kaspersky Cybermap</a> — تحديث تلقائي لحظي. قد يستغرق التحميل بضع ثوانٍ حسب سرعة اتصالك.</p>
+  </div>
+</section>
+
 <section id="layers">
   <div class="wrap">
     <div class="section-head">
@@ -1200,6 +1287,26 @@
         <span class="term-title">security-monitor — live</span>
       </div>
       <div class="terminal-body" id="term-body" dir="ltr"></div>
+    </div>
+  </div>
+</section>
+
+<section id="shell" style="background:#050505; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>جرّب بنفسك: تيرمينال الموقع التفاعلي</h2>
+      <p>اكتب <code>help</code> واضغط Enter لتكتشف أقسام الموقع بطريقتك الخاصة.</p>
+    </div>
+    <div class="terminal" id="shell-terminal" onclick="document.getElementById('shell-input').focus()">
+      <div class="terminal-bar">
+        <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+        <span class="term-title">visitor@vigilantnode:~$</span>
+      </div>
+      <div class="terminal-body shell-output" id="shell-output" dir="ltr"></div>
+      <div class="shell-input-row" dir="ltr">
+        <span class="shell-prompt">&gt;</span>
+        <input type="text" id="shell-input" class="shell-input" autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off" aria-label="Terminal command input" placeholder="type help...">
+      </div>
     </div>
   </div>
 </section>
@@ -1815,6 +1922,23 @@
       <div id="link-game-host">
         <div style="text-align:center;">
           <button type="button" class="btn btn-primary" onclick="startLinkGame()">ابدأ التحدي (6 جولات)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="phishing-sim" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">محاكاة واقعية</span>
+      <h2>محاكي التصيّد الاحتيالي: هل تكتشف الخدعة؟</h2>
+      <p>أربع رسائل بريد إلكتروني تشبه ما قد يصلك فعليًا (بأسماء شركات افتراضية). اقرأ كل رسالة بعناية، ثم اضغط على كل عنصر تراه مشبوهًا، وتحقق من إجابتك.</p>
+    </div>
+    <div class="tool-card">
+      <div id="phish-host">
+        <div style="text-align:center;">
+          <button type="button" class="btn btn-primary" onclick="startPhishingSim()">ابدأ المحاكاة (4 رسائل)</button>
         </div>
       </div>
     </div>
@@ -2551,6 +2675,178 @@
 
   let lgState = { index:0, score:0, answered:false };
 
+  /* ---------- PHISHING SIMULATOR ---------- */
+  const PHISH_SCENARIOS = [
+    {
+      avatar: 'P',
+      fromName: 'PayNow Support',
+      fromAddr: 'alerts@secure-paynow-verify.com',
+      subject: 'تنبيه عاجل: حسابك سيُعلَّق خلال 24 ساعة',
+      body: 'عزيزي العميل، لاحظنا محاولة دخول غير معتادة لحسابك. لتجنّب تعليقه نهائيًا، يرجى تأكيد بياناتك البنكية فورًا عبر الزر أدناه.',
+      ctaText: 'تأكيد الحساب الآن',
+      linkUrl: 'paynow-verify-secure.com/confirm',
+      flags: [
+        { id:'s1-sender', label:'عنوان المرسل', suspicious:true, note:'نطاق طويل وغريب (secure-paynow-verify.com) يحاول تقليد اسم شركة حقيقية، وليس نطاقها الرسمي.' },
+        { id:'s1-greet', label:'التحية "عزيزي العميل"', suspicious:true, note:'تحية عامة بدل اسمك الحقيقي — الشركات الحقيقية غالبًا تخاطبك باسمك.' },
+        { id:'s1-urgency', label:'"خلال 24 ساعة"', suspicious:true, note:'ضغط زمني مصطنع لدفعك للتسرّع دون تفكير — أسلوب تصيّد كلاسيكي.' },
+        { id:'s1-link', label:'رابط "تأكيد الحساب الآن"', suspicious:true, note:'الرابط الفعلي يقود لنطاق مختلف تمامًا عن نطاق الشركة الحقيقية.' },
+        { id:'s1-subject', label:'وجود عنوان تنبيهي للرسالة', suspicious:false, note:'عنوان تنبيهي وحده طبيعي حتى في رسائل حقيقية — ليس دليلاً كافيًا بمفرده.' }
+      ]
+    },
+    {
+      avatar: 'C',
+      fromName: 'CloudMail Team',
+      fromAddr: 'no-reply@cloudmail-storage-alert.net',
+      subject: 'صندوق بريدك ممتلئ — إجراء مطلوب',
+      body: 'مرحبًا، صندوق بريدك الإلكتروني وصل إلى 98% من سعته. اضغط هنا لزيادة المساحة مجانًا قبل توقف استقبال الرسائل خلال 12 ساعة.',
+      ctaText: 'زيادة المساحة الآن',
+      linkUrl: 'cloudmail-storage-alert.net/upgrade',
+      flags: [
+        { id:'s2-sender', label:'نطاق المرسل', suspicious:true, note:'ليس نطاق مزود البريد الحقيقي إطلاقًا، بل نطاق مختلف صُمِّم ليبدو مشابهًا.' },
+        { id:'s2-free', label:'"مجانًا" + "خلال 12 ساعة"', suspicious:true, note:'وعد مبالغ فيه مرتبط بضغط زمني — نمط كلاسيكي للتصيّد.' },
+        { id:'s2-link', label:'رابط "زيادة المساحة"', suspicious:true, note:'نص الرابط لا علاقة له بخدمة البريد الحقيقية.' },
+        { id:'s2-greet', label:'التحية "مرحبًا" بدون اسم', suspicious:true, note:'رسائل الأنظمة الحقيقية غالبًا تستخدم اسمك أو بريدك كاملاً، لا تحية عامة.' },
+        { id:'s2-length', label:'قِصر الرسالة', suspicious:false, note:'الإيجاز وحده ليس علامة خطر؛ كثير من الرسائل الحقيقية قصيرة أيضًا.' }
+      ]
+    },
+    {
+      avatar: 'D',
+      fromName: 'DeliverX',
+      fromAddr: 'tracking@deliverx-notify.info',
+      subject: 'طردك بانتظار رسوم جمركية بسيطة (2.99$)',
+      body: 'عزيزنا العميل، طردك جاهز للتسليم لكنه بحاجة لدفع رسوم جمركية صغيرة لإتمام التسليم اليوم. ادفع الآن لتفادي إعادة الطرد.',
+      ctaText: 'ادفع الرسوم وتابع الشحنة',
+      linkUrl: 'deliverx-notify.info/pay',
+      flags: [
+        { id:'s3-domain', label:'امتداد النطاق ".info"', suspicious:true, note:'امتداد غير معتاد لشركة شحن عالمية — شركات الشحن الكبرى تستخدم نطاقها الرسمي المعروف فقط.' },
+        { id:'s3-amount', label:'مبلغ "2.99$" الصغير', suspicious:true, note:'مبالغ زهيدة تُستخدم عمدًا لتقليل شكّك وتسريع قرارك بالدفع دون تردد.' },
+        { id:'s3-urgency', label:'"اليوم" + "تفادي إعادة الطرد"', suspicious:true, note:'استعجال مقترن بتهديد بالخسارة — ضغط نفسي مزدوج شائع في التصيّد.' },
+        { id:'s3-link', label:'رابط الدفع', suspicious:true, note:'يطلب بيانات بطاقة بنكية عبر رابط غير رسمي بدل بوابة الدفع الرسمية لشركة الشحن.' },
+        { id:'s3-topic', label:'ذكر كلمتي "طرد" و"شحنة"', suspicious:false, note:'هذا جزء طبيعي من أي رسالة شحن حقيقية؛ المشكلة في التفاصيل الأخرى لا في الموضوع نفسه.' }
+      ]
+    },
+    {
+      avatar: 'S',
+      fromName: 'SocialConnect Security',
+      fromAddr: 'security@socialconnect-support-team.com',
+      subject: 'تم رصد دخول من جهاز غير معروف',
+      body: 'مرحبًا، تم تسجيل الدخول لحسابك من جهاز في موقع غير معتاد. إذا لم تكن أنت، قم بتأمين حسابك فورًا قبل أن يفقد صاحبه السيطرة عليه بالكامل.',
+      ctaText: 'تأمين الحساب فورًا',
+      linkUrl: 'socialconnect-support-team.com/secure',
+      flags: [
+        { id:'s4-sender', label:'نطاق المرسل الطويل', suspicious:true, note:'إضافة كلمات مثل "support-team" لنطاق غير رسمي حيلة شائعة لإيهامك بالرسمية.' },
+        { id:'s4-urgency', label:'"فورًا" + "يفقد السيطرة عليه"', suspicious:true, note:'تخويف واستعجال معًا لدفعك للضغط دون تحقّق.' },
+        { id:'s4-link', label:'رابط "تأمين الحساب"', suspicious:true, note:'يقود غالبًا لصفحة تسجيل دخول مزيفة مصمَّمة لسرقة كلمة مرورك.' },
+        { id:'s4-greet', label:'التحية العامة "مرحبًا"', suspicious:true, note:'بدون اسمك الحقيقي — إشارة إضافية لرسالة جماعية مصطنعة.' },
+        { id:'s4-idea', label:'فكرة "دخول من جهاز غير معروف"', suspicious:false, note:'هذا تنبيه أمني مشروع تمامًا حتى من شركات حقيقية؛ المشكلة في الرابط والنطاق لا في الفكرة نفسها.' }
+      ]
+    }
+  ];
+
+  let phishIndex = 0;
+  let phishSelected = {};
+  let phishChecked = false;
+  let phishScore = { correct: 0, total: 0 };
+
+  function startPhishingSim(){
+    phishIndex = 0;
+    phishScore = { correct: 0, total: 0 };
+    renderPhishScenario();
+  }
+
+  function renderPhishScenario(){
+    const host = document.getElementById('phish-host');
+    if(!host) return;
+    if(phishIndex >= PHISH_SCENARIOS.length){ renderPhishFinal(); return; }
+    const sc = PHISH_SCENARIOS[phishIndex];
+    phishSelected = {};
+    phishChecked = false;
+
+    const chipsHtml = sc.flags.map(function(f){
+      return '<button type="button" class="phish-chip" id="phish-chip-' + f.id + '" onclick="phishToggleChip(\'' + f.id + '\')">' + f.label + '</button>';
+    }).join('');
+
+    host.innerHTML =
+      '<div class="phish-progress">الرسالة ' + (phishIndex + 1) + ' من ' + PHISH_SCENARIOS.length + '</div>' +
+      '<div class="phish-email">' +
+        '<div class="phish-email-head">' +
+          '<div class="phish-avatar">' + sc.avatar + '</div>' +
+          '<div><div class="phish-from-name">' + sc.fromName + '</div><div class="phish-from-addr">' + sc.fromAddr + '</div></div>' +
+        '</div>' +
+        '<div class="phish-subject">' + sc.subject + '</div>' +
+        '<div class="phish-body">' + sc.body + '</div>' +
+        '<div class="phish-cta-wrap"><span class="phish-cta-btn">' + sc.ctaText + '</span></div>' +
+        '<div class="phish-link-line">' + sc.linkUrl + '</div>' +
+      '</div>' +
+      '<p style="font-size:12.5px; color:var(--muted); margin-bottom:10px; text-align:center;">اضغط على كل عنصر تراه علامة تصيّد محتملة:</p>' +
+      '<div class="phish-chips">' + chipsHtml + '</div>' +
+      '<div id="phish-feedback"></div>' +
+      '<div id="phish-actions" style="text-align:center; margin-top:16px;">' +
+        '<button type="button" class="btn btn-primary" onclick="phishCheckAnswer()">تحقق من إجابتي</button>' +
+      '</div>';
+  }
+
+  function phishToggleChip(id){
+    if(phishChecked) return;
+    const btn = document.getElementById('phish-chip-' + id);
+    if(!btn) return;
+    if(phishSelected[id]){ delete phishSelected[id]; btn.classList.remove('selected'); }
+    else { phishSelected[id] = true; btn.classList.add('selected'); }
+  }
+
+  function phishCheckAnswer(){
+    if(phishChecked) return;
+    phishChecked = true;
+    const sc = PHISH_SCENARIOS[phishIndex];
+    let feedbackHtml = '';
+    sc.flags.forEach(function(f){
+      const btn = document.getElementById('phish-chip-' + f.id);
+      const picked = !!phishSelected[f.id];
+      if(f.suspicious){
+        phishScore.total++;
+        if(picked){ phishScore.correct++; if(btn){ btn.classList.add('result-correct'); btn.classList.remove('selected'); } }
+        else if(btn){ btn.classList.add('result-missed'); }
+      } else if(picked && btn){
+        btn.classList.add('result-wrong'); btn.classList.remove('selected');
+      }
+      if(btn) btn.disabled = true;
+      feedbackHtml += '<div class="phish-feedback-item"><strong>' + f.label + '</strong> — ' + f.note + '</div>';
+    });
+    const fb = document.getElementById('phish-feedback');
+    if(fb) fb.innerHTML = feedbackHtml;
+    const actions = document.getElementById('phish-actions');
+    if(actions){
+      const isLast = phishIndex + 1 >= PHISH_SCENARIOS.length;
+      actions.innerHTML = '<button type="button" class="btn btn-ghost" onclick="phishNext()">' + (isLast ? 'عرض النتيجة النهائية ←' : 'الرسالة التالية ←') + '</button>';
+    }
+  }
+
+  function phishNext(){
+    phishIndex++;
+    renderPhishScenario();
+  }
+
+  function renderPhishFinal(){
+    const host = document.getElementById('phish-host');
+    if(!host) return;
+    const pct = phishScore.total ? Math.round((phishScore.correct / phishScore.total) * 100) : 0;
+    let verdict;
+    if(pct >= 85) verdict = 'حاسة قوية جدًا لاكتشاف التصيّد — استمر هكذا 🛡️';
+    else if(pct >= 60) verdict = 'جيد، لكن راجع دروس الأمان في الأعلى لتصقل ملاحظتك أكثر.';
+    else verdict = 'هذا بالضبط سبب أهمية التدريب — راجع دروس الأمان في الأعلى وجرّب مجددًا.';
+    host.innerHTML =
+      '<div class="phish-score-box">' +
+        '<div class="big">' + phishScore.correct + ' / ' + phishScore.total + '</div>' +
+        '<p style="color:var(--muted); margin:10px 0 18px;">علامات تصيّد اكتشفتها بنجاح (' + pct + '%)</p>' +
+        '<p style="margin-bottom:20px;">' + verdict + '</p>' +
+        '<button type="button" class="btn btn-ghost" onclick="phishRestart()">أعد المحاولة من البداية</button>' +
+      '</div>';
+  }
+
+  function phishRestart(){
+    startPhishingSim();
+  }
+
   function startLinkGame(){
     lgState = { index:0, score:0, answered:false };
     renderLinkGameRound();
@@ -2764,6 +3060,7 @@
     initQuizBadges();
     buildSearchIndex();
     initListenButtons();
+    initShell();
     initTheme();
     window.addEventListener('scroll', updateReadingProgress, { passive: true });
     updateReadingProgress();
@@ -3243,6 +3540,189 @@
     if(!target) return;
     target.setAttribute('open', '');
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  /* ---------- INTERACTIVE SHELL ---------- */
+  const SHELL_SECTIONS = {
+    'lessons': 'دروس الأمان السيبراني',
+    'coding': 'دروس البرمجة',
+    'tools': 'أدوات الحماية',
+    'glossary': 'القاموس',
+    'threats': 'أشهر التهديدات',
+    'checklist': 'قائمة الفحص السريع',
+    'redflags': 'علامات الخطر',
+    'threatmap': 'خريطة التهديدات الحية',
+    'phishing-sim': 'محاكي التصيد الاحتيالي',
+    'case-studies': 'قصص واقعية',
+    'about': 'عن الموقع',
+    'feedback': 'شارك رأيك',
+    'layers': 'طبقات الحماية'
+  };
+
+  let shellHistory = [];
+  let shellHistoryIndex = -1;
+
+  function shellPrint(html, cls){
+    const out = document.getElementById('shell-output');
+    if(!out) return;
+    const line = document.createElement('div');
+    if(cls) line.className = cls;
+    line.innerHTML = html;
+    out.appendChild(line);
+    out.scrollTop = out.scrollHeight;
+  }
+
+  function shellGreet(){
+    shellPrint('VigilantNode Interactive Shell v1.0', 'shell-ok');
+    shellPrint('اكتب <strong>help</strong> لعرض الأوامر المتاحة.', 'shell-muted');
+  }
+
+  function shellScan(){
+    shellPrint('جارِ فحص الموقع...', 'shell-muted');
+    const lessonsCount = document.querySelectorAll('#lessons .lesson-block').length;
+    const codingCount = document.querySelectorAll('#coding .lesson-block').length;
+    const toolsCount = document.querySelectorAll('#tools .tool-card').length;
+    const glossaryCount = document.querySelectorAll('#glossary .glossary-item').length;
+    setTimeout(function(){
+      shellPrint([
+        '[SCAN COMPLETE]',
+        'دروس الأمان: ' + lessonsCount,
+        'دروس البرمجة: ' + codingCount,
+        'أدوات موثّقة: ' + toolsCount,
+        'مصطلحات في القاموس: ' + glossaryCount,
+        'الحالة العامة: كل الأنظمة تعمل بشكل طبيعي ✅'
+      ].join('\n'), 'shell-ok');
+    }, 700);
+  }
+
+  function shellOpenSection(arg){
+    if(!arg){
+      shellPrint('اكتب اسم القسم بعد open، مثال: open lessons', 'shell-err');
+      return;
+    }
+    let matchKey = null;
+    Object.keys(SHELL_SECTIONS).forEach(function(k){
+      if(matchKey) return;
+      if(k.indexOf(arg) !== -1 || SHELL_SECTIONS[k].indexOf(arg) !== -1) matchKey = k;
+    });
+    if(!matchKey){
+      shellPrint('القسم غير موجود: ' + arg + ' — اكتب ls لعرض كل الأقسام', 'shell-err');
+      return;
+    }
+    const el = document.getElementById(matchKey);
+    if(el){
+      shellPrint('جارِ الانتقال إلى: ' + SHELL_SECTIONS[matchKey] + ' ...', 'shell-ok');
+      setTimeout(function(){ el.scrollIntoView({ behavior:'smooth', block:'start' }); }, 300);
+    } else {
+      shellPrint('تعذّر العثور على هذا القسم في الصفحة.', 'shell-err');
+    }
+  }
+
+  function shellRunCommand(raw){
+    const cmd = raw.trim();
+    if(!cmd) return;
+    shellPrint('&gt; ' + cmd.replace(/</g,'&lt;'), 'shell-cmd-echo');
+    shellHistory.push(cmd);
+    shellHistoryIndex = shellHistory.length;
+
+    const parts = cmd.split(/\s+/);
+    const base = parts[0].toLowerCase();
+    const arg = parts.slice(1).join(' ').toLowerCase();
+
+    switch(base){
+      case 'help':
+        shellPrint([
+          'الأوامر المتاحة:',
+          '&nbsp;&nbsp;help &nbsp;&nbsp;— عرض هذه القائمة',
+          '&nbsp;&nbsp;whoami — من أنت هنا؟',
+          '&nbsp;&nbsp;status — حالة الحماية الحالية',
+          '&nbsp;&nbsp;scan &nbsp;&nbsp;— فحص سريع لإحصائيات الموقع',
+          '&nbsp;&nbsp;ls / sections — عرض كل الأقسام المتاحة',
+          '&nbsp;&nbsp;open [اسم القسم] — الانتقال مباشرة لقسم',
+          '&nbsp;&nbsp;clear — تفريغ الشاشة'
+        ].join('\n'));
+        break;
+
+      case 'whoami':
+        shellPrint('visitor@vigilantnode — زائر فضولي يهتم بحماية نفسه رقميًا 🛡️', 'shell-ok');
+        break;
+
+      case 'status':
+        shellPrint([
+          '[OK] الاتصال الحالي مشفّر (HTTPS)',
+          '[OK] عدد الدروس المتاحة الآن: ' + document.querySelectorAll('.lesson-block').length,
+          '[OK] عدد الأقسام التفاعلية: ' + Object.keys(SHELL_SECTIONS).length,
+          '[READY] النظام جاهز لاستقبال أوامرك.'
+        ].join('\n'), 'shell-ok');
+        break;
+
+      case 'scan':
+        shellScan();
+        break;
+
+      case 'ls':
+      case 'sections':
+        shellPrint(Object.keys(SHELL_SECTIONS).map(function(k){ return k + ' — ' + SHELL_SECTIONS[k]; }).join('\n'), 'shell-muted');
+        shellPrint('اكتب: open [اسم] للانتقال، مثال: open lessons', 'shell-muted');
+        break;
+
+      case 'clear':
+      case 'cls':
+        document.getElementById('shell-output').innerHTML = '';
+        break;
+
+      case 'open':
+      case 'go':
+      case 'cd':
+        shellOpenSection(arg);
+        break;
+
+      case 'date':
+        shellPrint(new Date().toLocaleString('ar'), 'shell-muted');
+        break;
+
+      case 'sudo':
+        shellPrint('Nice try. الصلاحيات هنا محدودة بالفضول فقط 😄', 'shell-err');
+        break;
+
+      case 'matrix':
+        shellPrint('Wake up, Neo... 🟢', 'shell-ok');
+        break;
+
+      case 'hack':
+        shellPrint('هذا الموقع يعلّمك كيف تحمي نفسك، لا كيف تخترق غيرك. اكتب help بدل ذلك.', 'shell-err');
+        break;
+
+      default:
+        shellPrint('command not found: ' + cmd.replace(/</g,'&lt;') + ' — اكتب help للمساعدة', 'shell-err');
+    }
+  }
+
+  function initShell(){
+    const input = document.getElementById('shell-input');
+    const out = document.getElementById('shell-output');
+    if(!input || !out || out.dataset.started) return;
+    out.dataset.started = '1';
+    shellGreet();
+    input.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){
+        const val = input.value;
+        input.value = '';
+        shellRunCommand(val);
+      } else if(e.key === 'ArrowUp'){
+        e.preventDefault();
+        if(shellHistory.length){
+          shellHistoryIndex = Math.max(0, shellHistoryIndex - 1);
+          input.value = shellHistory[shellHistoryIndex] || '';
+        }
+      } else if(e.key === 'ArrowDown'){
+        e.preventDefault();
+        if(shellHistory.length){
+          shellHistoryIndex = Math.min(shellHistory.length, shellHistoryIndex + 1);
+          input.value = shellHistory[shellHistoryIndex] || '';
+        }
+      }
+    });
   }
 
   function startTerminal(){
