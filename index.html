@@ -574,6 +574,62 @@
   .phish-score-box{ text-align:center; padding:20px 10px 10px; }
   .phish-score-box .big{ font-size:38px; font-weight:900; color:var(--brass-bright); font-family:var(--mono); }
 
+  /* ---------- PASSWORD TOOLS ---------- */
+  .pwgen-options{ display:flex; flex-direction:column; gap:16px; margin-bottom:18px; }
+  .pwgen-row{ display:flex; flex-direction:column; gap:8px; font-size:13px; color:var(--text); }
+  .pwgen-row input[type="range"]{ width:100%; accent-color:var(--brass); }
+  .pwgen-check{ display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text); cursor:pointer; }
+  .pwgen-check input{ accent-color:var(--brass); width:16px; height:16px; }
+  .pwgen-output-row{ display:flex; gap:10px; }
+  .pwgen-output{
+    flex:1; background:var(--ink); border:1px solid var(--line); border-radius:4px;
+    padding:12px 14px; font-family:var(--mono); font-size:14px; color:var(--brass-bright);
+    direction:ltr; text-align:left; min-width:0;
+  }
+  .pwned-result{ margin-top:16px; padding:14px 16px; border-radius:4px; font-size:13.5px; display:none; line-height:1.7; }
+  .pwned-result.show{ display:block; }
+  .pwned-result.safe{ background:rgba(16,185,129,0.1); border:1px solid var(--brass); color:var(--brass-bright); }
+  .pwned-result.danger{ background:rgba(239,68,68,0.1); border:1px solid #ef4444; color:#ff8fa3; }
+  .pwned-result.loading{ background:rgba(255,255,255,0.05); border:1px solid var(--line); color:var(--muted); }
+  .pwned-result.error{ background:rgba(255,255,255,0.05); border:1px solid var(--line); color:var(--muted); }
+
+  /* ---------- SMS/WHATSAPP PHISHING SIMULATOR ---------- */
+  .sms-phone{
+    max-width:360px; margin:0 auto 20px; background:#0b141a; border-radius:18px;
+    padding:16px 14px; border:1px solid rgba(255,255,255,0.08); box-shadow:0 10px 26px rgba(0,0,0,0.3);
+  }
+  .sms-sender-row{ display:flex; align-items:center; gap:8px; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.08); }
+  .sms-avatar{ width:32px; height:32px; border-radius:50%; background:#2a3942; display:flex; align-items:center; justify-content:center; font-weight:700; color:#8696a0; font-size:13px; flex-shrink:0; }
+  .sms-sender-name{ color:#e9edef; font-size:13.5px; font-weight:600; }
+  .sms-sender-number{ color:#8696a0; font-size:11px; direction:ltr; text-align:right; }
+  .sms-bubble{
+    background:#202c33; color:#e9edef; border-radius:8px; padding:10px 12px;
+    font-size:13px; line-height:1.7; max-width:92%; margin-bottom:8px;
+  }
+
+  /* ---------- COMPLETION CERTIFICATE ---------- */
+  .cert-stats{ margin-bottom:18px; }
+  .cert-stats p{ font-size:14px; }
+
+  /* ---------- HABIT TRACKER ---------- */
+  .habit-list{ display:flex; flex-direction:column; gap:14px; }
+  .habit-row{
+    display:flex; align-items:center; justify-content:space-between; gap:14px;
+    padding:14px 16px; border:1px solid var(--line); border-radius:6px; background:var(--panel-2);
+    flex-wrap:wrap;
+  }
+  .habit-info{ display:flex; align-items:center; gap:12px; flex:1; min-width:200px; }
+  .habit-icon{ font-size:22px; flex-shrink:0; }
+  .habit-label{ font-size:13.5px; color:var(--text); }
+  .habit-streak{ font-family:var(--mono); font-size:12px; color:var(--brass-bright); white-space:nowrap; }
+  .habit-btn{
+    font-family:var(--mono); font-size:12px; padding:8px 14px; border-radius:20px;
+    border:1px solid var(--brass); background:transparent; color:var(--brass-bright); cursor:pointer;
+    white-space:nowrap; transition:all .2s;
+  }
+  .habit-btn:hover:not(:disabled){ background:rgba(16,185,129,0.1); }
+  .habit-btn.done-today{ background:rgba(16,185,129,0.18); cursor:default; }
+
   /* ---------- TERMINAL ---------- */
   .terminal{border:1px solid var(--line); background:#080808; max-width:640px; margin:0 auto;}
   .terminal-bar{display:flex; align-items:center; gap:8px; padding:10px 14px; border-bottom:1px solid var(--line); background:var(--panel-2);}
@@ -1945,6 +2001,23 @@
   </div>
 </section>
 
+<section id="sms-phishing-sim" style="border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">محاكاة واقعية</span>
+      <h2>محاكي رسائل واتساب والنصوص القصيرة</h2>
+      <p>أربع رسائل تشبه ما يصلك فعليًا على واتساب أو كرسالة SMS (بأسماء وأرقام افتراضية). اضغط على كل عنصر تراه مشبوهًا، وتحقق من إجابتك.</p>
+    </div>
+    <div class="tool-card">
+      <div id="sms-phish-host">
+        <div style="text-align:center;">
+          <button type="button" class="btn btn-primary" onclick="startSmsPhishingSim()">ابدأ المحاكاة (4 رسائل)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="redflags">
   <div class="wrap">
     <div class="section-head">
@@ -2108,6 +2181,19 @@
   </div>
 </section>
 
+<section id="habit-tracker" style="border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">عادة أسبوعية</span>
+      <h2>متتبّع العادات الأمنية</h2>
+      <p>اضغط "فعلتها هذا الأسبوع" كلما طبّقت إحدى هذه العادات، وابنِ سلسلة التزام متواصلة. كل هذا يُحفظ على جهازك أنت فقط.</p>
+    </div>
+    <div class="tool-card">
+      <div id="habit-list" class="habit-list"></div>
+    </div>
+  </div>
+</section>
+
 <section id="tools" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
   <div class="wrap">
     <div class="section-head">
@@ -2130,6 +2216,41 @@
         <li id="pw-c-common"><span class="pw-c-icon">○</span> ليست من كلمات المرور الأكثر شيوعًا</li>
       </ul>
       <div class="pw-note">🔒 خصوصية تامة: ما تكتبه هنا يبقى داخل متصفحك فقط، ولا يُرسل أو يُحفظ في أي خادم أو مكان آخر.</div>
+    </div>
+
+    <div class="section-head" style="margin-top:50px;">
+      <span class="eyebrow">أداة تفاعلية</span>
+      <h2>مولّد كلمات مرور قوية</h2>
+      <p>ولّد كلمة مرور عشوائية وقوية خلال ثوانٍ، بالطول والرموز التي تختارها بنفسك.</p>
+    </div>
+    <div class="tool-card">
+      <div class="pwgen-options">
+        <label class="pwgen-row"><span>الطول: <strong id="pwgen-len-val">16</strong> حرفًا</span><input type="range" id="pwgen-len" min="8" max="32" value="16" oninput="pwgenUpdateLenLabel()"></label>
+        <label class="pwgen-check"><input type="checkbox" id="pwgen-upper" checked> أحرف كبيرة (A-Z)</label>
+        <label class="pwgen-check"><input type="checkbox" id="pwgen-num" checked> أرقام (0-9)</label>
+        <label class="pwgen-check"><input type="checkbox" id="pwgen-sym" checked> رموز (!@#$...)</label>
+      </div>
+      <div class="pwgen-output-row">
+        <input type="text" id="pwgen-output" class="pwgen-output" readonly dir="ltr" placeholder="اضغط توليد...">
+        <button type="button" class="btn btn-ghost" id="pwgen-copy-btn" onclick="pwgenCopy()">نسخ</button>
+      </div>
+      <button type="button" class="btn btn-primary" style="margin-top:14px;" onclick="pwgenGenerate()">🎲 ولّد كلمة مرور جديدة</button>
+      <div class="pw-note">🔒 التوليد يتم بالكامل داخل متصفحك باستخدام مولّد عشوائي آمن (Web Crypto)، بدون أي اتصال بالإنترنت.</div>
+    </div>
+
+    <div class="section-head" style="margin-top:50px;">
+      <span class="eyebrow">أداة تفاعلية</span>
+      <h2>هل تسرّبت كلمة مرورك من قبل؟</h2>
+      <p>تحقّق إن كانت كلمة مرورك ظهرت ضمن تسريبات بيانات معروفة عالميًا — بدون أن تُرسل كلمة المرور نفسها لأي مكان إطلاقًا.</p>
+    </div>
+    <div class="tool-card">
+      <div class="pw-input-group">
+        <input type="password" id="pwned-input" class="pw-test-input" placeholder="اكتب كلمة مرور للتحقق منها..." autocomplete="off">
+        <button type="button" class="pw-eye" onclick="pwnedToggleVisibility()" id="pwned-eye-icon" aria-label="إظهار/إخفاء">👁</button>
+      </div>
+      <button type="button" class="btn btn-primary" style="margin-top:14px;" onclick="pwnedCheck()" id="pwned-check-btn">تحقق الآن</button>
+      <div id="pwned-result" class="pwned-result"></div>
+      <div class="pw-note">🔒 كيف تبقى كلمة مرورك سرّية؟ المتصفح يحوّلها إلى بصمة مشفّرة (hash) محليًا، ثم يُرسل أول 5 رموز من البصمة فقط — وهذا غير كافٍ لإعادة بناء كلمة المرور الأصلية أبدًا. هذه نفس التقنية التي تستخدمها Cloudflare وخدمات أمنية عالمية أخرى.</div>
     </div>
   </div>
 </section>
@@ -2218,6 +2339,29 @@
           </a>
         </div>
         <p style="font-size:13px; color:var(--muted); margin-top:10px;">Got a question, found an issue, or just want to talk cybersecurity? Reach out anytime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certificate" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:70px 0;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">مكافأة إنجازك</span>
+      <h2>شهادة إتمامك لرحلة الأمان الرقمي</h2>
+      <p>ولّد شهادة بصورة أنيقة باسمك، تلخّص تقدمك في دروس الموقع — يمكنك تحميلها فورًا.</p>
+    </div>
+    <div class="tool-card" style="text-align:center;">
+      <div id="cert-stats" class="cert-stats"></div>
+      <input type="text" id="cert-name-input" class="pw-test-input" placeholder="اكتب اسمك كما تريده أن يظهر في الشهادة" style="max-width:360px; margin:0 auto 16px; text-align:center;" autocomplete="off">
+      <div>
+        <button type="button" class="btn btn-primary" onclick="generateCertificate()">🏆 ولّد شهادتي الآن</button>
+      </div>
+      <div id="cert-preview-wrap" style="margin-top:24px; display:none;">
+        <canvas id="cert-canvas" width="1000" height="700" style="max-width:100%; height:auto; border-radius:8px; border:1px solid var(--line);"></canvas>
+        <div style="margin-top:16px;">
+          <button type="button" class="btn btn-ghost" onclick="downloadCertificate()">⬇️ تحميل الشهادة (صورة)</button>
+        </div>
       </div>
     </div>
   </div>
@@ -2579,6 +2723,113 @@
   /* ================= PASSWORD STRENGTH CHECKER ================= */
   const COMMON_PASSWORDS = ['123456','123456789','password','12345678','qwerty','111111','123123','abc123','password1','admin','letmein','welcome','iloveyou','000000','1234567','12345','monkey','dragon','football','azerty','000000000','1q2w3e4r','zxcvbnm','test123'];
 
+  /* ---------- PASSWORD GENERATOR ---------- */
+  function pwgenUpdateLenLabel(){
+    const val = document.getElementById('pwgen-len').value;
+    document.getElementById('pwgen-len-val').textContent = val;
+  }
+
+  function pwgenGenerate(){
+    const len = parseInt(document.getElementById('pwgen-len').value, 10);
+    const useUpper = document.getElementById('pwgen-upper').checked;
+    const useNum = document.getElementById('pwgen-num').checked;
+    const useSym = document.getElementById('pwgen-sym').checked;
+
+    const lower = 'abcdefghijklmnopqrstuvwxyz';
+    const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const nums = '0123456789';
+    const syms = '!@#$%^&*()_-+=?';
+
+    let pool = lower;
+    if(useUpper) pool += upper;
+    if(useNum) pool += nums;
+    if(useSym) pool += syms;
+
+    const randomValues = new Uint32Array(len);
+    window.crypto.getRandomValues(randomValues);
+    let result = '';
+    for(let i = 0; i < len; i++){
+      result += pool[randomValues[i] % pool.length];
+    }
+    document.getElementById('pwgen-output').value = result;
+  }
+
+  function pwgenCopy(){
+    const out = document.getElementById('pwgen-output');
+    if(!out.value) return;
+    out.select();
+    const btn = document.getElementById('pwgen-copy-btn');
+    const original = btn.textContent;
+    const done = function(){ btn.textContent = 'تم النسخ ✓'; setTimeout(function(){ btn.textContent = original; }, 1500); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(out.value).then(done).catch(function(){
+        try{ document.execCommand('copy'); done(); }catch(e){}
+      });
+    } else {
+      try{ document.execCommand('copy'); done(); }catch(e){}
+    }
+  }
+
+  /* ---------- PWNED PASSWORD CHECK (k-anonymity) ---------- */
+  function pwnedToggleVisibility(){
+    const inp = document.getElementById('pwned-input');
+    const icon = document.getElementById('pwned-eye-icon');
+    if(inp.type === 'password'){ inp.type = 'text'; icon.textContent = '🙈'; }
+    else { inp.type = 'password'; icon.textContent = '👁'; }
+  }
+
+  async function sha1Hex(str){
+    const enc = new TextEncoder().encode(str);
+    const buf = await window.crypto.subtle.digest('SHA-1', enc);
+    const bytes = Array.from(new Uint8Array(buf));
+    return bytes.map(function(b){ return b.toString(16).padStart(2, '0'); }).join('').toUpperCase();
+  }
+
+  async function pwnedCheck(){
+    const input = document.getElementById('pwned-input');
+    const resultEl = document.getElementById('pwned-result');
+    const btn = document.getElementById('pwned-check-btn');
+    const pwd = input.value;
+    if(!pwd){
+      resultEl.className = 'pwned-result show error';
+      resultEl.textContent = 'اكتب كلمة مرور أولاً.';
+      return;
+    }
+    if(!window.crypto || !window.crypto.subtle || !window.fetch){
+      resultEl.className = 'pwned-result show error';
+      resultEl.textContent = 'متصفحك لا يدعم هذه الميزة.';
+      return;
+    }
+    btn.disabled = true;
+    resultEl.className = 'pwned-result show loading';
+    resultEl.textContent = 'جارِ التحقق...';
+    try{
+      const hash = await sha1Hex(pwd);
+      const prefix = hash.slice(0, 5);
+      const suffix = hash.slice(5);
+      const res = await fetch('https://api.pwnedpasswords.com/range/' + prefix);
+      if(!res.ok) throw new Error('bad response');
+      const text = await res.text();
+      const lines = text.split('\n');
+      let count = 0;
+      for(let i = 0; i < lines.length; i++){
+        const parts = lines[i].trim().split(':');
+        if(parts[0] === suffix){ count = parseInt(parts[1], 10) || 0; break; }
+      }
+      if(count > 0){
+        resultEl.className = 'pwned-result show danger';
+        resultEl.innerHTML = '⚠️ كلمة المرور هذه ظهرت في تسريبات بيانات <strong>' + count.toLocaleString() + '</strong> مرة من قبل. غيّرها فورًا إن كنت تستخدمها فعليًا في أي حساب.';
+      } else {
+        resultEl.className = 'pwned-result show safe';
+        resultEl.textContent = '✅ لم تظهر كلمة المرور هذه في قواعد التسريبات المعروفة. (هذا لا يعني أنها قوية تلقائيًا — راجع فاحص القوة أعلاه أيضًا)';
+      }
+    }catch(e){
+      resultEl.className = 'pwned-result show error';
+      resultEl.textContent = 'تعذّر الاتصال بخدمة التحقق الآن. تأكد من اتصالك بالإنترنت وجرّب مجددًا.';
+    }
+    btn.disabled = false;
+  }
+
   function togglePwVisibility(){
     const inp = document.getElementById('pw-test-input');
     const icon = document.getElementById('pw-eye-icon');
@@ -2847,6 +3098,379 @@
     startPhishingSim();
   }
 
+  /* ---------- SMS/WHATSAPP PHISHING SIMULATOR ---------- */
+  const SMS_SCENARIOS = [
+    {
+      avatar: 'M',
+      senderName: 'Mobilex Rewards',
+      senderNumber: '+213 798 442 910',
+      bubbles: [
+        '🎉 مبروك! رقمك فاز بآيفون 15 برو من سحب موبيلكس الأسبوعي.',
+        'للاستلام، أرسل بياناتك الآن عبر هذا الرابط: mobilex-rewards-dz.com/claim — العرض ينتهي خلال 3 ساعات فقط!'
+      ],
+      flags: [
+        { id:'w1-number', label:'رقم المرسل', suspicious:true, note:'رقم هاتف شخصي عادي، لا رقم خدمة رسمي قصير تستخدمه شركات الاتصالات لحملاتها.' },
+        { id:'w1-win', label:'"فزت" بدون مشاركة سابقة', suspicious:true, note:'لا يمكنك الفوز بمسابقة لم تشارك فيها أصلًا — هذا وحده كافٍ للشك.' },
+        { id:'w1-link', label:'الرابط mobilex-rewards-dz.com', suspicious:true, note:'نطاق غير رسمي مصمَّم ليبدو مرتبطًا بالشركة، وليس نطاقها الحقيقي.' },
+        { id:'w1-urgency', label:'"خلال 3 ساعات فقط"', suspicious:true, note:'ضغط زمني شديد لمنعك من التفكير أو التحقق قبل الضغط.' },
+        { id:'w1-emoji', label:'استخدام إيموجي 🎉', suspicious:false, note:'الإيموجي وحده لا يعني شيئًا؛ رسائل كثيرة حقيقية تستخدمه أيضًا.' }
+      ]
+    },
+    {
+      avatar: 'F',
+      senderName: 'FastShip',
+      senderNumber: '+213 540 112 783',
+      bubbles: [
+        'تعذّر توصيل طردك اليوم بسبب عنوان غير مكتمل.',
+        'أعد جدولة التوصيل وتأكيد بياناتك خلال 24 ساعة وإلا تُعاد الشحنة: fastship-redeliver.info/update'
+      ],
+      flags: [
+        { id:'w2-domain', label:'نطاق fastship-redeliver.info', suspicious:true, note:'امتداد ".info" غير معتاد لشركة شحن، ونطاق مختلف تمامًا عن أي موقع شحن رسمي معروف.' },
+        { id:'w2-urgency', label:'"خلال 24 ساعة وإلا تُعاد الشحنة"', suspicious:true, note:'تهديد بخسارة الطرد لدفعك للضغط بسرعة دون تحقق.' },
+        { id:'w2-data', label:'طلب "تأكيد بياناتك"', suspicious:true, note:'شركات الشحن الحقيقية نادرًا ما تطلب إعادة إدخال بيانات شخصية كاملة عبر رابط SMS.' },
+        { id:'w2-number', label:'رقم هاتف شخصي عادي', suspicious:true, note:'شركات الشحن الكبرى ترسل عادة من أسماء مرسل رسمية موحّدة، لا من رقم جوال عادي.' },
+        { id:'w2-topic', label:'ذكر كلمة "طرد" أو "توصيل"', suspicious:false, note:'طبيعي تمامًا في أي رسالة شحن حقيقية؛ المشكلة في التفاصيل الأخرى لا في الموضوع.' }
+      ]
+    },
+    {
+      avatar: 'B',
+      senderName: 'بنك الأمان',
+      senderNumber: '+213 23 000 000',
+      bubbles: [
+        'تنبيه: تم إيقاف بطاقتك مؤقتًا بسبب نشاط مشبوه على حسابك.',
+        'لإعادة تفعيلها فورًا، أدخل بيانات بطاقتك عبر: banc-alamane-secure.com/activate'
+      ],
+      flags: [
+        { id:'w3-domain', label:'الرابط banc-alamane-secure.com', suspicious:true, note:'ليس نطاق البنك الرسمي؛ أُضيفت كلمة "secure" لإيهامك بالأمان وهي ليست كذلك.' },
+        { id:'w3-carddata', label:'طلب "إدخال بيانات بطاقتك"', suspicious:true, note:'لا بنك حقيقي يطلب رقم بطاقتك الكامل أو رمزها السري عبر رابط SMS أبدًا.' },
+        { id:'w3-urgency', label:'"فورًا" بعد تهديد الإيقاف', suspicious:true, note:'تخويف بفقدان الوصول لحسابك البنكي لدفعك لاتخاذ قرار متسرع.' },
+        { id:'w3-sender', label:'اسم المرسل "بنك الأمان"', suspicious:false, note:'استخدام اسم يبدو رسميًا بدل رقم عادي ليس دليل تصيّد بمفرده؛ المشكلة في الرابط والطلب نفسه.' },
+        { id:'w3-number', label:'الرقم المرسل نفسه', suspicious:true, note:'حتى لو بدا الرقم شبه رسمي، تحقق دائمًا عبر الاتصال المباشر بالبنك من رقمه المعروف رسميًا.' }
+      ]
+    },
+    {
+      avatar: '#',
+      senderName: 'رقم غير معروف',
+      senderNumber: '+44 7520 196 334',
+      bubbles: [
+        'لديك رسالة صوتية من مكالمة دولية فائتة بتاريخ اليوم.',
+        'استمع إلى الرسالة الآن قبل حذفها خلال 48 ساعة: intl-voicemail-alert.net/listen'
+      ],
+      flags: [
+        { id:'w4-intl', label:'رقم دولي غير مألوف', suspicious:true, note:'مكالمة أو رسالة من رقم دولي لم تتواصل معه من قبل تستحق حذرًا إضافيًا، خاصة مع رابط مرفق.' },
+        { id:'w4-link', label:'الرابط intl-voicemail-alert.net', suspicious:true, note:'شركات الاتصالات لا ترسل البريد الصوتي عبر روابط خارجية؛ البريد الصوتي يصل داخل تطبيق الهاتف نفسه.' },
+        { id:'w4-urgency', label:'"قبل حذفها خلال 48 ساعة"', suspicious:true, note:'ضغط زمني كلاسيكي آخر لمنعك من التحقق أولاً.' },
+        { id:'w4-noname', label:'غياب اسم مرسل حقيقي', suspicious:true, note:'رقم مجرّد بدون أي هوية تعريفية — علامة شائعة في الرسائل الآلية المُرسلة بالجملة للتصيّد.' },
+        { id:'w4-lang', label:'كتابة الرسالة بالعربية', suspicious:false, note:'لغة الرسالة وحدها ليست مؤشرًا؛ رسائل التصيّد تُكتب بأي لغة تناسب ضحاياها المستهدفين.' }
+      ]
+    }
+  ];
+
+  let smsIndex = 0;
+  let smsSelected = {};
+  let smsChecked = false;
+  let smsScore = { correct: 0, total: 0 };
+
+  function startSmsPhishingSim(){
+    smsIndex = 0;
+    smsScore = { correct: 0, total: 0 };
+    renderSmsScenario();
+  }
+
+  function renderSmsScenario(){
+    const host = document.getElementById('sms-phish-host');
+    if(!host) return;
+    if(smsIndex >= SMS_SCENARIOS.length){ renderSmsFinal(); return; }
+    const sc = SMS_SCENARIOS[smsIndex];
+    smsSelected = {};
+    smsChecked = false;
+
+    const bubblesHtml = sc.bubbles.map(function(b){ return '<div class="sms-bubble">' + b + '</div>'; }).join('');
+    const chipsHtml = sc.flags.map(function(f){
+      return '<button type="button" class="phish-chip" id="sms-chip-' + f.id + '" onclick="smsToggleChip(\'' + f.id + '\')">' + f.label + '</button>';
+    }).join('');
+
+    host.innerHTML =
+      '<div class="phish-progress">الرسالة ' + (smsIndex + 1) + ' من ' + SMS_SCENARIOS.length + '</div>' +
+      '<div class="sms-phone">' +
+        '<div class="sms-sender-row">' +
+          '<div class="sms-avatar">' + sc.avatar + '</div>' +
+          '<div><div class="sms-sender-name">' + sc.senderName + '</div><div class="sms-sender-number">' + sc.senderNumber + '</div></div>' +
+        '</div>' +
+        bubblesHtml +
+      '</div>' +
+      '<p style="font-size:12.5px; color:var(--muted); margin-bottom:10px; text-align:center;">اضغط على كل عنصر تراه علامة تصيّد محتملة:</p>' +
+      '<div class="phish-chips">' + chipsHtml + '</div>' +
+      '<div id="sms-feedback"></div>' +
+      '<div id="sms-actions" style="text-align:center; margin-top:16px;">' +
+        '<button type="button" class="btn btn-primary" onclick="smsCheckAnswer()">تحقق من إجابتي</button>' +
+      '</div>';
+  }
+
+  function smsToggleChip(id){
+    if(smsChecked) return;
+    const btn = document.getElementById('sms-chip-' + id);
+    if(!btn) return;
+    if(smsSelected[id]){ delete smsSelected[id]; btn.classList.remove('selected'); }
+    else { smsSelected[id] = true; btn.classList.add('selected'); }
+  }
+
+  function smsCheckAnswer(){
+    if(smsChecked) return;
+    smsChecked = true;
+    const sc = SMS_SCENARIOS[smsIndex];
+    let feedbackHtml = '';
+    sc.flags.forEach(function(f){
+      const btn = document.getElementById('sms-chip-' + f.id);
+      const picked = !!smsSelected[f.id];
+      if(f.suspicious){
+        smsScore.total++;
+        if(picked){ smsScore.correct++; if(btn){ btn.classList.add('result-correct'); btn.classList.remove('selected'); } }
+        else if(btn){ btn.classList.add('result-missed'); }
+      } else if(picked && btn){
+        btn.classList.add('result-wrong'); btn.classList.remove('selected');
+      }
+      if(btn) btn.disabled = true;
+      feedbackHtml += '<div class="phish-feedback-item"><strong>' + f.label + '</strong> — ' + f.note + '</div>';
+    });
+    const fb = document.getElementById('sms-feedback');
+    if(fb) fb.innerHTML = feedbackHtml;
+    const actions = document.getElementById('sms-actions');
+    if(actions){
+      const isLast = smsIndex + 1 >= SMS_SCENARIOS.length;
+      actions.innerHTML = '<button type="button" class="btn btn-ghost" onclick="smsNext()">' + (isLast ? 'عرض النتيجة النهائية ←' : 'الرسالة التالية ←') + '</button>';
+    }
+  }
+
+  function smsNext(){
+    smsIndex++;
+    renderSmsScenario();
+  }
+
+  function renderSmsFinal(){
+    const host = document.getElementById('sms-phish-host');
+    if(!host) return;
+    const pct = smsScore.total ? Math.round((smsScore.correct / smsScore.total) * 100) : 0;
+    let verdict;
+    if(pct >= 85) verdict = 'حاسة قوية جدًا لاكتشاف التصيّد عبر الرسائل النصية — استمر هكذا 🛡️';
+    else if(pct >= 60) verdict = 'جيد، لكن راجع دروس الأمان في الأعلى لتصقل ملاحظتك أكثر.';
+    else verdict = 'هذا بالضبط سبب أهمية التدريب — راجع دروس الأمان في الأعلى وجرّب مجددًا.';
+    host.innerHTML =
+      '<div class="phish-score-box">' +
+        '<div class="big">' + smsScore.correct + ' / ' + smsScore.total + '</div>' +
+        '<p style="color:var(--muted); margin:10px 0 18px;">علامات تصيّد اكتشفتها بنجاح (' + pct + '%)</p>' +
+        '<p style="margin-bottom:20px;">' + verdict + '</p>' +
+        '<button type="button" class="btn btn-ghost" onclick="smsRestart()">أعد المحاولة من البداية</button>' +
+      '</div>';
+  }
+
+  function smsRestart(){
+    startSmsPhishingSim();
+  }
+
+  /* ---------- COMPLETION CERTIFICATE ---------- */
+  function getCompletionStats(){
+    const ids = [];
+    for(let i = 1; i <= 10; i++){ ids.push('lesson-' + String(i).padStart(2, '0')); }
+    for(let i = 1; i <= 5; i++){ ids.push('code-' + String(i).padStart(2, '0')); }
+    let completed = 0, totalScore = 0, totalQuestions = 0;
+    ids.forEach(function(id){
+      let score = null, total = null;
+      try{
+        score = localStorage.getItem('vn_quiz_' + id);
+        total = localStorage.getItem('vn_quiz_total_' + id);
+      }catch(e){}
+      if(score !== null && total !== null){
+        completed++;
+        totalScore += parseInt(score, 10) || 0;
+        totalQuestions += parseInt(total, 10) || 0;
+      }
+    });
+    return { completed: completed, totalLessons: ids.length, totalScore: totalScore, totalQuestions: totalQuestions };
+  }
+
+  function renderCertStats(){
+    const el = document.getElementById('cert-stats');
+    if(!el) return;
+    const stats = getCompletionStats();
+    const pct = stats.totalQuestions ? Math.round((stats.totalScore / stats.totalQuestions) * 100) : 0;
+    el.innerHTML = '<p style="color:var(--muted);">أكملت اختبارات <strong style="color:var(--brass-bright);">' + stats.completed + '</strong> من أصل ' + stats.totalLessons + ' درسًا' + (stats.totalQuestions ? '، بمعدل إجابات صحيحة ' + pct + '%' : '') + '.</p>';
+  }
+
+  function generateCertificate(){
+    const nameInput = document.getElementById('cert-name-input');
+    let name = (nameInput.value || '').trim();
+    if(!name){
+      try{ name = sessionStorage.getItem('vn_visitor_name') || ''; }catch(e){}
+    }
+    if(!name) name = 'زائر مجهول';
+
+    const stats = getCompletionStats();
+    const canvas = document.getElementById('cert-canvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+
+    const grad = ctx.createLinearGradient(0, 0, W, H);
+    grad.addColorStop(0, '#0a0a0c');
+    grad.addColorStop(1, '#0d1620');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
+
+    function glow(x, y, r, color){
+      const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+      g.addColorStop(0, color);
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+    }
+    glow(120, 100, 260, 'rgba(16,185,129,0.25)');
+    glow(W - 120, H - 100, 280, 'rgba(56,189,248,0.22)');
+
+    ctx.strokeStyle = 'rgba(16,185,129,0.5)';
+    ctx.lineWidth = 3;
+    ctx.strokeRect(30, 30, W - 60, H - 60);
+    ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(42, 42, W - 84, H - 84);
+
+    ctx.save();
+    ctx.translate(W / 2, 150);
+    ctx.scale(2.4, 2.4);
+    ctx.beginPath();
+    ctx.moveTo(-3, -14);
+    ctx.bezierCurveTo(-10, -10, -14, -5, -14, 0);
+    ctx.bezierCurveTo(-14, 5, -10, 12, 4, 16);
+    ctx.bezierCurveTo(1, 8, -1, -2, -3, -14);
+    ctx.closePath();
+    ctx.fillStyle = '#e34850';
+    ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(3, -14);
+    ctx.bezierCurveTo(10, -10, 14, -5, 14, 0);
+    ctx.bezierCurveTo(14, 5, 10, 12, -4, 16);
+    ctx.bezierCurveTo(-1, 8, 1, -2, 3, -14);
+    ctx.closePath();
+    ctx.fillStyle = '#e8ebef';
+    ctx.fill();
+    ctx.restore();
+
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#eef1f6';
+    ctx.font = "700 26px 'Poppins', Arial, sans-serif";
+    ctx.fillText('VigilantNode', W / 2, 235);
+
+    ctx.fillStyle = '#10b981';
+    ctx.font = "400 16px 'Tajawal', Arial, sans-serif";
+    ctx.fillText('شهادة إتمام رحلة الأمان الرقمي', W / 2, 270);
+
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    ctx.font = "400 13px Arial, sans-serif";
+    ctx.fillText('CERTIFICATE OF COMPLETION', W / 2, 292);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = "700 44px 'Tajawal', Arial, sans-serif";
+    ctx.fillText(name, W / 2, 400);
+
+    ctx.strokeStyle = 'rgba(16,185,129,0.6)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(W / 2 - 160, 420);
+    ctx.lineTo(W / 2 + 160, 420);
+    ctx.stroke();
+
+    const pct = stats.totalQuestions ? Math.round((stats.totalScore / stats.totalQuestions) * 100) : 0;
+    ctx.fillStyle = '#9aa3b2';
+    ctx.font = "400 17px 'Tajawal', Arial, sans-serif";
+    const statLine = 'أكمل ' + stats.completed + ' من ' + stats.totalLessons + ' درسًا' + (stats.totalQuestions ? ' — بمعدل إجابات صحيحة ' + pct + '%' : '');
+    ctx.fillText(statLine, W / 2, 470);
+
+    const dateStr = new Date().toLocaleDateString('ar', { year: 'numeric', month: 'long', day: 'numeric' });
+    ctx.fillStyle = 'rgba(255,255,255,0.45)';
+    ctx.font = "400 14px 'Tajawal', Arial, sans-serif";
+    ctx.fillText(dateStr, W / 2, 560);
+
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    ctx.font = '400 12px Arial, sans-serif';
+    ctx.fillText('wassim009787.github.io/-aegiscyber-tech', W / 2, 640);
+
+    const wrap = document.getElementById('cert-preview-wrap');
+    wrap.style.display = 'block';
+    wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function downloadCertificate(){
+    const canvas = document.getElementById('cert-canvas');
+    const link = document.createElement('a');
+    link.download = 'vigilantnode-certificate.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  }
+
+  /* ---------- WEEKLY HABIT TRACKER ---------- */
+  const HABITS = [
+    { id:'2fa', icon:'🔐', label:'فعّلت التحقق بخطوتين على حساب مهم' },
+    { id:'update', icon:'🔄', label:'حدّثت نظام هاتفك أو تطبيقاتك' },
+    { id:'password', icon:'🔑', label:'راجعت أو غيّرت كلمة مرور ضعيفة' },
+    { id:'permissions', icon:'📱', label:'راجعت صلاحيات تطبيق مثبّت' },
+    { id:'backup', icon:'💾', label:'تأكدت من وجود نسخة احتياطية حديثة' },
+    { id:'suspicious', icon:'🧐', label:'تحققت من رابط أو رسالة مشبوهة قبل الضغط عليها' }
+  ];
+
+  function habitGetState(id){
+    let lastDate = null, streak = 0;
+    try{
+      lastDate = localStorage.getItem('vn_habit_last_' + id);
+      streak = parseInt(localStorage.getItem('vn_habit_streak_' + id), 10) || 0;
+    }catch(e){}
+    return { lastDate: lastDate, streak: streak };
+  }
+
+  function habitDaysBetween(d1, d2){
+    const ms = Math.abs(new Date(d2) - new Date(d1));
+    return Math.floor(ms / (1000 * 60 * 60 * 24));
+  }
+
+  function habitIsToday(dateStr){
+    if(!dateStr) return false;
+    const today = new Date().toISOString().slice(0, 10);
+    return dateStr === today;
+  }
+
+  function renderHabitList(){
+    const host = document.getElementById('habit-list');
+    if(!host) return;
+    host.innerHTML = HABITS.map(function(h){
+      const state = habitGetState(h.id);
+      const doneToday = habitIsToday(state.lastDate);
+      const streakText = state.streak > 0 ? ('🔥 ' + state.streak + (state.streak === 1 ? ' أسبوع' : ' أسابيع متتالية')) : 'ابدأ سلسلتك الآن';
+      return '<div class="habit-row">' +
+        '<div class="habit-info"><span class="habit-icon">' + h.icon + '</span><span class="habit-label">' + h.label + '</span></div>' +
+        '<div style="display:flex; align-items:center; gap:12px;">' +
+          '<span class="habit-streak">' + streakText + '</span>' +
+          '<button type="button" class="habit-btn' + (doneToday ? ' done-today' : '') + '" onclick="habitMarkDone(\'' + h.id + '\')"' + (doneToday ? ' disabled' : '') + '>' + (doneToday ? '✓ تم اليوم' : 'فعلتها هذا الأسبوع') + '</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  function habitMarkDone(id){
+    const state = habitGetState(id);
+    const today = new Date().toISOString().slice(0, 10);
+    if(habitIsToday(state.lastDate)) return;
+    let newStreak;
+    if(!state.lastDate){
+      newStreak = 1;
+    } else {
+      const days = habitDaysBetween(state.lastDate, today);
+      newStreak = (days <= 13) ? state.streak + 1 : 1;
+    }
+    try{
+      localStorage.setItem('vn_habit_last_' + id, today);
+      localStorage.setItem('vn_habit_streak_' + id, String(newStreak));
+    }catch(e){}
+    renderHabitList();
+  }
+
   function startLinkGame(){
     lgState = { index:0, score:0, answered:false };
     renderLinkGameRound();
@@ -3061,6 +3685,8 @@
     buildSearchIndex();
     initListenButtons();
     initShell();
+    renderCertStats();
+    renderHabitList();
     initTheme();
     window.addEventListener('scroll', updateReadingProgress, { passive: true });
     updateReadingProgress();
