@@ -84,8 +84,12 @@
   header{
     position:sticky; top:0; z-index:50;
     background:var(--nav-bg);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
+    backdrop-filter:blur(20px) saturate(180%);
+    -webkit-backdrop-filter:blur(20px) saturate(180%);
+    border-bottom:1px solid var(--glass-border);
+    border-radius:0 0 18px 18px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.16);
+    transition:box-shadow .3s ease;
   }
   nav{display:flex; align-items:center; justify-content:space-between; padding:18px 28px; max-width:1120px; margin:0 auto;}
   .brand{display:flex; align-items:center; gap:11px; direction:ltr;}
@@ -149,8 +153,8 @@
     padding:14px 28px; border-radius:2px; cursor:pointer; border:1px solid transparent;
     transition:transform .15s, background .2s;
   }
-  .btn-primary{background:var(--brass); color:var(--ink-fixed);}
-  .btn-primary:hover{transform:translateY(-2px); background:var(--brass-bright); box-shadow:0 0 24px rgba(16,185,129,0.35);}
+  .btn-primary{background:var(--brass); color:var(--ink-fixed); transition:transform .15s, background .2s, border-radius .4s ease;}
+  .btn-primary:hover{transform:translateY(-2px); background:var(--brass-bright); box-shadow:0 0 24px rgba(16,185,129,0.35); border-radius:14px 4px 14px 4px;}
   .btn-ghost{border-color:var(--line); color:var(--text);}
   .btn-ghost:hover{border-color:var(--brass);}
 
@@ -195,6 +199,20 @@
   /* ---------- THREATS grid ---------- */
   .threats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
   @media (max-width:760px){ .threats{grid-template-columns:1fr;} }
+
+  /* ---------- RESOURCES (external courses) ---------- */
+  .resources-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:8px;}
+  @media (max-width:760px){ .resources-grid{grid-template-columns:1fr;} }
+  .resource-card{
+    background:var(--ink); padding:28px 24px; display:flex; flex-direction:column; gap:10px;
+    text-decoration:none; transition:background .2s, transform .2s;
+  }
+  .resource-card:hover{ transform:translateY(-2px); }
+  .resource-icon{width:34px; height:34px;}
+  .resource-tag{font-family:var(--mono); font-size:11.5px; color:var(--rust); border:1px solid var(--rust); display:inline-block; padding:3px 9px; width:fit-content;}
+  .resource-card h3{font-family:var(--head); font-size:16.5px; color:var(--paper); line-height:1.4;}
+  .resource-card p{color:var(--muted); font-size:13.5px; line-height:1.75; flex-grow:1;}
+  .resource-link{color:var(--brass); font-weight:700; font-size:13.5px;}
   .threat{background:var(--ink); padding:32px 26px;}
   .threat .tag{font-family:var(--mono); font-size:11.5px; color:var(--rust); border:1px solid var(--rust); display:inline-block; padding:3px 9px; margin-bottom:16px;}
   .threat-icon{width:42px; height:42px; margin-bottom:18px; display:block;}
@@ -941,7 +959,7 @@
   .hv-exp.active{ display:block; }
 
   /* ---------- LIQUID GLASS CARDS (applies across lessons / tools / glossary / threats) ---------- */
-  .lesson-block, .tool-card, .glossary-item, .threat{
+  .lesson-block, .tool-card, .glossary-item, .threat, .resource-card{
     background:var(--glass-bg) !important;
     backdrop-filter:blur(16px) saturate(160%);
     -webkit-backdrop-filter:blur(16px) saturate(160%);
@@ -950,7 +968,7 @@
     transition:box-shadow .3s ease, transform .3s ease, border-color .3s ease;
   }
   .tool-card{ background:var(--glass-bg-2) !important; }
-  .lesson-block:hover, .tool-card:hover, .glossary-item:hover, .threat:hover{
+  .lesson-block:hover, .tool-card:hover, .glossary-item:hover, .threat:hover, .resource-card:hover{
     border-color:rgba(16,185,129,0.35) !important;
     box-shadow:var(--glass-shadow), 0 0 22px rgba(16,185,129,0.22), 0 0 44px rgba(56,189,248,0.16);
   }
@@ -1004,11 +1022,70 @@
   @keyframes neonFloat{ 0%{ transform:translateY(0) scale(1); } 100%{ transform:translateY(-26px) scale(1.12); } }
   :root[data-theme="light"] .hero::before, :root[data-theme="light"] .hero::after{ opacity:.18; }
 
+  /* ---------- LIQUID BACKGROUND BLOBS (site-wide) ---------- */
+  .liquid-bg{
+    position:fixed; inset:0; z-index:-2; overflow:hidden; pointer-events:none;
+  }
+  .liquid-bg .lb{
+    position:absolute; border-radius:50%; filter:blur(100px); opacity:.16;
+  }
+  .liquid-bg .lb1{
+    width:480px; height:480px; background:var(--brass); top:-120px; inset-inline-start:-100px;
+    animation:lbDrift1 26s ease-in-out infinite alternate;
+  }
+  .liquid-bg .lb2{
+    width:520px; height:520px; background:var(--rust); bottom:-160px; inset-inline-end:-120px;
+    animation:lbDrift2 32s ease-in-out infinite alternate;
+  }
+  .liquid-bg .lb3{
+    width:380px; height:380px; background:#a855f7; top:45%; inset-inline-start:40%;
+    opacity:.10;
+    animation:lbDrift3 38s ease-in-out infinite alternate;
+  }
+  @keyframes lbDrift1{ 0%{ transform:translate(0,0) scale(1); } 100%{ transform:translate(60px,80px) scale(1.15); } }
+  @keyframes lbDrift2{ 0%{ transform:translate(0,0) scale(1); } 100%{ transform:translate(-70px,-60px) scale(1.1); } }
+  @keyframes lbDrift3{ 0%{ transform:translate(-40px,-30px) scale(.9); } 100%{ transform:translate(50px,40px) scale(1.2); } }
+  #sparkle-canvas{ position:fixed; inset:0; z-index:-1; pointer-events:none; }
+
+  /* ---------- SHINE / GLOW UTILITIES ---------- */
+  .shine-text{
+    background:linear-gradient(90deg, var(--brass) 0%, var(--rust-bright) 25%, var(--brass-bright) 50%, var(--rust) 75%, var(--brass) 100%);
+    background-size:200% auto;
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:var(--brass);
+    animation:shineMove 6s linear infinite;
+  }
+  @keyframes shineMove{ to{ background-position:-200% center; } }
+
+  .glow-cta{
+    position:relative; display:inline-block; border-radius:14px; padding:2.5px;
+    background:linear-gradient(120deg, #10b981, #38bdf8, #a855f7, #10b981, #38bdf8);
+    background-size:300% 300%;
+    animation:glowShift 4s ease infinite;
+  }
+  .glow-cta > .btn{ display:block; border-radius:11.5px; }
+  @keyframes glowShift{ 0%{ background-position:0% 50%; } 50%{ background-position:100% 50%; } 100%{ background-position:0% 50%; } }
+
+  @media (prefers-reduced-motion: reduce){
+    .liquid-bg .lb, .shine-text, .glow-cta{ animation:none !important; }
+  }
+  @media (max-width:640px){
+    .liquid-bg .lb1, .liquid-bg .lb2{ width:320px; height:320px; }
+    .liquid-bg .lb3{ display:none; }
+  }
+
 </style>
 
 <!-- ضع سكريبت التحليلات هنا (Cloudflare Web Analytics أو Plausible) -->
 </head>
 <body>
+
+<div class="liquid-bg" aria-hidden="true">
+  <span class="lb lb1"></span>
+  <span class="lb lb2"></span>
+  <span class="lb lb3"></span>
+</div>
+<canvas id="sparkle-canvas" aria-hidden="true"></canvas>
 
 <div id="admin-screen">
   <div class="gl-lock-wrap">
@@ -1180,10 +1257,10 @@
   <div class="wrap">
     <div>
       <span class="kicker">دليل تعليمي في الأمن السيبراني</span>
-      <h1>الأمان الرقمي ليس جدارًا واحدًا، بل طبقات تحمي بعضها بعضًا</h1>
+      <h1>الأمان الرقمي ليس جدارًا واحدًا، بل <span class="shine-text">طبقات</span> تحمي بعضها بعضًا</h1>
       <p class="lead">فهم بسيط وعملي لكيفية حماية بياناتك وأجهزتك وحساباتك من التهديدات الإلكترونية المتزايدة، بدءًا من العادات اليومية وصولًا إلى دفاعات الشبكات.</p>
       <div class="cta-row">
-        <a href="#layers" class="btn btn-primary">ابدأ من طبقات الحماية</a>
+        <span class="glow-cta"><a href="#layers" class="btn btn-primary">ابدأ من طبقات الحماية</a></span>
         <a href="#checklist" class="btn btn-ghost">قائمة فحص سريعة</a>
       </div>
     </div>
@@ -1371,7 +1448,7 @@
   <div class="wrap">
     <div class="section-head">
       <h2>تعمّق أكثر: الهاتف تحديدًا</h2>
-      <p>الأمن السيبراني لا يقتصر على الهاتف فقط. عشرة دروس مركّزة تغطي الصورة الكاملة، من اختراق الأجهزة إلى الاحتيال المالي وأمان الشبكة المنزلية.</p>
+      <p>الأمن السيبراني لا يقتصر على الهاتف فقط. اثنا عشر درسًا مركّزة تغطي الصورة الكاملة، من اختراق الأجهزة إلى الاحتيال المالي وأمان الشبكة المنزلية.</p>
     </div>
 
     <div class="lessons-list">
@@ -1634,6 +1711,75 @@
           </div>
           <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('lesson-10', this)">📝 اختبر فهمك في هذا الدرس</button>
           <div class="quiz-host" id="quiz-host-lesson-10"></div>
+          <button class="btn btn-ghost lesson-next" onclick="goToLesson('lesson-11')">التالي</button>
+        </div>
+      </details>
+
+      <details class="lesson-block" id="lesson-11">
+        <summary>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li11" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="3" y="7" width="26" height="8" rx="2" stroke="url(#li11)" stroke-width="1.8"/><circle cx="9" cy="11" r="1" fill="#38bdf8"/><circle cx="21" cy="22" r="6" stroke="#38bdf8" stroke-width="1.8"/><line x1="25.3" y1="26.3" x2="29" y2="30" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+          <span class="lesson-num">11</span>
+          <span class="lesson-title">تعلّم قراءة الرابط (URL) بعين الخبير</span>
+          <span class="quiz-score-badge" id="qbadge-lesson-11"></span>
+          <span class="lesson-toggle">+</span>
+        </summary>
+        <div class="lesson-body">
+          <p>كل رابط (URL) مبني من أجزاء ثابتة، وفهمها يكفي لكشف أغلب الروابط المزيفة خلال ثوانٍ قليلة:</p>
+          <ul>
+            <li><strong>البروتوكول (https://):</strong> يعني أن الاتصال مشفّر فقط، ولا يعني أبدًا أن الموقع نفسه موثوق — مواقع التصيّد الحديثة تملك شهادات https صالحة أيضًا.</li>
+            <li><strong>النطاق الحقيقي:</strong> هو الجزء الموجود مباشرة قبل اللاحقة (.com، .dz، .org...) وقبل أول "/" في الرابط. كل ما يسبقه مجرد نطاق فرعي يمكن لأي شخص كتابته بحرية.</li>
+            <li><strong>المسار (بعد أول /):</strong> تفاصيل إضافية داخل الموقع، لا علاقة لها بتحديد هوية الموقع نفسه.</li>
+          </ul>
+          <div class="callout warn">
+            <strong>مثال حقيقي يخدع الكثيرين:</strong><br>
+            <code>https://paypal.com.secure-verify-login.ru/account</code><br>
+            رغم ظهور كلمة "paypal.com" في بداية الرابط، فإن النطاق الحقيقي هنا هو <strong>secure-verify-login.ru</strong> — الموجود مباشرة قبل أول "/". كلمة "paypal.com" مجرد نطاق فرعي مزيّف اختاره المحتال عمدًا لخداع عينك.
+          </div>
+          <p>علامات أخرى تستحق الانتباه:</p>
+          <ul>
+            <li><strong>التبديل البصري (Typosquatting):</strong> نطاقات تشبه الأصلية بحرف واحد مختلف، مثل استبدال أصفار بدل حرف o في g00gle.com.</li>
+            <li><strong>الروابط المختصرة:</strong> خدمات اختصار الروابط تخفي الوجهة الحقيقية تمامًا؛ لا تضغطها أبدًا دون التأكد من وجهتها أولًا.</li>
+            <li><strong>الرابط الطويل جدًا المليء بأحرف وأرقام عشوائية:</strong> غالبًا محاولة لإخفاء نطاق مريب وسط تفاصيل كثيرة تشتت انتباهك.</li>
+          </ul>
+          <div class="callout">
+            <strong>على الهاتف تحديدًا:</strong> اضغط مطولًا على أي رابط (دون فتحه) لمعاينة عنوانه الكامل قبل الدخول إليه فعليًا.
+          </div>
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('lesson-11', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-lesson-11"></div>
+          <button class="btn btn-ghost lesson-next" onclick="goToLesson('lesson-12')">التالي</button>
+        </div>
+      </details>
+
+      <details class="lesson-block" id="lesson-12">
+        <summary>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li12" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><path d="M16 3 L28 8 V16 C28 23 23 28 16 30 C9 28 4 23 4 16 V8 Z" stroke="url(#li12)" stroke-width="1.8"/><line x1="16" y1="11" x2="16" y2="18" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="22" r="1.2" fill="#38bdf8"/></svg></span>
+          <span class="lesson-num">12</span>
+          <span class="lesson-title">علامات تدل أن موقعًا غير آمن (دليل المبتدئين)</span>
+          <span class="quiz-score-badge" id="qbadge-lesson-12"></span>
+          <span class="lesson-toggle">+</span>
+        </summary>
+        <div class="lesson-body">
+          <p>لست بحاجة لتكون خبيرًا تقنيًا لتُلاحظ أن موقعًا غير آمن — هذه علامات بسيطة يكفي تدريب عينك عليها:</p>
+          <p><strong>علامات عامة على أي موقع:</strong></p>
+          <ul>
+            <li>غياب القفل 🔒 بجانب الرابط، أو تحذير من المتصفح نفسه بأن الاتصال غير آمن.</li>
+            <li>أخطاء إملائية ولغوية متكررة، أو تصميم غير احترافي يتناقض مع حجم الجهة التي يدّعيها.</li>
+            <li>غياب تام لأي معلومات تواصل حقيقية، أو سياسة خصوصية، أو شروط استخدام.</li>
+            <li>لغة إلحاح مصطنعة ("العرض ينتهي خلال دقائق!") تدفعك لاتخاذ قرار سريع دون تفكير.</li>
+            <li>طلب معلومات لا علاقة لها بالخدمة المقدَّمة، مثل طلب رقم بطاقتك الكامل ورمز الأمان لمجرد "التسجيل" في موقع لا يبيع شيئًا.</li>
+          </ul>
+          <p><strong>علامات إضافية خاصة بالمواقع المالية والبنكية:</strong></p>
+          <ul>
+            <li>لا يطلب أي بنك حقيقي رمز التحقق أو كلمة المرور أو الرقم السري كاملًا عبر الهاتف أو البريد أو الموقع مباشرة — طلب هذا بحد ذاته علامة احتيال مؤكدة.</li>
+            <li>تحقق من النطاق الرسمي للبنك بكتابته يدويًا في المتصفح أو عبر بحث مستقل، لا عبر رابط وصلك برسالة أو إعلان.</li>
+            <li>ابحث عن ترخيص الجهة المالية أو رقم تسجيلها الرسمي، غالبًا مذكور بأسفل الصفحة الرئيسية لأي مؤسسة مالية حقيقية.</li>
+            <li>تطبيقات البنوك الرسمية موجودة فقط على متجر التطبيقات الرسمي باسم الجهة الصحيح وعدد تحميلات كبير ومراجعات حقيقية — احذر من نسخ مقلّدة بنفس الاسم تقريبًا.</li>
+          </ul>
+          <div class="callout">
+            <strong>القاعدة الذهبية:</strong> عند الشك، لا تدخل أي بيانات. أغلق الصفحة، وابحث عن الجهة بنفسك من مصدر تعرفه مسبقًا بدل الثقة بأي رابط وصلك.
+          </div>
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('lesson-12', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-lesson-12"></div>
           <a href="#checklist" class="btn btn-ghost lesson-next">قائمة الفحص</a>
         </div>
       </details>
@@ -1783,6 +1929,46 @@
           <a href="#lessons" class="btn btn-ghost lesson-next">العودة لدروس الأمان</a>
         </div>
       </details>
+    </div>
+  </div>
+</section>
+
+<section id="resources" style="border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">تعلّم أعمق</span>
+      <h2>مصادر تعلّم إضافية موصى بها</h2>
+      <p>كورسات وفيديوهات مجانية من قنوات موثوقة لمن يريد التعمق أكثر في Linux وKali Linux وNmap. مصادر خارجية مجانية بالكامل — خارج نطاق هذا الموقع، لكنها نقطة انطلاق ممتازة لمن أنهى الدروس أعلاه.</p>
+    </div>
+    <div class="resources-grid">
+      <a class="resource-card" href="https://www.youtube.com/watch?v=1hvVcEhcbLM" target="_blank" rel="noopener">
+        <span class="resource-icon"><svg viewBox="0 0 32 32" width="34" height="34" fill="none"><defs><linearGradient id="rs1" x1="4" y1="4" x2="28" y2="28"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="3" y="6" width="26" height="20" rx="4" stroke="url(#rs1)" stroke-width="1.8"/><path d="M13 12.5 L21 16 L13 19.5 Z" fill="#38bdf8"/></svg></span>
+        <span class="resource-tag">Linux</span>
+        <h3>Linux for Ethical Hacking — كورس للمبتدئين</h3>
+        <p>كورس كامل (نحو 5 ساعات) حول أساسيات Linux لأغراض الأمن السيبراني: صلاحيات الملفات، الشبكات، SSH، وجدار الحماية. من إعداد HackerSploit عبر قناة freeCodeCamp.</p>
+        <span class="resource-link">شاهد الكورس ←</span>
+      </a>
+      <a class="resource-card" href="https://youtu.be/ug8W0sFiVJo" target="_blank" rel="noopener">
+        <span class="resource-icon"><svg viewBox="0 0 32 32" width="34" height="34" fill="none"><defs><linearGradient id="rs2" x1="4" y1="4" x2="28" y2="28"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="3" y="6" width="26" height="20" rx="4" stroke="url(#rs2)" stroke-width="1.8"/><path d="M13 12.5 L21 16 L13 19.5 Z" fill="#38bdf8"/></svg></span>
+        <span class="resource-tag">Kali Linux + Nmap</span>
+        <h3>Learn Cybersecurity and Ethical Hacking using Kali Linux</h3>
+        <p>كورس عملي تمهيدي يغطي أساسيات Kali Linux، وNmap، وأمان الواي فاي، وWireshark. من إعداد Sunny Dimalu عبر قناة freeCodeCamp.</p>
+        <span class="resource-link">شاهد الكورس ←</span>
+      </a>
+      <a class="resource-card" href="https://www.youtube.com/watch?v=5MTZdN9TEO4" target="_blank" rel="noopener">
+        <span class="resource-icon"><svg viewBox="0 0 32 32" width="34" height="34" fill="none"><defs><linearGradient id="rs3" x1="4" y1="4" x2="28" y2="28"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="3" y="6" width="26" height="20" rx="4" stroke="url(#rs3)" stroke-width="1.8"/><path d="M13 12.5 L21 16 L13 19.5 Z" fill="#38bdf8"/></svg></span>
+        <span class="resource-tag">Nmap · الجزء 1</span>
+        <h3>Nmap Tutorial For Beginners — ما هو Nmap؟</h3>
+        <p>مقدمة مبسّطة لأداة فحص الشبكات الأشهر عالميًا: ما وظيفتها وكيف تُستخدم لفحص الأجهزة والمنافذ المفتوحة. من إعداد HackerSploit.</p>
+        <span class="resource-link">شاهد الفيديو ←</span>
+      </a>
+      <a class="resource-card" href="https://www.youtube.com/watch?v=VFJLMOk6daQ" target="_blank" rel="noopener">
+        <span class="resource-icon"><svg viewBox="0 0 32 32" width="34" height="34" fill="none"><defs><linearGradient id="rs4" x1="4" y1="4" x2="28" y2="28"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="3" y="6" width="26" height="20" rx="4" stroke="url(#rs4)" stroke-width="1.8"/><path d="M13 12.5 L21 16 L13 19.5 Z" fill="#38bdf8"/></svg></span>
+        <span class="resource-tag">Nmap · الجزء 2</span>
+        <h3>Nmap Tutorial For Beginners — فحص متقدم</h3>
+        <p>الجزء الثاني من سلسلة HackerSploit، يغطي خيارات فحص أكثر تقدمًا بعد إتقان الأساسيات في الجزء الأول.</p>
+        <span class="resource-link">شاهد الفيديو ←</span>
+      </a>
     </div>
   </div>
 </section>
@@ -2355,7 +2541,7 @@
       <div id="cert-stats" class="cert-stats"></div>
       <input type="text" id="cert-name-input" class="pw-test-input" placeholder="اكتب اسمك كما تريده أن يظهر في الشهادة" style="max-width:360px; margin:0 auto 16px; text-align:center;" autocomplete="off">
       <div>
-        <button type="button" class="btn btn-primary" onclick="generateCertificate()">🏆 ولّد شهادتي الآن</button>
+        <span class="glow-cta"><button type="button" class="btn btn-primary" onclick="generateCertificate()">🏆 ولّد شهادتي الآن</button></span>
       </div>
       <div id="cert-preview-wrap" style="margin-top:24px; display:none;">
         <canvas id="cert-canvas" width="1000" height="700" style="max-width:100%; height:auto; border-radius:8px; border:1px solid var(--line);"></canvas>
@@ -2579,6 +2765,20 @@
       { q:'ما أقوى بروتوكول تشفير يُنصح باستخدامه للواي فاي؟', options:['WEP','WPA3 (أو WPA2 كحد أدنى)، لا WEP القديم','بدون تشفير لسرعة أعلى','أي بروتوكول متاح سواء'], correct:1, explain:'WEP قديم وغير آمن تمامًا؛ WPA3 هو الأقوى حاليًا، وWPA2 حد أدنى مقبول.' },
       { q:'ما فائدة إنشاء "شبكة ضيوف" (Guest Network)؟', options:['تحسين جودة الصورة على التلفاز','منح الزوار أو الأجهزة غير الموثوقة دخولًا محدودًا دون الوصول لشبكتك الرئيسية','تسريع الطباعة اللاسلكية','لا فائدة حقيقية'], correct:1, explain:'شبكة الضيوف تفصل الأجهزة غير الموثوقة عن شبكتك الرئيسية وأجهزتك الحساسة.' },
       { q:'ما خطر ترك ميزة "الوصول عن بُعد" (Remote Management) مفعّلة بكلمة المرور الافتراضية؟', options:['تستهلك بيانات إضافية فقط','تتيح لأي شخص خارج منزلك التحكم بالراوتر عن بُعد إذا عرف أو خمّن كلمة المرور','تبطئ الاتصال','تمنع تحديث الراوتر'], correct:1, explain:'هذه الميزة تفتح الراوتر للتحكم من خارج المنزل، وهي نقطة استغلال شائعة إن تُركت بكلمة المرور الافتراضية.' }
+    ],
+    'lesson-11': [
+      { q:'في الرابط https://paypal.com.secure-verify-login.ru/account ما هو النطاق الحقيقي؟', options:['paypal.com','secure-verify-login.ru','account','https'], correct:1, explain:'النطاق الحقيقي هو الجزء الموجود مباشرة قبل أول "/"، أي secure-verify-login.ru؛ كلمة paypal.com هنا مجرد نطاق فرعي مزيّف.' },
+      { q:'ماذا يضمن وجود القفل 🔒 وبروتوكول https في رابط ما؟', options:['أن الموقع موثوق تمامًا','أن الاتصال مشفّر فقط، وليس بالضرورة أن الموقع نفسه آمن أو حقيقي','أن الموقع رسمي حتمًا','أن لا إعلانات في الموقع'], correct:1, explain:'مواقع التصيّد الاحتيالي الحديثة يمكنها الحصول على شهادة https صالحة أيضًا، فهي لا تثبت مصداقية الموقع.' },
+      { q:'ما هو "Typosquatting"؟', options:['طريقة لتسريع تحميل المواقع','تسجيل نطاق يشبه نطاقًا معروفًا بفارق بسيط لخداع العين، مثل g00gle.com', 'تقنية لتشفير الروابط', 'نوع من أنواع برامج مكافحة الفيروسات'], correct:1, explain:'المحتالون يسجلون نطاقات قريبة الشكل من النطاقات الحقيقية ليخدعوا من لا ينتبه للتفاصيل الدقيقة.' },
+      { q:'لماذا تُعتبر الروابط المختصرة (مثل bit.ly) خطرة أحيانًا؟', options:['لأنها تستهلك بيانات أكثر', 'لأنها تخفي الوجهة الحقيقية للرابط تمامًا قبل الضغط عليه', 'لأنها لا تعمل على الهاتف', 'لأنها دائمًا مزيفة'], correct:1, explain:'الرابط المختصر لا يكشف وجهته النهائية، لذا قد يقودك لموقع ضار دون أن تعرف مسبقًا.' },
+      { q:'ما أفضل طريقة لمعاينة رابط مشبوه على الهاتف دون المخاطرة بفتحه؟', options:['الضغط عليه مباشرة للتأكد', 'الضغط المطوّل عليه لمعاينة عنوانه الكامل قبل فتحه', 'إعادة إرساله لصديق ليجربه', 'تجاهله دون أي فحص'], correct:1, explain:'الضغط المطوّل (Long press) يعرض عنوان الرابط الكامل دون الحاجة لفتحه أو المخاطرة بالدخول إليه.' }
+    ],
+    'lesson-12': [
+      { q:'موقع يطلب منك إدخال رقم بطاقتك الكامل ورمز الأمان لمجرد "التسجيل" في خدمة مجانية — ماذا يعني هذا؟', options:['إجراء أمان إضافي طبيعي', 'علامة تحذيرية قوية؛ لا علاقة لهذه البيانات بخدمة تسجيل بسيطة', 'شرط إلزامي في كل المواقع', 'وسيلة لتسريع الموقع'], correct:1, explain:'طلب بيانات حساسة لا تتناسب مع طبيعة الخدمة المقدَّمة علامة احتيال واضحة.' },
+      { q:'هل يطلب البنوك الحقيقية رمز التحقق (OTP) أو الرقم السري عبر مكالمة أو رسالة؟', options:['نعم دائمًا كإجراء روتيني', 'لا، أبدًا؛ طلب هذا بحد ذاته علامة احتيال مؤكدة', 'فقط في نهاية الشهر', 'فقط عبر البريد الإلكتروني'], correct:1, explain:'لا تطلب أي جهة مصرفية حقيقية رمز التحقق أو الرقم السري كاملًا عبر الهاتف أو البريد أو الرسائل.' },
+      { q:'ما أفضل طريقة للتأكد من الموقع الرسمي لبنكك؟', options:['الضغط على أول رابط يظهر في رسالة وصلتك', 'كتابة عنوان الموقع يدويًا في المتصفح أو البحث عنه بشكل مستقل', 'سؤال أي شخص في مجموعة واتساب', 'الثقة بأي نتيجة إعلانية أولى'], correct:1, explain:'كتابة العنوان يدويًا أو البحث المستقل يتجنّب روابط التصيّد المرسلة عبر رسائل أو إعلانات مزيفة.' },
+      { q:'أين يجب البحث عادة عن ترخيص أو رقم تسجيل مؤسسة مالية حقيقية؟', options:['لا تملك المؤسسات المالية أي ترخيص معلن', 'غالبًا مذكور بأسفل الصفحة الرئيسية للموقع الرسمي', 'فقط عبر الاتصال الهاتفي', 'في إعلانات مواقع التواصل فقط'], correct:1, explain:'المؤسسات المالية الحقيقية تنشر عادة ترخيصها أو رقم تسجيلها الرسمي بوضوح في موقعها.' },
+      { q:'ما "القاعدة الذهبية" عند الشك في أمان موقع؟', options:['إدخال بياناتك بسرعة قبل انتهاء العرض', 'عدم إدخال أي بيانات، وإغلاق الصفحة، والتحقق من الجهة بنفسك من مصدر معروف مسبقًا', 'مشاركة الرابط مع أكبر عدد من الأصدقاء للتأكد', 'تجاهل الأمر لأنه نادرًا ما يحدث'], correct:1, explain:'عند أي شك، التوقف عن إدخال البيانات والتحقق المستقل هو السلوك الآمن دائمًا.' }
     ],
     'code-01': [
       { q:'ما الوظيفة الأساسية لـHTML في صفحة الويب؟', options:['تحديد الألوان والخطوط','بناء الهيكل والمحتوى','إضافة التفاعل والحركة','تخزين بيانات المستخدم'], correct:1, explain:'HTML مسؤولة عن هيكل المحتوى (عناوين، فقرات، صور) — التنسيق مهمة CSS، والتفاعل مهمة JavaScript.' },
@@ -3271,7 +3471,7 @@
   /* ---------- COMPLETION CERTIFICATE ---------- */
   function getCompletionStats(){
     const ids = [];
-    for(let i = 1; i <= 10; i++){ ids.push('lesson-' + String(i).padStart(2, '0')); }
+    for(let i = 1; i <= 12; i++){ ids.push('lesson-' + String(i).padStart(2, '0')); }
     for(let i = 1; i <= 5; i++){ ids.push('code-' + String(i).padStart(2, '0')); }
     let completed = 0, totalScore = 0, totalQuestions = 0;
     ids.forEach(function(id){
@@ -3669,6 +3869,55 @@
     verdictEl.textContent = verdict;
     verdictEl.style.color = color;
     rangeEl.textContent = 'نطاق الخسارة التقديري: من ' + minLoss + ' إلى ' + maxLoss + ' (بنفس وحدة الرصيد التي أدخلتها)';
+  }
+
+  /* ---------- AMBIENT SPARKLE PARTICLES ---------- */
+  let sparkleCtx = null, sparkleParticles = [], sparkleRAF = null, sparkleW = 0, sparkleH = 0;
+  function initSparkles(){
+    const canvas = document.getElementById('sparkle-canvas');
+    if(!canvas || !canvas.getContext) return;
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduceMotion) return;
+    sparkleCtx = canvas.getContext('2d');
+    function resize(){
+      sparkleW = canvas.width = window.innerWidth;
+      sparkleH = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+    const count = window.innerWidth < 640 ? 26 : 46;
+    sparkleParticles = [];
+    for(let i = 0; i < count; i++){
+      sparkleParticles.push({
+        x: Math.random() * sparkleW,
+        y: Math.random() * sparkleH,
+        r: Math.random() * 1.4 + 0.5,
+        baseAlpha: Math.random() * 0.5 + 0.25,
+        phase: Math.random() * Math.PI * 2,
+        speed: Math.random() * 0.4 + 0.08,
+        vy: (Math.random() - 0.5) * 0.08,
+        vx: (Math.random() - 0.5) * 0.06,
+        hue: Math.random() > 0.5 ? '16,185,129' : '56,189,248'
+      });
+    }
+    let t = 0;
+    function tick(){
+      if(document.hidden){ sparkleRAF = requestAnimationFrame(tick); return; }
+      t += 0.016;
+      sparkleCtx.clearRect(0, 0, sparkleW, sparkleH);
+      sparkleParticles.forEach(function(p){
+        p.x += p.vx; p.y += p.vy;
+        if(p.x < -5) p.x = sparkleW + 5; if(p.x > sparkleW + 5) p.x = -5;
+        if(p.y < -5) p.y = sparkleH + 5; if(p.y > sparkleH + 5) p.y = -5;
+        const alpha = p.baseAlpha * (0.5 + 0.5 * Math.sin(t * p.speed * 3 + p.phase));
+        sparkleCtx.beginPath();
+        sparkleCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        sparkleCtx.fillStyle = 'rgba(' + p.hue + ',' + alpha.toFixed(3) + ')';
+        sparkleCtx.fill();
+      });
+      sparkleRAF = requestAnimationFrame(tick);
+    }
+    tick();
   }
 
   function unlockSite(){
@@ -4419,6 +4668,7 @@
   });
 
   checkAdminHash();
+  initSparkles();
 
   (function(){
     try{
