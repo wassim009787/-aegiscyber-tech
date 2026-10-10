@@ -454,6 +454,34 @@
     .ios-dock{ inset-inline-start:8px; }
     .dock-pop{ inset-inline-start:66px; }
   }
+
+  /* ---------- PROFILE / POINTS / BADGES ---------- */
+  .dock-pop-profile{ width:270px; max-width:min(80vw, 270px); }
+  .vn-profile-level{ display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+  .vn-level-icon{ font-size:28px; line-height:1; }
+  .vn-level-name{ font-family:var(--head); font-size:14px; color:var(--paper); }
+  .vn-level-points{ font-size:12px; color:var(--muted); margin-top:2px; }
+  .vn-level-bar{ height:6px; border-radius:4px; background:rgba(255,255,255,0.1); overflow:hidden; margin-bottom:6px; }
+  .vn-level-bar-fill{ height:100%; background:linear-gradient(90deg, var(--brass), var(--rust-bright)); border-radius:4px; transition:width .4s ease; }
+  .vn-level-next{ font-size:11px; color:var(--muted); margin-bottom:14px; }
+  .vn-badges-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:6px; }
+  .vn-badge-chip{ display:flex; flex-direction:column; align-items:center; gap:3px; padding:8px 4px; border-radius:10px; background:rgba(255,255,255,0.04); text-align:center; opacity:.45; transition:opacity .2s, background .2s; }
+  .vn-badge-chip.earned{ opacity:1; background:rgba(16,185,129,0.12); }
+  .vn-badge-icon{ font-size:18px; }
+  .vn-badge-name{ font-size:9.5px; color:var(--text); line-height:1.3; }
+
+  .vn-toast{
+    position:fixed; bottom:26px; left:50%; z-index:400;
+    transform:translateX(-50%) translateY(20px);
+    background:var(--panel); border:1px solid var(--glass-border);
+    backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%);
+    border-radius:14px; padding:12px 22px; display:flex; flex-direction:column; align-items:center; gap:2px;
+    box-shadow:0 14px 30px rgba(0,0,0,0.4), 0 0 20px rgba(16,185,129,0.15);
+    opacity:0; transition:opacity .3s ease, transform .3s ease; pointer-events:none; max-width:84vw; text-align:center;
+  }
+  .vn-toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+  .vn-toast-title{ font-family:var(--head); font-weight:800; font-size:14.5px; color:var(--brass-bright); }
+  .vn-toast-sub{ font-size:12px; color:var(--muted); }
   /* ---------- FEEDBACK / RATING ---------- */
   .fb-stars{ display:flex; gap:8px; margin-bottom:16px; }
   .fb-star{
@@ -1010,6 +1038,68 @@
     #tips-ticker .tip-item{ font-size:11.5px; }
   }
 
+  /* ---------- DAILY CHALLENGE BAR ---------- */
+  .daily-challenge-bar{
+    background:var(--glass-bg);
+    backdrop-filter:blur(14px) saturate(160%); -webkit-backdrop-filter:blur(14px) saturate(160%);
+    border-bottom:1px solid var(--line); padding:10px 0;
+  }
+  .daily-challenge-inner{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .daily-label{ font-family:var(--mono); font-size:11.5px; color:var(--rust); flex-shrink:0; }
+  .daily-host{ flex:1; display:flex; align-items:center; gap:12px; flex-wrap:wrap; min-width:200px; }
+  .daily-url{ font-family:var(--mono); font-size:12.5px; color:var(--paper); direction:ltr; text-align:start; word-break:break-all; margin:0; }
+  .daily-actions{ display:flex; gap:8px; flex-shrink:0; }
+  .daily-actions .btn{ padding:7px 16px; font-size:13px; }
+  .daily-result{ display:flex; flex-direction:column; gap:4px; width:100%; }
+  .daily-result p{ margin:0; font-size:12.5px; color:var(--muted); line-height:1.6; }
+  .daily-status{ font-size:12.5px; }
+  .daily-result.correct .daily-status{ color:var(--brass-bright); font-weight:700; }
+  .daily-result.wrong .daily-status{ color:#ff6b6b; font-weight:700; }
+  .daily-share-row{ margin-top:2px; }
+  @media (max-width:640px){
+    .daily-challenge-inner{ flex-direction:column; align-items:flex-start; gap:8px; }
+    .daily-host{ width:100%; }
+  }
+
+  /* ---------- INCOMING CHALLENGE BANNER ---------- */
+  .incoming-challenge-bar{
+    position:fixed; top:0; left:0; right:0; z-index:9999;
+    background:linear-gradient(90deg, var(--brass), var(--rust));
+    padding:10px 16px; box-shadow:0 2px 16px rgba(0,0,0,0.35);
+  }
+  .incoming-challenge-inner{ display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; max-width:960px; margin:0 auto; }
+  .incoming-challenge-text{ font-size:13.5px; font-weight:700; color:var(--ink-fixed); }
+  .incoming-challenge-bar .btn-primary{ background:var(--ink-fixed); color:var(--brass-bright); padding:6px 16px; font-size:13px; border:none; }
+  .incoming-challenge-close{ background:transparent; border:none; color:var(--ink-fixed); font-size:17px; cursor:pointer; padding:2px 8px; line-height:1; opacity:.75; }
+  .incoming-challenge-close:hover{ opacity:1; }
+  @media (max-width:640px){
+    .incoming-challenge-text{ font-size:12.5px; }
+  }
+
+  /* ---------- QUIZ / SIM RESULT ACTIONS ---------- */
+  .quiz-result-actions{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:6px; }
+
+  /* ---------- MINI CTF (hidden flags) ---------- */
+  .ctf-box{
+    max-width:620px; margin:0 auto; border-radius:14px; padding:26px 24px;
+    background:var(--glass-bg); border:1px solid var(--glass-border);
+    backdrop-filter:blur(16px) saturate(160%); -webkit-backdrop-filter:blur(16px) saturate(160%);
+  }
+  .ctf-flags-list{ display:flex; flex-direction:column; gap:10px; margin-bottom:18px; }
+  .ctf-flag-item{ display:flex; align-items:center; gap:12px; padding:10px 12px; border-radius:10px; background:rgba(255,255,255,0.04); font-size:13px; color:var(--muted); }
+  .ctf-flag-item.done{ background:rgba(16,185,129,0.1); color:var(--text); }
+  .ctf-flag-num{ width:26px; height:26px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:12.5px; color:var(--text); }
+  .ctf-flag-item.done .ctf-flag-num{ background:var(--brass); color:var(--ink-fixed); }
+  .ctf-encoded{ background:var(--ink); border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:18px; }
+  .ctf-encoded-label{ display:block; font-size:12.5px; color:var(--muted); margin-bottom:8px; }
+  .ctf-encoded-value{ font-family:var(--mono); font-size:13px; color:var(--rust-bright); word-break:break-all; }
+  .ctf-submit-row{ display:flex; gap:8px; }
+  .ctf-input{ flex:1; background:rgba(255,255,255,0.06); border:1px solid var(--line); border-radius:10px; padding:10px 14px; color:var(--paper); font-family:var(--mono); font-size:13.5px; outline:none; min-width:0; }
+  .ctf-input:focus{ border-color:var(--brass); }
+  .ctf-msg{ margin-top:10px; font-size:13px; min-height:18px; }
+  .ctf-msg.success{ color:var(--brass-bright); }
+  .ctf-msg.error{ color:#ff6b6b; }
+
   /* ---------- NEON AMBIENT ORBS (hero backdrop) ---------- */
   .hero{ position:relative; overflow:hidden; }
   .hero::before, .hero::after{
@@ -1079,6 +1169,7 @@
 <!-- ضع سكريبت التحليلات هنا (Cloudflare Web Analytics أو Plausible) -->
 </head>
 <body>
+<!-- VN_FLAG{VIEW_SOURCE_IS_POWERFUL} -->
 
 <div class="liquid-bg" aria-hidden="true">
   <span class="lb lb1"></span>
@@ -1234,6 +1325,14 @@
     </div>
   </div>
 </div>
+
+<div id="daily-challenge" class="daily-challenge-bar">
+  <div class="wrap daily-challenge-inner">
+    <span class="daily-label">📅 تحدي اليوم</span>
+    <div id="daily-host" class="daily-host"></div>
+  </div>
+</div>
+
 <section class="hero">
   <div class="hero-watermark">
     <svg viewBox="0 0 400 400" fill="none">
@@ -1430,6 +1529,7 @@
       <h2>جرّب بنفسك: تيرمينال الموقع التفاعلي</h2>
       <p>اكتب <code>help</code> واضغط Enter لتكتشف أقسام الموقع بطريقتك الخاصة.</p>
     </div>
+    <!-- VN_FLAG{TERMINAL_SECRETS} -->
     <div class="terminal" id="shell-terminal" onclick="document.getElementById('shell-input').focus()">
       <div class="terminal-bar">
         <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
@@ -1440,6 +1540,28 @@
         <span class="shell-prompt">&gt;</span>
         <input type="text" id="shell-input" class="shell-input" autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off" aria-label="Terminal command input" placeholder="type help...">
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="ctf" style="background:#050505; border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">تحدٍ لعشاق القرصنة الأخلاقية</span>
+      <h2>🚩 صيد الأعلام: 3 أعلام مخفية في هذه الصفحة</h2>
+      <p>تمرين بسيط وآمن بالكامل، بأسلوب مسابقات CTF الشهيرة في مجتمع الأمن السيبراني. كل علم على الشكل VN_FLAG{...}. لا حاجة لأي أدوات خاصة — فقط فضولك وأدوات متصفحك العادية (عرض الكود المصدري مثلًا).</p>
+    </div>
+    <div class="ctf-box">
+      <div id="ctf-flags-list" class="ctf-flags-list"></div>
+      <div class="ctf-encoded">
+        <span class="ctf-encoded-label">🔐 شفرة مُرمّزة بـ Base64 — فكّها لتحصل على العلم الثالث:</span>
+        <code class="ctf-encoded-value" dir="ltr">Vk5fRkxBR3tCQVNFNjRfSVNfRUFTWX0=</code>
+      </div>
+      <div class="ctf-submit-row">
+        <input type="text" id="ctf-input" class="ctf-input" placeholder="VN_FLAG{...}" autocomplete="off" spellcheck="false" dir="ltr">
+        <button type="button" class="btn btn-primary" onclick="ctfSubmit()">تحقق</button>
+      </div>
+      <p id="ctf-msg" class="ctf-msg"></p>
     </div>
   </div>
 </section>
@@ -2645,6 +2767,10 @@
   <button type="button" class="dock-slot" id="dock-search-btn" onclick="toggleSearchPop()" aria-label="بحث عن كلمات مفتاحية داخل الموقع" title="بحث">
     <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.8-4.8"/></svg>
   </button>
+  <div class="dock-divider"></div>
+  <button type="button" class="dock-slot" id="dock-profile-btn" onclick="toggleProfilePop()" aria-label="ملفي الشخصي: النقاط والشارات" title="ملفي">
+    <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z" stroke-linejoin="round"/></svg>
+  </button>
 </div>
 
 <div class="dock-pop" id="contact-pop">
@@ -2667,6 +2793,11 @@
   <h5>بحث داخل الموقع</h5>
   <input type="text" class="dock-search-input" id="dock-search-input" placeholder="اكتب كلمة مفتاحية..." oninput="runDockSearch(this.value)" autocomplete="off">
   <div class="dock-search-results" id="dock-search-results"></div>
+</div>
+
+<div class="dock-pop dock-pop-profile" id="profile-pop">
+  <h5>ملفي الأمني</h5>
+  <div id="profile-pop-body"></div>
 </div>
 
 <div class="dock-pop" id="translate-pop">
@@ -2883,7 +3014,10 @@
       '<div class="quiz-panel quiz-result">' +
         '<div class="quiz-score">' + score + ' / ' + total + '</div>' +
         '<p>' + msg + '</p>' +
-        '<button type="button" class="btn btn-ghost" onclick="retryLessonQuiz(\'' + lessonId + '\')">إعادة المحاولة</button>' +
+        '<div class="quiz-result-actions">' +
+          '<button type="button" class="btn btn-ghost" onclick="retryLessonQuiz(\'' + lessonId + '\')">إعادة المحاولة</button>' +
+          '<button type="button" class="btn btn-ghost" onclick="shareLessonResult(\'' + lessonId + '\', ' + score + ', ' + total + ')">📤 تحدَّ صديقك</button>' +
+        '</div>' +
       '</div>';
     saveQuizScore(lessonId, score, total);
   }
@@ -2901,6 +3035,8 @@
       localStorage.setItem('vn_quiz_total_' + lessonId, String(total));
     }catch(e){}
     updateQuizBadge(lessonId);
+    awardQuizPoints(lessonId, score, total);
+    checkBadgeConditions();
   }
 
   function updateQuizBadge(lessonId){
@@ -2952,6 +3088,8 @@
       result += pool[randomValues[i] % pool.length];
     }
     document.getElementById('pwgen-output').value = result;
+    try{ localStorage.setItem('vn_used_pwgen', '1'); }catch(e){}
+    awardOnce('vn_awarded_pwgen', 10, 'ولّدت كلمة مرور قوية');
   }
 
   function pwgenCopy(){
@@ -3023,6 +3161,8 @@
         resultEl.className = 'pwned-result show safe';
         resultEl.textContent = '✅ لم تظهر كلمة المرور هذه في قواعد التسريبات المعروفة. (هذا لا يعني أنها قوية تلقائيًا — راجع فاحص القوة أعلاه أيضًا)';
       }
+      try{ localStorage.setItem('vn_used_pwned', '1'); }catch(e2){}
+      awardOnce('vn_awarded_pwned', 10, 'فحصت كلمة مرور في قاعدة الاختراقات');
     }catch(e){
       resultEl.className = 'pwned-result show error';
       resultEl.textContent = 'تعذّر الاتصال بخدمة التحقق الآن. تأكد من اتصالك بالإنترنت وجرّب مجددًا.';
@@ -3285,12 +3425,22 @@
     if(pct >= 85) verdict = 'حاسة قوية جدًا لاكتشاف التصيّد — استمر هكذا 🛡️';
     else if(pct >= 60) verdict = 'جيد، لكن راجع دروس الأمان في الأعلى لتصقل ملاحظتك أكثر.';
     else verdict = 'هذا بالضبط سبب أهمية التدريب — راجع دروس الأمان في الأعلى وجرّب مجددًا.';
+    try{
+      const prevBest = parseInt(localStorage.getItem('vn_phish_best') || '-1', 10);
+      if(phishScore.correct > prevBest) localStorage.setItem('vn_phish_best', String(phishScore.correct));
+      localStorage.setItem('vn_phish_total', String(phishScore.total));
+    }catch(e){}
+    awardPhishPoints(phishScore.correct, phishScore.total);
+    checkBadgeConditions();
     host.innerHTML =
       '<div class="phish-score-box">' +
         '<div class="big">' + phishScore.correct + ' / ' + phishScore.total + '</div>' +
         '<p style="color:var(--muted); margin:10px 0 18px;">علامات تصيّد اكتشفتها بنجاح (' + pct + '%)</p>' +
         '<p style="margin-bottom:20px;">' + verdict + '</p>' +
-        '<button type="button" class="btn btn-ghost" onclick="phishRestart()">أعد المحاولة من البداية</button>' +
+        '<div class="quiz-result-actions">' +
+          '<button type="button" class="btn btn-ghost" onclick="phishRestart()">أعد المحاولة من البداية</button>' +
+          '<button type="button" class="btn btn-ghost" onclick="sharePhishResult(' + phishScore.correct + ',' + phishScore.total + ')">📤 تحدَّ صديقك</button>' +
+        '</div>' +
       '</div>';
   }
 
@@ -3455,12 +3605,22 @@
     if(pct >= 85) verdict = 'حاسة قوية جدًا لاكتشاف التصيّد عبر الرسائل النصية — استمر هكذا 🛡️';
     else if(pct >= 60) verdict = 'جيد، لكن راجع دروس الأمان في الأعلى لتصقل ملاحظتك أكثر.';
     else verdict = 'هذا بالضبط سبب أهمية التدريب — راجع دروس الأمان في الأعلى وجرّب مجددًا.';
+    try{
+      const prevBest = parseInt(localStorage.getItem('vn_sms_best') || '-1', 10);
+      if(smsScore.correct > prevBest) localStorage.setItem('vn_sms_best', String(smsScore.correct));
+      localStorage.setItem('vn_sms_total', String(smsScore.total));
+    }catch(e){}
+    awardSmsPoints(smsScore.correct, smsScore.total);
+    checkBadgeConditions();
     host.innerHTML =
       '<div class="phish-score-box">' +
         '<div class="big">' + smsScore.correct + ' / ' + smsScore.total + '</div>' +
         '<p style="color:var(--muted); margin:10px 0 18px;">علامات تصيّد اكتشفتها بنجاح (' + pct + '%)</p>' +
         '<p style="margin-bottom:20px;">' + verdict + '</p>' +
-        '<button type="button" class="btn btn-ghost" onclick="smsRestart()">أعد المحاولة من البداية</button>' +
+        '<div class="quiz-result-actions">' +
+          '<button type="button" class="btn btn-ghost" onclick="smsRestart()">أعد المحاولة من البداية</button>' +
+          '<button type="button" class="btn btn-ghost" onclick="shareSmsResult(' + smsScore.correct + ',' + smsScore.total + ')">📤 تحدَّ صديقك</button>' +
+        '</div>' +
       '</div>';
   }
 
@@ -3920,6 +4080,409 @@
     tick();
   }
 
+  /* ---------- POINTS / LEVELS / BADGES ---------- */
+  const VN_LEVELS = [
+    { min: 0,   name: 'زائر جديد',           icon: '🔍' },
+    { min: 20,  name: 'متعلّم واعٍ',          icon: '🌱' },
+    { min: 50,  name: 'حارس يقظ',            icon: '🛡️' },
+    { min: 100, name: 'صائد تهديدات',        icon: '🎯' },
+    { min: 180, name: 'خبير أمان',           icon: '🧠' },
+    { min: 300, name: 'أسطورة VigilantNode', icon: '👑' }
+  ];
+
+  const VN_BADGES = [
+    { id:'phish-master', name:'كاشف التصيّد',       icon:'🎣', desc:'أكمل محاكي رسائل التصيّد الإلكتروني بإجابات كاملة' },
+    { id:'sms-master',   name:'حارس الرسائل',       icon:'📱', desc:'أكمل محاكي رسائل SMS/واتساب بإجابات كاملة' },
+    { id:'url-expert',   name:'خبير الروابط',       icon:'🔗', desc:'أجب بشكل كامل عن اختبار درس قراءة الروابط' },
+    { id:'pw-guardian',  name:'حارس كلمات المرور',  icon:'🔑', desc:'جرّب مولّد كلمات المرور وفاحص التسريبات' },
+    { id:'persistent',   name:'المثابر',            icon:'🔥', desc:'حافظ على سلسلة 7 أيام في أي عادة أمنية' },
+    { id:'flag-hunter',  name:'صياد الأعلام',       icon:'🚩', desc:'اعثر على كل أعلام التحدي المخفية' },
+    { id:'graduate',     name:'خريج الأمان',        icon:'🎓', desc:'أكمل اختبارات جميع الدروس الـ17' },
+    { id:'daily-mind',   name:'عقل التحدي اليومي',  icon:'📅', desc:'أجب بشكل صحيح عن 3 تحديات يومية' }
+  ];
+
+  function vnGetPoints(){
+    try{ return parseInt(localStorage.getItem('vn_points_total') || '0', 10) || 0; }catch(e){ return 0; }
+  }
+  function vnGetBadges(){
+    try{ return JSON.parse(localStorage.getItem('vn_badges') || '[]'); }catch(e){ return []; }
+  }
+  function vnGetLevel(points){
+    let lvl = VN_LEVELS[0];
+    for(let i = 0; i < VN_LEVELS.length; i++){ if(points >= VN_LEVELS[i].min) lvl = VN_LEVELS[i]; }
+    return lvl;
+  }
+  function vnNextLevel(points){
+    for(let i = 0; i < VN_LEVELS.length; i++){ if(VN_LEVELS[i].min > points) return VN_LEVELS[i]; }
+    return null;
+  }
+
+  function addPoints(amount, reason){
+    if(!amount || amount <= 0) return;
+    const total = vnGetPoints() + amount;
+    try{ localStorage.setItem('vn_points_total', String(total)); }catch(e){}
+    showVnToast('+' + amount + ' نقطة', reason || 'نقاط أمان');
+    renderProfile();
+    checkBadgeConditions();
+  }
+
+  function awardOnce(flagKey, amount, reason){
+    let already = null;
+    try{ already = localStorage.getItem(flagKey); }catch(e){}
+    if(already) return false;
+    try{ localStorage.setItem(flagKey, '1'); }catch(e){}
+    addPoints(amount, reason);
+    return true;
+  }
+
+  function awardQuizPoints(lessonId, score, total){
+    try{
+      const prevRaw = localStorage.getItem('vn_quiz_points_' + lessonId);
+      const prevAwarded = prevRaw !== null ? parseInt(prevRaw, 10) : 0;
+      const newPoints = score * 10;
+      if(newPoints > prevAwarded){
+        addPoints(newPoints - prevAwarded, 'تقدّم في اختبار درس');
+        localStorage.setItem('vn_quiz_points_' + lessonId, String(newPoints));
+      }
+    }catch(e){}
+  }
+
+  function awardPhishPoints(correct, total){
+    try{
+      const prevRaw = localStorage.getItem('vn_phish_points');
+      const prevAwarded = prevRaw !== null ? parseInt(prevRaw, 10) : 0;
+      const newPoints = correct * 8;
+      if(newPoints > prevAwarded){
+        addPoints(newPoints - prevAwarded, 'تقدّم في محاكي التصيّد الإلكتروني');
+        localStorage.setItem('vn_phish_points', String(newPoints));
+      }
+    }catch(e){}
+  }
+
+  function awardSmsPoints(correct, total){
+    try{
+      const prevRaw = localStorage.getItem('vn_sms_points');
+      const prevAwarded = prevRaw !== null ? parseInt(prevRaw, 10) : 0;
+      const newPoints = correct * 8;
+      if(newPoints > prevAwarded){
+        addPoints(newPoints - prevAwarded, 'تقدّم في محاكي الرسائل النصية');
+        localStorage.setItem('vn_sms_points', String(newPoints));
+      }
+    }catch(e){}
+  }
+
+  function unlockBadge(badgeId){
+    const badges = vnGetBadges();
+    if(badges.indexOf(badgeId) !== -1) return false;
+    badges.push(badgeId);
+    try{ localStorage.setItem('vn_badges', JSON.stringify(badges)); }catch(e){}
+    const def = VN_BADGES.find(function(b){ return b.id === badgeId; });
+    if(def) showVnToast(def.icon + ' شارة جديدة', def.name);
+    renderProfile();
+    return true;
+  }
+
+  function checkBadgeConditions(){
+    try{
+      const ids = [];
+      for(let i = 1; i <= 12; i++){ ids.push('lesson-' + String(i).padStart(2, '0')); }
+      for(let i = 1; i <= 5; i++){ ids.push('code-' + String(i).padStart(2, '0')); }
+      const allDone = ids.every(function(id){ return localStorage.getItem('vn_quiz_' + id) !== null; });
+      if(allDone) unlockBadge('graduate');
+    }catch(e){}
+    try{
+      const s = localStorage.getItem('vn_quiz_lesson-11');
+      const t = localStorage.getItem('vn_quiz_total_lesson-11');
+      if(s !== null && t !== null && parseInt(s, 10) === parseInt(t, 10)) unlockBadge('url-expert');
+    }catch(e){}
+    try{
+      if(localStorage.getItem('vn_used_pwgen') && localStorage.getItem('vn_used_pwned')) unlockBadge('pw-guardian');
+    }catch(e){}
+    try{
+      const pc = localStorage.getItem('vn_phish_best'), pt = localStorage.getItem('vn_phish_total');
+      if(pc !== null && pt !== null && parseInt(pc, 10) === parseInt(pt, 10)) unlockBadge('phish-master');
+    }catch(e){}
+    try{
+      const sc = localStorage.getItem('vn_sms_best'), st = localStorage.getItem('vn_sms_total');
+      if(sc !== null && st !== null && parseInt(sc, 10) === parseInt(st, 10)) unlockBadge('sms-master');
+    }catch(e){}
+    try{
+      for(let i = 0; i < HABITS.length; i++){
+        const streak = parseInt(localStorage.getItem('vn_habit_streak_' + HABITS[i].id) || '0', 10);
+        if(streak >= 7){ unlockBadge('persistent'); break; }
+      }
+    }catch(e){}
+    try{
+      const flags = JSON.parse(localStorage.getItem('vn_ctf_flags') || '[]');
+      if(flags.length >= CTF_FLAGS.length) unlockBadge('flag-hunter');
+    }catch(e){}
+    try{
+      const c = parseInt(localStorage.getItem('vn_daily_correct_count') || '0', 10);
+      if(c >= 3) unlockBadge('daily-mind');
+    }catch(e){}
+  }
+
+  function renderProfile(){
+    const host = document.getElementById('profile-pop-body');
+    if(!host) return;
+    const points = vnGetPoints();
+    const level = vnGetLevel(points);
+    const next = vnNextLevel(points);
+    const badges = vnGetBadges();
+    let barPct = 100, nextLabel = 'وصلت لأعلى مستوى! 👑';
+    if(next){
+      const span = next.min - level.min;
+      barPct = span > 0 ? Math.min(100, Math.round(((points - level.min) / span) * 100)) : 100;
+      nextLabel = (next.min - points) + ' نقطة حتى مستوى "' + next.name + '"';
+    }
+    const badgesHtml = VN_BADGES.map(function(b){
+      const earned = badges.indexOf(b.id) !== -1;
+      return '<div class="vn-badge-chip' + (earned ? ' earned' : '') + '" title="' + escapeHtml(b.desc) + '">' +
+        '<span class="vn-badge-icon">' + (earned ? b.icon : '🔒') + '</span>' +
+        '<span class="vn-badge-name">' + b.name + '</span>' +
+      '</div>';
+    }).join('');
+    host.innerHTML =
+      '<div class="vn-profile-level"><span class="vn-level-icon">' + level.icon + '</span><div><div class="vn-level-name">' + level.name + '</div><div class="vn-level-points">' + points + ' نقطة أمان</div></div></div>' +
+      '<div class="vn-level-bar"><div class="vn-level-bar-fill" style="width:' + barPct + '%;"></div></div>' +
+      '<div class="vn-level-next">' + nextLabel + '</div>' +
+      '<div class="vn-badges-grid">' + badgesHtml + '</div>';
+  }
+
+  function showVnToast(title, sub){
+    const el = document.createElement('div');
+    el.className = 'vn-toast';
+    el.innerHTML = '<span class="vn-toast-title">' + title + '</span><span class="vn-toast-sub">' + sub + '</span>';
+    document.body.appendChild(el);
+    requestAnimationFrame(function(){ el.classList.add('show'); });
+    setTimeout(function(){
+      el.classList.remove('show');
+      setTimeout(function(){ el.remove(); }, 400);
+    }, 2800);
+  }
+
+  function shareResult(text, opts){
+    opts = opts || {};
+    const base = window.location.href.split('#')[0].split('?')[0];
+    let url = base;
+    if(opts.key){
+      const params = ['challenge=' + encodeURIComponent(opts.key)];
+      if(opts.score != null) params.push('score=' + encodeURIComponent(opts.score));
+      if(opts.total != null) params.push('total=' + encodeURIComponent(opts.total));
+      url = base + '?' + params.join('&');
+    }
+    if(navigator.share){
+      navigator.share({ text: text, url: url }).catch(function(){});
+    } else if(navigator.clipboard){
+      navigator.clipboard.writeText(text + '\n' + url).then(function(){
+        showVnToast('📋 تم النسخ', 'شارك الرابط مع صديقك');
+      }).catch(function(){});
+    }
+  }
+
+  function shareLessonResult(lessonId, score, total){
+    shareResult('حصلت على ' + score + '/' + total + ' في اختبار أحد دروس VigilantNode 📚 هل تتفوق عليّ؟', { key: 'quiz-' + lessonId, score: score, total: total });
+  }
+
+  function sharePhishResult(correct, total){
+    shareResult('اكتشفت ' + correct + ' من ' + total + ' علامة تصيّد في محاكي البريد الإلكتروني على VigilantNode 🎣 جرّب أن تتفوق عليّ!', { key: 'phish', score: correct, total: total });
+  }
+
+  function shareSmsResult(correct, total){
+    shareResult('اكتشفت ' + correct + ' من ' + total + ' علامة تصيّد في محاكي الرسائل النصية على VigilantNode 📱 جرّب أن تتفوق عليّ!', { key: 'sms', score: correct, total: total });
+  }
+
+  function renderIncomingChallenge(){
+    try{
+      const params = new URLSearchParams(window.location.search);
+      const key = params.get('challenge');
+      if(!key) return;
+      const score = params.get('score');
+      const total = params.get('total');
+      const CHALLENGE_INFO = {
+        daily: { label: 'تحدي اليوم', anchor: '#daily-challenge' },
+        phish: { label: 'محاكي التصيّد الإلكتروني', anchor: '#phishing-sim' },
+        sms:   { label: 'محاكي رسائل SMS/واتساب', anchor: '#sms-phishing-sim' }
+      };
+      let info = CHALLENGE_INFO[key];
+      if(!info && key.indexOf('quiz-') === 0){
+        info = { label: 'اختبار أحد الدروس', anchor: '#' + key.slice(5) };
+      }
+      if(!info) return;
+      const scoreLine = (score !== null && total !== null)
+        ? ('حصل صديقك على <strong>' + escapeHtml(score) + '/' + escapeHtml(total) + '</strong> في ' + info.label + '.')
+        : ('صديقك يتحدّاك في ' + info.label + '.');
+      const bar = document.createElement('div');
+      bar.className = 'incoming-challenge-bar';
+      bar.innerHTML =
+        '<div class="wrap incoming-challenge-inner">' +
+          '<span class="incoming-challenge-text">🎯 ' + scoreLine + ' هل تتفوق عليه؟</span>' +
+          '<a href="' + info.anchor + '" class="btn btn-primary">جرّب الآن</a>' +
+          '<button type="button" class="incoming-challenge-close" aria-label="إغلاق">✕</button>' +
+        '</div>';
+      document.body.insertBefore(bar, document.body.firstChild);
+      const closeBtn = bar.querySelector('.incoming-challenge-close');
+      if(closeBtn) closeBtn.addEventListener('click', function(){ bar.remove(); });
+      const ctaBtn = bar.querySelector('a.btn-primary');
+      if(ctaBtn) ctaBtn.addEventListener('click', function(){ setTimeout(function(){ bar.remove(); }, 400); });
+    }catch(e){}
+  }
+
+  function toggleProfilePop(){
+    const pop = document.getElementById('profile-pop');
+    const contact = document.getElementById('contact-pop');
+    const search = document.getElementById('search-pop');
+    const translate = document.getElementById('translate-pop');
+    const contactBtn = document.getElementById('dock-contact-btn');
+    const searchBtn = document.getElementById('dock-search-btn');
+    const translateBtn = document.getElementById('dock-translate-btn');
+    const profileBtn = document.getElementById('dock-profile-btn');
+    if(contact) contact.classList.remove('open');
+    if(contactBtn) contactBtn.classList.remove('active');
+    if(search) search.classList.remove('open');
+    if(searchBtn) searchBtn.classList.remove('active');
+    if(translate) translate.classList.remove('open');
+    if(translateBtn) translateBtn.classList.remove('active');
+    if(pop){
+      pop.classList.toggle('open');
+      const isOpen = pop.classList.contains('open');
+      if(profileBtn) profileBtn.classList.toggle('active', isOpen);
+      if(isOpen) renderProfile();
+    }
+  }
+
+  /* ---------- DAILY CHALLENGE ---------- */
+  const DAILY_ITEMS = [
+    { url:'https://accounts.google.com/signin', real:true, note:'نطاق Google الرسمي الحقيقي لتسجيل الدخول، بدون أي إضافات مريبة.' },
+    { url:'https://paynow-secure-verify.com/login', real:false, note:'نطاق مزيّف يحاكي خدمات الدفع، وليس أي نطاق رسمي معروف.' },
+    { url:'https://www.instagram.com/accounts/login/', real:true, note:'نطاق إنستغرام الرسمي، بدون أي إضافات غريبة.' },
+    { url:'https://cloudmail-security-check.net/verify', real:false, note:'نطاق وهمي يحاكي اسم خدمة بريد، مصمَّم ليبدو رسميًا فقط.' },
+    { url:'https://appleid.apple.com', real:true, note:'نطاق أبل الرسمي لإدارة الحساب.' },
+    { url:'https://deliverx-redelivery.info/confirm', real:false, note:'امتداد .info غريب على شركة شحن، ونطاق غير معروف إطلاقًا.' },
+    { url:'https://www.paypal.com/signin', real:true, note:'نطاق PayPal الرسمي مباشرة، بدون أي نطاق فرعي مريب.' },
+    { url:'https://socialconnect-verify-acc.support/confirm', real:false, note:'نطاق طويل غريب بامتداد support.، لا علاقة له بأي منصة حقيقية.' },
+    { url:'https://www.microsoft.com/account', real:true, note:'نطاق مايكروسوفت الرسمي للتعامل مع الحساب.' },
+    { url:'https://mobilex-rewards-dz.com/claim', real:false, note:'نطاق يوحي بشركة اتصالات لكنه غير رسمي، مصمَّم فقط لجذب الضغط عليه.' },
+    { url:'https://www.amazon.com/your-orders', real:true, note:'نطاق أمازون الرسمي لمتابعة الطلبات.' },
+    { url:'https://fastship-redeliver.info/update', real:false, note:'امتداد .info غير معتاد لشركة شحن، ونطاق مختلف تمامًا عن أي موقع شحن معروف.' },
+    { url:'https://web.whatsapp.com', real:true, note:'نطاق واتساب الرسمي للنسخة المخصصة للمتصفح.' },
+    { url:'http://bank-alaman-verify.xyz/login', real:false, note:'امتداد xyz. غير معتاد لموقع بنكي، والبروتوكول http فقط بلا أي تشفير أصلًا.' },
+    { url:'https://myaccount.google.com/security', real:true, note:'صفحة إعدادات الأمان الرسمية من Google.' },
+    { url:'https://paypa1-login-secure.com/account', real:false, note:'الرقم 1 بدل حرف l — هذا بالضبط أسلوب التبديل البصري (Typosquatting).' },
+    { url:'https://www.linkedin.com/login', real:true, note:'نطاق لينكدإن الرسمي للدخول.' },
+    { url:'https://insta-gram-support-center.com/help', real:false, note:'نطاق طويل بشرطة غريبة بين الكلمتين، وامتداد لا علاقة له بالمنصة الحقيقية.' }
+  ];
+
+  function dailyGetIndex(){
+    const anchor = Date.UTC(2026, 0, 1);
+    const now = new Date();
+    const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+    const days = Math.floor((today - anchor) / 86400000);
+    return ((days % DAILY_ITEMS.length) + DAILY_ITEMS.length) % DAILY_ITEMS.length;
+  }
+
+  function dailyTodayKey(){
+    const now = new Date();
+    return now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+  }
+
+  function renderDaily(){
+    const host = document.getElementById('daily-host');
+    if(!host) return;
+    const item = DAILY_ITEMS[dailyGetIndex()];
+    let doneVal = null;
+    try{ doneVal = localStorage.getItem('vn_daily_done_' + dailyTodayKey()); }catch(e){}
+    if(doneVal){
+      const wasCorrect = doneVal === 'correct';
+      host.innerHTML =
+        '<div class="daily-result ' + (wasCorrect ? 'correct' : 'wrong') + '">' +
+          '<p class="daily-url">' + escapeHtml(item.url) + '</p>' +
+          '<p>' + (item.real ? 'هذا الرابط <strong>حقيقي</strong>. ' : 'هذا الرابط <strong>مزيّف</strong>. ') + item.note + '</p>' +
+          '<p class="daily-status">' + (wasCorrect ? '✅ أجبت بشكل صحيح اليوم — عد غدًا لتحدٍ جديد!' : '❌ لم تُجب بشكل صحيح اليوم — عد غدًا لتحدٍ جديد!') + '</p>' +
+          (wasCorrect ? '<div class="daily-share-row"><button type="button" class="btn btn-ghost" onclick="shareDailyResult()">📤 تحدَّ صديقك</button></div>' : '') +
+        '</div>';
+      return;
+    }
+    host.innerHTML =
+      '<p class="daily-url">' + escapeHtml(item.url) + '</p>' +
+      '<div class="daily-actions">' +
+        '<button type="button" class="btn btn-primary" onclick="dailyAnswer(true)">حقيقي ✅</button>' +
+        '<button type="button" class="btn btn-ghost" onclick="dailyAnswer(false)">مزيّف ⚠️</button>' +
+      '</div>';
+  }
+
+  function dailyAnswer(choice){
+    const item = DAILY_ITEMS[dailyGetIndex()];
+    const correct = (choice === item.real);
+    try{ localStorage.setItem('vn_daily_done_' + dailyTodayKey(), correct ? 'correct' : 'wrong'); }catch(e){}
+    if(correct){
+      addPoints(5, 'إجابة صحيحة في تحدي اليوم');
+      try{
+        const c = parseInt(localStorage.getItem('vn_daily_correct_count') || '0', 10);
+        localStorage.setItem('vn_daily_correct_count', String(c + 1));
+      }catch(e){}
+      checkBadgeConditions();
+    }
+    renderDaily();
+  }
+
+  function shareDailyResult(){
+    shareResult('أجبت بشكل صحيح في تحدي اليوم على VigilantNode 🎯 جرّب أنت أيضًا!', { key: 'daily' });
+  }
+
+  /* ---------- MINI CTF ---------- */
+  const CTF_FLAGS = [
+    { id:'ctf1', answer:'vn_flag{view_source_is_powerful}', hint:'ألقِ نظرة على الكود المصدري لهذه الصفحة (في المتصفح: Ctrl+U أو Cmd+Option+U)، وابحث عن تعليق مخفي قرب بداية قسم <head>.' },
+    { id:'ctf2', answer:'vn_flag{terminal_secrets}', hint:'تفحّص الكود المصدري حول قسم "تيرمينال الموقع التفاعلي" أعلاه.' },
+    { id:'ctf3', answer:'vn_flag{base64_is_easy}', hint:'فكّ ترميز Base64 الظاهر أعلاه (جرّب أي أداة فك ترميز Base64 على الإنترنت).' }
+  ];
+
+  function ctfGetFound(){
+    try{ return JSON.parse(localStorage.getItem('vn_ctf_flags') || '[]'); }catch(e){ return []; }
+  }
+
+  function ctfSubmit(){
+    const input = document.getElementById('ctf-input');
+    const msgEl = document.getElementById('ctf-msg');
+    if(!input || !msgEl) return;
+    const val = input.value.trim().toLowerCase();
+    if(!val) return;
+    const found = ctfGetFound();
+    const match = CTF_FLAGS.find(function(f){ return f.answer === val; });
+    if(!match){
+      msgEl.className = 'ctf-msg error';
+      msgEl.textContent = 'ليست علامة صحيحة. حاول مجددًا.';
+      return;
+    }
+    if(found.indexOf(match.id) !== -1){
+      msgEl.className = 'ctf-msg';
+      msgEl.textContent = 'وجدت هذا العلم من قبل بالفعل ✓';
+      input.value = '';
+      return;
+    }
+    found.push(match.id);
+    try{ localStorage.setItem('vn_ctf_flags', JSON.stringify(found)); }catch(e){}
+    input.value = '';
+    msgEl.className = 'ctf-msg success';
+    msgEl.textContent = 'إجابة صحيحة! علم جديد 🚩';
+    awardOnce('vn_awarded_' + match.id, 15, 'عثرت على علم مخفي');
+    checkBadgeConditions();
+    renderCtfFlags();
+  }
+
+  function renderCtfFlags(){
+    const host = document.getElementById('ctf-flags-list');
+    if(!host) return;
+    const found = ctfGetFound();
+    host.innerHTML = CTF_FLAGS.map(function(f, i){
+      const done = found.indexOf(f.id) !== -1;
+      return '<div class="ctf-flag-item' + (done ? ' done' : '') + '">' +
+        '<span class="ctf-flag-num">' + (done ? '✓' : (i + 1)) + '</span>' +
+        '<span class="ctf-flag-hint">' + (done ? 'تم العثور عليه!' : f.hint) + '</span>' +
+      '</div>';
+    }).join('');
+  }
+
   function unlockSite(){
     const tpl = document.getElementById('site-template');
     const container = document.getElementById('site-content');
@@ -3936,6 +4499,11 @@
     initShell();
     renderCertStats();
     renderHabitList();
+    renderProfile();
+    checkBadgeConditions();
+    renderDaily();
+    renderCtfFlags();
+    renderIncomingChallenge();
     initTheme();
     window.addEventListener('scroll', updateReadingProgress, { passive: true });
     updateReadingProgress();
@@ -4037,13 +4605,17 @@
     const pop = document.getElementById('translate-pop');
     const contact = document.getElementById('contact-pop');
     const search = document.getElementById('search-pop');
+    const profile = document.getElementById('profile-pop');
     const contactBtn = document.getElementById('dock-contact-btn');
     const searchBtn = document.getElementById('dock-search-btn');
     const translateBtn = document.getElementById('dock-translate-btn');
+    const profileBtn = document.getElementById('dock-profile-btn');
     if(contact) contact.classList.remove('open');
     if(contactBtn) contactBtn.classList.remove('active');
     if(search) search.classList.remove('open');
     if(searchBtn) searchBtn.classList.remove('active');
+    if(profile) profile.classList.remove('open');
+    if(profileBtn) profileBtn.classList.remove('active');
     if(pop){
       pop.classList.toggle('open');
       if(translateBtn) translateBtn.classList.toggle('active', pop.classList.contains('open'));
@@ -4062,10 +4634,14 @@
   function toggleContactPop(){
     const pop = document.getElementById('contact-pop');
     const search = document.getElementById('search-pop');
+    const profile = document.getElementById('profile-pop');
     const searchBtn = document.getElementById('dock-search-btn');
+    const profileBtn = document.getElementById('dock-profile-btn');
     const contactBtn = document.getElementById('dock-contact-btn');
     if(search) search.classList.remove('open');
     if(searchBtn) searchBtn.classList.remove('active');
+    if(profile) profile.classList.remove('open');
+    if(profileBtn) profileBtn.classList.remove('active');
     if(pop) pop.classList.toggle('open');
     if(contactBtn) contactBtn.classList.toggle('active', pop && pop.classList.contains('open'));
   }
@@ -4073,10 +4649,14 @@
   function toggleSearchPop(){
     const pop = document.getElementById('search-pop');
     const contact = document.getElementById('contact-pop');
+    const profile = document.getElementById('profile-pop');
     const contactBtn = document.getElementById('dock-contact-btn');
+    const profileBtn = document.getElementById('dock-profile-btn');
     const searchBtn = document.getElementById('dock-search-btn');
     if(contact) contact.classList.remove('open');
     if(contactBtn) contactBtn.classList.remove('active');
+    if(profile) profile.classList.remove('open');
+    if(profileBtn) profileBtn.classList.remove('active');
     if(pop){
       pop.classList.toggle('open');
       const isOpen = pop.classList.contains('open');
