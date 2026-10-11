@@ -31,11 +31,11 @@
     --panel:#12141c;
     --panel-2:#171a24;
     --line:#252932;
-    --brass:#10b981;
-    --brass-bright:#00ff87;
-    --brass-dim:#0f5c42;
-    --rust:#38bdf8;
-    --rust-bright:#00e5ff;
+    --brass:#8b5cf6;
+    --brass-bright:#c4b5fd;
+    --brass-dim:#4c1d95;
+    --rust:#e879f9;
+    --rust-bright:#f0abfc;
     --paper:#eef1f6;
     --text:#d9dce3;
     --muted:#79828f;
@@ -54,10 +54,10 @@
     --panel:#ffffff;
     --panel-2:#edeff3;
     --line:#d8dbe2;
-    --brass:#0e9668;
-    --brass-bright:#059669;
-    --rust:#0ea5c4;
-    --rust-bright:#0284c7;
+    --brass:#7c3aed;
+    --brass-bright:#6d28d9;
+    --rust:#a21caf;
+    --rust-bright:#86198f;
     --paper:#151821;
     --text:#2b2f38;
     --muted:#5b6170;
@@ -129,7 +129,7 @@
   @media (max-width:860px){ .hero .wrap{grid-template-columns:1fr;} }
   .hero-watermark{position:absolute; inset:0; z-index:0; opacity:.09; pointer-events:none;}
   .hero-watermark svg{width:100%; height:100%;}
-  .eye-label{font-family:var(--mono); font-size:9px; fill:#00ff87;}
+  .eye-label{font-family:var(--mono); font-size:9px; fill:#c4b5fd;}
   .eye-scan{animation:eyeScan 4.5s ease-in-out infinite;}
   @keyframes eyeScan{
     0%,100%{ transform:translateY(0); opacity:.3; }
@@ -154,7 +154,7 @@
     transition:transform .15s, background .2s;
   }
   .btn-primary{background:var(--brass); color:var(--ink-fixed); transition:transform .15s, background .2s, border-radius .4s ease;}
-  .btn-primary:hover{transform:translateY(-2px); background:var(--brass-bright); box-shadow:0 0 24px rgba(16,185,129,0.35); border-radius:14px 4px 14px 4px;}
+  .btn-primary:hover{transform:translateY(-2px); background:var(--brass-bright); box-shadow:0 0 24px rgba(139,92,246,0.35); border-radius:14px 4px 14px 4px;}
   .btn-ghost{border-color:var(--line); color:var(--text);}
   .btn-ghost:hover{border-color:var(--brass);}
 
@@ -353,7 +353,7 @@
     border:1px solid var(--line); background:var(--panel);
     padding:20px 22px; text-decoration:none; transition:border-color .2s, background .2s;
   }
-  .glossary-access:hover{ border-color:var(--brass); background:rgba(16,185,129,0.05); }
+  .glossary-access:hover{ border-color:var(--brass); background:rgba(139,92,246,0.05); }
   .glossary-access-icon{ color:var(--brass); flex-shrink:0; display:flex; }
   .glossary-access-text{ flex:1; display:flex; flex-direction:column; gap:3px; }
   .glossary-access-text strong{ font-family:var(--head); font-size:15px; color:var(--paper); }
@@ -373,7 +373,7 @@
   .flow-arrow{ color:var(--line); font-size:20px; margin-top:9px; flex-shrink:0; }
   @keyframes flowPulse{
     0%, 80%, 100%{ border-color:var(--line); color:var(--muted); box-shadow:none; }
-    15%{ border-color:var(--brass); color:var(--brass); box-shadow:0 0 16px rgba(16,185,129,0.5); }
+    15%{ border-color:var(--brass); color:var(--brass); box-shadow:0 0 16px rgba(139,92,246,0.5); }
   }
   .share-fab-btn{
     width:52px; height:52px; border-radius:50%; border:none; cursor:pointer;
@@ -466,7 +466,7 @@
   .vn-level-next{ font-size:11px; color:var(--muted); margin-bottom:14px; }
   .vn-badges-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:6px; }
   .vn-badge-chip{ display:flex; flex-direction:column; align-items:center; gap:3px; padding:8px 4px; border-radius:10px; background:rgba(255,255,255,0.04); text-align:center; opacity:.45; transition:opacity .2s, background .2s; }
-  .vn-badge-chip.earned{ opacity:1; background:rgba(16,185,129,0.12); }
+  .vn-badge-chip.earned{ opacity:1; background:rgba(139,92,246,0.12); }
   .vn-badge-icon{ font-size:18px; }
   .vn-badge-name{ font-size:9.5px; color:var(--text); line-height:1.3; }
 
@@ -476,7 +476,7 @@
     background:var(--panel); border:1px solid var(--glass-border);
     backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%);
     border-radius:14px; padding:12px 22px; display:flex; flex-direction:column; align-items:center; gap:2px;
-    box-shadow:0 14px 30px rgba(0,0,0,0.4), 0 0 20px rgba(16,185,129,0.15);
+    box-shadow:0 14px 30px rgba(0,0,0,0.4), 0 0 20px rgba(139,92,246,0.15);
     opacity:0; transition:opacity .3s ease, transform .3s ease; pointer-events:none; max-width:84vw; text-align:center;
   }
   .vn-toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
@@ -528,7 +528,7 @@
     color:#8bd4ff; white-space:pre-wrap; direction:ltr; text-align:left; overflow-x:auto; line-height:1.6;
   }
   .code-block .cm{ color:#6a9955; }
-  .code-block .ck{ color:#00ff87; }
+  .code-block .ck{ color:#c4b5fd; }
 
   footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;}
 
@@ -610,8 +610,8 @@
     transition:all .2s;
   }
   .phish-chip:hover:not(:disabled){ border-color:var(--rust); }
-  .phish-chip.selected{ border-color:var(--rust); background:rgba(56,189,248,0.14); color:var(--rust-bright); }
-  .phish-chip.result-correct{ border-color:var(--brass); background:rgba(16,185,129,0.16); color:var(--brass-bright); }
+  .phish-chip.selected{ border-color:var(--rust); background:rgba(232,121,249,0.14); color:var(--rust-bright); }
+  .phish-chip.result-correct{ border-color:var(--brass); background:rgba(139,92,246,0.16); color:var(--brass-bright); }
   .phish-chip.result-missed{ border-color:#ef4444; background:rgba(239,68,68,0.16); color:#ff8fa3; }
   .phish-chip.result-wrong{ border-color:#ef4444; background:rgba(239,68,68,0.08); color:#ff8fa3; opacity:.7; }
   .phish-chip:disabled{ cursor:default; }
@@ -634,7 +634,7 @@
   }
   .pwned-result{ margin-top:16px; padding:14px 16px; border-radius:4px; font-size:13.5px; display:none; line-height:1.7; }
   .pwned-result.show{ display:block; }
-  .pwned-result.safe{ background:rgba(16,185,129,0.1); border:1px solid var(--brass); color:var(--brass-bright); }
+  .pwned-result.safe{ background:rgba(139,92,246,0.1); border:1px solid var(--brass); color:var(--brass-bright); }
   .pwned-result.danger{ background:rgba(239,68,68,0.1); border:1px solid #ef4444; color:#ff8fa3; }
   .pwned-result.loading{ background:rgba(255,255,255,0.05); border:1px solid var(--line); color:var(--muted); }
   .pwned-result.error{ background:rgba(255,255,255,0.05); border:1px solid var(--line); color:var(--muted); }
@@ -673,8 +673,8 @@
     border:1px solid var(--brass); background:transparent; color:var(--brass-bright); cursor:pointer;
     white-space:nowrap; transition:all .2s;
   }
-  .habit-btn:hover:not(:disabled){ background:rgba(16,185,129,0.1); }
-  .habit-btn.done-today{ background:rgba(16,185,129,0.18); cursor:default; }
+  .habit-btn:hover:not(:disabled){ background:rgba(139,92,246,0.1); }
+  .habit-btn.done-today{ background:rgba(139,92,246,0.18); cursor:default; }
 
   /* ---------- TERMINAL ---------- */
   .terminal{border:1px solid var(--line); background:#080808; max-width:640px; margin:0 auto;}
@@ -683,32 +683,32 @@
   .term-dot:nth-child(3){background:var(--brass-dim);}
   .term-title{font-family:var(--mono); font-size:12px; color:var(--muted); margin-inline-start:10px;}
   .terminal-body{
-    font-family:var(--mono); font-size:13px; color:#00ff87; line-height:1.9;
+    font-family:var(--mono); font-size:13px; color:#c4b5fd; line-height:1.9;
     padding:20px 18px; min-height:200px; text-align:left; white-space:pre-wrap;
   }
-  .terminal-body .caret{display:inline-block; width:7px; height:14px; background:#00ff87; vertical-align:middle; animation:blink 1s step-start infinite;}
+  .terminal-body .caret{display:inline-block; width:7px; height:14px; background:#c4b5fd; vertical-align:middle; animation:blink 1s step-start infinite;}
   @keyframes blink{ 50%{ opacity:0; } }
 
   /* ---------- INTERACTIVE SHELL ---------- */
   .shell-output{ max-height:320px; overflow-y:auto; min-height:140px; }
-  .shell-output .shell-cmd-echo{ color:#38bdf8; }
+  .shell-output .shell-cmd-echo{ color:#e879f9; }
   .shell-output .shell-err{ color:#ff5f56; }
-  .shell-output .shell-ok{ color:#00ff87; }
+  .shell-output .shell-ok{ color:#c4b5fd; }
   .shell-output .shell-muted{ color:#6a7280; }
   .shell-input-row{
     display:flex; align-items:center; gap:8px;
     padding:10px 18px 16px; border-top:1px solid #1c1c1c;
     font-family:var(--mono); font-size:13px;
   }
-  .shell-prompt{ color:#00ff87; flex-shrink:0; }
+  .shell-prompt{ color:#c4b5fd; flex-shrink:0; }
   .shell-input{
     flex:1; background:transparent; border:none; outline:none;
-    color:#eafff4; font-family:var(--mono); font-size:13px; caret-color:#00ff87;
+    color:#eafff4; font-family:var(--mono); font-size:13px; caret-color:#c4b5fd;
     min-width:0;
   }
   .shell-input::placeholder{ color:#4a524c; }
   #shell .section-head p code{
-    background:rgba(16,185,129,0.12); color:var(--brass-bright);
+    background:rgba(139,92,246,0.12); color:var(--brass-bright);
     padding:2px 6px; border-radius:4px; font-family:var(--mono); font-size:0.92em;
   }
 
@@ -795,15 +795,15 @@
     display:none; align-items:center; justify-content:center; flex-direction:column;
   }
   .cn-text{
-    font-family:'Press Start 2P', monospace; color:#00ff87; font-size:22px;
+    font-family:'Press Start 2P', monospace; color:#c4b5fd; font-size:22px;
     margin-bottom:26px; letter-spacing:1px;
   }
   .cn-bar-outer{
-    width:280px; height:34px; border:3px solid #00ff87; border-radius:17px;
+    width:280px; height:34px; border:3px solid #c4b5fd; border-radius:17px;
     padding:5px; box-sizing:border-box;
   }
   .cn-bar-fill{
-    height:100%; width:0%; background:#00ff87; border-radius:12px;
+    height:100%; width:0%; background:#c4b5fd; border-radius:12px;
     animation:cnFill 1.8s steps(24) forwards;
   }
   @keyframes cnFill{ to{ width:100%; } }
@@ -829,10 +829,10 @@
   }
   .btn-quiz{ border-color:var(--rust); color:var(--rust-bright); margin-top:6px; }
   .btn-listen{ border-color:var(--brass); color:var(--brass-bright); margin-top:0; margin-bottom:12px; display:inline-flex; align-items:center; gap:6px; }
-  .btn-listen:hover{ background:rgba(16,185,129,0.1); border-color:var(--brass-bright); }
-  .btn-listen.listening{ background:rgba(16,185,129,0.16); border-color:var(--brass-bright); animation:listenPulse 1.4s ease-in-out infinite; }
-  @keyframes listenPulse{ 0%,100%{ box-shadow:0 0 0 rgba(16,185,129,0.35); } 50%{ box-shadow:0 0 14px rgba(16,185,129,0.5); } }
-  .btn-quiz:hover{ background:rgba(56,189,248,0.1); border-color:var(--rust-bright); }
+  .btn-listen:hover{ background:rgba(139,92,246,0.1); border-color:var(--brass-bright); }
+  .btn-listen.listening{ background:rgba(139,92,246,0.16); border-color:var(--brass-bright); animation:listenPulse 1.4s ease-in-out infinite; }
+  @keyframes listenPulse{ 0%,100%{ box-shadow:0 0 0 rgba(139,92,246,0.35); } 50%{ box-shadow:0 0 14px rgba(139,92,246,0.5); } }
+  .btn-quiz:hover{ background:rgba(232,121,249,0.1); border-color:var(--rust-bright); }
   .quiz-host{ margin-top:16px; }
   .quiz-panel{ background:var(--ink); border:1px solid var(--line); padding:24px 22px; margin-top:4px; }
   .quiz-progress{ font-family:var(--mono); font-size:11.5px; color:var(--muted); margin-bottom:12px; }
@@ -844,7 +844,7 @@
   }
   .quiz-option:hover:not(:disabled){ border-color:var(--rust); }
   .quiz-option:disabled{ cursor:default; }
-  .quiz-option.correct{ border-color:var(--brass); background:rgba(16,185,129,0.12); color:var(--brass-bright); }
+  .quiz-option.correct{ border-color:var(--brass); background:rgba(139,92,246,0.12); color:var(--brass-bright); }
   .quiz-option.wrong{ border-color:#ef4444; background:rgba(239,68,68,0.12); color:#ff8fa3; }
   .quiz-explain{ margin-top:16px; padding:14px 16px; background:var(--panel-2); border-inline-start:3px solid var(--rust); font-size:14px; color:var(--muted); line-height:1.7; }
   .quiz-nav{ margin-top:18px; text-align:center; }
@@ -876,7 +876,7 @@
     width:20px; height:20px; border:1px solid var(--line); border-radius:50%; display:inline-flex;
     align-items:center; justify-content:center; font-size:11px; flex-shrink:0; transition:.25s; color:var(--muted);
   }
-  .pw-criteria li.ok .pw-c-icon{ border-color:var(--brass); color:var(--brass); background:rgba(16,185,129,0.1); }
+  .pw-criteria li.ok .pw-c-icon{ border-color:var(--brass); color:var(--brass); background:rgba(139,92,246,0.1); }
   .pw-note{ font-size:12.5px; color:var(--muted); border-top:1px solid var(--line); padding-top:18px; line-height:1.7; }
 
   /* ---------- LINK-SPOTTING GAME ---------- */
@@ -889,7 +889,7 @@
   }
   .lg-option:hover:not(:disabled){ border-color:var(--rust); }
   .lg-option:disabled{ cursor:default; }
-  .lg-option.correct{ border-color:var(--brass); background:rgba(16,185,129,0.12); color:var(--brass-bright); }
+  .lg-option.correct{ border-color:var(--brass); background:rgba(139,92,246,0.12); color:var(--brass-bright); }
   .lg-option.wrong{ border-color:#ef4444; background:rgba(239,68,68,0.12); color:#ff8fa3; }
 
   /* ---------- INCIDENT RESPONSE WIZARD ---------- */
@@ -901,7 +901,7 @@
     transition:.2s; border-radius:3px; text-align:center;
   }
   .incident-btn:hover{ border-color:var(--rust); color:var(--rust-bright); }
-  .incident-btn.active{ border-color:var(--brass); background:rgba(16,185,129,0.1); color:var(--brass-bright); }
+  .incident-btn.active{ border-color:var(--brass); background:rgba(139,92,246,0.1); color:var(--brass-bright); }
   .incident-steps{ counter-reset:incstep; list-style:none; padding:0; }
   .incident-steps li{
     counter-increment:incstep; position:relative; padding:14px 0; padding-inline-start:46px;
@@ -944,7 +944,7 @@
     padding:14px 16px; font-size:14px; color:var(--muted); line-height:1.7; border-radius:3px; transition:.25s;
   }
   .rf-exp strong{ color:var(--text); display:block; margin-bottom:4px; }
-  .rf-exp.active{ border-inline-start-color:var(--brass); background:rgba(16,185,129,0.06); color:var(--text); }
+  .rf-exp.active{ border-inline-start-color:var(--brass); background:rgba(139,92,246,0.06); color:var(--text); }
 
   /* ---------- WHAT-IF HACKED CALCULATOR ---------- */
   .wi-field{ margin-bottom:20px; }
@@ -992,17 +992,17 @@
     backdrop-filter:blur(16px) saturate(160%);
     -webkit-backdrop-filter:blur(16px) saturate(160%);
     border:1px solid var(--glass-border) !important;
-    box-shadow:var(--glass-shadow), 0 0 16px rgba(16,185,129,0.10), 0 0 30px rgba(56,189,248,0.08);
+    box-shadow:var(--glass-shadow), 0 0 16px rgba(139,92,246,0.10), 0 0 30px rgba(232,121,249,0.08);
     transition:box-shadow .3s ease, transform .3s ease, border-color .3s ease;
   }
   .tool-card{ background:var(--glass-bg-2) !important; }
   .lesson-block:hover, .tool-card:hover, .glossary-item:hover, .threat:hover, .resource-card:hover{
-    border-color:rgba(16,185,129,0.35) !important;
-    box-shadow:var(--glass-shadow), 0 0 22px rgba(16,185,129,0.22), 0 0 44px rgba(56,189,248,0.16);
+    border-color:rgba(139,92,246,0.35) !important;
+    box-shadow:var(--glass-shadow), 0 0 22px rgba(139,92,246,0.22), 0 0 44px rgba(232,121,249,0.16);
   }
   .ios-dock{
     box-shadow:0 12px 34px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.25),
-               0 0 18px rgba(16,185,129,0.15), 0 0 34px rgba(56,189,248,0.12);
+               0 0 18px rgba(139,92,246,0.15), 0 0 34px rgba(232,121,249,0.12);
   }
   /* ---------- SECURITY TIPS TICKER ---------- */
   #tips-ticker{
@@ -1079,6 +1079,28 @@
   /* ---------- QUIZ / SIM RESULT ACTIONS ---------- */
   .quiz-result-actions{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:6px; }
 
+  /* ---------- LEARNING TRACK TABS ---------- */
+  .track-tabs{ display:flex; gap:8px; flex-wrap:wrap; margin:0 0 26px; }
+  .track-tab{
+    display:flex; align-items:center; gap:7px; padding:8px 16px; border-radius:999px;
+    border:1px solid var(--line); background:var(--panel); color:var(--muted);
+    font-size:13.5px; font-family:inherit; cursor:pointer; transition:border-color .2s, color .2s, background .2s;
+  }
+  .track-tab:hover{ border-color:var(--brass); color:var(--text); }
+  .track-tab.active{
+    background:linear-gradient(90deg, var(--brass), var(--rust)); color:var(--ink-fixed);
+    border-color:transparent; font-weight:700;
+  }
+  .track-count{
+    font-family:var(--mono); font-size:11px; opacity:.9; background:rgba(255,255,255,0.12);
+    padding:1px 8px; border-radius:999px; min-width:28px; text-align:center;
+  }
+  .track-tab.active .track-count{ background:rgba(0,0,0,0.2); }
+  @media (max-width:640px){
+    .track-tabs{ flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:4px; margin-bottom:22px; }
+    .track-tab{ flex-shrink:0; }
+  }
+
   /* ---------- MINI CTF (hidden flags) ---------- */
   .ctf-box{
     max-width:620px; margin:0 auto; border-radius:14px; padding:26px 24px;
@@ -1087,7 +1109,7 @@
   }
   .ctf-flags-list{ display:flex; flex-direction:column; gap:10px; margin-bottom:18px; }
   .ctf-flag-item{ display:flex; align-items:center; gap:12px; padding:10px 12px; border-radius:10px; background:rgba(255,255,255,0.04); font-size:13px; color:var(--muted); }
-  .ctf-flag-item.done{ background:rgba(16,185,129,0.1); color:var(--text); }
+  .ctf-flag-item.done{ background:rgba(139,92,246,0.1); color:var(--text); }
   .ctf-flag-num{ width:26px; height:26px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:12.5px; color:var(--text); }
   .ctf-flag-item.done .ctf-flag-num{ background:var(--brass); color:var(--ink-fixed); }
   .ctf-encoded{ background:var(--ink); border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:18px; }
@@ -1128,7 +1150,7 @@
     animation:lbDrift2 32s ease-in-out infinite alternate;
   }
   .liquid-bg .lb3{
-    width:380px; height:380px; background:#a855f7; top:45%; inset-inline-start:40%;
+    width:380px; height:380px; background:#d946ef; top:45%; inset-inline-start:40%;
     opacity:.10;
     animation:lbDrift3 38s ease-in-out infinite alternate;
   }
@@ -1149,7 +1171,7 @@
 
   .glow-cta{
     position:relative; display:inline-block; border-radius:14px; padding:2.5px;
-    background:linear-gradient(120deg, #10b981, #38bdf8, #a855f7, #10b981, #38bdf8);
+    background:linear-gradient(120deg, #8b5cf6, #e879f9, #d946ef, #8b5cf6, #e879f9);
     background-size:300% 300%;
     animation:glowShift 4s ease infinite;
   }
@@ -1336,19 +1358,19 @@
 <section class="hero">
   <div class="hero-watermark">
     <svg viewBox="0 0 400 400" fill="none">
-      <path d="M40 130 V60 H110" stroke="#10b981" stroke-width="2"/>
-      <path d="M360 130 V60 H290" stroke="#10b981" stroke-width="2"/>
-      <path d="M40 270 V340 H110" stroke="#10b981" stroke-width="2"/>
-      <path d="M360 270 V340 H290" stroke="#10b981" stroke-width="2"/>
-      <ellipse cx="200" cy="200" rx="150" ry="80" stroke="#38bdf8" stroke-width="1.2"/>
-      <circle cx="200" cy="200" r="62" stroke="#38bdf8" stroke-width="1.2"/>
-      <circle cx="200" cy="200" r="30" fill="#10b981" opacity=".5"/>
-      <circle cx="200" cy="200" r="8" fill="#00ff87"/>
-      <rect x="150" y="150" width="30" height="30" stroke="#10b981" stroke-width="1"/>
-      <rect x="220" y="150" width="30" height="30" stroke="#10b981" stroke-width="1"/>
-      <rect x="150" y="220" width="30" height="30" stroke="#10b981" stroke-width="1"/>
-      <rect x="220" y="220" width="30" height="30" stroke="#10b981" stroke-width="1"/>
-      <line class="eye-scan" x1="60" y1="120" x2="340" y2="120" stroke="#00ff87" stroke-width="1.5"/>
+      <path d="M40 130 V60 H110" stroke="#8b5cf6" stroke-width="2"/>
+      <path d="M360 130 V60 H290" stroke="#8b5cf6" stroke-width="2"/>
+      <path d="M40 270 V340 H110" stroke="#8b5cf6" stroke-width="2"/>
+      <path d="M360 270 V340 H290" stroke="#8b5cf6" stroke-width="2"/>
+      <ellipse cx="200" cy="200" rx="150" ry="80" stroke="#e879f9" stroke-width="1.2"/>
+      <circle cx="200" cy="200" r="62" stroke="#e879f9" stroke-width="1.2"/>
+      <circle cx="200" cy="200" r="30" fill="#8b5cf6" opacity=".5"/>
+      <circle cx="200" cy="200" r="8" fill="#c4b5fd"/>
+      <rect x="150" y="150" width="30" height="30" stroke="#8b5cf6" stroke-width="1"/>
+      <rect x="220" y="150" width="30" height="30" stroke="#8b5cf6" stroke-width="1"/>
+      <rect x="150" y="220" width="30" height="30" stroke="#8b5cf6" stroke-width="1"/>
+      <rect x="220" y="220" width="30" height="30" stroke="#8b5cf6" stroke-width="1"/>
+      <line class="eye-scan" x1="60" y1="120" x2="340" y2="120" stroke="#c4b5fd" stroke-width="1.5"/>
       <text x="60" y="290" class="eye-label">ID&gt;VN-4471-0X</text>
       <text x="60" y="304" class="eye-label">STATUS&gt;MONITORING</text>
     </svg>
@@ -1367,13 +1389,13 @@
       <svg viewBox="0 0 300 300">
         <circle cx="150" cy="150" r="130" fill="none" stroke="#252932" stroke-width="1"/>
         <circle cx="150" cy="150" r="100" fill="none" stroke="#252932" stroke-width="1"/>
-        <circle cx="150" cy="150" r="70" fill="none" stroke="#38bdf8" stroke-width="1"/>
-        <circle cx="150" cy="150" r="40" fill="none" stroke="#10b981" stroke-width="1.5"/>
-        <circle cx="150" cy="150" r="6" fill="#00ff87"/>
+        <circle cx="150" cy="150" r="70" fill="none" stroke="#e879f9" stroke-width="1"/>
+        <circle cx="150" cy="150" r="40" fill="none" stroke="#8b5cf6" stroke-width="1.5"/>
+        <circle cx="150" cy="150" r="6" fill="#c4b5fd"/>
         <text x="150" y="14" text-anchor="middle" class="ring-label">المحيط الخارجي</text>
         <text x="150" y="54" text-anchor="middle" class="ring-label">الشبكة</text>
-        <text x="150" y="84" text-anchor="middle" class="ring-label" fill="#38bdf8">الجهاز</text>
-        <text x="150" y="114" text-anchor="middle" class="ring-label" fill="#10b981">البيانات</text>
+        <text x="150" y="84" text-anchor="middle" class="ring-label" fill="#e879f9">الجهاز</text>
+        <text x="150" y="114" text-anchor="middle" class="ring-label" fill="#8b5cf6">البيانات</text>
         <line x1="150" y1="20" x2="150" y2="150" stroke="#252932" stroke-width="1" stroke-dasharray="2 4"/>
       </svg>
     </div>
@@ -1420,38 +1442,38 @@
         <ellipse cx="200" cy="200" rx="150" ry="110" stroke="#252932" stroke-width="1"/>
 
         <g>
-          <circle cx="150" cy="120" r="3" fill="#38bdf8"/>
-          <circle class="pulse-ring" cx="150" cy="120" r="3" stroke="#38bdf8" style="animation-delay:0s"/>
+          <circle cx="150" cy="120" r="3" fill="#e879f9"/>
+          <circle class="pulse-ring" cx="150" cy="120" r="3" stroke="#e879f9" style="animation-delay:0s"/>
         </g>
         <g>
-          <circle cx="265" cy="95" r="3" fill="#10b981"/>
-          <circle class="pulse-ring" cx="265" cy="95" r="3" stroke="#10b981" style="animation-delay:.5s"/>
+          <circle cx="265" cy="95" r="3" fill="#8b5cf6"/>
+          <circle class="pulse-ring" cx="265" cy="95" r="3" stroke="#8b5cf6" style="animation-delay:.5s"/>
         </g>
         <g>
-          <circle cx="310" cy="215" r="3" fill="#38bdf8"/>
-          <circle class="pulse-ring" cx="310" cy="215" r="3" stroke="#38bdf8" style="animation-delay:1s"/>
+          <circle cx="310" cy="215" r="3" fill="#e879f9"/>
+          <circle class="pulse-ring" cx="310" cy="215" r="3" stroke="#e879f9" style="animation-delay:1s"/>
         </g>
         <g>
-          <circle cx="235" cy="295" r="3" fill="#10b981"/>
-          <circle class="pulse-ring" cx="235" cy="295" r="3" stroke="#10b981" style="animation-delay:1.5s"/>
+          <circle cx="235" cy="295" r="3" fill="#8b5cf6"/>
+          <circle class="pulse-ring" cx="235" cy="295" r="3" stroke="#8b5cf6" style="animation-delay:1.5s"/>
         </g>
         <g>
-          <circle cx="120" cy="255" r="3" fill="#38bdf8"/>
-          <circle class="pulse-ring" cx="120" cy="255" r="3" stroke="#38bdf8" style="animation-delay:.9s"/>
+          <circle cx="120" cy="255" r="3" fill="#e879f9"/>
+          <circle class="pulse-ring" cx="120" cy="255" r="3" stroke="#e879f9" style="animation-delay:.9s"/>
         </g>
         <g>
-          <circle cx="95" cy="165" r="3" fill="#10b981"/>
-          <circle class="pulse-ring" cx="95" cy="165" r="3" stroke="#10b981" style="animation-delay:1.9s"/>
+          <circle cx="95" cy="165" r="3" fill="#8b5cf6"/>
+          <circle class="pulse-ring" cx="95" cy="165" r="3" stroke="#8b5cf6" style="animation-delay:1.9s"/>
         </g>
         <g>
-          <circle cx="205" cy="185" r="3" fill="#38bdf8"/>
-          <circle class="pulse-ring" cx="205" cy="185" r="3" stroke="#38bdf8" style="animation-delay:2.3s"/>
+          <circle cx="205" cy="185" r="3" fill="#e879f9"/>
+          <circle class="pulse-ring" cx="205" cy="185" r="3" stroke="#e879f9" style="animation-delay:2.3s"/>
         </g>
       </svg>
     </div>
     <div class="globe-legend">
-      <span><i style="background:#38bdf8"></i> نشاط مرصود</span>
-      <span><i style="background:#10b981"></i> تم إيقافه</span>
+      <span><i style="background:#e879f9"></i> نشاط مرصود</span>
+      <span><i style="background:#8b5cf6"></i> تم إيقافه</span>
     </div>
   </div>
 </section>
@@ -1573,10 +1595,17 @@
       <p>الأمن السيبراني لا يقتصر على الهاتف فقط. اثنا عشر درسًا مركّزة تغطي الصورة الكاملة، من اختراق الأجهزة إلى الاحتيال المالي وأمان الشبكة المنزلية.</p>
     </div>
 
+    <div class="track-tabs" data-scope="lessons">
+      <button type="button" class="track-tab" onclick="trackFilter('lessons','all')">الكل <span class="track-count" id="track-count-lessons-all"></span></button>
+      <button type="button" class="track-tab" onclick="trackFilter('lessons','beginner')">🟢 مبتدئ <span class="track-count" id="track-count-lessons-beginner"></span></button>
+      <button type="button" class="track-tab" onclick="trackFilter('lessons','intermediate')">🟡 متوسط <span class="track-count" id="track-count-lessons-intermediate"></span></button>
+      <button type="button" class="track-tab" onclick="trackFilter('lessons','advanced')">🔴 متقدم <span class="track-count" id="track-count-lessons-advanced"></span></button>
+    </div>
+
     <div class="lessons-list">
-      <details class="lesson-block" id="lesson-01" open>
+      <details class="lesson-block" id="lesson-01" data-level="intermediate" open>
         <summary>
-          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li1" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="9" y="3" width="14" height="26" rx="2.5" stroke="url(#li1)" stroke-width="1.8"/><line x1="9" y1="8" x2="23" y2="8" stroke="url(#li1)" stroke-width="1.4"/><line x1="9" y1="24" x2="23" y2="24" stroke="url(#li1)" stroke-width="1.4"/><line x1="16" y1="14" x2="16" y2="20" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="23" r="1.1" fill="#38bdf8"/></svg></span>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li1" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><rect x="9" y="3" width="14" height="26" rx="2.5" stroke="url(#li1)" stroke-width="1.8"/><line x1="9" y1="8" x2="23" y2="8" stroke="url(#li1)" stroke-width="1.4"/><line x1="9" y1="24" x2="23" y2="24" stroke="url(#li1)" stroke-width="1.4"/><line x1="16" y1="14" x2="16" y2="20" stroke="#e879f9" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="23" r="1.1" fill="#e879f9"/></svg></span>
           <span class="lesson-num">01</span>
           <span class="lesson-title">كيف تُخترق الهواتف؟ نظرة عامة على الطرق الشائعة</span>
           <span class="quiz-score-badge" id="qbadge-lesson-01"></span>
@@ -1603,9 +1632,9 @@
         </div>
       </details>
 
-      <details class="lesson-block" id="lesson-02">
+      <details class="lesson-block" id="lesson-02" data-level="beginner">
         <summary>
-          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li2" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="4" y="4" width="24" height="24" rx="5" stroke="url(#li2)" stroke-width="1.8"/><ellipse cx="16" cy="17" rx="6" ry="7" stroke="#38bdf8" stroke-width="1.6"/><path d="M16 10 V7 M12 9 L10 6.5 M20 9 L22 6.5" stroke="#38bdf8" stroke-width="1.4" stroke-linecap="round"/><path d="M10 17 H6 M10 21 H7 M22 17 H26 M22 21 H25" stroke="#38bdf8" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li2" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><rect x="4" y="4" width="24" height="24" rx="5" stroke="url(#li2)" stroke-width="1.8"/><ellipse cx="16" cy="17" rx="6" ry="7" stroke="#e879f9" stroke-width="1.6"/><path d="M16 10 V7 M12 9 L10 6.5 M20 9 L22 6.5" stroke="#e879f9" stroke-width="1.4" stroke-linecap="round"/><path d="M10 17 H6 M10 21 H7 M22 17 H26 M22 21 H25" stroke="#e879f9" stroke-width="1.4" stroke-linecap="round"/></svg></span>
           <span class="lesson-num">02</span>
           <span class="lesson-title">خطوات عملية لحماية هاتفك من الاختراق</span>
           <span class="quiz-score-badge" id="qbadge-lesson-02"></span>
@@ -1628,9 +1657,9 @@
         </div>
       </details>
 
-      <details class="lesson-block" id="lesson-03">
+      <details class="lesson-block" id="lesson-03" data-level="intermediate">
         <summary>
-          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li3" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><path d="M6 14 a15 15 0 0 1 20 0" stroke="url(#li3)" stroke-width="1.8" stroke-linecap="round"/><path d="M10 19 a9 9 0 0 1 12 0" stroke="url(#li3)" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="24" r="1.6" fill="#38bdf8"/><rect x="21" y="4" width="8" height="11" rx="1.5" stroke="#38bdf8" stroke-width="1.4"/><line x1="23" y1="7" x2="27" y2="7" stroke="#38bdf8" stroke-width="1.1"/></svg></span>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li3" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><path d="M6 14 a15 15 0 0 1 20 0" stroke="url(#li3)" stroke-width="1.8" stroke-linecap="round"/><path d="M10 19 a9 9 0 0 1 12 0" stroke="url(#li3)" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="24" r="1.6" fill="#e879f9"/><rect x="21" y="4" width="8" height="11" rx="1.5" stroke="#e879f9" stroke-width="1.4"/><line x1="23" y1="7" x2="27" y2="7" stroke="#e879f9" stroke-width="1.1"/></svg></span>
           <span class="lesson-num">03</span>
           <span class="lesson-title">التطبيقات الخبيثة وصلاحيات مشبوهة</span>
           <span class="quiz-score-badge" id="qbadge-lesson-03"></span>
@@ -1651,9 +1680,9 @@
         </div>
       </details>
 
-      <details class="lesson-block" id="lesson-04">
+      <details class="lesson-block" id="lesson-04" data-level="beginner">
         <summary>
-          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li4" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><circle cx="11" cy="11" r="6" stroke="url(#li4)" stroke-width="1.8"/><path d="M15.5 15.5 L27 27 M22 22 L26 18 M25 25 L29 21" stroke="url(#li4)" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li4" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><circle cx="11" cy="11" r="6" stroke="url(#li4)" stroke-width="1.8"/><path d="M15.5 15.5 L27 27 M22 22 L26 18 M25 25 L29 21" stroke="url(#li4)" stroke-width="1.8" stroke-linecap="round"/></svg></span>
           <span class="lesson-num">04</span>
           <span class="lesson-title">أساسيات كلمات المرور القوية</span>
           <span class="quiz-score-badge" id="qbadge-lesson-04"></span>
@@ -1673,9 +1702,9 @@
         </div>
       </details>
 
-      <details class="lesson-block" id="lesson-05">
+      <details class="lesson-block" id="lesson-05" data-level="beginner">
         <summary>
-          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li5" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><path d="M16 3 L28 8 V16 C28 23 23 28 16 30 C9 28 4 23 4 16 V8 Z" stroke="url(#li5)" stroke-width="1.8"/><circle cx="16" cy="15" r="2.4" fill="#38bdf8"/></svg></span>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li5" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><path d="M16 3 L28 8 V16 C28 23 23 28 16 30 C9 28 4 23 4 16 V8 Z" stroke="url(#li5)" stroke-width="1.8"/><circle cx="16" cy="15" r="2.4" fill="#e879f9"/></svg></span>
           <span class="lesson-num">05</span>
           <span class="lesson-title">ما هو الأمن السيبراني ولماذا يهمك؟</span>
           <span class="quiz-score-badge" id="qbadge-lesson-05"></span>
@@ -1696,9 +1725,9 @@
         </div>
       </details>
 
-      <details class="lesson-block" id="lesson-06">
+      <details class="lesson-block" id="lesson-06" data-level="beginner">
         <summary>
-          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li6" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="4" y="8" width="24" height="17" rx="1.5" stroke="url(#li6)" stroke-width="1.8"/><path d="M4 9 L16 19 L28 9" stroke="url(#li6)" stroke-width="1.8" fill="none"/><path d="M20 20 C24 20 26 23 25 26 C24.5 28 21.5 28 21.5 26" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg></span>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li6" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><rect x="4" y="8" width="24" height="17" rx="1.5" stroke="url(#li6)" stroke-width="1.8"/><path d="M4 9 L16 19 L28 9" stroke="url(#li6)" stroke-width="1.8" fill="none"/><path d="M20 20 C24 20 26 23 25 26 C24.5 28 21.5 28 21.5 26" stroke="#e879f9" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg></span>
           <span class="lesson-num">06</span>
           <span class="lesson-title">كيف تكتشف رسائل التصيد الاحتيالي</span>
           <span class="quiz-score-badge" id="qbadge-lesson-06"></span>
@@ -1723,9 +1752,9 @@
         </div>
       </details>
 
-      <details class="lesson-block" id="lesson-07">
+      <details class="lesson-block" id="lesson-07" data-level="advanced">
         <summary>
-          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li7" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="4" y="13" width="24" height="14" rx="2" stroke="url(#li7)" stroke-width="1.8"/><path d="M11 13 V9 a3 3 0 0 1 3-3 h4 a3 3 0 0 1 3 3 v4" stroke="url(#li7)" stroke-width="1.8" fill="none"/><line x1="4" y1="19" x2="28" y2="19" stroke="#38bdf8" stroke-width="1.4"/><line x1="16" y1="17" x2="16" y2="21.5" stroke="#38bdf8" stroke-width="1.4"/></svg></span>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li7" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><rect x="4" y="13" width="24" height="14" rx="2" stroke="url(#li7)" stroke-width="1.8"/><path d="M11 13 V9 a3 3 0 0 1 3-3 h4 a3 3 0 0 1 3 3 v4" stroke="url(#li7)" stroke-width="1.8" fill="none"/><line x1="4" y1="19" x2="28" y2="19" stroke="#e879f9" stroke-width="1.4"/><line x1="16" y1="17" x2="16" y2="21.5" stroke="#e879f9" stroke-width="1.4"/></svg></span>
           <span class="lesson-num">07</span>
           <span class="lesson-title">أشهر أدوات الاختراق: نظرة تعريفية</span>
           <span class="quiz-score-badge" id="qbadge-lesson-07"></span>
@@ -1749,9 +1778,9 @@
         </div>
       </details>
 
-      <details class="lesson-block" id="lesson-08">
+      <details class="lesson-block" id="lesson-08" data-level="advanced">
         <summary>
-          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li8" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><path d="M16 3 L28 8 V16 C28 23 23 28 16 30 C9 28 4 23 4 16 V8 Z" stroke="url(#li8)" stroke-width="1.8"/><path d="M11 16 L14.5 19.5 L21 12.5" stroke="#38bdf8" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li8" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><path d="M16 3 L28 8 V16 C28 23 23 28 16 30 C9 28 4 23 4 16 V8 Z" stroke="url(#li8)" stroke-width="1.8"/><path d="M11 16 L14.5 19.5 L21 12.5" stroke="#e879f9" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="lesson-num">08</span>
           <span class="lesson-title">أدوات الحماية المقابلة: كيف يدافع المحترفون</span>
           <span class="quiz-score-badge" id="qbadge-lesson-08"></span>
@@ -1775,9 +1804,9 @@
         </div>
       </details>
 
-      <details class="lesson-block" id="lesson-09">
+      <details class="lesson-block" id="lesson-09" data-level="advanced">
         <summary>
-          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li9" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><circle cx="16" cy="14" r="10" stroke="url(#li9)" stroke-width="1.8"/><path d="M16 9 v10 M13 11.3 c0-1.5 1.5-2.3 3-2.3s3 .9 3 2.3-1.5 1.9-3 2.4-3 .9-3 2.4 1.5 2.3 3 2.3 3-.8 3-2.3" stroke="#38bdf8" stroke-width="1.3" stroke-linecap="round" fill="none"/><path d="M6 27 l5-4 4 2 6-6 5 3" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg></span>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li9" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><circle cx="16" cy="14" r="10" stroke="url(#li9)" stroke-width="1.8"/><path d="M16 9 v10 M13 11.3 c0-1.5 1.5-2.3 3-2.3s3 .9 3 2.3-1.5 1.9-3 2.4-3 .9-3 2.4 1.5 2.3 3 2.3 3-.8 3-2.3" stroke="#e879f9" stroke-width="1.3" stroke-linecap="round" fill="none"/><path d="M6 27 l5-4 4 2 6-6 5 3" stroke="#e879f9" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg></span>
           <span class="lesson-num">09</span>
           <span class="lesson-title">الاحتيال المالي: العملات المشفرة والاستثمار الوهمي</span>
           <span class="quiz-score-badge" id="qbadge-lesson-09"></span>
@@ -1809,9 +1838,9 @@
         </div>
       </details>
 
-      <details class="lesson-block" id="lesson-10">
+      <details class="lesson-block" id="lesson-10" data-level="intermediate">
         <summary>
-          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li10" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="5" y="20" width="22" height="7" rx="1.5" stroke="url(#li10)" stroke-width="1.8"/><circle cx="10" cy="23.5" r="1" fill="#38bdf8"/><circle cx="14" cy="23.5" r="1" fill="#38bdf8"/><path d="M12 16 a6 6 0 0 1 8 0" stroke="#38bdf8" stroke-width="1.4" stroke-linecap="round" fill="none"/><path d="M9 12.5 a12 12 0 0 1 14 0" stroke="#38bdf8" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg></span>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li10" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><rect x="5" y="20" width="22" height="7" rx="1.5" stroke="url(#li10)" stroke-width="1.8"/><circle cx="10" cy="23.5" r="1" fill="#e879f9"/><circle cx="14" cy="23.5" r="1" fill="#e879f9"/><path d="M12 16 a6 6 0 0 1 8 0" stroke="#e879f9" stroke-width="1.4" stroke-linecap="round" fill="none"/><path d="M9 12.5 a12 12 0 0 1 14 0" stroke="#e879f9" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg></span>
           <span class="lesson-num">10</span>
           <span class="lesson-title">أمان الشبكة المنزلية والراوتر</span>
           <span class="quiz-score-badge" id="qbadge-lesson-10"></span>
@@ -1837,9 +1866,9 @@
         </div>
       </details>
 
-      <details class="lesson-block" id="lesson-11">
+      <details class="lesson-block" id="lesson-11" data-level="intermediate">
         <summary>
-          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li11" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="3" y="7" width="26" height="8" rx="2" stroke="url(#li11)" stroke-width="1.8"/><circle cx="9" cy="11" r="1" fill="#38bdf8"/><circle cx="21" cy="22" r="6" stroke="#38bdf8" stroke-width="1.8"/><line x1="25.3" y1="26.3" x2="29" y2="30" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li11" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><rect x="3" y="7" width="26" height="8" rx="2" stroke="url(#li11)" stroke-width="1.8"/><circle cx="9" cy="11" r="1" fill="#e879f9"/><circle cx="21" cy="22" r="6" stroke="#e879f9" stroke-width="1.8"/><line x1="25.3" y1="26.3" x2="29" y2="30" stroke="#e879f9" stroke-width="1.8" stroke-linecap="round"/></svg></span>
           <span class="lesson-num">11</span>
           <span class="lesson-title">تعلّم قراءة الرابط (URL) بعين الخبير</span>
           <span class="quiz-score-badge" id="qbadge-lesson-11"></span>
@@ -1872,9 +1901,9 @@
         </div>
       </details>
 
-      <details class="lesson-block" id="lesson-12">
+      <details class="lesson-block" id="lesson-12" data-level="beginner">
         <summary>
-          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li12" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><path d="M16 3 L28 8 V16 C28 23 23 28 16 30 C9 28 4 23 4 16 V8 Z" stroke="url(#li12)" stroke-width="1.8"/><line x1="16" y1="11" x2="16" y2="18" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="22" r="1.2" fill="#38bdf8"/></svg></span>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li12" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><path d="M16 3 L28 8 V16 C28 23 23 28 16 30 C9 28 4 23 4 16 V8 Z" stroke="url(#li12)" stroke-width="1.8"/><line x1="16" y1="11" x2="16" y2="18" stroke="#e879f9" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="22" r="1.2" fill="#e879f9"/></svg></span>
           <span class="lesson-num">12</span>
           <span class="lesson-title">علامات تدل أن موقعًا غير آمن (دليل المبتدئين)</span>
           <span class="quiz-score-badge" id="qbadge-lesson-12"></span>
@@ -1916,10 +1945,16 @@
       <h2>أساسيات البرمجة لمن يريد البدء</h2>
       <p>قسم منفصل عن دروس الأمان أعلاه، لمن يريد فهم كيف تُبنى المواقع والتطبيقات من الصفر. خمسة دروس مركّزة: الفكرة العامة، ثم HTML وCSS وJavaScript، ثم أشهر الأدوات المستخدمة فعليًا في بناء المواقع والتطبيقات.</p>
     </div>
+    <div class="track-tabs" data-scope="coding">
+      <button type="button" class="track-tab" onclick="trackFilter('coding','all')">الكل <span class="track-count" id="track-count-coding-all"></span></button>
+      <button type="button" class="track-tab" onclick="trackFilter('coding','beginner')">🟢 مبتدئ <span class="track-count" id="track-count-coding-beginner"></span></button>
+      <button type="button" class="track-tab" onclick="trackFilter('coding','intermediate')">🟡 متوسط <span class="track-count" id="track-count-coding-intermediate"></span></button>
+      <button type="button" class="track-tab" onclick="trackFilter('coding','advanced')">🔴 متقدم <span class="track-count" id="track-count-coding-advanced"></span></button>
+    </div>
     <div class="lessons-list">
-      <details class="lesson-block" id="code-01">
+      <details class="lesson-block" id="code-01" data-level="beginner">
         <summary>
-          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="liC1" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><path d="M16 4 a8 8 0 0 1 5 14.3 c-1 .8-1.5 1.7-1.5 2.9v1.3h-7v-1.3c0-1.2-.5-2.1-1.5-2.9A8 8 0 0 1 16 4z" stroke="url(#liC1)" stroke-width="1.8"/><line x1="13" y1="26" x2="19" y2="26" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round"/><line x1="14" y1="29" x2="18" y2="29" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="liC1" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><path d="M16 4 a8 8 0 0 1 5 14.3 c-1 .8-1.5 1.7-1.5 2.9v1.3h-7v-1.3c0-1.2-.5-2.1-1.5-2.9A8 8 0 0 1 16 4z" stroke="url(#liC1)" stroke-width="1.8"/><line x1="13" y1="26" x2="19" y2="26" stroke="#e879f9" stroke-width="1.6" stroke-linecap="round"/><line x1="14" y1="29" x2="18" y2="29" stroke="#e879f9" stroke-width="1.6" stroke-linecap="round"/></svg></span>
           <span class="lesson-num">01</span>
           <span class="lesson-title">ما الذي يحدث فعليًا عند زيارة موقع؟</span>
           <span class="quiz-score-badge" id="qbadge-code-01"></span>
@@ -1942,9 +1977,9 @@
         </div>
       </details>
 
-      <details class="lesson-block" id="code-02">
+      <details class="lesson-block" id="code-02" data-level="beginner">
         <summary>
-          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="liC2" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><path d="M11 9 L4 16 L11 23" stroke="url(#liC2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M21 9 L28 16 L21 23" stroke="url(#liC2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="18" y1="6" x2="14" y2="26" stroke="#38bdf8" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="liC2" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><path d="M11 9 L4 16 L11 23" stroke="url(#liC2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M21 9 L28 16 L21 23" stroke="url(#liC2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="18" y1="6" x2="14" y2="26" stroke="#e879f9" stroke-width="1.4" stroke-linecap="round"/></svg></span>
           <span class="lesson-num">02</span>
           <span class="lesson-title">HTML — لغة هيكلة الصفحات</span>
           <span class="quiz-score-badge" id="qbadge-code-02"></span>
@@ -1969,9 +2004,9 @@
         </div>
       </details>
 
-      <details class="lesson-block" id="code-03">
+      <details class="lesson-block" id="code-03" data-level="intermediate">
         <summary>
-          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="liC3" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><path d="M16 5 a11 9 0 1 0 0 18 c2 0 2-2 .5-3 c-1-1-.3-2.5 1-2.5 h2.5 a7 6 0 0 0 7-6 c0-3.5-4.7-6.5-11-6.5z" stroke="url(#liC3)" stroke-width="1.6"/><circle cx="11" cy="14" r="1.3" fill="#38bdf8"/><circle cx="16" cy="11" r="1.3" fill="#00ff87"/><circle cx="21" cy="14" r="1.3" fill="#38bdf8"/><circle cx="12" cy="19" r="1.3" fill="#00ff87"/></svg></span>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="liC3" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><path d="M16 5 a11 9 0 1 0 0 18 c2 0 2-2 .5-3 c-1-1-.3-2.5 1-2.5 h2.5 a7 6 0 0 0 7-6 c0-3.5-4.7-6.5-11-6.5z" stroke="url(#liC3)" stroke-width="1.6"/><circle cx="11" cy="14" r="1.3" fill="#e879f9"/><circle cx="16" cy="11" r="1.3" fill="#c4b5fd"/><circle cx="21" cy="14" r="1.3" fill="#e879f9"/><circle cx="12" cy="19" r="1.3" fill="#c4b5fd"/></svg></span>
           <span class="lesson-num">03</span>
           <span class="lesson-title">CSS — لغة التنسيق والتصميم</span>
           <span class="quiz-score-badge" id="qbadge-code-03"></span>
@@ -1980,7 +2015,7 @@
         <div class="lesson-body">
           <p>إذا كانت HTML تضع المحتوى على الصفحة، فـCSS (Cascading Style Sheets) تقرر كيف يبدو هذا المحتوى. مثال بسيط:</p>
           <div class="code-block">h1 {
-  color: #10b981;
+  color: #8b5cf6;
   text-align: center;
 }</div>
           <ul>
@@ -1998,9 +2033,9 @@
         </div>
       </details>
 
-      <details class="lesson-block" id="code-04">
+      <details class="lesson-block" id="code-04" data-level="intermediate">
         <summary>
-          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="liC4" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><path d="M18 4 L8 18 h6 l-2 10 12-16 h-6 z" stroke="url(#liC4)" stroke-width="1.6" stroke-linejoin="round" fill="none"/></svg></span>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="liC4" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><path d="M18 4 L8 18 h6 l-2 10 12-16 h-6 z" stroke="url(#liC4)" stroke-width="1.6" stroke-linejoin="round" fill="none"/></svg></span>
           <span class="lesson-num">04</span>
           <span class="lesson-title">JavaScript — لغة البرمجة التفاعلية</span>
           <span class="quiz-score-badge" id="qbadge-code-04"></span>
@@ -2026,9 +2061,9 @@
         </div>
       </details>
 
-      <details class="lesson-block" id="code-05">
+      <details class="lesson-block" id="code-05" data-level="advanced">
         <summary>
-          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="liC5" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="5" y="14" width="22" height="13" rx="2" stroke="url(#liC5)" stroke-width="1.6"/><path d="M11 14 v-3 a2 2 0 0 1 2-2 h6 a2 2 0 0 1 2 2 v3" stroke="#38bdf8" stroke-width="1.6" fill="none"/><line x1="5" y1="20" x2="27" y2="20" stroke="#38bdf8" stroke-width="1.4"/><rect x="14" y="18" width="4" height="4" rx="0.5" fill="#00ff87"/></svg></span>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="liC5" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><rect x="5" y="14" width="22" height="13" rx="2" stroke="url(#liC5)" stroke-width="1.6"/><path d="M11 14 v-3 a2 2 0 0 1 2-2 h6 a2 2 0 0 1 2 2 v3" stroke="#e879f9" stroke-width="1.6" fill="none"/><line x1="5" y1="20" x2="27" y2="20" stroke="#e879f9" stroke-width="1.4"/><rect x="14" y="18" width="4" height="4" rx="0.5" fill="#c4b5fd"/></svg></span>
           <span class="lesson-num">05</span>
           <span class="lesson-title">أشهر أدوات ولغات البرمجة</span>
           <span class="quiz-score-badge" id="qbadge-code-05"></span>
@@ -2064,28 +2099,28 @@
     </div>
     <div class="resources-grid">
       <a class="resource-card" href="https://www.youtube.com/watch?v=1hvVcEhcbLM" target="_blank" rel="noopener">
-        <span class="resource-icon"><svg viewBox="0 0 32 32" width="34" height="34" fill="none"><defs><linearGradient id="rs1" x1="4" y1="4" x2="28" y2="28"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="3" y="6" width="26" height="20" rx="4" stroke="url(#rs1)" stroke-width="1.8"/><path d="M13 12.5 L21 16 L13 19.5 Z" fill="#38bdf8"/></svg></span>
+        <span class="resource-icon"><svg viewBox="0 0 32 32" width="34" height="34" fill="none"><defs><linearGradient id="rs1" x1="4" y1="4" x2="28" y2="28"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><rect x="3" y="6" width="26" height="20" rx="4" stroke="url(#rs1)" stroke-width="1.8"/><path d="M13 12.5 L21 16 L13 19.5 Z" fill="#e879f9"/></svg></span>
         <span class="resource-tag">Linux</span>
         <h3>Linux for Ethical Hacking — كورس للمبتدئين</h3>
         <p>كورس كامل (نحو 5 ساعات) حول أساسيات Linux لأغراض الأمن السيبراني: صلاحيات الملفات، الشبكات، SSH، وجدار الحماية. من إعداد HackerSploit عبر قناة freeCodeCamp.</p>
         <span class="resource-link">شاهد الكورس ←</span>
       </a>
       <a class="resource-card" href="https://youtu.be/ug8W0sFiVJo" target="_blank" rel="noopener">
-        <span class="resource-icon"><svg viewBox="0 0 32 32" width="34" height="34" fill="none"><defs><linearGradient id="rs2" x1="4" y1="4" x2="28" y2="28"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="3" y="6" width="26" height="20" rx="4" stroke="url(#rs2)" stroke-width="1.8"/><path d="M13 12.5 L21 16 L13 19.5 Z" fill="#38bdf8"/></svg></span>
+        <span class="resource-icon"><svg viewBox="0 0 32 32" width="34" height="34" fill="none"><defs><linearGradient id="rs2" x1="4" y1="4" x2="28" y2="28"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><rect x="3" y="6" width="26" height="20" rx="4" stroke="url(#rs2)" stroke-width="1.8"/><path d="M13 12.5 L21 16 L13 19.5 Z" fill="#e879f9"/></svg></span>
         <span class="resource-tag">Kali Linux + Nmap</span>
         <h3>Learn Cybersecurity and Ethical Hacking using Kali Linux</h3>
         <p>كورس عملي تمهيدي يغطي أساسيات Kali Linux، وNmap، وأمان الواي فاي، وWireshark. من إعداد Sunny Dimalu عبر قناة freeCodeCamp.</p>
         <span class="resource-link">شاهد الكورس ←</span>
       </a>
       <a class="resource-card" href="https://www.youtube.com/watch?v=5MTZdN9TEO4" target="_blank" rel="noopener">
-        <span class="resource-icon"><svg viewBox="0 0 32 32" width="34" height="34" fill="none"><defs><linearGradient id="rs3" x1="4" y1="4" x2="28" y2="28"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="3" y="6" width="26" height="20" rx="4" stroke="url(#rs3)" stroke-width="1.8"/><path d="M13 12.5 L21 16 L13 19.5 Z" fill="#38bdf8"/></svg></span>
+        <span class="resource-icon"><svg viewBox="0 0 32 32" width="34" height="34" fill="none"><defs><linearGradient id="rs3" x1="4" y1="4" x2="28" y2="28"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><rect x="3" y="6" width="26" height="20" rx="4" stroke="url(#rs3)" stroke-width="1.8"/><path d="M13 12.5 L21 16 L13 19.5 Z" fill="#e879f9"/></svg></span>
         <span class="resource-tag">Nmap · الجزء 1</span>
         <h3>Nmap Tutorial For Beginners — ما هو Nmap؟</h3>
         <p>مقدمة مبسّطة لأداة فحص الشبكات الأشهر عالميًا: ما وظيفتها وكيف تُستخدم لفحص الأجهزة والمنافذ المفتوحة. من إعداد HackerSploit.</p>
         <span class="resource-link">شاهد الفيديو ←</span>
       </a>
       <a class="resource-card" href="https://www.youtube.com/watch?v=VFJLMOk6daQ" target="_blank" rel="noopener">
-        <span class="resource-icon"><svg viewBox="0 0 32 32" width="34" height="34" fill="none"><defs><linearGradient id="rs4" x1="4" y1="4" x2="28" y2="28"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="3" y="6" width="26" height="20" rx="4" stroke="url(#rs4)" stroke-width="1.8"/><path d="M13 12.5 L21 16 L13 19.5 Z" fill="#38bdf8"/></svg></span>
+        <span class="resource-icon"><svg viewBox="0 0 32 32" width="34" height="34" fill="none"><defs><linearGradient id="rs4" x1="4" y1="4" x2="28" y2="28"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><rect x="3" y="6" width="26" height="20" rx="4" stroke="url(#rs4)" stroke-width="1.8"/><path d="M13 12.5 L21 16 L13 19.5 Z" fill="#e879f9"/></svg></span>
         <span class="resource-tag">Nmap · الجزء 2</span>
         <h3>Nmap Tutorial For Beginners — فحص متقدم</h3>
         <p>الجزء الثاني من سلسلة HackerSploit، يغطي خيارات فحص أكثر تقدمًا بعد إتقان الأساسيات في الجزء الأول.</p>
@@ -2373,10 +2408,10 @@
     <div class="threats">
       <div class="threat">
         <svg class="threat-icon" viewBox="0 0 48 48" fill="none">
-          <defs><linearGradient id="g1" x1="4" y1="4" x2="44" y2="40"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs>
+          <defs><linearGradient id="g1" x1="4" y1="4" x2="44" y2="40"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs>
           <rect x="5" y="11" width="34" height="23" rx="1.5" stroke="url(#g1)" stroke-width="1.8"/>
           <path d="M5 12 L22 25 L39 12" stroke="url(#g1)" stroke-width="1.8" fill="none"/>
-          <path d="M29 27 C34 27 37 30 36 34 C35.5 36.5 32 36.5 32 34" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+          <path d="M29 27 C34 27 37 30 36 34 C35.5 36.5 32 36.5 32 34" stroke="#e879f9" stroke-width="1.8" stroke-linecap="round" fill="none"/>
         </svg>
         <span class="tag">تصيّد احتيالي</span>
         <h3>Phishing</h3>
@@ -2384,10 +2419,10 @@
       </div>
       <div class="threat">
         <svg class="threat-icon" viewBox="0 0 48 48" fill="none">
-          <defs><linearGradient id="g2" x1="4" y1="4" x2="44" y2="40"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs>
+          <defs><linearGradient id="g2" x1="4" y1="4" x2="44" y2="40"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs>
           <rect x="11" y="21" width="26" height="19" rx="1.5" stroke="url(#g2)" stroke-width="1.8"/>
           <path d="M16 21 V15 a8 8 0 0 1 16 0 V21" stroke="url(#g2)" stroke-width="1.8" fill="none"/>
-          <path d="M18 27 L22 31 M22 27 L18 31 M26 27 L30 31 M30 27 L26 31" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M18 27 L22 31 M22 27 L18 31 M26 27 L30 31 M30 27 L26 31" stroke="#e879f9" stroke-width="1.6" stroke-linecap="round"/>
         </svg>
         <span class="tag">فدية</span>
         <h3>Ransomware</h3>
@@ -2395,11 +2430,11 @@
       </div>
       <div class="threat">
         <svg class="threat-icon" viewBox="0 0 48 48" fill="none">
-          <defs><linearGradient id="g3" x1="4" y1="4" x2="44" y2="40"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs>
+          <defs><linearGradient id="g3" x1="4" y1="4" x2="44" y2="40"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs>
           <circle cx="18" cy="17" r="7" stroke="url(#g3)" stroke-width="1.8"/>
           <path d="M7 39 C7 29 29 29 29 39" stroke="url(#g3)" stroke-width="1.8" fill="none"/>
-          <circle cx="31" cy="17" r="7" stroke="#38bdf8" stroke-width="1.6" stroke-dasharray="3 3"/>
-          <path d="M20 39 C20 29 42 29 42 39" stroke="#38bdf8" stroke-width="1.6" stroke-dasharray="3 3" fill="none"/>
+          <circle cx="31" cy="17" r="7" stroke="#e879f9" stroke-width="1.6" stroke-dasharray="3 3"/>
+          <path d="M20 39 C20 29 42 29 42 39" stroke="#e879f9" stroke-width="1.6" stroke-dasharray="3 3" fill="none"/>
         </svg>
         <span class="tag">هندسة اجتماعية</span>
         <h3>Social Engineering</h3>
@@ -2407,10 +2442,10 @@
       </div>
       <div class="threat">
         <svg class="threat-icon" viewBox="0 0 48 48" fill="none">
-          <defs><linearGradient id="g4" x1="4" y1="4" x2="44" y2="40"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs>
+          <defs><linearGradient id="g4" x1="4" y1="4" x2="44" y2="40"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs>
           <ellipse cx="24" cy="26" rx="8" ry="10" stroke="url(#g4)" stroke-width="1.8"/>
           <path d="M24 16 V10 M18 12 L14 8 M30 12 L34 8" stroke="url(#g4)" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M14 22 H8 M14 28 H8 M14 34 H9 M34 22 H40 M34 28 H40 M34 34 H39" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M14 22 H8 M14 28 H8 M14 34 H9 M34 22 H40 M34 28 H40 M34 34 H39" stroke="#e879f9" stroke-width="1.6" stroke-linecap="round"/>
         </svg>
         <span class="tag">برمجيات خبيثة</span>
         <h3>Malware</h3>
@@ -2418,10 +2453,10 @@
       </div>
       <div class="threat">
         <svg class="threat-icon" viewBox="0 0 48 48" fill="none">
-          <defs><linearGradient id="g5" x1="4" y1="4" x2="44" y2="40"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs>
+          <defs><linearGradient id="g5" x1="4" y1="4" x2="44" y2="40"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs>
           <circle cx="14" cy="24" r="7" stroke="url(#g5)" stroke-width="1.8"/>
           <path d="M20 24 H40 M33 24 V30 M38 24 V28" stroke="url(#g5)" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M10 36 a12 12 0 0 1 20 -3 M10 12 a12 12 0 0 1 20 3" stroke="#38bdf8" stroke-width="1.4" fill="none" stroke-dasharray="2 3"/>
+          <path d="M10 36 a12 12 0 0 1 20 -3 M10 12 a12 12 0 0 1 20 3" stroke="#e879f9" stroke-width="1.4" fill="none" stroke-dasharray="2 3"/>
         </svg>
         <span class="tag">اختراق كلمات مرور</span>
         <h3>Credential Stuffing</h3>
@@ -2429,11 +2464,11 @@
       </div>
       <div class="threat">
         <svg class="threat-icon" viewBox="0 0 48 48" fill="none">
-          <defs><linearGradient id="g6" x1="4" y1="4" x2="44" y2="40"><stop offset="0" stop-color="#00ff87"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs>
+          <defs><linearGradient id="g6" x1="4" y1="4" x2="44" y2="40"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs>
           <path d="M8 21 a23 23 0 0 1 32 0" stroke="url(#g6)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
           <path d="M14 28 a14 14 0 0 1 20 0" stroke="url(#g6)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-          <circle cx="24" cy="35" r="2" fill="#38bdf8"/>
-          <path d="M31 12 L23 26 H29 L21 38" stroke="#38bdf8" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="24" cy="35" r="2" fill="#e879f9"/>
+          <path d="M31 12 L23 26 H29 L21 38" stroke="#e879f9" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
         </svg>
         <span class="tag">شبكات وهمية</span>
         <h3>Rogue Wi-Fi</h3>
@@ -3037,6 +3072,7 @@
     updateQuizBadge(lessonId);
     awardQuizPoints(lessonId, score, total);
     checkBadgeConditions();
+    renderTrackCounts(lessonId.indexOf('code-') === 0 ? 'coding' : 'lessons');
   }
 
   function updateQuizBadge(lessonId){
@@ -3227,8 +3263,8 @@
     else if(score <= 1){ pct = 20; color = '#ef4444'; text = 'ضعيفة جدًا'; }
     else if(score === 2){ pct = 40; color = '#f97316'; text = 'ضعيفة'; }
     else if(score === 3){ pct = 60; color = '#eab308'; text = 'متوسطة'; }
-    else if(score === 4){ pct = 80; color = '#38bdf8'; text = 'قوية'; }
-    else { pct = 100; color = '#00ff87'; text = 'قوية جدًا'; }
+    else if(score === 4){ pct = 80; color = '#e879f9'; text = 'قوية'; }
+    else { pct = 100; color = '#c4b5fd'; text = 'قوية جدًا'; }
 
     fill.style.width = pct + '%';
     fill.style.background = color;
@@ -3683,10 +3719,10 @@
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, W, H);
     }
-    glow(120, 100, 260, 'rgba(16,185,129,0.25)');
-    glow(W - 120, H - 100, 280, 'rgba(56,189,248,0.22)');
+    glow(120, 100, 260, 'rgba(139,92,246,0.25)');
+    glow(W - 120, H - 100, 280, 'rgba(232,121,249,0.22)');
 
-    ctx.strokeStyle = 'rgba(16,185,129,0.5)';
+    ctx.strokeStyle = 'rgba(139,92,246,0.5)';
     ctx.lineWidth = 3;
     ctx.strokeRect(30, 30, W - 60, H - 60);
     ctx.strokeStyle = 'rgba(255,255,255,0.15)';
@@ -3719,7 +3755,7 @@
     ctx.font = "700 26px 'Poppins', Arial, sans-serif";
     ctx.fillText('VigilantNode', W / 2, 235);
 
-    ctx.fillStyle = '#10b981';
+    ctx.fillStyle = '#8b5cf6';
     ctx.font = "400 16px 'Tajawal', Arial, sans-serif";
     ctx.fillText('شهادة إتمام رحلة الأمان الرقمي', W / 2, 270);
 
@@ -3731,7 +3767,7 @@
     ctx.font = "700 44px 'Tajawal', Arial, sans-serif";
     ctx.fillText(name, W / 2, 400);
 
-    ctx.strokeStyle = 'rgba(16,185,129,0.6)';
+    ctx.strokeStyle = 'rgba(139,92,246,0.6)';
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(W / 2 - 160, 420);
@@ -4015,8 +4051,8 @@
     if(pub) riskFactors++;
 
     let minPct, maxPct, pct, color, verdict;
-    if(riskFactors === 0){ minPct = 0.03; maxPct = 0.10; pct = 22; color = '#00ff87'; verdict = 'تعرّض منخفض — عاداتك الحالية تقلّل فرص الاختراق بشكل كبير'; }
-    else if(riskFactors === 1){ minPct = 0.10; maxPct = 0.30; pct = 42; color = '#38bdf8'; verdict = 'تعرّض متوسط — هناك ثغرة واحدة تستحق المعالجة'; }
+    if(riskFactors === 0){ minPct = 0.03; maxPct = 0.10; pct = 22; color = '#c4b5fd'; verdict = 'تعرّض منخفض — عاداتك الحالية تقلّل فرص الاختراق بشكل كبير'; }
+    else if(riskFactors === 1){ minPct = 0.10; maxPct = 0.30; pct = 42; color = '#e879f9'; verdict = 'تعرّض متوسط — هناك ثغرة واحدة تستحق المعالجة'; }
     else if(riskFactors === 2){ minPct = 0.30; maxPct = 0.60; pct = 62; color = '#eab308'; verdict = 'تعرّض مرتفع — عدة عادات تجتمع لتزيد الخطر فعليًا'; }
     else if(riskFactors === 3){ minPct = 0.60; maxPct = 0.90; pct = 82; color = '#f97316'; verdict = 'تعرّض مرتفع جدًا — أغلب أبواب الحماية مفتوحة'; }
     else { minPct = 0.80; maxPct = 1.0; pct = 96; color = '#ef4444'; verdict = 'تعرّض حرج — خسارة شبه كاملة للرصيد واردة بسهولة'; }
@@ -4057,7 +4093,7 @@
         speed: Math.random() * 0.4 + 0.08,
         vy: (Math.random() - 0.5) * 0.08,
         vx: (Math.random() - 0.5) * 0.06,
-        hue: Math.random() > 0.5 ? '16,185,129' : '56,189,248'
+        hue: Math.random() > 0.5 ? '139,92,246' : '232,121,249'
       });
     }
     let t = 0;
@@ -4504,6 +4540,8 @@
     renderDaily();
     renderCtfFlags();
     renderIncomingChallenge();
+    initTrackTabs('lessons');
+    initTrackTabs('coding');
     initTheme();
     window.addEventListener('scroll', updateReadingProgress, { passive: true });
     updateReadingProgress();
@@ -4993,8 +5031,55 @@
   function goToLesson(id){
     const target = document.getElementById(id);
     if(!target) return;
+    const scope = id.indexOf('code-') === 0 ? 'coding' : 'lessons';
+    trackFilter(scope, 'all');
     target.setAttribute('open', '');
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  /* ---------- LEARNING TRACKS (beginner/intermediate/advanced) ---------- */
+  function trackFilter(scope, level){
+    const container = document.getElementById(scope);
+    if(!container) return;
+    const blocks = container.querySelectorAll('.lesson-block');
+    blocks.forEach(function(b){
+      const lvl = b.getAttribute('data-level');
+      b.style.display = (level === 'all' || lvl === level) ? '' : 'none';
+    });
+    const tabsWrap = container.querySelector('.track-tabs[data-scope="' + scope + '"]');
+    if(tabsWrap){
+      tabsWrap.querySelectorAll('.track-tab').forEach(function(t){
+        const onclickAttr = t.getAttribute('onclick') || '';
+        t.classList.toggle('active', onclickAttr.indexOf("'" + level + "'") !== -1);
+      });
+    }
+    try{ localStorage.setItem('vn_track_filter_' + scope, level); }catch(e){}
+  }
+
+  function renderTrackCounts(scope){
+    const container = document.getElementById(scope);
+    if(!container) return;
+    const blocks = Array.from(container.querySelectorAll('.lesson-block'));
+    const totals = { all: blocks.length, beginner: 0, intermediate: 0, advanced: 0 };
+    const done = { all: 0, beginner: 0, intermediate: 0, advanced: 0 };
+    blocks.forEach(function(b){
+      const lvl = b.getAttribute('data-level') || 'beginner';
+      totals[lvl] = (totals[lvl] || 0) + 1;
+      let isDone = false;
+      try{ isDone = localStorage.getItem('vn_quiz_' + b.id) !== null; }catch(e){}
+      if(isDone){ done.all++; done[lvl] = (done[lvl] || 0) + 1; }
+    });
+    ['all', 'beginner', 'intermediate', 'advanced'].forEach(function(lvl){
+      const el = document.getElementById('track-count-' + scope + '-' + lvl);
+      if(el) el.textContent = (done[lvl] || 0) + '/' + (totals[lvl] || 0);
+    });
+  }
+
+  function initTrackTabs(scope){
+    renderTrackCounts(scope);
+    let saved = 'all';
+    try{ saved = localStorage.getItem('vn_track_filter_' + scope) || 'all'; }catch(e){}
+    trackFilter(scope, saved);
   }
 
   /* ---------- INTERACTIVE SHELL ---------- */
