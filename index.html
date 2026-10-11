@@ -653,6 +653,20 @@
     font-size:13px; line-height:1.7; max-width:92%; margin-bottom:8px;
   }
 
+  /* ---------- VOICE PHISHING (VISHING) SIMULATOR ---------- */
+  .vish-callbar{
+    display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .vish-call-status{ font-size:12.5px; color:#8696a0; display:flex; align-items:center; gap:6px; }
+  .vish-call-status .dot{
+    width:8px; height:8px; border-radius:50%; background:#22c55e; display:inline-block;
+    animation:vish-pulse 1.4s infinite;
+  }
+  @keyframes vish-pulse{ 0%,100%{ opacity:1; } 50%{ opacity:.35; } }
+  .vish-callbar .btn{ font-size:12px; padding:7px 14px; }
+  .vish-unsupported{ font-size:11.5px; color:var(--muted); }
+
   /* ---------- COMPLETION CERTIFICATE ---------- */
   .cert-stats{ margin-bottom:18px; }
   .cert-stats p{ font-size:14px; }
@@ -868,7 +882,18 @@
   .pw-eye:hover{ opacity:1; }
   .pw-meter{ height:6px; background:var(--line); border-radius:3px; overflow:hidden; margin-bottom:10px; }
   .pw-meter-fill{ height:100%; width:0%; background:var(--line); transition:width .3s ease, background .3s ease; display:block; }
-  .pw-label{ font-family:var(--mono); font-size:14px; color:var(--muted); margin-bottom:22px; min-height:18px; transition:color .3s; }
+  .pw-label{ font-family:var(--mono); font-size:14px; color:var(--muted); margin-bottom:14px; min-height:18px; transition:color .3s; }
+  .pw-crack-time{
+    display:none; align-items:center; gap:10px; font-size:13px; color:var(--muted);
+    background:var(--ink); border:1px solid var(--line); border-radius:6px;
+    padding:12px 14px; margin-bottom:22px; transition:border-color .3s, color .3s;
+  }
+  .pw-crack-time.show{ display:flex; }
+  .pw-crack-time .pct-icon{ font-size:17px; flex-shrink:0; }
+  .pw-crack-time.weak{ border-color:#ef4444; color:#ff8fa3; }
+  .pw-crack-time.medium{ border-color:#eab308; color:#fde68a; }
+  .pw-crack-time.strong{ border-color:var(--rust); color:var(--rust-bright); }
+  .pw-crack-time.excellent{ border-color:var(--brass); color:var(--brass-bright); }
   .pw-criteria{ list-style:none; display:grid; gap:10px; margin-bottom:22px; padding:0; }
   .pw-criteria li{ font-size:14px; color:var(--muted); display:flex; align-items:center; gap:10px; transition:color .25s; }
   .pw-criteria li.ok{ color:var(--text); }
@@ -2361,6 +2386,23 @@
   </div>
 </section>
 
+<section id="vishing-sim" style="background:var(--panel); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">محاكاة واقعية</span>
+      <h2>محاكي المكالمات الصوتية الاحتيالية (Vishing)</h2>
+      <p>أربع مكالمات هاتفية مزيفة تشبه ما قد يتصل به محتال فعليًا. اقرأ نص المكالمة (أو استمع إليها إن كان متصفحك يدعم ذلك)، ثم اضغط على كل عنصر تراه مشبوهًا.</p>
+    </div>
+    <div class="tool-card">
+      <div id="vish-host">
+        <div style="text-align:center;">
+          <button type="button" class="btn btn-primary" onclick="startVishingSim()">ابدأ المحاكاة (4 مكالمات)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="redflags">
   <div class="wrap">
     <div class="section-head">
@@ -2551,6 +2593,7 @@
       </div>
       <div class="pw-meter"><div class="pw-meter-fill" id="pw-meter-fill"></div></div>
       <div class="pw-label" id="pw-label">اكتب كلمة مرور لتبدأ</div>
+      <div class="pw-crack-time" id="pw-crack-time"><span class="pct-icon">⏱</span><span id="pw-crack-time-text"></span></div>
       <ul class="pw-criteria">
         <li id="pw-c-len"><span class="pw-c-icon">○</span> 12 حرفًا على الأقل</li>
         <li id="pw-c-case"><span class="pw-c-icon">○</span> تحتوي على أحرف كبيرة وصغيرة</li>
@@ -3222,12 +3265,44 @@
     else { el.classList.remove('ok'); icon.textContent = '○'; }
   }
 
+  function estimateCrackSeconds(val, hasLower, hasUpper, hasNum, hasSym, isCommon){
+    if(!val) return 0;
+    if(isCommon) return 0.5;
+    let pool = 0;
+    if(hasLower) pool += 26;
+    if(hasUpper) pool += 26;
+    if(hasNum) pool += 10;
+    if(hasSym) pool += 33;
+    if(pool === 0) pool = 10;
+    const combos = Math.pow(pool, val.length);
+    const guessesPerSecond = 1e10; /* تقدير متحفّظ لجهاز كسر سريع متخصص */
+    return combos / (2 * guessesPerSecond);
+  }
+
+  function formatCrackTime(seconds){
+    if(!isFinite(seconds) || seconds < 1) return 'أقل من ثانية';
+    const minute = 60, hour = 3600, day = 86400, month = day * 30, year = day * 365;
+    if(seconds < minute) return Math.round(seconds) + ' ثانية';
+    if(seconds < hour) return Math.round(seconds / minute) + ' دقيقة';
+    if(seconds < day) return Math.round(seconds / hour) + ' ساعة';
+    if(seconds < month) return Math.round(seconds / day) + ' يوم';
+    if(seconds < year) return Math.round(seconds / month) + ' شهر';
+    const years = seconds / year;
+    if(years < 1000) return Math.round(years) + ' سنة';
+    if(years < 1e6) return Math.round(years / 1000).toLocaleString('ar') + ' ألف سنة';
+    if(years < 1e9) return Math.round(years / 1e6).toLocaleString('ar') + ' مليون سنة';
+    if(years < 13.8e9) return Math.round(years / 1e9).toLocaleString('ar') + ' مليار سنة';
+    return 'أكثر من عمر الكون (+13.8 مليار سنة) 🌌';
+  }
+
   function checkPasswordStrength(){
     const inp = document.getElementById('pw-test-input');
     if(!inp) return;
     const val = inp.value;
     const fill = document.getElementById('pw-meter-fill');
     const label = document.getElementById('pw-label');
+    const crackBox = document.getElementById('pw-crack-time');
+    const crackText = document.getElementById('pw-crack-time-text');
 
     const hasLen = val.length >= 12;
     const hasUpper = /[A-Z]/.test(val);
@@ -3248,6 +3323,7 @@
       fill.style.background = 'var(--line)';
       label.textContent = 'اكتب كلمة مرور لتبدأ';
       label.style.color = 'var(--muted)';
+      if(crackBox) crackBox.className = 'pw-crack-time';
       return;
     }
 
@@ -3270,6 +3346,17 @@
     fill.style.background = color;
     label.textContent = text;
     label.style.color = color;
+
+    if(crackBox && crackText){
+      const crackSeconds = estimateCrackSeconds(val, hasLower, hasUpper, hasNum, hasSym, isCommon);
+      let tier = 'weak';
+      if(pct >= 100) tier = 'excellent';
+      else if(pct >= 80) tier = 'strong';
+      else if(pct >= 60) tier = 'medium';
+      crackBox.className = 'pw-crack-time show ' + tier;
+      crackText.textContent = 'وقت كسرها تقريبًا: ' + formatCrackTime(crackSeconds) + ' (بافتراض جهاز كسر سريع متخصص)';
+    }
+    if(val.length >= 4){ awardOnce('vn_awarded_crackmeter', 10, 'جربت محاكي وقت كسر كلمة المرور'); }
   }
 
   /* ================= LINK-SPOTTING GAME ================= */
