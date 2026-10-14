@@ -951,6 +951,26 @@
     display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-weight:700; font-size:13px; flex-shrink:0;
   }
   .incident-note{ margin-top:18px; padding:14px 16px; background:var(--ink); border-inline-start:3px solid var(--rust); font-size:13.5px; color:var(--muted); line-height:1.7; }
+  .incident-hint{ text-align:center; color:var(--muted); font-size:14px; padding:18px 0 6px; }
+  .inc-alert{ display:flex; gap:12px; align-items:flex-start; padding:14px 16px; margin-bottom:22px; background:rgba(232,121,249,0.08); border:1px solid var(--rust); border-radius:3px; font-size:13.5px; line-height:1.8; color:var(--text); }
+  .inc-alert strong{ color:var(--rust-bright); }
+  .inc-progress{ display:flex; align-items:center; gap:12px; margin:0 0 8px; }
+  .inc-progress-bar{ flex:1; height:8px; background:var(--ink); border:1px solid var(--line); border-radius:99px; overflow:hidden; }
+  .inc-progress-fill{ height:100%; width:0; background:var(--brass); transition:width .3s; }
+  .inc-progress-text{ font-family:var(--mono); font-size:12px; color:var(--brass-bright); white-space:nowrap; }
+  .incident-steps li.inc-step{ cursor:pointer; user-select:none; -webkit-user-select:none; -webkit-tap-highlight-color:transparent; }
+  .incident-steps li.inc-step:focus-visible{ outline:2px solid var(--brass); outline-offset:2px; }
+  .incident-steps li.inc-step.done{ color:var(--muted); }
+  .incident-steps li.inc-step.done .inc-text{ text-decoration:line-through; }
+  .incident-steps li.inc-step::before{ color:#fff; }
+  .incident-steps li.inc-step.done::before{ content:'\2713'; background:var(--brass); }
+  .inc-now{ display:inline-block; margin-inline-end:8px; padding:1px 9px; font-size:11px; font-weight:700; color:var(--rust-bright); border:1px solid var(--rust); border-radius:99px; vertical-align:middle; }
+  .inc-done{ display:none; margin-top:18px; padding:14px 16px; border:1px solid var(--brass); background:rgba(139,92,246,0.1); border-radius:3px; color:var(--brass-bright); font-size:14px; line-height:1.7; }
+  .inc-done.show{ display:block; }
+  .inc-warn-wrap{ margin-top:20px; padding:16px; background:var(--ink); border:1px dashed var(--line); border-radius:3px; }
+  .inc-warn-wrap h4{ font-family:var(--head); font-size:14.5px; color:var(--paper); margin-bottom:8px; }
+  .inc-warnbox{ font-size:13.5px; color:var(--text); line-height:1.9; margin-bottom:12px; }
+  .inc-actions{ display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
 
   /* ---------- VISUAL RED-FLAGS GALLERY ---------- */
   .rf-mockup{
@@ -1335,6 +1355,7 @@
       <a href="#coding">برمجة</a>
       <a href="#threats">التهديدات</a>
       <a href="#checklist">قائمة الفحص</a>
+      <a href="#incident">🚨 طوارئ</a>
     </div>
     <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" aria-label="تبديل الوضع الفاتح/الغامق" title="الوضع الفاتح/الغامق">
       <svg id="theme-icon-dark" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
@@ -1421,6 +1442,7 @@
       <div class="cta-row">
         <span class="glow-cta"><a href="#layers" class="btn btn-primary">ابدأ من طبقات الحماية</a></span>
         <a href="#checklist" class="btn btn-ghost">قائمة فحص سريعة</a>
+        <a href="#incident" class="btn btn-ghost">🚨 تعرّضت للاختراق؟</a>
       </div>
     </div>
     <div class="rings">
@@ -2657,18 +2679,23 @@
 <section id="incident" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">معالج طوارئ</span>
+      <span class="eyebrow">دليل الطوارئ</span>
       <h2>اختُرق حسابي... ماذا أفعل الآن؟</h2>
-      <p>اختر نوع الحساب الذي تشك أنه تعرّض للاختراق، لتظهر لك خطوات فورية مرتبة حسب الأولوية.</p>
+      <p>اختر الحساب المتضرر، ثم نفّذ الخطوات بالترتيب وأشّر على كل خطوة تنتهي منها (يُحفظ تقدمك على جهازك فقط). الخطوات الموسومة بـ «الآن» هي ما يجب فعله في أول دقائق.</p>
     </div>
     <div class="tool-card">
+      <div class="inc-alert"><span aria-hidden="true">⚠️</span><div><strong>احذر من «مسترجعي الحسابات».</strong> كل من يعرض عليك استرجاع حسابك مقابل مال، أو يطلب منك رمز التحقق أو كلمة المرور، هو محتال. الاسترجاع الرسمي مجاني، ولا يحتاج منك مشاركة أي رمز يصلك على هاتفك.</div></div>
       <div class="incident-selector">
         <button type="button" class="incident-btn" onclick="showIncident('email', this)">📧 بريد إلكتروني</button>
         <button type="button" class="incident-btn" onclick="showIncident('whatsapp', this)">💬 واتساب</button>
-        <button type="button" class="incident-btn" onclick="showIncident('bank', this)">🏦 حساب بنكي</button>
-        <button type="button" class="incident-btn" onclick="showIncident('social', this)">📱 تواصل اجتماعي</button>
+        <button type="button" class="incident-btn" onclick="showIncident('facebook', this)">📘 فيسبوك</button>
+        <button type="button" class="incident-btn" onclick="showIncident('instagram', this)">📸 إنستغرام</button>
+        <button type="button" class="incident-btn" onclick="showIncident('telegram', this)">✈️ تيليغرام</button>
+        <button type="button" class="incident-btn" onclick="showIncident('tiktok', this)">🎵 تيك توك</button>
+        <button type="button" class="incident-btn" onclick="showIncident('bank', this)">🏦 حساب بنكي أو بريدي</button>
+        <button type="button" class="incident-btn" onclick="showIncident('phone', this)">📱 هاتفي نفسه</button>
       </div>
-      <div id="incident-host"></div>
+      <div id="incident-host"><p class="incident-hint">👆 اختر نوع الحساب لتظهر لك خطواتك.</p></div>
     </div>
   </div>
 </section>
@@ -4243,64 +4270,215 @@
       '</div>';
   }
 
-  /* ================= INCIDENT RESPONSE WIZARD ================= */
+  /* ================= INCIDENT RESPONSE GUIDE ================= */
   const INCIDENT_STEPS = {
     email: {
-      title: 'بريدك الإلكتروني تعرّض للاختراق',
+      title: 'بريدك الإلكتروني تعرّض للاختراق', warn: true,
       steps: [
-        'غيّر كلمة المرور فورًا من جهاز آخر تثق به، لا من الجهاز المشتبه بأنه مصدر الاختراق.',
-        'فعّل التوثيق الثنائي إن لم يكن مفعلاً مسبقًا — هذا يمنع الدخول حتى لو عرف المخترق كلمة المرور الجديدة.',
-        'راجع إعدادات "إعادة التوجيه" (Forwarding) والفلاتر: المخترقون غالبًا يضيفون قاعدة تُرسل نسخة من رسائلك لهم أو تُخفي ردود حساباتك المهمة.',
-        'افتح قائمة "الأجهزة المسجّلة الدخول" أو "النشاط الأخير" وأنهِ كل الجلسات التي لا تعرفها.',
-        'بريدك غالبًا بوابة استرجاع لحساباتك الأخرى — راجع أي حساب (بنكي، تواصل اجتماعي) يستخدم هذا البريد للاسترجاع وغيّر كلمات مروره أيضًا.',
-        'أبلغ جهات اتصالك المقربة أن بريدك تعرّض لاختراق مؤقت، تحسبًا لأي رسالة احتيال تُرسل باسمك.'
+        { now:true, t:'غيّر كلمة المرور فورًا من جهاز آخر تثق به، لا من الجهاز المشتبه بأنه مصدر الاختراق.' },
+        { now:true, t:'فعّل التوثيق الثنائي إن لم يكن مفعلًا مسبقًا — هذا يمنع الدخول حتى لو عرف المخترق كلمة المرور الجديدة.' },
+        { now:true, t:'افتح قائمة «الأجهزة المسجّلة الدخول» أو «النشاط الأخير» وأنهِ كل الجلسات التي لا تعرفها.' },
+        { t:'راجع إعدادات «إعادة التوجيه» (Forwarding) والفلاتر: المخترقون غالبًا يضيفون قاعدة تُرسل نسخة من رسائلك لهم أو تُخفي رسائل حساباتك المهمة.' },
+        { t:'بريدك غالبًا بوابة استرجاع لحساباتك الأخرى — غيّر كلمات مرور أي حساب (بنكي، تواصل اجتماعي) يستخدم هذا البريد للاسترجاع.' },
+        { t:'أبلغ جهات اتصالك المقربة أن بريدك تعرّض لاختراق مؤقت، تحسبًا لأي رسالة احتيال تُرسل باسمك.' }
       ]
     },
     whatsapp: {
-      title: 'حساب واتساب تعرّض للاختراق',
+      title: 'حساب واتساب تعرّض للاختراق', warn: true,
       steps: [
-        'ثبّت واتساب وسجّل الدخول برقمك فورًا — هذا يُخرج تلقائيًا أي جهاز آخر كان مسجلاً بنفس الرقم.',
-        'لا تشارك أبدًا رمز التحقق (OTP) الذي يصلك عبر SMS مع أي شخص، مهما ادّعى أنه "دعم فني" أو صديق.',
-        'فعّل "التحقق بخطوتين" من الإعدادات ← الحساب، لإضافة رمز PIN إضافي يمنع إعادة الاختراق بنفس الطريقة.',
-        'راجع "الأجهزة المرتبطة" (Linked Devices) واحذف فورًا أي جهاز حاسوب أو متصفح لا تتعرف عليه.',
-        'حذّر جهات اتصالك فورًا — خصوصًا إذا طلب "المخترق" منهم تحويل أموال أو رموز تحقق باسمك خلال فترة الاختراق.'
+        { now:true, t:'ثبّت واتساب وسجّل الدخول برقمك فورًا — هذا يُخرج تلقائيًا أي جهاز آخر كان مسجلًا بنفس الرقم.' },
+        { now:true, t:'لا تشارك أبدًا رمز التحقق (الستة أرقام) الذي يصلك عبر SMS مع أي شخص، مهما ادّعى أنه «دعم فني» أو صديق.' },
+        { now:true, t:'فعّل «التحقق بخطوتين» من الإعدادات ← الحساب، لإضافة رمز PIN يمنع إعادة الاختراق بنفس الطريقة. وإن وجدته مفعّلًا ولم تفعّله أنت، فالمخترق هو من فعّله؛ استخدم «نسيت PIN» وقد تنتظر نحو أسبوع.' },
+        { t:'راجع «الأجهزة المرتبطة» (Linked Devices) واحذف فورًا أي حاسوب أو متصفح لا تتعرف عليه.' },
+        { t:'راجع المجموعات التي تديرها، وتأكد أن المخترق لم يضف مشرفين أو يحذف أعضاء.' },
+        { t:'حذّر جهات اتصالك فورًا — خصوصًا إن طلب «المخترق» منهم تحويل أموال أو رموز تحقق باسمك.' }
+      ]
+    },
+    facebook: {
+      title: 'حساب فيسبوك تعرّض للاختراق', warn: true,
+      steps: [
+        { now:true, t:'من جهاز آخر أو متصفح مختلف، افتح مركز المساعدة الرسمي لفيسبوك وابحث عن «حسابي مخترق» ثم اتبع خطوات الاسترجاع. لا تستخدم روابط وصلتك في رسائل أو من «مساعدين».' },
+        { now:true, t:'إن استطعت الدخول: غيّر كلمة المرور إلى كلمة جديدة قوية لم تستخدمها في أي مكان آخر.' },
+        { now:true, t:'من الإعدادات ← الأمان وتسجيل الدخول: سجّل الخروج من كل الأجهزة والجلسات التي لا تعرفها.' },
+        { t:'راجع البريد ورقم الهاتف المرتبطين بالحساب. إن غيّرهما المخترق، فابحث في بريدك القديم عن رسالة فيسبوك التي تُبلغك بالتغيير، وتتيح لك التراجع عنه.' },
+        { t:'فعّل التحقق بخطوتين، ويفضّل عبر تطبيق مصادقة بدل الرسائل النصية.' },
+        { t:'راجع التطبيقات والمواقع المرتبطة وأزل ما لا تعرفه، وراجع الصفحات والمجموعات التي تديرها وأزل أي مشرف لا تعرفه.' },
+        { t:'احذف المنشورات والرسائل والروابط التي نُشرت باسمك، وراجع حساب الإعلانات وطرق الدفع إن كانت مرتبطة.' },
+        { t:'حذّر أصدقاءك أن أي رسالة أو طلب مال وصلهم منك خلال فترة الاختراق ليس منك.' }
+      ]
+    },
+    instagram: {
+      title: 'حساب إنستغرام تعرّض للاختراق', warn: true,
+      steps: [
+        { now:true, t:'حاول تسجيل الدخول فورًا وتغيير كلمة المرور؛ إن منعك المخترق، استخدم خيار «نسيت كلمة المرور» داخل التطبيق.' },
+        { now:true, t:'إن تعذّر الدخول، استخدم نموذج «الإبلاغ عن حساب مخترق» الرسمي في مركز مساعدة المنصة نفسها لاستعادة الوصول.' },
+        { now:true, t:'فور استعادة الحساب، فعّل التوثيق الثنائي لمنع تكرار الاختراق.' },
+        { t:'من الإعدادات ← مركز الحسابات / الأمان: أنهِ الجلسات غير المعروفة، وراجع البريد ورقم الهاتف المرتبطين بالحساب.' },
+        { t:'راجع المنشورات والرسائل المرسلة خلال فترة الاختراق، وغيّر رابط السيرة (Bio) إن عدّله المخترق، واحذف أي محتوى مسيء أو روابط احتيالية.' },
+        { t:'حذّر متابعيك إن أرسل المخترق لهم رسائل أو روابط أو طلبات أموال باسمك.' }
+      ]
+    },
+    telegram: {
+      title: 'حساب تيليغرام تعرّض للاختراق', warn: true,
+      steps: [
+        { now:true, t:'من الإعدادات ← الأجهزة (Devices): أنهِ كل الجلسات الأخرى التي لا تعرفها.' },
+        { now:true, t:'فعّل «التحقق بخطوتين» (كلمة المرور السحابية) من الخصوصية والأمان، واحفظ بريد الاسترجاع بشكل صحيح.' },
+        { now:true, t:'لا تعطِ رمز الدخول الذي يصلك لأي أحد، ولا تمسح رمز QR لتسجيل دخول أرسله لك شخص أو قناة — هذه طريقة شائعة للاستيلاء على الحسابات.' },
+        { t:'فعّل رمز قفل التطبيق (Passcode) حتى لا يستطيع من يمسك هاتفك فتح محادثاتك.' },
+        { t:'إن فقدت الوصول وكان المخترق قد فعّل كلمة مرور سحابية، قد تضطر للانتظار عدة أيام قبل إعادة ضبطها؛ تواصل مع الدعم الرسمي من داخل التطبيق.' },
+        { t:'راجع القنوات والمجموعات التي تديرها، وأزل أي مشرف لا تعرفه، وحذّر جهات اتصالك.' }
+      ]
+    },
+    tiktok: {
+      title: 'حساب تيك توك تعرّض للاختراق', warn: true,
+      steps: [
+        { now:true, t:'حاول تسجيل الدخول وتغيير كلمة المرور؛ إن منعك المخترق، استخدم «نسيت كلمة المرور» لإعادة ضبطها عبر بريدك أو رقمك.' },
+        { now:true, t:'من الإعدادات والخصوصية ← الأمان وإدارة الأجهزة: أنهِ الجلسات والأجهزة التي لا تعرفها.' },
+        { now:true, t:'فعّل التحقق بخطوتين فور استعادة الحساب.' },
+        { t:'إن لم تستطع الدخول، استخدم خيار الإبلاغ عن مشكلة ← «حسابي مخترق» الرسمي داخل التطبيق أو مركز المساعدة.' },
+        { t:'راجع البريد والرقم المرتبطين، والحسابات والتطبيقات المرتبطة، وأزل ما لا تعرفه.' },
+        { t:'راجع الفيديوهات والرسائل ورابط السيرة (Bio) وأي رصيد أو هدايا، واحذف ما نُشر باسمك، ثم حذّر متابعيك.' }
       ]
     },
     bank: {
-      title: 'حسابك البنكي تعرّض للاختراق أو الاشتباه',
+      title: 'حسابك البنكي أو البريدي تعرّض للاختراق أو الاشتباه', warn: false,
       steps: [
-        'اتصل ببنكك فورًا عبر الرقم الرسمي المطبوع على بطاقتك أو الموقع الرسمي المعروف مسبقًا — لا أي رقم وصلك برسالة أو مكالمة مشبوهة.',
-        'اطلب تجميد الحساب أو إيقاف البطاقة مؤقتًا ريثما يتم التحقق من العمليات.',
-        'غيّر كلمة مرور التطبيق البنكي والرمز السري من جهاز آخر موثوق.',
-        'راجع كشف الحساب لآخر فترة وأبلغ فورًا عن أي عملية لم تقم بها أنت شخصيًا.',
-        'فعّل تنبيهات العمليات الفورية عبر SMS أو التطبيق إن لم تكن مفعّلة.',
-        'لا تُعد استخدام كلمة المرور نفسها على أي حساب آخر بعد الحادثة، حتى لو بدت قوية.'
+        { now:true, t:'اتصل ببنكك أو بمركز البريد (إن كان حسابك بريديًا) فورًا عبر الرقم الرسمي المطبوع على بطاقتك أو الموقع الرسمي المعروف مسبقًا — لا أي رقم وصلك برسالة أو مكالمة مشبوهة.' },
+        { now:true, t:'اطلب تجميد الحساب أو إيقاف البطاقة مؤقتًا ريثما يتم التحقق من العمليات.' },
+        { now:true, t:'غيّر كلمة مرور التطبيق والرمز السري من جهاز آخر موثوق.' },
+        { t:'راجع كشف الحساب لآخر فترة وأبلغ فورًا عن أي عملية لم تقم بها أنت شخصيًا.' },
+        { t:'فعّل تنبيهات العمليات الفورية عبر SMS أو التطبيق إن لم تكن مفعّلة.' },
+        { t:'تذكّر: لا موظف حقيقي يطلب منك رقم بطاقتك الكامل أو الرمز السري أو رمز التحقق عبر الهاتف أو الرسائل.' },
+        { t:'لا تعد استخدام كلمة المرور نفسها على أي حساب آخر بعد الحادثة، حتى لو بدت قوية.' }
       ]
     },
-    social: {
-      title: 'حساب إنستغرام أو تواصل اجتماعي تعرّض للاختراق',
+    phone: {
+      title: 'هاتفك نفسه قد يكون مخترقًا', warn: false,
       steps: [
-        'حاول تسجيل الدخول فورًا وتغيير كلمة المرور؛ إن منعك المخترق، استخدم خيار "نسيت كلمة المرور" داخل التطبيق.',
-        'إن تعذّر الدخول، استخدم نموذج "الإبلاغ عن حساب مخترق" الرسمي الموجود داخل مركز مساعدة المنصة نفسها لاستعادة الوصول.',
-        'فور استعادة الحساب، فعّل التوثيق الثنائي فورًا لمنع تكرار الاختراق.',
-        'راجع المنشورات والرسائل المرسلة خلال فترة الاختراق، واحذف أي محتوى مسيء أو روابط احتيالية نُشرت باسمك.',
-        'حذّر متابعيك إن أرسل المخترق لهم رسائل أو روابط أو طلبات أموال باسمك خلال تلك الفترة.'
+        { now:true, t:'إن ظهرت أعراض واضحة (تطبيقات لم تثبّتها، رسائل أو مكالمات لم تُجرها، حرارة وبطارية تنفد بسرعة)، فعّل وضع الطيران مؤقتًا لقطع الاتصال.' },
+        { now:true, t:'من جهاز آخر موثوق، غيّر كلمات مرور بريدك وحساباتك المهمة، وابدأ بالبنكية.' },
+        { now:true, t:'إن انقطعت إشارة شريحتك فجأة بلا سبب، اتصل بشركة الاتصالات فورًا؛ قد يكون أحدهم نقل رقمك إلى شريحة أخرى (SIM Swap).' },
+        { t:'احذف أي تطبيق لا تعرفه أو لم تثبّته أنت. على أندرويد راجع «إمكانية الوصول» و«مسؤولي الجهاز»؛ على آيفون راجع الإعدادات ← عام ← VPN وإدارة الجهاز وأي ملف تعريف لا تعرفه.' },
+        { t:'حدّث نظام التشغيل، ثم شغّل فحص الحماية المدمج في هاتفك (مثل Play Protect على أندرويد).' },
+        { t:'إن استمرت الأعراض: انسخ صورك وملفاتك فقط (لا التطبيقات)، ثم نفّذ إعادة ضبط المصنع، وأعد تثبيت التطبيقات من المتجر الرسمي فقط.' },
+        { t:'بعد الإعادة، غيّر كلمات المرور مرة أخرى وفعّل التوثيق الثنائي على كل حساب مهم.' }
       ]
     }
   };
 
+  const INCIDENT_WARN_TEXT = 'تنبيه: حسابي تعرّض للاختراق. تجاهلوا أي رسالة أو رابط أو طلب مال وصلكم باسمي، ولا ترسلوا لي أو لأي أحد رمز تحقق. سأخبركم عندما أستعيد حسابي. شكرًا لانتباهكم.';
+  let incCurrent = null;
+
+  function incGetDone(type){
+    try{
+      const a = JSON.parse(localStorage.getItem('vn_inc_' + type) || '[]');
+      return Array.isArray(a) ? a : [];
+    }catch(e){ return []; }
+  }
+  function incSaveDone(type, arr){
+    try{ localStorage.setItem('vn_inc_' + type, JSON.stringify(arr)); }catch(e){}
+  }
+
   function showIncident(type, btn){
     const data = INCIDENT_STEPS[type];
     if(!data) return;
-    const allBtns = document.querySelectorAll('.incident-btn');
-    allBtns.forEach(function(b){ b.classList.remove('active'); });
+    incCurrent = type;
+    document.querySelectorAll('.incident-btn').forEach(function(b){ b.classList.remove('active'); });
     if(btn) btn.classList.add('active');
     const host = document.getElementById('incident-host');
-    const stepsHtml = data.steps.map(function(s){ return '<li>' + s + '</li>'; }).join('');
+    if(!host) return;
+    const done = incGetDone(type);
+    const stepsHtml = data.steps.map(function(st, i){
+      const d = done.indexOf(i) !== -1;
+      return '<li class="inc-step' + (d ? ' done' : '') + '" role="checkbox" tabindex="0" aria-checked="' + (d ? 'true' : 'false') + '" data-i="' + i + '" onclick="incToggle(' + i + ')" onkeydown="incKey(event,' + i + ')">' +
+        (st.now ? '<span class="inc-now">الآن</span>' : '') + '<span class="inc-text">' + st.t + '</span></li>';
+    }).join('');
+    const warnHtml = data.warn
+      ? '<div class="inc-warn-wrap"><h4>📣 رسالة جاهزة لتحذير جهات اتصالك</h4>' +
+        '<div class="inc-warnbox">' + INCIDENT_WARN_TEXT + '</div>' +
+        '<button type="button" class="btn btn-ghost" onclick="incCopyWarn(this)">📋 انسخ الرسالة</button></div>'
+      : '';
     host.innerHTML =
-      '<h3 style="font-family:var(--head); font-size:17px; color:var(--paper); margin:22px 0 16px;">' + data.title + '</h3>' +
+      '<h3 style="font-family:var(--head); font-size:17px; color:var(--paper); margin:22px 0 14px;">' + data.title + '</h3>' +
+      '<div class="inc-progress"><div class="inc-progress-bar"><div class="inc-progress-fill" id="inc-fill"></div></div><span class="inc-progress-text" id="inc-count"></span></div>' +
       '<ul class="incident-steps">' + stepsHtml + '</ul>' +
-      '<div class="incident-note">💡 خطوة أخيرة دائمًا: راجع إعدادات الاسترجاع (البريد الاحتياطي، رقم الهاتف) في هذا الحساب — أغلب حالات إعادة الاختراق تحدث لأن بيانات الاسترجاع نفسها بقيت مخترقة.</div>';
+      '<div class="inc-done" id="inc-done">✅ أحسنت! أنهيت كل الخطوات. حسابك الآن أكثر أمانًا، وتذكّر أن تراجع إعدادات الاسترجاع بين وقت وآخر.</div>' +
+      warnHtml +
+      '<div class="incident-note">💡 خطوة أخيرة دائمًا: راجع إعدادات الاسترجاع (البريد الاحتياطي، رقم الهاتف) في هذا الحساب — أغلب حالات إعادة الاختراق تحدث لأن بيانات الاسترجاع نفسها بقيت مخترقة.</div>' +
+      '<div class="inc-actions"><button type="button" class="btn btn-ghost" onclick="incReset()">↺ إعادة تعيين التأشيرات</button></div>';
+    incUpdateUi(type, done);
+  }
+
+  function incUpdateUi(type, done){
+    const data = INCIDENT_STEPS[type];
+    if(!data) return;
+    const total = data.steps.length;
+    document.querySelectorAll('#incident-host .inc-step').forEach(function(li){
+      const i = parseInt(li.getAttribute('data-i'), 10);
+      const d = done.indexOf(i) !== -1;
+      li.classList.toggle('done', d);
+      li.setAttribute('aria-checked', d ? 'true' : 'false');
+    });
+    const fill = document.getElementById('inc-fill');
+    const count = document.getElementById('inc-count');
+    const banner = document.getElementById('inc-done');
+    if(fill) fill.style.width = Math.round((done.length / total) * 100) + '%';
+    if(count) count.textContent = done.length + ' / ' + total + ' خطوات';
+    if(banner) banner.classList.toggle('show', done.length >= total);
+  }
+
+  function incToggle(i){
+    const type = incCurrent;
+    const data = type ? INCIDENT_STEPS[type] : null;
+    if(!data) return;
+    const done = incGetDone(type);
+    const pos = done.indexOf(i);
+    if(pos === -1) done.push(i); else done.splice(pos, 1);
+    incSaveDone(type, done);
+    incUpdateUi(type, done);
+    if(done.length >= data.steps.length){
+      awardOnce('vn_inc_award_' + type, 15, 'أكملت دليل طوارئ');
+      checkBadgeConditions();
+    }
+  }
+
+  function incKey(e, i){
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); incToggle(i); }
+  }
+
+  function incReset(){
+    if(!incCurrent) return;
+    incSaveDone(incCurrent, []);
+    incUpdateUi(incCurrent, []);
+  }
+
+  function incCopyWarn(btn){
+    const txt = INCIDENT_WARN_TEXT;
+    function ok(){
+      if(!btn) return;
+      const old = btn.textContent;
+      btn.textContent = '✓ تم النسخ — الصقها في محادثاتك';
+      setTimeout(function(){ btn.textContent = old; }, 2500);
+    }
+    function fallback(){
+      const ta = document.createElement('textarea');
+      ta.value = txt;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try{ ta.setSelectionRange(0, txt.length); }catch(e){}
+      try{ if(document.execCommand('copy')) ok(); }catch(e){}
+      document.body.removeChild(ta);
+    }
+    try{
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(ok, fallback);
+        return;
+      }
+    }catch(e){}
+    fallback();
   }
 
   /* ================= HACKER-VIEW SIMULATION ================= */
@@ -4445,7 +4623,8 @@
     { id:'flag-hunter',  name:'صياد الأعلام',       icon:'🚩', desc:'اعثر على كل أعلام التحدي المخفية' },
     { id:'graduate',     name:'خريج الأمان',        icon:'🎓', desc:'أكمل اختبارات جميع الدروس الـ17' },
     { id:'daily-mind',   name:'عقل التحدي اليومي',  icon:'📅', desc:'أجب بشكل صحيح عن 3 تحديات يومية' },
-    { id:'vishing-master', name:'كاشف المكالمات',   icon:'📞', desc:'أكمل محاكي التصيّد الصوتي (Vishing) بإجابات كاملة' }
+    { id:'vishing-master', name:'كاشف المكالمات',   icon:'📞', desc:'أكمل محاكي التصيّد الصوتي (Vishing) بإجابات كاملة' },
+    { id:'responder',    name:'مستجيب الطوارئ',     icon:'🚨', desc:'أكمل خطوات دليلَي طوارئ كاملين' }
   ];
 
   function vnGetPoints(){
@@ -4568,6 +4747,11 @@
     try{
       const vc = localStorage.getItem('vn_vish_best'), vt = localStorage.getItem('vn_vish_total');
       if(vc !== null && vt !== null && parseInt(vc, 10) === parseInt(vt, 10)) unlockBadge('vishing-master');
+    }catch(e){}
+    try{
+      let incDone = 0;
+      Object.keys(INCIDENT_STEPS).forEach(function(k){ if(localStorage.getItem('vn_inc_award_' + k)) incDone++; });
+      if(incDone >= 2) unlockBadge('responder');
     }catch(e){}
     try{
       for(let i = 0; i < HABITS.length; i++){
@@ -5518,6 +5702,7 @@
     'phishing-sim': 'محاكي التصيد الاحتيالي',
     'sms-phishing-sim': 'محاكي رسائل SMS/واتساب',
     'vishing-sim': 'محاكي التصيد الصوتي',
+    'incident': 'دليل الطوارئ (اختُرق حسابي)',
     'case-studies': 'قصص واقعية',
     'about': 'عن الموقع',
     'feedback': 'شارك رأيك',
