@@ -801,6 +801,84 @@
   .gl-contact a{ color:#c77dff; font-size:9.5px; font-family:var(--mono); text-decoration:none; direction:ltr; display:inline-block; }
   .gl-contact a:hover{ color:#e0aaff; }
 
+  /* ---------- ANIMATED LOGIN FORM (hex background + rotating border, violet palette) ---------- */
+  #lock-screen{ background:var(--ink-fixed); overflow-x:hidden; overflow-y:auto; }
+  #lock-screen .gl-lock-wrap{ margin:auto; z-index:1; }
+  .lc-bg{
+    position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
+    background:radial-gradient(ellipse at center, #14111d 0%, #07060b 100%);
+  }
+  .lc-hex{ position:absolute; inset:0; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.075)' stroke-width='1.5' stroke-linejoin='round'%3E%3Cpolygon points='0.00,-32.33 28.00,-16.17 28.00,16.17 0.00,32.33 -28.00,16.17 -28.00,-16.17'/%3E%3Cpolygon points='56.00,-32.33 84.00,-16.17 84.00,16.17 56.00,32.33 28.00,16.17 28.00,-16.17'/%3E%3Cpolygon points='0.00,64.67 28.00,80.83 28.00,113.17 0.00,129.33 -28.00,113.17 -28.00,80.83'/%3E%3Cpolygon points='56.00,64.67 84.00,80.83 84.00,113.17 56.00,129.33 28.00,113.17 28.00,80.83'/%3E%3Cpolygon points='28.00,16.17 56.00,32.33 56.00,64.67 28.00,80.83 0.00,64.67 0.00,32.33'/%3E%3Cpolygon points='28.00,-80.83 56.00,-64.67 56.00,-32.33 28.00,-16.17 0.00,-32.33 0.00,-64.67'/%3E%3Cpolygon points='28.00,113.17 56.00,129.33 56.00,161.67 28.00,177.83 0.00,161.67 0.00,129.33'/%3E%3C/g%3E%3C/svg%3E"); background-size:56px 97px; }
+  .lc-neon-wrap{ position:absolute; inset:0; filter:drop-shadow(0 0 5px rgba(170,0,255,.85)); animation:lcPulse 4s ease-in-out infinite; }
+  .lc-neon{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 0% 55%, #8b5cf6 0, transparent 38%),
+      radial-gradient(circle at 100% 45%, #e879f9 0, transparent 38%),
+      radial-gradient(circle at 50% 108%, #c4b5fd 0, transparent 34%);
+    -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cg fill='none' stroke='black' stroke-width='2.2' stroke-linejoin='round'%3E%3Cpolygon points='0.00,-32.33 28.00,-16.17 28.00,16.17 0.00,32.33 -28.00,16.17 -28.00,-16.17'/%3E%3Cpolygon points='56.00,-32.33 84.00,-16.17 84.00,16.17 56.00,32.33 28.00,16.17 28.00,-16.17'/%3E%3Cpolygon points='0.00,64.67 28.00,80.83 28.00,113.17 0.00,129.33 -28.00,113.17 -28.00,80.83'/%3E%3Cpolygon points='56.00,64.67 84.00,80.83 84.00,113.17 56.00,129.33 28.00,113.17 28.00,80.83'/%3E%3Cpolygon points='28.00,16.17 56.00,32.33 56.00,64.67 28.00,80.83 0.00,64.67 0.00,32.33'/%3E%3Cpolygon points='28.00,-80.83 56.00,-64.67 56.00,-32.33 28.00,-16.17 0.00,-32.33 0.00,-64.67'/%3E%3Cpolygon points='28.00,113.17 56.00,129.33 56.00,161.67 28.00,177.83 0.00,161.67 0.00,129.33'/%3E%3C/g%3E%3C/svg%3E"); mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cg fill='none' stroke='black' stroke-width='2.2' stroke-linejoin='round'%3E%3Cpolygon points='0.00,-32.33 28.00,-16.17 28.00,16.17 0.00,32.33 -28.00,16.17 -28.00,-16.17'/%3E%3Cpolygon points='56.00,-32.33 84.00,-16.17 84.00,16.17 56.00,32.33 28.00,16.17 28.00,-16.17'/%3E%3Cpolygon points='0.00,64.67 28.00,80.83 28.00,113.17 0.00,129.33 -28.00,113.17 -28.00,80.83'/%3E%3Cpolygon points='56.00,64.67 84.00,80.83 84.00,113.17 56.00,129.33 28.00,113.17 28.00,80.83'/%3E%3Cpolygon points='28.00,16.17 56.00,32.33 56.00,64.67 28.00,80.83 0.00,64.67 0.00,32.33'/%3E%3Cpolygon points='28.00,-80.83 56.00,-64.67 56.00,-32.33 28.00,-16.17 0.00,-32.33 0.00,-64.67'/%3E%3Cpolygon points='28.00,113.17 56.00,129.33 56.00,161.67 28.00,177.83 0.00,161.67 0.00,129.33'/%3E%3C/g%3E%3C/svg%3E");
+    -webkit-mask-size:56px 97px; mask-size:56px 97px;
+  }
+  @keyframes lcPulse{ 0%,100%{ opacity:.55; } 50%{ opacity:1; } }
+  .box{
+    position:relative; width:min(370px, calc(100vw - 32px)); height:545px;
+    background:#0e0b16; border-radius:50px 5px; overflow:hidden;
+    box-shadow:0 0 40px rgba(170,0,255,.22);
+  }
+  .box::before, .box::after{
+    content:''; position:absolute; top:-50%; left:-50%; width:100%; height:100%;
+    background:linear-gradient(0deg, transparent, transparent, #c77dff, #c77dff, #c77dff);
+    transform-origin:bottom right; animation:lcSpin 6s linear infinite;
+  }
+  .box::after{
+    background:linear-gradient(0deg, transparent, transparent, #aa00ff, #aa00ff, #aa00ff);
+    animation-delay:-3s;
+  }
+  @keyframes lcSpin{ 0%{ transform:rotate(0deg); } 100%{ transform:rotate(360deg); } }
+  .box form{
+    position:absolute; inset:2px; border-radius:8px; background:#14101e; z-index:10;
+    padding:50px 40px; display:flex; flex-direction:column; margin:0;
+  }
+  .box h2{
+    font-family:'Poppins','Tajawal',sans-serif; color:#c77dff; font-weight:500; text-align:center;
+    letter-spacing:.1em; font-size:1.5em; margin:0;
+  }
+  .input-box{ position:relative; width:100%; margin-top:35px; }
+  .input-box input{
+    position:relative; width:100%; box-sizing:border-box; padding:20px 10px 10px; background:transparent;
+    border:none; outline:none; box-shadow:none; color:#1a0f2e; font-size:16px;
+    font-family:'Poppins','Tajawal',sans-serif; letter-spacing:.05em; transition:.5s; z-index:10;
+  }
+  .input-box span{
+    position:absolute; inset-inline-start:0; padding:20px 0 10px; pointer-events:none; font-size:16px;
+    font-family:'Poppins','Tajawal',sans-serif; color:#8f8f8f; letter-spacing:.05em; transition:.5s;
+  }
+  .input-box input:focus ~ span, .input-box input:not(:placeholder-shown) ~ span{
+    color:#c77dff; transform:translateY(-34px); font-size:.75em;
+  }
+  .input-box i{
+    position:absolute; left:0; bottom:0; width:100%; height:2px; background:#c77dff; border-radius:4px;
+    transition:.5s; pointer-events:none; z-index:9;
+  }
+  .input-box input:focus ~ i, .input-box input:not(:placeholder-shown) ~ i{ height:44px; }
+  .input-box .gl-eye{
+    position:absolute; inset-inline-end:8px; bottom:13px; z-index:11; display:flex; cursor:pointer; color:#8f8f8f; transition:.5s;
+  }
+  .input-box input:focus ~ .gl-eye, .input-box input:not(:placeholder-shown) ~ .gl-eye{ color:#1a0f2e; }
+  #lock-input{ padding-inline-end:36px; }
+  .lc-submit{
+    border:none; outline:none; padding:11px 25px; background:linear-gradient(90deg,#aa00ff,#6200ea); color:#fff;
+    cursor:pointer; font-size:.95em; border-radius:30px; font-weight:600; width:100%; margin-top:16px;
+    font-family:'Poppins','Tajawal',sans-serif; box-shadow:0 4px 15px rgba(170,0,255,.4);
+  }
+  .lc-submit:active{ opacity:.8; }
+  .box .gl-error{ margin-top:8px; }
+  .box .links{ display:flex; justify-content:space-between; gap:6px; margin-top:auto; }
+  .box .links a{ margin:10px 0 0; font-size:.7em; white-space:nowrap; color:#8f8f8f; text-decoration:none; font-family:'Poppins','Tajawal',sans-serif; }
+  .box .links a:hover, .box .links a:nth-child(2){ color:#c77dff; }
+  .box .links a:nth-child(2){ direction:ltr; }
+  @media (max-height:600px){ .box{ height:500px; } .box form{ padding:32px 36px; } .input-box{ margin-top:28px; } }
+
   #site-content{display:none;}
 
   /* ---------- CONNECTING SCREEN ---------- */
@@ -1277,40 +1355,34 @@
   </div>
 </div>
 <div id="lock-screen">
+  <div class="lc-bg" aria-hidden="true"><div class="lc-hex"></div><div class="lc-neon-wrap"><div class="lc-neon"></div></div></div>
   <div class="gl-lock-wrap">
-    <div class="gl-glow"></div>
-    <div class="gl-card">
-      <h2>VigilantNode</h2>
-      <p class="gl-sub">دخول محمي</p>
-      <div class="gl-form">
-        <div class="gl-input-group">
-          <span class="gl-icon">
-            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
-          </span>
-          <input type="text" id="lock-username" placeholder="اسمك" autocomplete="off">
+    <div class="box">
+      <form onsubmit="return false;" autocomplete="off" novalidate>
+        <div class="input-box">
+          <h2>VigilantNode</h2>
+          <input type="text" id="lock-username" placeholder=" " autocomplete="off" required>
+          <span>اسمك</span>
+          <i></i>
         </div>
-        <div class="gl-input-group">
-          <span class="gl-icon">
-            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-          </span>
-          <input type="email" id="lock-email" placeholder="إيميلك" autocomplete="off">
+        <div class="input-box">
+          <input type="email" id="lock-email" placeholder=" " autocomplete="off" required>
+          <span>إيميلك</span>
+          <i></i>
         </div>
-        <div class="gl-input-group">
-          <span class="gl-icon">
-            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-          </span>
-          <input type="password" id="lock-input" placeholder="كلمة المرور" autocomplete="off">
-          <span class="gl-eye" onclick="toggleLockPassword()">
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-          </span>
+        <div class="input-box">
+          <input type="password" id="lock-input" placeholder=" " autocomplete="off" required>
+          <span>كلمة المرور</span>
+          <i></i>
+          <b class="gl-eye" onclick="toggleLockPassword()"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></b>
         </div>
-        <button class="gl-btn" onclick="checkLockPassword()">دخول</button>
+        <input type="button" class="lc-submit" value="دخول" onclick="checkLockPassword()">
         <div class="gl-error" id="lock-error"></div>
-        <div class="gl-contact">
-          <p>ما عندك كلمة المرور؟</p>
+        <div class="links">
+          <a href="mailto:Plumablanca026@gmail.com">ما عندك كلمة المرور؟</a>
           <a href="mailto:Plumablanca026@gmail.com">Plumablanca026@gmail.com</a>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>
