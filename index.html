@@ -1050,6 +1050,62 @@
   .inc-warnbox{ font-size:13.5px; color:var(--text); line-height:1.9; margin-bottom:12px; }
   .inc-actions{ display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
 
+  /* ---------- VX TOOLS (message checker, photo privacy, local scams, safety check) ---------- */
+  .vx-textarea{
+    width:100%; min-height:130px; box-sizing:border-box; background:var(--ink); border:1px solid var(--line);
+    color:var(--text); border-radius:6px; padding:14px; font-size:16px; font-family:'Tajawal',sans-serif;
+    line-height:1.7; resize:vertical;
+  }
+  .vx-textarea:focus{ outline:none; border-color:var(--brass); }
+  .vx-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+  .vx-result{ margin-top:22px; }
+  .vx-meter{ height:12px; background:var(--ink); border:1px solid var(--line); border-radius:99px; overflow:hidden; }
+  .vx-meter-fill{ height:100%; width:0; transition:width .5s; }
+  .vx-level{ font-family:var(--head); font-size:18px; margin:12px 0 6px; }
+  .vx-sub{ color:var(--muted); font-size:14px; line-height:1.8; margin-bottom:6px; }
+  .vx-list{ list-style:none; padding:0; margin:12px 0 0; }
+  .vx-list li{
+    padding:10px 12px; margin-bottom:8px; background:var(--ink); border-inline-start:3px solid var(--rust);
+    font-size:14px; line-height:1.8; color:var(--text);
+  }
+  .vx-list li small{ display:block; color:var(--muted); font-size:12.5px; }
+  .vx-list code, .vx-host{
+    direction:ltr; unicode-bidi:embed; display:inline-block; font-family:var(--mono); font-size:12.5px;
+    color:var(--brass-bright); word-break:break-all;
+  }
+  .vx-h4{ font-family:var(--head); font-size:14.5px; color:var(--paper); margin:18px 0 6px; }
+  .vx-photo-grid{ display:grid; grid-template-columns:140px 1fr; gap:18px; align-items:start; }
+  @media (max-width:560px){ .vx-photo-grid{ grid-template-columns:1fr; } }
+  .vx-photo-grid img{ max-width:100%; max-height:220px; border-radius:6px; border:1px solid var(--line); display:block; }
+  .vx-table{ width:100%; border-collapse:collapse; font-size:14px; }
+  .vx-table td{ padding:8px 6px; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.7; }
+  .vx-table td:first-child{ color:var(--muted); width:36%; }
+  .vx-table td:last-child{ direction:ltr; text-align:left; font-family:var(--mono); font-size:13px; word-break:break-word; }
+  .vx-verdict{ padding:12px 14px; border-radius:4px; font-size:14px; line-height:1.8; margin-bottom:14px; border:1px solid; }
+  .vx-verdict.bad{ border-color:#ef4444; background:rgba(239,68,68,0.1); color:#ff8fa3; }
+  .vx-verdict.mid{ border-color:#fbbf24; background:rgba(251,191,36,0.08); color:#fcd34d; }
+  .vx-verdict.ok{ border-color:#4ade80; background:rgba(74,222,128,0.08); color:#86efac; }
+  .vx-clean-box{ margin-top:18px; padding-top:16px; border-top:1px dashed var(--line); }
+  .vx-clean-box img{ max-height:160px; margin:12px 0; }
+  .vx-scams{ display:grid; gap:12px; max-width:760px; margin:0 auto 22px; }
+  .vx-scam{ background:var(--panel-2); border:1px solid var(--line); border-radius:4px; }
+  .vx-scam summary{
+    list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px; padding:16px 18px;
+    font-family:var(--head); font-size:15.5px; color:var(--paper);
+  }
+  .vx-scam summary::-webkit-details-marker{ display:none; }
+  .vx-scam summary::after{ content:'+'; margin-inline-start:auto; color:var(--brass-bright); font-family:var(--mono); font-size:20px; }
+  .vx-scam[open] summary::after{ content:'\2212'; }
+  .vx-scam[open]{ border-color:var(--brass-dim); }
+  .vx-scam-icon{ font-size:22px; flex-shrink:0; }
+  .vx-scam-body{ padding:2px 18px 18px; font-size:14.5px; line-height:1.9; color:var(--text); }
+  .vx-scam-body p{ margin-bottom:10px; }
+  .vx-scam-body strong{ color:var(--brass-bright); }
+  .vx-rec{ padding:12px 14px; margin-bottom:10px; background:var(--ink); border-inline-start:3px solid var(--brass); font-size:14px; line-height:1.8; }
+  .vx-rec .btn{ margin-top:8px; padding:6px 14px; font-size:13px; }
+  .vx-safety-bar{ height:14px; background:var(--ink); border:1px solid var(--line); border-radius:99px; overflow:hidden; margin:14px 0; }
+  .vx-safety-bar div{ height:100%; background:var(--brass); transition:width .6s; }
+
   /* ---------- VISUAL RED-FLAGS GALLERY ---------- */
   .rf-mockup{
     max-width:640px; margin:0 auto 28px; background:var(--panel-2); border:1px solid var(--line); border-radius:4px; overflow:hidden;
@@ -1724,7 +1780,7 @@
   <div class="wrap">
     <div class="section-head">
       <h2>تعمّق أكثر: الهاتف تحديدًا</h2>
-      <p>الأمن السيبراني لا يقتصر على الهاتف فقط. اثنا عشر درسًا مركّزة تغطي الصورة الكاملة، من اختراق الأجهزة إلى الاحتيال المالي وأمان الشبكة المنزلية.</p>
+      <p>الأمن السيبراني لا يقتصر على الهاتف فقط. أربعة عشر درسًا مركّزة تغطي الصورة الكاملة، من اختراق الأجهزة إلى الاحتيال المالي وأمان الشبكة المنزلية.</p>
     </div>
 
     <div class="track-tabs" data-scope="lessons">
@@ -2063,6 +2119,81 @@
           </div>
           <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('lesson-12', this)">📝 اختبر فهمك في هذا الدرس</button>
           <div class="quiz-host" id="quiz-host-lesson-12"></div>
+          <button class="btn btn-ghost lesson-next" onclick="goToLesson('lesson-13')">التالي</button>
+        </div>
+      </details>
+
+      <details class="lesson-block" id="lesson-13" data-level="beginner">
+        <summary>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li13" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><path d="M5 6h22v15H15l-6 5v-5H5z" stroke="url(#li13)" stroke-width="1.8" stroke-linejoin="round"/><circle cx="11" cy="13.5" r="1.4" fill="url(#li13)"/><circle cx="16" cy="13.5" r="1.4" fill="url(#li13)"/><circle cx="21" cy="13.5" r="1.4" fill="url(#li13)"/></svg></span>
+          <span class="lesson-num">13</span>
+          <span class="lesson-title">الهندسة الاجتماعية: حين يُخترق الإنسان قبل الجهاز</span>
+          <span class="quiz-score-badge" id="qbadge-lesson-13"></span>
+          <span class="lesson-toggle">+</span>
+        </summary>
+        <div class="lesson-body">
+          <p>الهندسة الاجتماعية (Social Engineering) هي خداع الإنسان نفسه ليسلّم المهاجم ما يريد، بدل كسر الأجهزة. وهي أسهل عليه بكثير: لماذا يكسر قفلًا معقّدًا إن كان يستطيع إقناعك بفتح الباب بنفسك؟</p>
+          <p><strong>الساعة العاشرة ليلًا</strong>، تصلك رسالة واتساب من صديق قديم: «يا أخي أرسلتُ رقمك بالغلط لتفعيل حسابي، سيصلك رمز، ابعثه لي بسرعة». تبعث الرمز لتساعده. بعد دقائق تُطرد من حسابك، ويبدأ المحتال بمراسلة جهات اتصالك بنفس الأسلوب. الصديق لم يكن صديقًا؛ حسابه كان مخترقًا بالطريقة نفسها، وأنت صرت الحلقة التالية في السلسلة.</p>
+          <p>كل هجوم من هذا النوع يضغط على زر نفسي واحد من هذه الأزرار:</p>
+          <ul>
+            <li><strong>الاستعجال:</strong> «افعلها الآن وإلا...» حتى لا تجد وقتًا للتفكير.</li>
+            <li><strong>السلطة:</strong> انتحال بنك أو جهة أمنية أو مدير عملك، فتطيع دون سؤال.</li>
+            <li><strong>الطمع:</strong> جائزة أو ربح سريع أو عرض «لا يتكرر».</li>
+            <li><strong>الود والشفقة:</strong> صديق أو قريب في ورطة يطلب مساعدة عاجلة.</li>
+            <li><strong>الفضول:</strong> «شاهد من نشر صورك!» أو ملف مجهول المصدر.</li>
+          </ul>
+          <p><strong>كيف تدافع؟ قواعد بسيطة:</strong></p>
+          <ul>
+            <li><strong>توقّف عشر ثوانٍ</strong> قبل أي خطوة فيها مال أو رمز أو بيانات. المحتال يخسر كثيرًا حين تتمهل.</li>
+            <li><strong>تحقق عبر قناة ثانية:</strong> اتصل بصديقك صوتيًا، أو بجهتك عبر رقمها الرسمي، لا عبر وسيلة الرسالة نفسها.</li>
+            <li><strong>أنت من يتصل لا هم:</strong> إن اتصل بك من يدّعي صفة رسمية، أنهِ المكالمة واتصل بالرقم الرسمي بنفسك.</li>
+            <li><strong>لا ترسل رمزًا أبدًا:</strong> رمز التحقق هو مفتاح حسابك، ولا يطلبه موظف ولا صديق حقيقي.</li>
+            <li><strong>اسأل سؤالًا لا يعرفه إلا الأصلي:</strong> تفصيلة بينكما، ولا تثق بصورة الملف الشخصي وحدها.</li>
+          </ul>
+          <div class="callout">
+            <strong>القاعدة الذهبية:</strong> أي رسالة تجمع «استعجالًا» مع «طلب رمز أو مال» هي احتيال حتى يثبت العكس. وجرّب <a href="#msg-checker" style="color:var(--brass-bright);">فاحص الرسائل</a> في هذا الموقع على أي رسالة تشك فيها.
+          </div>
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('lesson-13', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-lesson-13"></div>
+          <button class="btn btn-ghost lesson-next" onclick="goToLesson('lesson-14')">التالي</button>
+        </div>
+      </details>
+
+      <details class="lesson-block" id="lesson-14" data-level="beginner">
+        <summary>
+          <span class="lesson-icon"><svg viewBox="0 0 32 32" width="26" height="26" fill="none"><defs><linearGradient id="li14" x1="4" y1="2" x2="28" y2="30"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><rect x="9" y="3" width="14" height="26" rx="3" stroke="url(#li14)" stroke-width="1.8"/><path d="M13 16l2.5 2.5L20 13" stroke="url(#li14)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 25h4" stroke="url(#li14)" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+          <span class="lesson-num">14</span>
+          <span class="lesson-title">التحقق بخطوتين (2FA): قفل ثانٍ يوقف أغلب الاختراقات</span>
+          <span class="quiz-score-badge" id="qbadge-lesson-14"></span>
+          <span class="lesson-toggle">+</span>
+        </summary>
+        <div class="lesson-body">
+          <p>كلمة المرور وحدها قد تُسرق بالتصيّد أو بتسريب موقع استخدمته. <strong>التحقق بخطوتين</strong> (2FA) يضيف خطوة ثانية لا يملكها المهاجم: شيئًا تملكه أنت، كهاتفك أو مفتاح أمان. فلو عرف كلمة مرورك يبقى الباب مغلقًا أمامه.</p>
+          <p><strong>أنواعه، من الأضعف إلى الأقوى:</strong></p>
+          <ul>
+            <li><strong>رسالة SMS:</strong> أفضل من لا شيء، لكن يمكن اعتراضها أو سرقة رقمك بحيلة تبديل الشريحة (SIM Swap).</li>
+            <li><strong>تطبيق مصادقة</strong> (مثل Google Authenticator أو Microsoft Authenticator): يولّد رمزًا يتغير كل نصف دقيقة على هاتفك، ولا يمر عبر شبكة الاتصالات.</li>
+            <li><strong>مفتاح مرور (Passkey) أو مفتاح أمان:</strong> الأقوى، لأنه لا يعمل إلا مع موقع الجهة الحقيقي، فلا يخدعه التصيّد.</li>
+          </ul>
+          <p><strong>كيف تفعّله؟ الخطوات متشابهة في أغلب المنصات:</strong></p>
+          <ul>
+            <li><strong>الخطوة 1:</strong> افتح إعدادات الحساب ← «الأمان» ← «التحقق بخطوتين».</li>
+            <li><strong>الخطوة 2:</strong> اختر «تطبيق المصادقة» إن توفّر بدل الرسائل.</li>
+            <li><strong>الخطوة 3:</strong> امسح رمز QR بالتطبيق، ثم اكتب الرمز الذي يظهر لتأكيد التفعيل.</li>
+            <li><strong>الخطوة 4:</strong> احفظ <strong>رموز الاسترداد</strong> (Backup Codes) التي تُعرض لك في مكان آمن خارج هاتفك، فهي منقذك إن ضاع الهاتف.</li>
+          </ul>
+          <p>ابدأ بالأهم: <strong>بريدك الإلكتروني أولًا</strong> لأنه يستعيد كل حساباتك، ثم حساباتك المالية، ثم التواصل الاجتماعي.</p>
+          <p><strong>أخطاء شائعة تُفقده قيمته:</strong></p>
+          <ul>
+            <li>مشاركة رمز التحقق مع أحد، حتى لو بدا موظف دعم.</li>
+            <li>عدم حفظ رموز الاسترداد، ثم فقدان الهاتف.</li>
+            <li>الضغط على «موافقة» لإشعار دخول لم تطلبه. بعض المهاجمين يغرقونك بالإشعارات حتى تضغط بالخطأ، وأي إشعار لم تطلبه يعني أن أحدًا يعرف كلمة مرورك: ارفضه وغيّرها فورًا.</li>
+          </ul>
+          <div class="callout">
+            <strong>تذكير:</strong> التحقق بخطوتين لا يغني عن كلمة مرور قوية، لكنه يجعل سرقتها وحدها بلا فائدة. فعّله اليوم على بريدك؛ خمس دقائق تحميك لسنوات.
+          </div>
+          <button type="button" class="btn btn-quiz" onclick="openLessonQuiz('lesson-14', this)">📝 اختبر فهمك في هذا الدرس</button>
+          <div class="quiz-host" id="quiz-host-lesson-14"></div>
           <a href="#checklist" class="btn btn-ghost lesson-next">قائمة الفحص</a>
         </div>
       </details>
@@ -2748,6 +2879,126 @@
   </div>
 </section>
 
+<section id="local-scams" style="border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">دليل محلي</span>
+      <h2>أشهر أساليب الاحتيال حولنا</h2>
+      <p>الصيغ تتغير والفكرة واحدة: استعجال، أو طمع، أو ثقة مصطنعة. اضغط على أي أسلوب لتعرف كيف يعمل، وما علامته الحمراء، وماذا تفعل.</p>
+    </div>
+    <div class="vx-scams">
+      <details class="vx-scam">
+        <summary><span class="vx-scam-icon">🎁</span>«ربحت جائزة!» باسم شركة اتصالات أو متجر</summary>
+        <div class="vx-scam-body">
+          <p><strong>كيف تعمل:</strong> تصلك رسالة أو إعلان بأنك فزت بهاتف أو رصيد أو مبلغ في سحب لم تشارك فيه، ثم يطلبون «رسوم شحن» أو بياناتك أو ضغط رابط لاستلام الجائزة.</p>
+          <p><strong>🚩 العلامة الحمراء:</strong> جائزة لمسابقة لم تشارك فيها، مع طلب أي مبلغ أو بيانات بطاقة قبل الاستلام.</p>
+          <p><strong>✅ ماذا تفعل:</strong> تجاهل الرسالة وأبلغ عنها. الجوائز الحقيقية لا تُطلب عليها رسوم مسبقة. وللتأكد، اكتب اسم الشركة بنفسك في البحث وراجع صفحتها الرسمية.</p>
+        </div>
+      </details>
+      <details class="vx-scam">
+        <summary><span class="vx-scam-icon">🏦</span>«حسابك سيُجمّد» باسم البنك أو البريد</summary>
+        <div class="vx-scam-body">
+          <p><strong>كيف تعمل:</strong> رسالة أو مكالمة تدّعي أن حسابك البنكي أو البريدي مهدد بالإيقاف، وتطلب منك «تحديث بياناتك» عبر رابط أو إعطاء رمز يصلك على هاتفك.</p>
+          <p><strong>🚩 العلامة الحمراء:</strong> طلب رمز التحقق أو الرقم السري أو بيانات البطاقة، مع تهديد بإيقاف الحساب خلال ساعات.</p>
+          <p><strong>✅ ماذا تفعل:</strong> لا تضغط ولا تُجب. اتصل بجهتك مباشرة عبر رقمها الرسمي المكتوب على بطاقتك أو موقعها المعروف مسبقًا. لا جهة حقيقية تطلب رمزك السري.</p>
+        </div>
+      </details>
+      <details class="vx-scam">
+        <summary><span class="vx-scam-icon">🛒</span>إعلان بيع بسعر مغرٍ (هاتف، سيارة، عقار)</summary>
+        <div class="vx-scam-body">
+          <p><strong>كيف تعمل:</strong> إعلان على مواقع البيع أو وسائل التواصل بسعر أقل بكثير من السوق. البائع «مسافر» أو «بعيد»، ويطلب عربونًا أو دفعًا مسبقًا ويعدك بالشحن.</p>
+          <p><strong>🚩 العلامة الحمراء:</strong> سعر أرخص من المعقول، مع رفض اللقاء والمعاينة والإلحاح على الدفع المسبق عبر تحويل.</p>
+          <p><strong>✅ ماذا تفعل:</strong> عاين السلعة وتسلّمها قبل أي دفع، والتقِ في مكان عام. إن رفض البائع فهذه إشارة كافية للانسحاب.</p>
+        </div>
+      </details>
+      <details class="vx-scam">
+        <summary><span class="vx-scam-icon">💼</span>عرض عمل من المنزل أو «اربح من الإنترنت»</summary>
+        <div class="vx-scam-body">
+          <p><strong>كيف تعمل:</strong> وعد براتب مرتفع لعمل بسيط (تقييم منتجات، إعجابات، إدخال بيانات)، ثم يطلبون رسوم تسجيل أو «تأمين»، أو نسخة من هويتك وبياناتك البنكية.</p>
+          <p><strong>🚩 العلامة الحمراء:</strong> أي وظيفة تطلب منك مالًا أولًا، أو تعد بأرباح كبيرة بلا خبرة ولا مقابلة.</p>
+          <p><strong>✅ ماذا تفعل:</strong> لا تدفع لتحصل على عمل. لا ترسل صورة هويتك أو بياناتك البنكية قبل أن تتأكد أن الشركة موجودة فعليًا، ولها عنوان ومقابلة رسمية.</p>
+        </div>
+      </details>
+      <details class="vx-scam">
+        <summary><span class="vx-scam-icon">🧑‍🤝‍🧑</span>«صديقك في ورطة» من حساب مخترق</summary>
+        <div class="vx-scam-body">
+          <p><strong>كيف تعمل:</strong> تصلك رسالة من حساب صديق (بعد اختراقه) يطلب «شحن رصيد» أو «تحويل مبلغ مؤقتًا»، أو يقول: «أرسل لي الرمز الذي وصلك بالخطأ».</p>
+          <p><strong>🚩 العلامة الحمراء:</strong> طلب مال أو رمز من صديق عبر الكتابة فقط، بأسلوب مستعجل أو غير معتاد.</p>
+          <p><strong>✅ ماذا تفعل:</strong> اتصل بصديقك صوتيًا للتأكد قبل أي خطوة. ولا ترسل أي رمز مهما كان المرسل.</p>
+        </div>
+      </details>
+      <details class="vx-scam">
+        <summary><span class="vx-scam-icon">👮</span>انتحال جهة رسمية (أمن، ضرائب، محكمة)</summary>
+        <div class="vx-scam-body">
+          <p><strong>كيف تعمل:</strong> اتصال أو رسالة تدّعي أن عليك غرامة أو قضية، وتطلب دفعًا فوريًا أو بيانات شخصية عبر واتساب أو رابط.</p>
+          <p><strong>🚩 العلامة الحمراء:</strong> جهة رسمية تطلب الدفع أو المعلومات عبر رسالة أو تطبيق محادثة، وتهددك بالعقوبة إن لم تدفع فورًا.</p>
+          <p><strong>✅ ماذا تفعل:</strong> أنهِ المحادثة، وتواصل مع الجهة بنفسك عبر قنواتها الرسمية للتحقق. الإجراءات الرسمية لا تتم بتحويل سريع ولا عبر رسالة.</p>
+        </div>
+      </details>
+      <details class="vx-scam">
+        <summary><span class="vx-scam-icon">📈</span>استثمار أو تداول بـ«أرباح مضمونة»</summary>
+        <div class="vx-scam-body">
+          <p><strong>كيف تعمل:</strong> شخص أو مجموعة تعرض عليك استثمارًا في العملات الرقمية أو التداول بأرباح يومية مضمونة، وتُظهر لك «أرباحًا» في تطبيق مزيف، ثم تمنعك من السحب إلا بعد دفع رسوم إضافية.</p>
+          <p><strong>🚩 العلامة الحمراء:</strong> وعد بربح مضمون أو سريع، وضغط لإدخال أصدقائك، ورسوم لفتح السحب.</p>
+          <p><strong>✅ ماذا تفعل:</strong> لا يوجد استثمار بربح مضمون. لا تودع مالًا في منصة لا تعرف ترخيصها، وابحث عن اسمها مع كلمة «نصب» قبل أي خطوة.</p>
+        </div>
+      </details>
+    </div>
+    <div class="incident-note" style="max-width:760px; margin:0 auto;">🆘 <strong>إن وقعت ضحية:</strong> أوقف التواصل فورًا، واحتفظ بلقطات الشاشة وأرقام العمليات، وأبلغ المنصة وبنكك، ثم توجّه إلى الجهات المختصة في بلدك لتقديم بلاغ. ولا تثق بمن يعرض عليك «استرجاع أموالك» مقابل مال، فهو احتيال ثانٍ.</div>
+  </div>
+</section>
+
+<section id="msg-checker" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">أداة تفاعلية</span>
+      <h2>فاحص الرسائل والروابط المشبوهة</h2>
+      <p>الصق رسالة وصلتك أو رابطًا تشك فيه، لتعرف علامات الخطر فيه ولماذا. الفحص يتم على جهازك فقط، ولا يُرسل أي شيء لأي مكان.</p>
+    </div>
+    <div class="tool-card">
+      <textarea id="vx-msg-input" class="vx-textarea" placeholder="الصق الرسالة أو الرابط هنا..." spellcheck="false"></textarea>
+      <div class="vx-row">
+        <button type="button" class="btn btn-primary" onclick="vxCheckMessage()">🔍 افحص</button>
+        <button type="button" class="btn btn-ghost" onclick="vxMsgSample()">جرّب مثالًا</button>
+        <button type="button" class="btn btn-ghost" onclick="vxMsgClear()">مسح</button>
+      </div>
+      <div id="vx-msg-result" class="vx-result" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section id="photo-privacy" style="border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">أداة تفاعلية</span>
+      <h2>كاشف البيانات المخفية في صورك</h2>
+      <p>صور الهاتف قد تحمل موقع التصوير ونوع جهازك وتاريخه، وتنتقل معها حين تشاركها. اختر صورة لترى ما تخفيه، ثم نزّل نسخة نظيفة. تُعالَج الصورة داخل متصفحك ولا تُرفع لأي مكان.</p>
+    </div>
+    <div class="tool-card">
+      <input type="file" id="vx-photo-input" accept="image/*" style="display:none;" onchange="vxPhotoSelected(this)">
+      <button type="button" class="btn btn-primary" onclick="document.getElementById('vx-photo-input').click()">📷 اختر صورة</button>
+      <div id="vx-photo-result" class="vx-result" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section id="safety-check" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">اختبار شخصي</span>
+      <h2>فحص أمانك الرقمي في دقيقتين</h2>
+      <p>عشرة أسئلة صادقة عن عاداتك، تنتهي بنتيجة وثلاث خطوات تبدأ بها اليوم. إجاباتك تبقى على جهازك.</p>
+    </div>
+    <div class="tool-card">
+      <div id="vx-safety-host">
+        <div style="text-align:center;">
+          <button type="button" class="btn btn-primary" onclick="vxSafetyStart()">ابدأ الفحص</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="incident" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
   <div class="wrap">
     <div class="section-head">
@@ -3100,6 +3351,20 @@
       { q:'ما أفضل طريقة للتأكد من الموقع الرسمي لبنكك؟', options:['الضغط على أول رابط يظهر في رسالة وصلتك', 'كتابة عنوان الموقع يدويًا في المتصفح أو البحث عنه بشكل مستقل', 'سؤال أي شخص في مجموعة واتساب', 'الثقة بأي نتيجة إعلانية أولى'], correct:1, explain:'كتابة العنوان يدويًا أو البحث المستقل يتجنّب روابط التصيّد المرسلة عبر رسائل أو إعلانات مزيفة.' },
       { q:'أين يجب البحث عادة عن ترخيص أو رقم تسجيل مؤسسة مالية حقيقية؟', options:['لا تملك المؤسسات المالية أي ترخيص معلن', 'غالبًا مذكور بأسفل الصفحة الرئيسية للموقع الرسمي', 'فقط عبر الاتصال الهاتفي', 'في إعلانات مواقع التواصل فقط'], correct:1, explain:'المؤسسات المالية الحقيقية تنشر عادة ترخيصها أو رقم تسجيلها الرسمي بوضوح في موقعها.' },
       { q:'ما "القاعدة الذهبية" عند الشك في أمان موقع؟', options:['إدخال بياناتك بسرعة قبل انتهاء العرض', 'عدم إدخال أي بيانات، وإغلاق الصفحة، والتحقق من الجهة بنفسك من مصدر معروف مسبقًا', 'مشاركة الرابط مع أكبر عدد من الأصدقاء للتأكد', 'تجاهل الأمر لأنه نادرًا ما يحدث'], correct:1, explain:'عند أي شك، التوقف عن إدخال البيانات والتحقق المستقل هو السلوك الآمن دائمًا.' }
+    ],
+    'lesson-13': [
+      { q:'ما المقصود بالهندسة الاجتماعية؟', options:['اختراق الأجهزة بثغرات برمجية فقط','خداع الإنسان نفسه ليسلّم المهاجم ما يريد','فيروس ينتشر عبر الشبكة','برنامج لكسر كلمات المرور'], correct:1, explain:'المهاجم يستهدف الإنسان وثقته واستعجاله، لأن إقناعك أسهل من كسر الحماية التقنية.' },
+      { q:'في قصة الصديق الذي طلب رمزًا «أرسلتُه بالغلط»، ما الخطأ الأساسي؟', options:['فتح واتساب في الليل','إرسال رمز التحقق لمن طلبه عبر رسالة','حذف المحادثة','عدم تحديث التطبيق'], correct:1, explain:'رمز التحقق هو مفتاح حسابك. من يحصل عليه يستطيع إدخال حسابك على جهازه فورًا.' },
+      { q:'أي مما يلي ليس حيلة نفسية يستغلها المحتال؟', options:['الاستعجال','الطمع','انتحال السلطة','التأني والتحقق'], correct:3, explain:'التأني والتحقق هما الدفاع. أما الاستعجال والطمع والسلطة فأدوات المحتال لإبعادك عن التفكير.' },
+      { q:'اتصل بك شخص يدّعي أنه من بنكك ويطلب رمزًا وصلك الآن. ماذا تفعل؟', options:['أعطيه الرمز لأن الرقم ظهر باسم البنك','أنهي المكالمة وأتصل بالبنك على رقمه الرسمي بنفسي','أطلب منه رقم موظف ثم أعطيه الرمز','أرسل له الرمز كتابة بدل الصوت'], correct:1, explain:'أنت من يتصل بالرقم الرسمي المعروف مسبقًا. ولا موظف حقيقي يطلب منك رمز التحقق.' },
+      { q:'صديق يطلب منك مبلغًا عاجلًا عبر رسالة بأسلوب غير معتاد. ما أفضل تصرف؟', options:['أحوّل فورًا ثم أسأله','أتصل به صوتيًا أو أسأله سؤالًا لا يعرفه إلا هو، قبل أي تحويل','أتجاهل الأمر دون أي تحقق','أطلب منه صورة هويته'], correct:1, explain:'قد يكون حسابه مخترقًا. التحقق عبر قناة ثانية يكشف الأمر في دقيقة.' }
+    ],
+    'lesson-14': [
+      { q:'ما فائدة التحقق بخطوتين؟', options:['يجعل كلمة المرور غير ضرورية','يبقي الحساب محميًا حتى لو سُرقت كلمة المرور','يسرّع الدخول للحساب','يخفي بريدك الإلكتروني'], correct:1, explain:'الخطوة الثانية شيء لا يملكه المهاجم، فلا تكفيه كلمة المرور وحدها.' },
+      { q:'أي الخيارات التالية أقوى لحماية حسابك؟', options:['رسالة SMS','تطبيق مصادقة أو مفتاح مرور (Passkey)','سؤال أمان عن اسم الحيوان الأليف','لا فرق بينها'], correct:1, explain:'تطبيق المصادقة ومفاتيح المرور أصعب اعتراضًا من الرسائل النصية، ومفتاح المرور لا يعمل مع المواقع المقلّدة.' },
+      { q:'لماذا تُعدّ رسائل SMS أضعف نسبيًا؟', options:['لأنها بطيئة دائمًا','لأنها قد تُعترض أو يُسرق رقمك بحيلة تبديل الشريحة','لأنها مدفوعة دائمًا','لأنها لا تعمل خارج البلد'], correct:1, explain:'من يسيطر على رقمك يستقبل رموزك. لذلك يُنصح بتطبيق المصادقة متى توفّر.' },
+      { q:'ما رموز الاسترداد (Backup Codes) ولماذا تُحفظ؟', options:['رموز تعلن عن جوائز','رموز تُستعمل للدخول إن ضاع هاتفك، وتُحفظ بعيدًا عنه','رموز لتغيير اسم الحساب','رموز يطلبها الدعم الفني بالهاتف'], correct:1, explain:'هي مفتاحك الاحتياطي. احفظها في مكان آمن خارج الهاتف، ولا تشاركها مع أحد.' },
+      { q:'وصلك إشعار «هل هذا أنت؟» لمحاولة دخول لم تقم بها. ماذا تفعل؟', options:['أوافق كي يتوقف الإشعار','أرفض وأغيّر كلمة مرورك فورًا','أتجاهله وأحذف التطبيق','أطلب من صديق أن يوافق عني'], correct:1, explain:'الإشعار يعني أن أحدًا يعرف كلمة مرورك ويحاول الدخول. الرفض وتغيير كلمة المرور يغلقان الباب.' }
     ],
     'code-01': [
       { q:'ما الوظيفة الأساسية لـHTML في صفحة الويب؟', options:['تحديد الألوان والخطوط','بناء الهيكل والمحتوى','إضافة التفاعل والحركة','تخزين بيانات المستخدم'], correct:1, explain:'HTML مسؤولة عن هيكل المحتوى (عناوين، فقرات، صور) — التنسيق مهمة CSS، والتفاعل مهمة JavaScript.' },
@@ -4076,7 +4341,7 @@
   /* ---------- COMPLETION CERTIFICATE ---------- */
   function getCompletionStats(){
     const ids = [];
-    for(let i = 1; i <= 12; i++){ ids.push('lesson-' + String(i).padStart(2, '0')); }
+    for(let i = 1; i <= 14; i++){ ids.push('lesson-' + String(i).padStart(2, '0')); }
     for(let i = 1; i <= 5; i++){ ids.push('code-' + String(i).padStart(2, '0')); }
     let completed = 0, totalScore = 0, totalQuestions = 0;
     ids.forEach(function(id){
@@ -4340,6 +4605,499 @@
         '<p>' + msg + '</p>' +
         '<button type="button" class="btn btn-ghost" onclick="startLinkGame()">إعادة اللعب</button>' +
       '</div>';
+  }
+
+  /* ================= VX HELPERS ================= */
+  function vxEsc(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+  function vxNorm(s){
+    return String(s).toLowerCase()
+      .replace(/[ً-ٰٟـ]/g, '')
+      .replace(/[أإآ]/g, 'ا')
+      .replace(/ى/g, 'ي')
+      .replace(/ة/g, 'ه');
+  }
+
+  /* ================= MESSAGE & LINK CHECKER ================= */
+  const VX_TEXT_RULES = [
+    { w:18, label:'ضغط واستعجال', tip:'المحتال يستعجلك كي لا تفكر بهدوء.',
+      words:['عاجل','فورا','حالا','خلال 24 ساعة','خلال ساعة','خلال 48 ساعة','اخر فرصة','اخر تحذير','سيتم ايقاف','سيتم تجميد','سيتم حظر','سيتم الغاء','ينتهي اليوم','urgent','immediately','within 24 hours','last warning','act now','suspended','will be closed','will be blocked','bloque','suspendu','dernier avertissement','immediatement','sous 24h'] },
+    { w:30, label:'يطلب رمزًا أو بيانات سرية', tip:'لا جهة حقيقية تطلب رمز التحقق أو كلمة المرور أو الرقم السري.',
+      words:['رمز التحقق','رمز التاكيد','رمز التفعيل','الرمز السري','كلمة المرور','رقم البطاقة','رقم الحساب','cvv','otp','code de verification','code de confirmation','mot de passe','verification code','your password','card number','code pin','pin code'] },
+    { w:22, label:'جائزة أو ربح مجاني', tip:'الجوائز المفاجئة طُعم شائع لسحب بياناتك أو أموالك.',
+      words:['مبروك','ربحت','فزت','جائزة','هدية مجانية','سحب عشوائي','congratulations','you won','winner','free gift','felicitations','gagne','cadeau gratuit','prize'] },
+    { w:20, label:'يطلب مالًا أو رسومًا', tip:'طلب مال قبل تسليم أي شيء علامة احتيال شائعة.',
+      words:['تحويل','حول المبلغ','ارسل المبلغ','رسوم','عربون','ادفع','شحن رصيد','western union','payer','frais','paiement','send money','processing fee'] },
+    { w:15, label:'ينتحل صفة جهة رسمية', tip:'الجهات الرسمية لا تطلب منك الدفع أو البيانات عبر رسالة.',
+      words:['الشرطة','الدرك','المحكمة','الضرائب','النيابة','البنك المركزي','الدعم الفني','فريق الامان','police','gendarmerie','tribunal','impots','support technique','security team'] },
+    { w:12, label:'طرد أو شحنة غير متوقعة', tip:'رسائل الطرود الوهمية من أكثر القوالب انتشارًا.',
+      words:['طرد','شحنة','توصيل','colis','livraison','parcel','package','delivery'] },
+    { w:10, label:'يدفعك للضغط على رابط', tip:'لا تضغط قبل أن تتحقق من الرابط والمرسل.',
+      words:['اضغط','انقر','click here','click the link','cliquez'] },
+    { w:8, label:'تحية عامة غير شخصية', tip:'الجهات الحقيقية غالبًا تخاطبك باسمك.',
+      words:['عزيزي العميل','عزيزي المستخدم','عزيزي المشترك','dear customer','dear user','cher client','cher utilisateur'] }
+  ];
+  const VX_BRANDS_GLOBAL = ['paypal','facebook','instagram','whatsapp','google','apple','microsoft','netflix','amazon','binance','tiktok','telegram','dhl','fedex'];
+  const VX_BRANDS_LOCAL = ['mobilis','djezzy','ooredoo','baridimob','algerieposte'];
+  const VX_BAD_TLDS = ['xyz','top','click','shop','online','site','live','vip','club','icu','cc','tk','ml','ga','cf','gq','link','buzz','rest','fit','sbs','cfd'];
+  const VX_SHORTENERS = ['bit.ly','tinyurl.com','t.co','cutt.ly','is.gd','rb.gy','shorturl.at','ow.ly','goo.gl','tiny.cc','s.id','t.ly','lnkd.in','bit.do','v.gd'];
+  const VX_TLD_LIST = 'com|net|org|info|xyz|top|click|shop|online|site|live|vip|club|icu|cc|tk|ml|ga|cf|gq|link|buzz|rest|fit|sbs|cfd|me|co|io|ly|gl|dz|fr|app|store|website|space|today|support|help|pro';
+  let vxRulesReady = false;
+
+  function vxPrepRules(){
+    if(vxRulesReady) return;
+    VX_TEXT_RULES.forEach(function(r){
+      r.kw = r.words.map(function(w){
+        const n = vxNorm(w);
+        if(/^[a-z0-9 ]+$/.test(n)){
+          return { re: new RegExp('(^|[^a-z0-9])' + n.replace(/ /g, '\\s+') + '([^a-z0-9]|$)'), raw: w };
+        }
+        return { s: n, raw: w };
+      });
+    });
+    vxRulesReady = true;
+  }
+
+  function vxRegistrable(host){
+    const p = host.split('.');
+    if(p.length <= 2) return host;
+    const last = p[p.length - 1], sec = p[p.length - 2];
+    if(last.length === 2 && ['co','com','net','org','gov','edu','ac'].indexOf(sec) !== -1) return p.slice(-3).join('.');
+    return p.slice(-2).join('.');
+  }
+
+  function vxExtractUrls(text){
+    const re = new RegExp('((?:https?:\\/\\/|www\\.)[^\\s<>"\']+|(?:[a-z0-9][a-z0-9-]*\\.)+(?:' + VX_TLD_LIST + ')(?![a-z0-9-])(?:\\/[^\\s<>"\']*)?)', 'gi');
+    const found = [];
+    let m;
+    while((m = re.exec(text)) !== null){
+      const u = m[0].replace(/[.,;:!?؟،؛)\]]+$/, '');
+      if(u && found.indexOf(u) === -1) found.push(u);
+      if(found.length >= 5) break;
+    }
+    return found;
+  }
+
+  function vxAnalyzeUrl(raw){
+    const flags = [];
+    let score = 0;
+    const hasProto = /^https?:\/\//i.test(raw);
+    let u;
+    try{ u = new URL(hasProto ? raw : 'http://' + raw); }catch(e){ return { raw: raw, host: raw, score: 0, flags: [] }; }
+    const host = u.hostname.toLowerCase().replace(/^www\./, '');
+    const reg = vxRegistrable(host);
+    const labels = host.split('.');
+    const tld = labels[labels.length - 1];
+    const regLabel = reg.split('.')[0];
+    const tokens = host.split(/[.\-]/);
+    function add(w, t){ score += w; flags.push(t); }
+
+    if(VX_SHORTENERS.indexOf(reg) !== -1) add(25, 'رابط مختصر: يُخفي الوجهة الحقيقية قبل أن تفتحه.');
+    if(hasProto && u.protocol === 'http:') add(10, 'يبدأ بـ http بدون تشفير، والمواقع الجادة تستعمل https.');
+    if(/^\d{1,3}(\.\d{1,3}){3}$/.test(host)) add(30, 'العنوان أرقام (IP) بدل اسم موقع، وهذا نادر في المواقع الحقيقية.');
+    if(raw.replace(/^https?:\/\//i, '').split('/')[0].indexOf('@') !== -1) add(25, 'يحتوي @ قبل اسم الموقع، حيلة تُظهر اسمًا مألوفًا وتأخذك لموقع آخر.');
+    if(host.indexOf('xn--') !== -1) add(25, 'يستخدم ترميز Punycode (xn--)، وقد يقلّد اسمًا مألوفًا بأحرف مشابهة.');
+    if(VX_BAD_TLDS.indexOf(tld) !== -1) add(15, 'امتداد النطاق (.' + tld + ') كثير الاستعمال في المواقع الاحتيالية.');
+    if((host.match(/-/g) || []).length >= 2) add(10, 'اسم الموقع فيه شرطات كثيرة، أسلوب شائع لتقليد أسماء الجهات.');
+    if(labels.length - reg.split('.').length >= 2) add(10, 'نطاقات فرعية كثيرة قد تُخفي الاسم الحقيقي في آخره.');
+    if(raw.length > 80) add(8, 'رابط طويل جدًا، يُخفي غالبًا وجهته.');
+    VX_BRANDS_GLOBAL.forEach(function(b){
+      if(tokens.indexOf(b) !== -1 && regLabel !== b){
+        add(30, 'يحتوي اسم «' + b + '» لكنه ليس موقعه الرسمي؛ النطاق الفعلي هنا هو ' + reg + '.');
+      }
+    });
+    VX_BRANDS_LOCAL.forEach(function(b){
+      if(tokens.indexOf(b) !== -1 && !(regLabel === b && tld === 'dz')){
+        add(20, 'يحتوي اسم جهة محلية («' + b + '») بصيغة غير معتادة؛ تأكد من موقعها الرسمي بنفسك قبل الدخول.');
+      }
+    });
+    return { raw: raw, host: host, score: Math.min(score, 100), flags: flags };
+  }
+
+  function vxCheckMessage(){
+    vxPrepRules();
+    const out = document.getElementById('vx-msg-result');
+    const text = (document.getElementById('vx-msg-input').value || '').trim();
+    if(!text){ out.innerHTML = '<p class="incident-hint">الصق رسالة أو رابطًا أولًا.</p>'; return; }
+
+    const noEmail = text.replace(/[^\s@]+@[^\s@]+\.[^\s@]+/g, ' ');
+    const urls = vxExtractUrls(noEmail);
+    const norm = vxNorm(text);
+
+    let textScore = 0;
+    const textFindings = [];
+    VX_TEXT_RULES.forEach(function(rule){
+      const hits = [];
+      rule.kw.forEach(function(k){
+        const ok = k.re ? k.re.test(norm) : norm.indexOf(k.s) !== -1;
+        if(ok) hits.push(k.raw);
+      });
+      if(hits.length){
+        textScore += rule.w;
+        textFindings.push({ label: rule.label, tip: rule.tip, hits: hits.slice(0, 3) });
+      }
+    });
+    textScore = Math.min(textScore, 70);
+    const analyzed = urls.map(vxAnalyzeUrl);
+    const urlScore = Math.min(60, analyzed.reduce(function(m, a){ return Math.max(m, a.score); }, 0));
+    const total = Math.min(100, textScore + urlScore);
+
+    let lvl;
+    if(total === 0) lvl = { icon:'🟢', label:'لم أجد علامات واضحة', color:'#4ade80', msg:'هذا لا يعني أنها آمنة. إن كان المرسل غير متوقع، فتحقق منه عبر قناة ثانية قبل أي خطوة.' };
+    else if(total < 25) lvl = { icon:'🟡', label:'خطر منخفض', color:'#fbbf24', msg:'فيها علامات بسيطة. تحقق من المرسل قبل الضغط أو الرد.' };
+    else if(total < 55) lvl = { icon:'🟠', label:'مشبوهة', color:'#fb923c', msg:'تجمع عدة علامات تُرى كثيرًا في الاحتيال. لا تضغط ولا ترد قبل التحقق من الجهة بنفسك.' };
+    else lvl = { icon:'🔴', label:'خطر مرتفع جدًا', color:'#ef4444', msg:'أغلب الظن أنها احتيال. لا تضغط أي رابط، ولا ترسل أي رمز أو بيانات، وأبلغ عنها واحذفها.' };
+
+    let html =
+      '<div class="vx-meter"><div class="vx-meter-fill" style="width:' + total + '%; background:' + lvl.color + ';"></div></div>' +
+      '<div class="vx-level" style="color:' + lvl.color + ';">' + lvl.icon + ' ' + lvl.label + ' — ' + total + ' / 100</div>' +
+      '<p class="vx-sub">' + lvl.msg + '</p>';
+
+    if(analyzed.length){
+      html += '<h4 class="vx-h4">🔗 الروابط (' + analyzed.length + ')</h4><ul class="vx-list">';
+      analyzed.forEach(function(a){
+        html += '<li><code>' + vxEsc(a.host) + '</code>';
+        if(a.flags.length){
+          a.flags.forEach(function(f){ html += '<small>• ' + vxEsc(f) + '</small>'; });
+        } else {
+          html += '<small>لا علامات واضحة في شكل هذا الرابط، لكن لا تثق به قبل أن تتحقق من مصدره.</small>';
+        }
+        html += '</li>';
+      });
+      html += '</ul>';
+    }
+    if(textFindings.length){
+      html += '<h4 class="vx-h4">✉️ علامات في النص</h4><ul class="vx-list">';
+      textFindings.forEach(function(f){
+        html += '<li><strong>' + vxEsc(f.label) + '</strong> <small>ورد فيها: ' + vxEsc(f.hits.join('، ')) + '</small><small>' + vxEsc(f.tip) + '</small></li>';
+      });
+      html += '</ul>';
+    }
+    html += '<div class="incident-note">💡 هذا تقدير تعليمي مبني على علامات شائعة، وليس حكمًا نهائيًا. عند الشك، تواصل مع الجهة عبر قناتها الرسمية المعروفة مسبقًا، لا عبر أرقام أو روابط الرسالة نفسها.</div>';
+    out.innerHTML = html;
+    awardOnce('vn_awarded_msgcheck', 10, 'جرّبت فاحص الرسائل والروابط');
+  }
+
+  function vxMsgSample(){
+    document.getElementById('vx-msg-input').value =
+      'مبروك! ربحت جائزة قيمتها 50000 دج في السحب العشوائي. لاستلامها اضغط هنا خلال 24 ساعة وإلا سيتم إلغاء الجائزة: http://promo-gift-dz.xyz/claim?id=88 وأرسل رمز التحقق الذي سيصلك.';
+    vxCheckMessage();
+  }
+  function vxMsgClear(){
+    document.getElementById('vx-msg-input').value = '';
+    document.getElementById('vx-msg-result').innerHTML = '';
+  }
+
+  /* ================= PHOTO HIDDEN-DATA DETECTOR ================= */
+  function vxAscii(v, start, len){
+    let s = '';
+    for(let i = 0; i < len && start + i < v.byteLength; i++){
+      const c = v.getUint8(start + i);
+      if(c === 0) break;
+      s += String.fromCharCode(c);
+    }
+    return s;
+  }
+
+  function vxScanMarkers(buf){
+    const r = { jpeg:false, exif:false, xmp:false, iptc:false };
+    try{
+      const v = new DataView(buf);
+      if(v.byteLength < 4 || v.getUint16(0) !== 0xFFD8) return r;
+      r.jpeg = true;
+      let off = 2;
+      while(off + 4 <= v.byteLength){
+        if(v.getUint8(off) !== 0xFF) break;
+        const m = v.getUint8(off + 1);
+        if(m === 0xFF){ off++; continue; }
+        if(m === 0xDA || m === 0xD9) break;
+        if(m === 0x01 || (m >= 0xD0 && m <= 0xD7)){ off += 2; continue; }
+        const size = v.getUint16(off + 2);
+        if(m === 0xE1){
+          const head = vxAscii(v, off + 4, 30);
+          if(head.indexOf('Exif') === 0) r.exif = true;
+          else if(head.indexOf('http://ns.adobe.com/xap') === 0) r.xmp = true;
+        } else if(m === 0xED){
+          r.iptc = true;
+        }
+        off += 2 + size;
+      }
+    }catch(e){}
+    return r;
+  }
+
+  function vxParseExif(buf){
+    const res = { tags:{}, gps:null };
+    try{
+      const v = new DataView(buf);
+      let off = 2;
+      while(off + 4 <= v.byteLength){
+        if(v.getUint8(off) !== 0xFF) break;
+        const m = v.getUint8(off + 1);
+        if(m === 0xFF){ off++; continue; }
+        if(m === 0xDA || m === 0xD9) break;
+        if(m === 0x01 || (m >= 0xD0 && m <= 0xD7)){ off += 2; continue; }
+        const size = v.getUint16(off + 2);
+        if(m === 0xE1 && vxAscii(v, off + 4, 6).indexOf('Exif') === 0){ vxParseTiff(v, off + 10, res); break; }
+        off += 2 + size;
+      }
+    }catch(e){}
+    return res;
+  }
+
+  function vxParseTiff(v, base, res){
+    const le = v.getUint16(base) === 0x4949;
+    const u16 = function(o){ return v.getUint16(o, le); };
+    const u32 = function(o){ return v.getUint32(o, le); };
+    const TS = { 1:1, 2:1, 3:2, 4:4, 5:8, 7:1, 9:4, 10:8 };
+    function readVal(e){
+      const type = u16(e + 2), count = u32(e + 4), size = (TS[type] || 1) * count;
+      const vo = size <= 4 ? e + 8 : base + u32(e + 8);
+      if(count > 512) return null;
+      let i;
+      if(type === 2){
+        let s = '';
+        for(i = 0; i < count; i++){ const c = v.getUint8(vo + i); if(c === 0) break; s += String.fromCharCode(c); }
+        return s.trim();
+      }
+      const a = [];
+      if(type === 3){ for(i = 0; i < count; i++) a.push(u16(vo + i * 2)); return a; }
+      if(type === 4){ for(i = 0; i < count; i++) a.push(u32(vo + i * 4)); return a; }
+      if(type === 5){
+        for(i = 0; i < count; i++){ const n = u32(vo + i * 8), d = u32(vo + i * 8 + 4); a.push(d ? n / d : 0); }
+        return a;
+      }
+      return null;
+    }
+    function readIfd(ifdOff, handler){
+      const n = u16(ifdOff);
+      for(let i = 0; i < n && i < 200; i++){ const e = ifdOff + 2 + i * 12; handler(u16(e), e); }
+    }
+    let exifPtr = null, gpsPtr = null;
+    readIfd(base + u32(base + 4), function(tag, e){
+      if(tag === 0x010F) res.tags.make = readVal(e);
+      else if(tag === 0x0110) res.tags.model = readVal(e);
+      else if(tag === 0x0131) res.tags.software = readVal(e);
+      else if(tag === 0x0132) res.tags.modified = readVal(e);
+      else if(tag === 0x8769) exifPtr = u32(e + 8);
+      else if(tag === 0x8825) gpsPtr = u32(e + 8);
+    });
+    if(exifPtr !== null){
+      readIfd(base + exifPtr, function(tag, e){
+        if(tag === 0x9003) res.tags.taken = readVal(e);
+        else if(tag === 0xA434) res.tags.lens = readVal(e);
+        else if(tag === 0xA431) res.tags.serial = readVal(e);
+        else if(tag === 0xA430) res.tags.owner = readVal(e);
+      });
+    }
+    if(gpsPtr !== null){
+      const g = {};
+      readIfd(base + gpsPtr, function(tag, e){
+        if(tag === 0x0001) g.latRef = readVal(e);
+        else if(tag === 0x0002) g.lat = readVal(e);
+        else if(tag === 0x0003) g.lonRef = readVal(e);
+        else if(tag === 0x0004) g.lon = readVal(e);
+        else if(tag === 0x0006) g.alt = readVal(e);
+      });
+      if(g.lat && g.lon && g.lat.length === 3 && g.lon.length === 3){
+        let lat = g.lat[0] + g.lat[1] / 60 + g.lat[2] / 3600;
+        let lon = g.lon[0] + g.lon[1] / 60 + g.lon[2] / 3600;
+        if(g.latRef === 'S') lat = -lat;
+        if(g.lonRef === 'W') lon = -lon;
+        res.gps = { lat: lat, lon: lon, alt: (g.alt && g.alt.length) ? g.alt[0] : null };
+      }
+    }
+  }
+
+  let vxPhotoUrl = null;
+  let vxCleanUrl = null;
+
+  function vxPhotoSelected(input){
+    const file = input.files && input.files[0];
+    const out = document.getElementById('vx-photo-result');
+    if(!file){ return; }
+    if(file.type.indexOf('image/') !== 0){ out.innerHTML = '<p class="incident-hint">اختر ملف صورة من فضلك.</p>'; return; }
+    if(vxPhotoUrl){ try{ URL.revokeObjectURL(vxPhotoUrl); }catch(e){} }
+    if(vxCleanUrl){ try{ URL.revokeObjectURL(vxCleanUrl); }catch(e){} vxCleanUrl = null; }
+    vxPhotoUrl = URL.createObjectURL(file);
+    const reader = new FileReader();
+    reader.onload = function(){ vxShowPhotoReport(reader.result, file); };
+    reader.onerror = function(){ out.innerHTML = '<p class="incident-hint">تعذّرت قراءة الصورة.</p>'; };
+    reader.readAsArrayBuffer(file);
+  }
+
+  function vxShowPhotoReport(buf, file){
+    const out = document.getElementById('vx-photo-result');
+    const marks = vxScanMarkers(buf);
+    const ex = marks.exif ? vxParseExif(buf) : { tags:{}, gps:null };
+    const t = ex.tags;
+    const rows = [];
+    function row(k, v){ if(v !== null && v !== undefined && v !== '') rows.push('<tr><td>' + k + '</td><td>' + vxEsc(v) + '</td></tr>'); }
+    if(ex.gps){
+      row('📍 الموقع (خط العرض)', ex.gps.lat.toFixed(5));
+      row('📍 الموقع (خط الطول)', ex.gps.lon.toFixed(5));
+      if(ex.gps.alt !== null) row('⛰️ الارتفاع', Math.round(ex.gps.alt) + ' m');
+    }
+    row('📱 الشركة المصنعة', t.make);
+    row('📱 طراز الجهاز', t.model);
+    row('🕒 وقت التصوير', t.taken);
+    row('🕒 آخر تعديل', t.modified);
+    row('🔍 العدسة', t.lens);
+    row('🔢 الرقم التسلسلي للكاميرا', t.serial);
+    row('👤 اسم المالك', t.owner);
+    row('🧩 البرنامج', t.software);
+    if(marks.xmp) rows.push('<tr><td>🧾 بيانات XMP</td><td>موجودة</td></tr>');
+    if(marks.iptc) rows.push('<tr><td>🧾 بيانات IPTC</td><td>موجودة</td></tr>');
+
+    let verdict;
+    if(ex.gps){
+      verdict = '<div class="vx-verdict bad">⚠️ هذه الصورة تكشف <strong>موقع التصوير بدقة</strong>. من يستلمها كما هي قد يعرف أين كنت، أو أين تسكن إن صُوّرت في بيتك.</div>';
+    } else if(rows.length){
+      verdict = '<div class="vx-verdict mid">🟡 لا يوجد موقع، لكن الصورة تحمل معلومات عن جهازك أو وقت التصوير.</div>';
+    } else if(marks.jpeg){
+      verdict = '<div class="vx-verdict ok">✅ لم أجد بيانات مخفية في هذه الصورة. ربما نُظّفت سابقًا، أو أن هاتفك لا يضيف الموقع.</div>';
+    } else {
+      verdict = '<div class="vx-verdict mid">ℹ️ نوع هذه الصورة (' + vxEsc(file.type || 'غير معروف') + ') لا أستطيع قراءة بياناتها هنا. لكن النسخة النظيفة أدناه تخلو من أي بيانات مضمّنة.</div>';
+    }
+
+    let html =
+      '<div class="vx-photo-grid"><div><img src="' + vxPhotoUrl + '" alt="معاينة الصورة المختارة"></div><div>' + verdict +
+      (rows.length ? '<table class="vx-table">' + rows.join('') + '</table>' : '') + '</div></div>' +
+      '<div class="vx-clean-box"><button type="button" class="btn btn-primary" onclick="vxCleanPhoto()">🧼 أنشئ نسخة نظيفة</button>' +
+      '<div id="vx-clean-out" aria-live="polite"></div></div>' +
+      '<div class="incident-note">💡 على آيفون، قد يحذف Safari الموقع تلقائيًا إن عطّلت «الموقع» في خيارات اختيار الصورة. وتطبيقات التواصل الكبرى تحذف عادةً هذه البيانات عند النشر، أما الإرسال كـ«ملف» أو عبر البريد فيُبقيها.</div>';
+    out.innerHTML = html;
+    awardOnce('vn_awarded_photoexif', 10, 'فحصت البيانات المخفية في صورة');
+  }
+
+  function vxCleanPhoto(){
+    const box = document.getElementById('vx-clean-out');
+    if(!vxPhotoUrl || !box) return;
+    box.innerHTML = '<p class="vx-sub">جارٍ التنظيف...</p>';
+    const img = new Image();
+    img.onload = function(){
+      let w = img.naturalWidth, h = img.naturalHeight;
+      const MAX = 4096;
+      if(Math.max(w, h) > MAX){ const k = MAX / Math.max(w, h); w = Math.round(w * k); h = Math.round(h * k); }
+      const c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      const ctx = c.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, w, h);
+      ctx.drawImage(img, 0, 0, w, h);
+      c.toBlob(function(blob){
+        if(!blob){ box.innerHTML = '<p class="vx-sub">تعذّر إنشاء النسخة النظيفة.</p>'; return; }
+        if(vxCleanUrl){ try{ URL.revokeObjectURL(vxCleanUrl); }catch(e){} }
+        vxCleanUrl = URL.createObjectURL(blob);
+        const rd = new FileReader();
+        rd.onload = function(){
+          const m = vxScanMarkers(rd.result);
+          const clean = !m.exif && !m.xmp && !m.iptc;
+          box.innerHTML =
+            '<div class="vx-verdict ' + (clean ? 'ok' : 'mid') + '" id="vx-clean-verdict">' +
+              (clean ? '✅ تأكدت: النسخة الجديدة لا تحتوي أي بيانات مخفية (لا موقع ولا جهاز ولا تاريخ).' : '⚠️ بقيت بعض البيانات في النسخة الجديدة.') + '</div>' +
+            '<img src="' + vxCleanUrl + '" alt="النسخة النظيفة">' +
+            '<div><a class="btn btn-primary" id="vx-clean-dl" href="' + vxCleanUrl + '" download="clean-photo.jpg">⬇️ تنزيل النسخة النظيفة</a></div>' +
+            '<p class="vx-sub" style="margin-top:10px;">على آيفون: إن لم يبدأ التنزيل، اضغط مطولًا على الصورة أعلاه واختر «حفظ في الصور».</p>';
+          awardOnce('vn_awarded_photoclean', 10, 'نظّفت صورة من بياناتها');
+        };
+        rd.readAsArrayBuffer(blob);
+      }, 'image/jpeg', 0.92);
+    };
+    img.onerror = function(){ box.innerHTML = '<p class="vx-sub">تعذّر فتح الصورة لتنظيفها.</p>'; };
+    img.src = vxPhotoUrl;
+  }
+
+  /* ================= DIGITAL SAFETY CHECK ================= */
+  const VX_SAFETY_Q = [
+    { q:'هل فعّلت التحقق بخطوتين على بريدك الإلكتروني؟', w:3, tip:'فعّل التحقق بخطوتين على بريدك أولًا، فهو مفتاح كل حساباتك.', lesson:'lesson-14' },
+    { q:'هل تستخدم كلمة مرور مختلفة لكل حساب مهم؟', w:3, tip:'اجعل لكل حساب مهم كلمة مرور مختلفة، واستعن بمدير كلمات مرور.', lesson:'lesson-04' },
+    { q:'هل ترفض مشاركة رموز التحقق التي تصلك مع أي شخص، حتى لو بدا صديقًا؟', w:3, tip:'رمز التحقق مفتاح حسابك، ولا يطلبه أي موظف أو صديق حقيقي.', lesson:'lesson-13' },
+    { q:'هل تتأكد من الرابط والمرسل قبل الضغط على رسالة غير متوقعة؟', w:3, tip:'قبل أن تضغط، افحص المرسل والرابط، أو استعمل فاحص الرسائل في هذا الموقع.', href:'#msg-checker', cta:'افتح الفاحص' },
+    { q:'هل تُحدّث هاتفك وتطبيقاتك فور توفر التحديثات؟', w:2, tip:'ثبّت التحديثات فورًا، فهي تغلق ثغرات يستغلها المهاجمون.', lesson:'lesson-02' },
+    { q:'هل تحتفظ بنسخة احتياطية من صورك وملفاتك المهمة؟', w:2, tip:'احتفظ بنسخة احتياطية في مكان منفصل لتكون بمأمن من الفقدان والفدية.', href:'#checklist', cta:'افتح قائمة الفحص' },
+    { q:'هل تتجنب الدخول لحساباتك الحساسة عبر الواي فاي العام؟', w:2, tip:'للحسابات الحساسة استعمل بيانات هاتفك بدل الواي فاي العام.', lesson:'lesson-02' },
+    { q:'هل تحمّل التطبيقات من المتجر الرسمي فقط؟', w:2, tip:'حمّل التطبيقات من المتجر الرسمي فقط، وتجنب النسخ «المعدّلة».', lesson:'lesson-03' },
+    { q:'هل قفل هاتفك برمز من 6 أرقام أو أكثر، أو ببصمة أو وجه؟', w:2, tip:'استعمل رمز قفل من 6 أرقام على الأقل مع البصمة أو الوجه.', lesson:'lesson-02' },
+    { q:'هل تراجع صلاحيات التطبيقات المثبتة بين وقت وآخر؟', w:1, tip:'راجع صلاحيات تطبيقاتك كل شهر، وأزل ما لا يحتاجه التطبيق.', lesson:'lesson-03' }
+  ];
+  const VX_SAFETY_OPTS = [ { t:'نعم، دائمًا', v:2 }, { t:'أحيانًا', v:1 }, { t:'لا', v:0 } ];
+  let vxSafety = { i:0, ans:[] };
+
+  function vxSafetyStart(){
+    vxSafety = { i:0, ans:[] };
+    vxSafetyRender();
+  }
+
+  function vxSafetyRender(){
+    const host = document.getElementById('vx-safety-host');
+    if(!host) return;
+    if(vxSafety.i >= VX_SAFETY_Q.length){ vxSafetyFinish(); return; }
+    const q = VX_SAFETY_Q[vxSafety.i];
+    const opts = VX_SAFETY_OPTS.map(function(o){
+      return '<button type="button" class="quiz-option" onclick="vxSafetyAnswer(' + o.v + ')">' + o.t + '</button>';
+    }).join('');
+    host.innerHTML =
+      '<div class="quiz-panel"><div class="quiz-progress">سؤال ' + (vxSafety.i + 1) + ' من ' + VX_SAFETY_Q.length + '</div>' +
+      '<div class="quiz-question">' + q.q + '</div><div class="quiz-options">' + opts + '</div></div>';
+  }
+
+  function vxSafetyAnswer(v){
+    vxSafety.ans.push(v);
+    vxSafety.i++;
+    vxSafetyRender();
+  }
+
+  function vxSafetyFinish(){
+    const host = document.getElementById('vx-safety-host');
+    let got = 0, max = 0;
+    VX_SAFETY_Q.forEach(function(q, i){ got += q.w * vxSafety.ans[i]; max += q.w * 2; });
+    const pct = Math.round((got / max) * 100);
+    let prev = null;
+    try{ const p = localStorage.getItem('vn_safety_score'); if(p !== null) prev = parseInt(p, 10); }catch(e){}
+    try{ localStorage.setItem('vn_safety_score', String(pct)); }catch(e){}
+
+    let tier;
+    if(pct >= 85) tier = '🛡️ حصن منيع';
+    else if(pct >= 65) tier = '👍 جيد، وفيه ما يُحسَّن';
+    else if(pct >= 40) tier = '⚠️ متوسط، عندك ثغرات واضحة';
+    else tier = '🚨 معرّض للخطر، ابدأ اليوم';
+
+    const weak = VX_SAFETY_Q.map(function(q, i){ return { q:q, gap:q.w * (2 - vxSafety.ans[i]) }; })
+      .filter(function(x){ return x.gap > 0; })
+      .sort(function(a, b){ return b.gap - a.gap; })
+      .slice(0, 3);
+
+    let recs = '';
+    if(weak.length){
+      recs = '<h4 class="vx-h4">ابدأ بهذه الخطوات الثلاث</h4>' + weak.map(function(x){
+        const q = x.q;
+        let link = '';
+        if(q.lesson) link = '<br><a href="#' + q.lesson + '" class="btn btn-ghost" onclick="goToLesson(\'' + q.lesson + '\'); return false;">اقرأ الدرس</a>';
+        else if(q.href) link = '<br><a href="' + q.href + '" class="btn btn-ghost">' + q.cta + '</a>';
+        return '<div class="vx-rec">' + q.tip + link + '</div>';
+      }).join('');
+    } else {
+      recs = '<p class="vx-sub">ممتاز! عاداتك قوية. حافظ عليها وعلّمها لمن حولك.</p>';
+    }
+    const cmp = (prev !== null && prev !== pct)
+      ? '<p class="vx-sub">نتيجتك السابقة: ' + prev + '% ' + (pct > prev ? '— تحسّنت 👏' : '') + '</p>' : '';
+
+    host.innerHTML =
+      '<div class="quiz-panel quiz-result"><div class="quiz-score">' + pct + '%</div>' +
+      '<div class="vx-safety-bar"><div style="width:' + pct + '%;"></div></div>' +
+      '<p>' + tier + '</p>' + cmp + '</div>' + recs +
+      '<div class="quiz-result-actions" style="margin-top:16px;">' +
+        '<button type="button" class="btn btn-ghost" onclick="vxSafetyStart()">إعادة الفحص</button>' +
+        '<button type="button" class="btn btn-ghost" onclick="vxSafetyShare(' + pct + ')">📤 تحدَّ صديقك</button></div>';
+    awardOnce('vn_awarded_safetycheck', 15, 'أكملت فحص أمانك الرقمي');
+  }
+
+  function vxSafetyShare(pct){
+    shareResult('نتيجة فحص أماني الرقمي على VigilantNode: ' + pct + '% 🛡️ ما نتيجتك أنت؟', { key:'safety', score:pct, total:100 });
   }
 
   /* ================= INCIDENT RESPONSE GUIDE ================= */
@@ -4693,7 +5451,7 @@
     { id:'pw-guardian',  name:'حارس كلمات المرور',  icon:'🔑', desc:'جرّب مولّد كلمات المرور وفاحص التسريبات' },
     { id:'persistent',   name:'المثابر',            icon:'🔥', desc:'حافظ على سلسلة 7 أيام في أي عادة أمنية' },
     { id:'flag-hunter',  name:'صياد الأعلام',       icon:'🚩', desc:'اعثر على كل أعلام التحدي المخفية' },
-    { id:'graduate',     name:'خريج الأمان',        icon:'🎓', desc:'أكمل اختبارات جميع الدروس الـ17' },
+    { id:'graduate',     name:'خريج الأمان',        icon:'🎓', desc:'أكمل اختبارات جميع الدروس الـ19' },
     { id:'daily-mind',   name:'عقل التحدي اليومي',  icon:'📅', desc:'أجب بشكل صحيح عن 3 تحديات يومية' },
     { id:'vishing-master', name:'كاشف المكالمات',   icon:'📞', desc:'أكمل محاكي التصيّد الصوتي (Vishing) بإجابات كاملة' },
     { id:'responder',    name:'مستجيب الطوارئ',     icon:'🚨', desc:'أكمل خطوات دليلَي طوارئ كاملين' }
@@ -4795,7 +5553,7 @@
   function checkBadgeConditions(){
     try{
       const ids = [];
-      for(let i = 1; i <= 12; i++){ ids.push('lesson-' + String(i).padStart(2, '0')); }
+      for(let i = 1; i <= 14; i++){ ids.push('lesson-' + String(i).padStart(2, '0')); }
       for(let i = 1; i <= 5; i++){ ids.push('code-' + String(i).padStart(2, '0')); }
       const allDone = ids.every(function(id){ return localStorage.getItem('vn_quiz_' + id) !== null; });
       if(allDone) unlockBadge('graduate');
@@ -4926,7 +5684,8 @@
         daily: { label: 'تحدي اليوم', anchor: '#daily-challenge' },
         phish: { label: 'محاكي التصيّد الإلكتروني', anchor: '#phishing-sim' },
         sms:   { label: 'محاكي رسائل SMS/واتساب', anchor: '#sms-phishing-sim' },
-        vishing: { label: 'محاكي التصيّد الصوتي', anchor: '#vishing-sim' }
+        vishing: { label: 'محاكي التصيّد الصوتي', anchor: '#vishing-sim' },
+        safety: { label: 'فحص الأمان الرقمي', anchor: '#safety-check' }
       };
       let info = CHALLENGE_INFO[key];
       if(!info && key.indexOf('quiz-') === 0){
@@ -5775,6 +6534,10 @@
     'sms-phishing-sim': 'محاكي رسائل SMS/واتساب',
     'vishing-sim': 'محاكي التصيد الصوتي',
     'incident': 'دليل الطوارئ (اختُرق حسابي)',
+    'local-scams': 'أشهر أساليب الاحتيال حولنا',
+    'msg-checker': 'فاحص الرسائل والروابط',
+    'photo-privacy': 'كاشف بيانات الصور',
+    'safety-check': 'فحص أمانك الرقمي',
     'case-studies': 'قصص واقعية',
     'about': 'عن الموقع',
     'feedback': 'شارك رأيك',
