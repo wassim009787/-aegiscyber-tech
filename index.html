@@ -405,20 +405,43 @@
 
   /* ---------- iOS 26 LIQUID GLASS DOCK ---------- */
   .ios-dock{
-    position:fixed; top:50%; inset-inline-start:14px; transform:translateY(-50%);
-    z-index:125; display:flex; flex-direction:column; align-items:center; gap:6px;
+    position:fixed; bottom:22px; inset-inline-start:16px; z-index:125;
+    display:flex; flex-direction:column; align-items:center; gap:12px;
+  }
+  .dock-options{
+    position:relative; display:flex; flex-direction:column; align-items:center; gap:6px;
     padding:9px 7px; border-radius:30px;
     background:var(--glass-bg);
     backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%);
     border:1px solid var(--glass-border);
     box-shadow:0 12px 34px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.25);
+    transform-origin:bottom center;
+    opacity:0; visibility:hidden; pointer-events:none; transform:translateY(16px) scale(.86);
+    transition:opacity .22s ease, transform .25s ease, visibility 0s linear .25s;
   }
-  .ios-dock::before{
+  .ios-dock.open .dock-options{
+    opacity:1; visibility:visible; pointer-events:auto; transform:none;
+    transition:opacity .22s ease, transform .25s ease, visibility 0s;
+  }
+  .dock-options::before{
     content:''; position:absolute; inset:3px 3px auto 3px; height:42%;
     border-radius:24px 24px 60% 60%/24px 24px 30px 30px;
     background:linear-gradient(180deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
     pointer-events:none; opacity:.5;
   }
+  .dock-more{
+    position:relative; width:52px; height:52px; border-radius:50%; cursor:pointer; padding:0;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    background:var(--glass-bg); color:var(--brass-bright);
+    backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%);
+    border:1px solid var(--glass-border);
+    box-shadow:0 10px 28px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.25);
+    transition:transform .2s, background .25s, color .25s;
+  }
+  .dock-more:active{ transform:scale(.94); }
+  .dock-more svg{ transition:transform .3s ease; }
+  .ios-dock.open .dock-more{ background:linear-gradient(135deg, var(--brass), var(--rust)); color:#fff; border-color:transparent; }
+  .ios-dock.open .dock-more svg{ transform:rotate(90deg); }
   .dock-slot{
     position:relative; width:46px; height:46px; border-radius:50%; border:none; cursor:pointer;
     background:transparent; color:var(--brass-bright);
@@ -429,7 +452,7 @@
   .dock-slot.active{ background:linear-gradient(135deg, var(--brass), var(--rust)); color:var(--ink-fixed); }
   .dock-divider{ width:24px; height:1px; background:var(--glass-border); margin:1px 0; }
   .dock-pop{
-    position:fixed; top:50%; inset-inline-start:76px; transform:translateY(-50%) translateX(-10px);
+    position:fixed; top:auto; bottom:22px; inset-inline-start:78px; transform:translateX(-10px); max-height:calc(100vh - 44px); overflow-y:auto;
     z-index:124; width:240px; max-width:min(74vw, 240px);
     background:var(--panel);
     backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%);
@@ -437,7 +460,7 @@
     padding:16px; box-shadow:0 18px 40px rgba(0,0,0,0.55);
     opacity:0; pointer-events:none; transition:opacity .2s, transform .2s;
   }
-  .dock-pop.open{ opacity:1; pointer-events:auto; transform:translateY(-50%) translateX(0); }
+  .dock-pop.open{ opacity:1; pointer-events:auto; transform:translateX(0); }
   .dock-pop h5{ font-family:var(--head); font-size:13.5px; color:var(--paper); margin-bottom:10px; }
   .dock-contact-link{ display:flex; align-items:center; gap:10px; padding:9px 8px; border-radius:10px; color:var(--text); text-decoration:none; font-size:13.5px; transition:background .2s, color .2s; word-break:break-all; }
   .dock-contact-link:hover{ background:rgba(255,255,255,0.09); color:var(--brass-bright); }
@@ -454,8 +477,8 @@
   .dock-search-tag{ display:inline-block; font-family:var(--mono); font-size:10px; color:var(--brass); margin-inline-end:6px; }
   .search-highlight{ outline:2px solid var(--brass-bright); outline-offset:6px; border-radius:4px; }
   @media (max-width:640px){
-    .ios-dock{ inset-inline-start:8px; }
-    .dock-pop{ inset-inline-start:66px; }
+    .ios-dock{ inset-inline-start:14px; }
+    .dock-pop{ inset-inline-start:72px; }
   }
 
   /* ---------- PROFILE / POINTS / BADGES ---------- */
@@ -1199,7 +1222,7 @@
     border-color:rgba(154,82,255,0.35) !important;
     box-shadow:var(--glass-shadow), 0 0 22px rgba(154,82,255,0.22), 0 0 44px rgba(61,139,255,0.16);
   }
-  .ios-dock{
+  .dock-options, .dock-more{
     box-shadow:0 12px 34px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.25),
                0 0 18px rgba(154,82,255,0.15), 0 0 34px rgba(61,139,255,0.12);
   }
@@ -3195,6 +3218,7 @@
 </div>
 
 <div class="ios-dock" id="ios-dock">
+  <div class="dock-options" id="dock-options">
   <button type="button" class="dock-slot" id="dock-translate-btn" onclick="toggleTranslatePop()" aria-label="ترجمة الصفحة" title="ترجمة">
     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.8 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.8-3.8-9s1.3-6.4 3.8-9z"/></svg>
   </button>
@@ -3209,6 +3233,10 @@
   <div class="dock-divider"></div>
   <button type="button" class="dock-slot" id="dock-profile-btn" onclick="toggleProfilePop()" aria-label="ملفي الشخصي: النقاط والشارات" title="ملفي">
     <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z" stroke-linejoin="round"/></svg>
+  </button>
+  </div>
+  <button type="button" class="dock-more" id="dock-more-btn" onclick="toggleDockMore()" aria-expanded="false" aria-controls="dock-options" aria-label="القائمة" title="القائمة">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><circle cx="5.5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18.5" cy="12" r="2"/></svg>
   </button>
 </div>
 
@@ -6044,6 +6072,23 @@
         if(input){ input.value = ''; setTimeout(function(){ input.focus(); }, 50); }
         renderDockSearchResults('');
       }
+    }
+  }
+
+  function toggleDockMore(force){
+    const dock = document.getElementById('ios-dock');
+    const btn = document.getElementById('dock-more-btn');
+    if(!dock) return;
+    const open = (typeof force === 'boolean') ? force : !dock.classList.contains('open');
+    dock.classList.toggle('open', open);
+    if(btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if(!open){
+      ['contact-pop','search-pop','profile-pop','translate-pop'].forEach(function(id){
+        const p = document.getElementById(id); if(p) p.classList.remove('open');
+      });
+      ['dock-contact-btn','dock-search-btn','dock-profile-btn','dock-translate-btn'].forEach(function(id){
+        const b = document.getElementById(id); if(b) b.classList.remove('active');
+      });
     }
   }
 
