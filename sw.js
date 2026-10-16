@@ -1,6 +1,6 @@
-// VigilantNode service worker — network-first so updates show up immediately,
+// Cyberdz service worker — network-first so updates show up immediately,
 // with cache fallback so the site still opens offline.
-const CACHE_NAME = 'vigilantnode-v2';
+const CACHE_NAME = 'cyberdz-v3';
 const CACHE_URLS = ['./', './index.html'];
 
 self.addEventListener('install', (event) => {
